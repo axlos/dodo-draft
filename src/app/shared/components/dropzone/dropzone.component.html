@@ -1,0 +1,31 @@
+<nb-card>
+  <nb-card-body>
+    <ngx-dropzone class="custom-dropzone"
+                  accept="application/pdf"
+                  [multiple]="false"
+                  [maxFileSize]="100000"
+                  (change)="onSelect($event)"
+    >
+      <ngx-dropzone-label>
+        <div class="dropzone">
+          <div class="upload-icon-wrapper">
+            <nb-icon icon="cloud-upload-outline"></nb-icon>
+          </div>
+          <h6>
+            Drag and drop your profile here or click to upload
+            <br>
+            <span class="subtitle text-hint">
+            PDF File
+          </span>
+          </h6>
+        </div>
+      </ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>
+          <nb-icon icon="file-text-outline"></nb-icon>
+          {{ f.name }}
+        </ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+  </nb-card-body>
+</nb-card>

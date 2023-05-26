@@ -1,0 +1,44 @@
+@use 'src/themes' as *;
+
+h6 {
+  margin-top: 0.8rem;
+}
+
+.custom-dropzone {
+  height: auto;
+  border-radius: 16px;
+  border-color: nb-theme(color-primary-300);
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.upload-icon-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 4.8rem;
+  width: 4.8rem;
+  background: nb-theme(color-primary-200);
+  border-radius: 1.2rem;
+  margin-bottom: 0.8rem;
+
+  nb-icon {
+    font-size: 2rem;
+    color: nb-theme(color-primary-400);
+  }
+}
+
+ngx-dropzone-preview {
+  background-color: nb-theme(color-primary-100);
+  background-image: none;
+
+  &:hover {
+    background-color: nb-theme(color-primary-100);
+    background-image: none;
+  }
+}

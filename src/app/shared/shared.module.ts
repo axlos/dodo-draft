@@ -5,14 +5,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbActionsModule,
   NbAlertModule,
-  NbCardModule, NbIconModule,
+  NbButtonModule,
+  NbCardModule,
+  NbContextMenuModule,
+  NbIconModule,
   NbLayoutModule,
-  NbMenuModule,
-  NbThemeModule
+  NbMenuModule, NbTagModule,
+  NbThemeModule, NbUserModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
+import { NgxDropzoneModule } from "ngx-dropzone";
 
-const COMPONENTS: any[] = [];
+import { DropzoneComponent } from "./components/dropzone/dropzone.component";
+
+const COMPONENTS: any[] = [
+  DropzoneComponent
+];
 
 const PIPES: any[] = [];
 
@@ -27,6 +35,11 @@ const MODULES: any[] = [
   NbIconModule,
   NbCardModule,
   NbAlertModule,
+  NbContextMenuModule,
+  NbButtonModule,
+  NbUserModule,
+  NbTagModule,
+  NgxDropzoneModule,
   NbMenuModule.forRoot(),
   NbThemeModule.forRoot({
     name: 'default'
