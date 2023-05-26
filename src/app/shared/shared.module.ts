@@ -2,7 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbLayoutModule, NbThemeModule } from "@nebular/theme";
+import {
+  NbActionsModule,
+  NbAlertModule,
+  NbCardModule, NbIconModule,
+  NbLayoutModule,
+  NbMenuModule,
+  NbThemeModule
+} from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 
 const COMPONENTS: any[] = [];
@@ -14,11 +21,16 @@ const MODULES: any[] = [
   RouterModule,
   FormsModule,
   ReactiveFormsModule,
+  NbActionsModule,
+  NbLayoutModule,
+  NbEvaIconsModule,
+  NbIconModule,
+  NbCardModule,
+  NbAlertModule,
+  NbMenuModule.forRoot(),
   NbThemeModule.forRoot({
     name: 'default'
   }),
-  NbLayoutModule,
-  NbEvaIconsModule
 ];
 
 @NgModule({

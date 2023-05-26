@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   api: {
-    url: 'https://job-proposal-creator.ai'
+    url: 'http://localhost:3000/api'
   },
   stripe: 'pk_test_51JdzlBJgfrHXf7bK6mQSDi0vDko8GNXwqGotRCVbJNEXXPkoDCpYeBvhEswJW7Fm4Kb3K1RTxGfhmQAgmNBFpVlD00GOCO4uhq',
   auth0: {
