@@ -7,19 +7,23 @@ import {
   NbAlertModule,
   NbButtonModule,
   NbCardModule,
+  NbCheckboxModule,
   NbContextMenuModule,
   NbIconModule,
+  NbInputModule,
   NbLayoutModule,
   NbMenuModule, NbTagModule,
-  NbThemeModule, NbUserModule
+  NbThemeModule, NbToggleModule, NbUserModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { NgxDropzoneModule } from "ngx-dropzone";
 
 import { DropzoneComponent } from "./components/dropzone/dropzone.component";
+import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
 
 const COMPONENTS: any[] = [
-  DropzoneComponent
+  DropzoneComponent,
+  ProposalAiComponent
 ];
 
 const PIPES: any[] = [];
@@ -39,6 +43,9 @@ const MODULES: any[] = [
   NbButtonModule,
   NbUserModule,
   NbTagModule,
+  NbInputModule,
+  NbCheckboxModule,
+  NbToggleModule,
   NgxDropzoneModule,
   NbMenuModule.forRoot(),
   NbThemeModule.forRoot({

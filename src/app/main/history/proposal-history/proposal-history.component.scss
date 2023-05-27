@@ -1,0 +1,11 @@
+@use 'src/themes' as *;
+
+h6 {
+  position: relative;
+
+  .edit-wrapper {
+    position: absolute;
+    right: 0px;
+    top: -5px;
+  }
+}

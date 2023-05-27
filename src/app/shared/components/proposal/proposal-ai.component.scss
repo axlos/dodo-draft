@@ -1,0 +1,15 @@
+@use 'src/themes' as *;
+
+.proposal {
+  position: relative;
+  background: nb-theme(color-basic-200);
+  padding: 1.5rem 40px 1rem 1.5rem;
+  margin-bottom: 0;
+  border-radius: 5px;
+}
+
+.copy-wrapper {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
