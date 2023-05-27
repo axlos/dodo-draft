@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   NbActionsModule,
   NbAlertModule,
+  NbBadgeModule,
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
@@ -12,18 +13,25 @@ import {
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
-  NbMenuModule, NbTagModule,
-  NbThemeModule, NbToggleModule, NbUserModule
+  NbMenuModule,
+  NbStepperModule,
+  NbTagModule,
+  NbThemeModule,
+  NbToggleModule,
+  NbTooltipModule,
+  NbUserModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { NgxDropzoneModule } from "ngx-dropzone";
 
 import { DropzoneComponent } from "./components/dropzone/dropzone.component";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
+import { ProfileFormComponent } from "./components/profile-form/profile-form.component";
 
 const COMPONENTS: any[] = [
   DropzoneComponent,
-  ProposalAiComponent
+  ProposalAiComponent,
+  ProfileFormComponent
 ];
 
 const PIPES: any[] = [];
@@ -46,6 +54,9 @@ const MODULES: any[] = [
   NbInputModule,
   NbCheckboxModule,
   NbToggleModule,
+  NbBadgeModule,
+  NbTooltipModule,
+  NbStepperModule,
   NgxDropzoneModule,
   NbMenuModule.forRoot(),
   NbThemeModule.forRoot({

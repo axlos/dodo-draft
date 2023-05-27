@@ -1,12 +1,12 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { ProposalComponent } from "./proposal.component";
+import { StepperComponent } from "./stepper.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: ProposalComponent,
+    component: StepperComponent,
   },
 ];
 
@@ -16,5 +16,5 @@ const routes: Routes = [
   ],
   providers: [],
 })
-export class ProposalRoutingModule {
+export class StepperRoutingModule {
 }

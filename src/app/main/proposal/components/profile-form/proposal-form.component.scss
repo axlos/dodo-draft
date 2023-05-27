@@ -1,1 +1,11 @@
 @use 'src/themes' as *;
+
+.credits {
+  margin-right: 1.6rem;
+  background-color: nb-theme(color-primary-100);
+  border-radius: 0.8rem;
+}
+
+.badge {
+  background-color: nb-theme(color-success-500);
+}

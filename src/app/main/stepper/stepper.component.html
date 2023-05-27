@@ -1,0 +1,53 @@
+<nb-card>
+  <nb-card-body>
+    <nb-stepper orientation="horizontal" disableStepNavigation [selectedIndex]="0">
+
+      <nb-step label="Upload">
+        <h5>
+          Upload your profile
+        </h5>
+        <p class="lh-base">
+          Every job proposal we create is meticulously tailored and crafted to be original and matched your profile.
+        </p>
+        <div class="pt-4">
+          <app-upload-profile></app-upload-profile>
+        </div>
+
+        <div class="mt-4 d-flex justify-content-end">
+          <button nbButton nbStepperNext>next</button>
+        </div>
+      </nb-step>
+
+      <nb-step label="Verify">
+        <h5>
+          Verify profile
+        </h5>
+        <p class="lh-base">
+          Verify your information is correct
+        </p>
+        <div class="pt-4">
+          <app-profile-form></app-profile-form>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <button nbButton nbStepperPrevious>back</button>
+          <button nbButton nbStepperNext>Next</button>
+        </div>
+      </nb-step>
+
+      <nb-step [hidden]="false">
+        <div class="d-flex align-items-center flex-column">
+          <nb-icon icon="bulb-outline" status="success" class="icon-done"></nb-icon>
+          <h2 class="mt-2">
+            Congratulations!
+          </h2>
+          <p class="mb-5">
+            Now you can start creating awesome proposals!
+          </p>
+          <button nbButton status="success" routerLink="/create-proposal">
+            Let's start
+          </button>
+        </div>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

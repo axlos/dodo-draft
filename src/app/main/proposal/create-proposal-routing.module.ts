@@ -1,12 +1,12 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { UploadProfileComponent } from "./upload-profile.component";
+import { CreateProposalComponent } from "./create-proposal.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: UploadProfileComponent,
+    component: CreateProposalComponent,
   },
 ];
 
@@ -16,5 +16,5 @@ const routes: Routes = [
   ],
   providers: [],
 })
-export class UploadProfileRoutingModule {
+export class CreateProposalRoutingModule {
 }

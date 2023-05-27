@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'upload-profile',
+    path: 'setup',
     loadChildren: () =>
-      import('./main/upload-profile/upload-profile.module').then(m => m.UploadProfileModule)
+      import('./main/stepper/stepper.module').then(m => m.StepperModule)
   },
   {
     path: 'profile',
@@ -13,15 +13,15 @@ const routes: Routes = [
       import('./main/profile/profile.module').then(m => m.ProfileModule)
   },
   {
+    path: 'create-proposal',
+    loadChildren: () =>
+      import('./main/proposal/create-proposal.module').then(m => m.CreateProposalModule)
+  },
+  {
     path: 'history',
     loadChildren: () =>
       import('./main/history/history.module').then(m => m.HistoryModule)
-  },
-  {
-    path: 'proposal',
-    loadChildren: () =>
-      import('./main/proposal/proposal.module').then(m => m.ProposalModule)
-  },
+  }
 ];
 
 @NgModule({
