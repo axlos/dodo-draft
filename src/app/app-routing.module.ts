@@ -5,22 +5,22 @@ const routes: Routes = [
   {
     path: 'setup',
     loadChildren: () =>
-      import('./main/stepper/stepper.module').then(m => m.StepperModule)
+      import('./features/stepper/stepper.module').then(m => m.StepperModule)
   },
   {
     path: 'profile',
     loadChildren: () =>
-      import('./main/profile/profile.module').then(m => m.ProfileModule)
+      import('./features/profile/profile.module').then(m => m.ProfileModule)
   },
   {
     path: 'create-proposal',
     loadChildren: () =>
-      import('./main/proposal/create-proposal.module').then(m => m.CreateProposalModule)
+      import('./features/proposal/create-proposal.module').then(m => m.CreateProposalModule)
   },
   {
     path: 'history',
     loadChildren: () =>
-      import('./main/history/history.module').then(m => m.HistoryModule)
+      import('./features/history/history.module').then(m => m.HistoryModule)
   }
 ];
 

@@ -10,19 +10,23 @@ import {
   NbCardModule,
   NbCheckboxModule,
   NbContextMenuModule,
+  NbGlobalPhysicalPosition,
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
   NbMenuModule,
+  NbSpinnerModule,
   NbStepperModule,
   NbTagModule,
   NbThemeModule,
+  NbToastrModule,
   NbToggleModule,
   NbTooltipModule,
   NbUserModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { NgxDropzoneModule } from "ngx-dropzone";
+import { HttpClientModule } from "@angular/common/http";
 
 import { DropzoneComponent } from "./components/dropzone/dropzone.component";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
@@ -40,6 +44,7 @@ const MODULES: any[] = [
   CommonModule,
   RouterModule,
   FormsModule,
+  HttpClientModule,
   ReactiveFormsModule,
   NbActionsModule,
   NbLayoutModule,
@@ -57,11 +62,8 @@ const MODULES: any[] = [
   NbBadgeModule,
   NbTooltipModule,
   NbStepperModule,
-  NgxDropzoneModule,
-  NbMenuModule.forRoot(),
-  NbThemeModule.forRoot({
-    name: 'default'
-  }),
+  NbSpinnerModule,
+  NgxDropzoneModule
 ];
 
 @NgModule({

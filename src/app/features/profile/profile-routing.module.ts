@@ -2,11 +2,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { ProfileComponent } from "./profile.component";
+import { ProfileService } from "./services/profile.service";
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfileComponent,
+    component: ProfileComponent
   },
 ];
 
@@ -14,7 +15,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes)
   ],
-  providers: [],
+  providers: [
+    ProfileService
+  ],
 })
 export class ProfileRoutingModule {
 }

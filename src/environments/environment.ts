@@ -1,8 +1,7 @@
 export const environment = {
   production: false,
   api: {
-    url: '',
-    version: '',
+    url: ''
   },
   stripe: '',
   auth0: {

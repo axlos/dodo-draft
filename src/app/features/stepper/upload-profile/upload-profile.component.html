@@ -1,5 +1,9 @@
 <div class="mb-4">
-  <app-dropzone></app-dropzone>
+  <app-dropzone
+    (selectFile)="selectFile($event)"
+    (removeFile)="removeFile()"
+  >
+  </app-dropzone>
 </div>
 <p class="text-hint paragraph-2 lh-base">
   Please note that we currently only accept files that have been exported from <strong>LinkedIn</strong>. However, we

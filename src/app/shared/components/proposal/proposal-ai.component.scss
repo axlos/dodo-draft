@@ -1,4 +1,4 @@
-@use 'src/themes' as *;
+@use "src/styles/themes" as *;
 
 .proposal {
   position: relative;
@@ -12,4 +12,8 @@
   position: absolute;
   right: 5px;
   top: 5px;
+}
+
+.date-time {
+  margin-right: -1.5rem;
 }

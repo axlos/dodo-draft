@@ -18,10 +18,10 @@
       </h6>
     </div>
   </ngx-dropzone-label>
-  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+  <ngx-dropzone-preview [removable]="true" (removed)="onRemove()" *ngIf="file != null">
     <ngx-dropzone-label>
       <nb-icon icon="file-text-outline"></nb-icon>
-      {{ f.name }}
+      {{ file.name }}
     </ngx-dropzone-label>
   </ngx-dropzone-preview>
 </ngx-dropzone>

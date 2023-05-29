@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: 'app-dropzone',
@@ -7,17 +7,22 @@ import { Component } from "@angular/core";
 })
 export class DropzoneComponent {
 
-  // in app.component.ts
-  files: File[] = [];
+  @Output()
+  public selectFile: EventEmitter<File> = new EventEmitter<File>();
+  @Output()
+  public removeFile: EventEmitter<void> = new EventEmitter<any>();
 
-  onSelect(event: any) {
-    console.log(event);
-    this.files.push(...event.addedFiles);
+  public file: File | null = null;
+
+  public onSelect(event: any): void{
+    if (this.file === null) {
+      this.selectFile.emit(event.addedFiles[0]);
+    }
   }
 
-  onRemove(event: any) {
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
+  public onRemove(): void {
+    this.file = null;
+    this.removeFile.emit();
   }
 
 }

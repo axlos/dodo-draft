@@ -1,6 +1,11 @@
-<nb-card>
+<nb-card
+  [nbSpinner]="uploading"
+  nbSpinnerStatus="success"
+  nbSpinnerMessage="Extracting profile..."
+  nbSpinnerSize="giant"
+>
   <nb-card-body>
-    <nb-stepper orientation="horizontal" disableStepNavigation [selectedIndex]="0">
+    <nb-stepper #stepper orientation="horizontal" disableStepNavigation [selectedIndex]="1">
 
       <nb-step label="Upload">
         <h5>
@@ -10,11 +15,14 @@
           Every job proposal we create is meticulously tailored and crafted to be original and matched your profile.
         </p>
         <div class="pt-4">
-          <app-upload-profile></app-upload-profile>
+          <app-upload-profile (fileSelected)="fileSelected($event)">
+          </app-upload-profile>
         </div>
 
         <div class="mt-4 d-flex justify-content-end">
-          <button nbButton nbStepperNext>next</button>
+          <button nbButton [disabled]="file == null || uploading" (click)="uploadFile()">
+            next
+          </button>
         </div>
       </nb-step>
 

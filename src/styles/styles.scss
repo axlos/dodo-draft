@@ -1,13 +1,9 @@
-@use 'themes' as *;
-@use '@nebular/theme/styles/globals' as *;
-
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@use "@nebular/theme/styles/globals" as *;
+@use "src/styles/themes" as *;
 
 @include nb-install() {
   @include nb-theme-global();
 }
-
-;
 
 /* You can add global styles to this file, and also import other style files */
 .content-center {

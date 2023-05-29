@@ -30,12 +30,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles/styles.scss"
             ],
             "scripts": []
           },
           "configurations": {
-            "defaultConfiguration": "development",
             "production": {
               "budgets": [
                 {
@@ -115,7 +115,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ],
             "scripts": []
           }
