@@ -1,23 +1,24 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { ProfileComponent } from "./profile.component";
-import { ProfileService } from "./services/profile.service";
+import { EditProfileComponent } from "./containers/edit-profile/edit-profile.component";
+import { SetupComponent } from "./containers/setup/setup.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfileComponent
+    component: EditProfileComponent
+  },
+  {
+    path: 'setup',
+    component: SetupComponent
   },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forChild(routes)
-  ],
-  providers: [
-    ProfileService
-  ],
+  ]
 })
 export class ProfileRoutingModule {
 }

@@ -1,27 +1,36 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-
-import { featureKey, profileReducer } from "./store/profile.reducer";
 import { SharedModule } from "../../shared/shared.module";
-import { ProfileComponent } from "./profile.component";
 import { ProfileRoutingModule } from "./profile-routing.module";
+import { EditProfileComponent } from "./containers/edit-profile/edit-profile.component";
+import { SetupComponent } from "./containers/setup/setup.component";
+import { ProfileService } from "./services/profile.service";
+import { profileFeature } from "./store/profile.feature";
 import { ProfileEffects } from "./store/profile.effects";
+import { UploadProfileComponent } from "./components/upload-profile/upload-profile.component";
+import { DropzoneComponent } from "./components/dropzone/dropzone.component";
+import { ProfileFormComponent } from "./components/profile-form/profile-form.component";
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    EditProfileComponent,
+    SetupComponent,
+    UploadProfileComponent,
+    DropzoneComponent,
+    ProfileFormComponent
   ],
   imports: [
     ProfileRoutingModule,
     SharedModule,
-    StoreModule.forFeature(featureKey, profileReducer),
+    StoreModule.forFeature(profileFeature),
     EffectsModule.forFeature([
       ProfileEffects
     ]),
   ],
   exports: [],
   providers: [
+    ProfileService
   ]
 })
 export class ProfileModule {

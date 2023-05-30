@@ -10,15 +10,12 @@ import {
   NbCardModule,
   NbCheckboxModule,
   NbContextMenuModule,
-  NbGlobalPhysicalPosition,
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
-  NbMenuModule,
   NbSpinnerModule,
   NbStepperModule,
   NbTagModule,
-  NbThemeModule,
   NbToastrModule,
   NbToggleModule,
   NbTooltipModule,
@@ -27,15 +24,10 @@ import {
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { HttpClientModule } from "@angular/common/http";
-
-import { DropzoneComponent } from "./components/dropzone/dropzone.component";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
-import { ProfileFormComponent } from "./components/profile-form/profile-form.component";
 
 const COMPONENTS: any[] = [
-  DropzoneComponent,
   ProposalAiComponent,
-  ProfileFormComponent
 ];
 
 const PIPES: any[] = [];
@@ -63,6 +55,7 @@ const MODULES: any[] = [
   NbTooltipModule,
   NbStepperModule,
   NbSpinnerModule,
+  NbToastrModule,
   NgxDropzoneModule
 ];
 

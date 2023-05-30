@@ -3,11 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'setup',
-    loadChildren: () =>
-      import('./features/stepper/stepper.module').then(m => m.StepperModule)
-  },
-  {
     path: 'profile',
     loadChildren: () =>
       import('./features/profile/profile.module').then(m => m.ProfileModule)
@@ -25,8 +20,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule {
 }

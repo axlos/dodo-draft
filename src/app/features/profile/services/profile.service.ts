@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+
+import { Profile } from "../models/profile.model";
 
 @Injectable()
 export class ProfileService {
@@ -7,5 +10,16 @@ export class ProfileService {
   constructor(
     private http: HttpClient
   ) { }
+
+  public getProfile(): Observable<Profile> {
+    return this.http.get<Profile>('/api/profiles/me');
+  }
+
+  public upload(file: File): Observable<any>  {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post(`/api/profiles/upload`, formData);
+  }
+
 
 }

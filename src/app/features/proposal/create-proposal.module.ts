@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from "../../shared/shared.module";
-import { CreateProposalComponent } from "./create-proposal.component";
+import { CreateProposalComponent } from "./containers/create-proposal.component";
 import { CreateProposalRoutingModule } from "./create-proposal-routing.module";
 import { ProposalFormComponent } from "./components/profile-form/proposal-form.component";
 import { ProposalListComponent } from "./components/proposal-list/proposal-list.component";

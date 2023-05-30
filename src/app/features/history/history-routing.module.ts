@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { HistoryComponent } from "./history.component";
+import { HistoryComponent } from "./containers/history.component";
 
 const routes: Routes = [
   {
@@ -13,8 +13,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(routes)
-  ],
-  providers: [],
+  ]
 })
 export class HistoryRoutingModule {
 }
