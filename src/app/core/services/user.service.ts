@@ -12,8 +12,8 @@ export class UserService {
   ) {
   }
 
-  public getMe(): Observable<User> {
-    return this.http.get<User>('/api/users/me');
+  public get(): Observable<User> {
+    return this.http.get<User>('/api/users');
   }
 
   public update(user: User): Observable<User> {

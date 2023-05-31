@@ -18,7 +18,7 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(LoadActions.do),
       switchMap(() =>
-        this.userService.getMe()
+        this.userService.get()
           .pipe(
             map(user =>
               LoadActions.success({ user })

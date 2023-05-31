@@ -13,7 +13,7 @@ export class ProfileService {
   }
 
   public getProfile(): Observable<Profile> {
-    return this.http.get<Profile>('/api/profiles/me');
+    return this.http.get<Profile>('/api/profiles');
   }
 
   public upload(file: File): Observable<any> {
