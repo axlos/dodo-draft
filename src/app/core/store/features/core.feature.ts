@@ -1,14 +1,13 @@
-import { createFeature, createSelector } from "@ngrx/store";
-import { coreReducer } from "./core.reducer";
+import { createFeature } from "@ngrx/store";
+import { coreReducer } from "../reducers/core.reducer";
 
 export const coreFeature = createFeature({
   name: 'core',
   reducer: coreReducer,
-
 });
 
 export const {
   name,
   reducer,
-  selectCoreState
+  selectCoreState,
 } = coreFeature;

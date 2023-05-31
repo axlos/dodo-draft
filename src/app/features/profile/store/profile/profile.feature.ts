@@ -4,17 +4,19 @@ import { profileReducer } from "./profile.reducer";
 export const profileFeature = createFeature({
   name: 'profile',
   reducer: profileReducer,
-  extraSelectors: ({selectUploaded, selectError}) => ({
-    selectUploadedError: createSelector(
-      selectUploaded,
-      selectError,
-      (uploaded, error) => {
-        if (uploaded && error) {
-          return error;
-        }
-        return null;
-      })
-  })
+  extraSelectors: ({ selectUploaded, selectError }) => (
+    {
+      selectUploadedError: createSelector(
+        selectUploaded,
+        selectError,
+        (uploaded, error) => {
+          if (uploaded && error) {
+            return error;
+          }
+          return null;
+        })
+    }
+  )
 });
 
 export const {

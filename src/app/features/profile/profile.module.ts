@@ -6,11 +6,13 @@ import { ProfileRoutingModule } from "./profile-routing.module";
 import { EditProfileComponent } from "./containers/edit-profile/edit-profile.component";
 import { SetupComponent } from "./containers/setup/setup.component";
 import { ProfileService } from "./services/profile.service";
-import { profileFeature } from "./store/profile.feature";
-import { ProfileEffects } from "./store/profile.effects";
 import { UploadProfileComponent } from "./components/upload-profile/upload-profile.component";
 import { DropzoneComponent } from "./components/dropzone/dropzone.component";
 import { ProfileFormComponent } from "./components/profile-form/profile-form.component";
+import { profileFeature } from "./store/profile/profile.feature";
+import { ProfileEffects } from "./store/profile/profile.effects";
+import { stepNavigationFeature } from "./store/step-navigation/step-navigation.feature";
+import { StepNavigationEffects } from "./store/step-navigation/step-navigation.effects";
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import { ProfileFormComponent } from "./components/profile-form/profile-form.com
   imports: [
     ProfileRoutingModule,
     SharedModule,
+    StoreModule.forFeature(stepNavigationFeature),
     StoreModule.forFeature(profileFeature),
     EffectsModule.forFeature([
-      ProfileEffects
+      ProfileEffects,
+      StepNavigationEffects
     ]),
   ],
   exports: [],

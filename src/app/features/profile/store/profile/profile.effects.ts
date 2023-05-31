@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { catchError, of, switchMap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
-import { ProfileService } from "../services/profile.service";
-import * as ProfileActions from './profile.actions';
+import { ProfileService } from "../../services/profile.service";
+import { LoadActions, UploadActions } from './profile.actions';
 
 @Injectable()
 export class ProfileEffects {
@@ -16,15 +16,15 @@ export class ProfileEffects {
   // create ngrx effect to fetch a edit-profile
   public loadProfile$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProfileActions.LoadActions.do),
+      ofType(LoadActions.do),
       switchMap(() =>
         this.profileService.getProfile()
           .pipe(
             map(profile =>
-              ProfileActions.LoadActions.success({profile})
+              LoadActions.success({ profile })
             ),
             catchError((error: any) =>
-              of(ProfileActions.LoadActions.failure({error}))
+              of(LoadActions.failure({ error }))
             )
           )
       )
@@ -33,14 +33,14 @@ export class ProfileEffects {
 
   public uploadFile$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProfileActions.UploadActions.do),
+      ofType(UploadActions.do),
       switchMap(action =>
         this.profileService.upload(action.file).pipe(
           map(() =>
-            ProfileActions.UploadActions.success()
+            UploadActions.success()
           ),
           catchError(error =>
-            of(ProfileActions.UploadActions.failure({
+            of(UploadActions.failure({
               error: 'Error uploading file, try again!'
             }))
           )

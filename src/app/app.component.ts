@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NB_WINDOW, NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
-
+import { Store } from "@ngrx/store";
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,13 @@ import { filter, map } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
 
-
   public items = [
-    {title: 'Buy Credits'},
-    {title: 'Logout'},
+    { title: 'Buy Credits' },
+    { title: 'Logout' },
   ];
 
   constructor(
+    private store: Store,
     private nbMenuService: NbMenuService,
     @Inject(NB_WINDOW) private window: Window,
   ) {
@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.nbMenuService.onItemClick()
       .pipe(
-        filter(({tag}) =>
+        filter(({ tag }) =>
           tag === 'my-context-menu'),
-        map(({item: {title}}) =>
+        map(({ item: { title } }) =>
           title
         ),
       )

@@ -7,6 +7,7 @@ import { Store } from "@ngrx/store";
 })
 export class EditProfileComponent {
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+  }
 
 }

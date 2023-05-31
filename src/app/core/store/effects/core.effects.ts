@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions } from "@ngrx/effects";
-import { CoreService } from "../services/core.service";
+import { CoreService } from "../../services/core.service";
 
 @Injectable()
 export class CoreEffects {

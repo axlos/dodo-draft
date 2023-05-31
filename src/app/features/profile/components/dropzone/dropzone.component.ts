@@ -14,9 +14,10 @@ export class DropzoneComponent {
 
   public file: File | null = null;
 
-  public onSelect(event: any): void{
+  public onSelect(event: any): void {
     if (this.file === null) {
-      this.selectFile.emit(event.addedFiles[0]);
+      this.file = event.addedFiles[0] as File;
+      this.selectFile.emit(this.file);
     }
   }
 

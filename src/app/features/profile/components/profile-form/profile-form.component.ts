@@ -11,4 +11,7 @@ export class ProfileFormComponent {
   @Input()
   public profile: Profile | null = null;
 
+  @Input()
+  public loading: boolean = false;
+
 }

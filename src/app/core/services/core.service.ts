@@ -6,5 +6,6 @@ export class CoreService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 }

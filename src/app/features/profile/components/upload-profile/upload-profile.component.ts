@@ -10,9 +10,10 @@ export class UploadProfileComponent {
   @Output()
   public fileSelected: EventEmitter<File | null> = new EventEmitter();
 
-  public removeFile():void {
+  public removeFile(): void {
     this.fileSelected.emit(null);
   }
+
   public selectFile(file: File): void {
     this.fileSelected.emit(file);
   };

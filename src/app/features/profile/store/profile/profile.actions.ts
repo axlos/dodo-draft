@@ -1,12 +1,14 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { Profile } from "../models/profile.model";
+import { Profile } from "../../models/profile.model";
 
 export const LoadActions = createActionGroup({
   source: "Load Profile",
   events: {
     "do": emptyProps(),
     "success": props<{ profile: Profile }>(),
-    "failure": (error: any) => ({error})
+    "failure": (error: any) => (
+      { error }
+    )
   }
 });
 
@@ -15,6 +17,8 @@ export const UploadActions = createActionGroup({
   events: {
     "do": props<{ file: File }>(),
     "success": emptyProps(),
-    "failure": (error: any) => ({error})
+    "failure": (error: any) => (
+      { error }
+    )
   }
 });

@@ -1,11 +1,10 @@
 <nb-card
-  [nbSpinner]="uploading"
+  [nbSpinner]="(loading$ | async) ?? false"
   nbSpinnerStatus="success"
-  nbSpinnerMessage="Extracting profile..."
   nbSpinnerSize="giant"
 >
   <nb-card-body>
-    <nb-stepper #stepper orientation="horizontal" disableStepNavigation [selectedIndex]="1">
+    <nb-stepper #stepper orientation="horizontal" disableStepNavigation [selectedIndex]="0">
 
       <nb-step label="Upload">
         <h5>
@@ -20,7 +19,10 @@
         </div>
 
         <div class="mt-4 d-flex justify-content-end">
-          <button nbButton [disabled]="file == null || uploading" (click)="uploadFile()">
+          <button nbButton
+                  [disabled]="file == null || (loading$ | async)"
+                  (click)="uploadFile()"
+          >
             next
           </button>
         </div>
@@ -34,16 +36,16 @@
           Verify your information is correct
         </p>
         <div class="pt-4">
-<!--          <app-edit-profile-form [edit-profile]="edit-profile$ | async">-->
-<!--          </app-edit-profile-form>-->
+          <app-profile-form [profile]="profile$ | async">
+          </app-profile-form>
         </div>
         <div class="mt-4 d-flex justify-content-between">
           <button nbButton nbStepperPrevious>back</button>
-          <button nbButton nbStepperNext>Next</button>
+          <button nbButton nbStepperNext (click)="verify()">Verify</button>
         </div>
       </nb-step>
 
-      <nb-step [hidden]="false">
+      <nb-step label="Done">
         <div class="d-flex align-items-center flex-column">
           <nb-icon icon="bulb-outline" status="success" class="icon-done"></nb-icon>
           <h2 class="mt-2">
