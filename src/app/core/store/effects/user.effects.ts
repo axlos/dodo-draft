@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { catchError, of, switchMap } from "rxjs";
+import { catchError, delay, exhaustMap, of, switchMap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { UserService } from "../../services/user.service";
@@ -17,7 +17,7 @@ export class UserEffects {
   public loadUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LoadActions.do),
-      switchMap(() =>
+      exhaustMap(() =>
         this.userService.get()
           .pipe(
             map(user =>

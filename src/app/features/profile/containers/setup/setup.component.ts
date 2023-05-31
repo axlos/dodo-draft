@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { NbStepperComponent, NbToastrService } from "@nebular/theme";
 import { filter, map, skip } from "rxjs/operators";
@@ -18,7 +18,7 @@ import { StepNavigation } from "../../store/step-navigation/step-navigation.acti
   templateUrl: './setup.component.html',
   styleUrls: ['./setup.component.scss']
 })
-export class SetupComponent {
+export class SetupComponent implements OnInit {
 
   @ViewChild('stepper')
   public stepper: NbStepperComponent | null = null;
@@ -31,21 +31,6 @@ export class SetupComponent {
     private toastrService: NbToastrService,
     private store: Store
   ) {
-
-    // Load User to verify the setup wizard step
-    this.store.dispatch(UserActions.LoadActions.do());
-
-    // Control the step navigation based on StepNavigation Store
-    this.store.select(stepNavigationFeature.selectIndex)
-      .pipe(
-        skip(1)
-      )
-      .subscribe((index) => {
-        if (this.stepper !== null) {
-          this.stepper.selectedIndex = index;
-        }
-      });
-
     // Profile Selectors
     this.profile$ = this.store.select(ProfileFeature.selectProfile);
 
@@ -67,6 +52,22 @@ export class SetupComponent {
         return uploading || loadingProfile || uploadingStatus;
       })
     );
+  }
+
+  ngOnInit(): void {
+    // Load User to verify the setup wizard step
+    this.store.dispatch(UserActions.LoadActions.do());
+
+    // Control the step navigation based on StepNavigation Store
+    this.store.select(stepNavigationFeature.selectIndex)
+      .pipe(
+        skip(1)
+      )
+      .subscribe((index) => {
+        if (this.stepper !== null) {
+          this.stepper.selectedIndex = index;
+        }
+      });
 
     // When profile is uploaded, go to next step
     const selectUploaded = this.store.select(ProfileFeature.selectUploaded);

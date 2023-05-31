@@ -10,4 +10,5 @@ export const {
   name,
   reducer,
   selectCoreState,
+  selectHeaderMenu
 } = coreFeature;

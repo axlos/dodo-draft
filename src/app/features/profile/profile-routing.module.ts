@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { EditProfileComponent } from "./containers/edit-profile/edit-profile.component";
 import { SetupComponent } from "./containers/setup/setup.component";
+import { ProfileGuard } from "./guards/profile.guard";
 
 const routes: Routes = [
   {
@@ -11,7 +12,10 @@ const routes: Routes = [
   },
   {
     path: 'setup',
-    component: SetupComponent
+    component: SetupComponent,
+    canActivate: [
+      ProfileGuard
+    ]
   },
 ];
 

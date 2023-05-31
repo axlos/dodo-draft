@@ -3,17 +3,12 @@
   <nb-layout-header fixed>
     <nb-actions size="medium">
       <nb-action icon="message-square-outline" routerLink="/home"></nb-action>
-      <nb-action routerLink="/create-proposal">
-        <span class="ml-2 create-new">Create New</span>
-        <nb-icon icon="plus-outline" class="add-icon"></nb-icon>
-      </nb-action>
-      <nb-action routerLink="/history">
-        <span>
-          History
+      <nb-action [routerLink]="item.router" *ngFor="let item of headerMenu$ | async">
+        <span [class]="item.class">
+          {{item.title}}
         </span>
-      </nb-action>
-      <nb-action routerLink="/profile">
-        Profile
+        <nb-icon icon="plus-outline" [class]="item.icon" *ngIf="item.icon">
+        </nb-icon>
       </nb-action>
     </nb-actions>
     <nb-user name="Nikita Poltoratsky"
