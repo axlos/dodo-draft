@@ -1,10 +1,11 @@
-<nb-card>
+<nb-card *ngIf="job !== null">
   <nb-card-body class="m-4">
     <h6 class="mb-4">
-      Angular Needed!
+      {{job.title}}
     </h6>
-    <div class="proposal" *ngFor="let i of [1, 2, 3]">
-      <app-proposal-ai></app-proposal-ai>
+    <div class="proposal" *ngFor="let proposal of job.proposals | sort:'createdAt'">
+      <app-proposal-ai [proposal]="proposal">
+      </app-proposal-ai>
     </div>
   </nb-card-body>
 </nb-card>

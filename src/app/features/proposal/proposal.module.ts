@@ -3,7 +3,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 
 import { SharedModule } from "../../shared/shared.module";
-import { CreateProposalComponent } from "./containers/create-proposal/create-proposal.component";
+import { ProposalComponent } from "./containers/proposal/proposal.component";
 import { ProposalRoutingModule } from "./proposal-routing.module";
 import { ProposalFormComponent } from "./components/profile-form/proposal-form.component";
 import { ProposalListComponent } from "./components/proposal-list/proposal-list.component";
@@ -15,7 +15,7 @@ import { JobService } from "./services/job.service";
 
 @NgModule({
   declarations: [
-    CreateProposalComponent,
+    ProposalComponent,
     ProposalFormComponent,
     ProposalListComponent,
     HistoryComponent,

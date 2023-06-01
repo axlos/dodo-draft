@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { Job } from "../../models/job.model";
 
 @Component({
   selector: 'app-proposal-list',
@@ -6,5 +7,11 @@ import { Component } from "@angular/core";
   styleUrls: ['./proposal-list.component.scss']
 })
 export class ProposalListComponent {
+
+  @Input()
+  public job: Job | null = null;
+
+  @Input()
+  public loading: boolean = false;
 
 }

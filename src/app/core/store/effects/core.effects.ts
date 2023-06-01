@@ -30,15 +30,15 @@ export class CoreEffects {
               title: 'Create New',
               icon: 'add-icon',
               class: 'ml-2 create-new',
-              router: '/create-proposal'
+              router: '/proposal/create'
             },
             {
               title: 'History',
-              router: '/history'
+              router: '/proposal/history'
             },
             {
               title: 'Profile',
-              router: '/profile'
+              router: 'profile'
             }
           ]
         })

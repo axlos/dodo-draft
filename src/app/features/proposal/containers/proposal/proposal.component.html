@@ -1,0 +1,14 @@
+<h1>
+  Create Proposal
+</h1>
+<p class="lead">
+  Have an effective proposal as Freelancer can be a decisive factor in landing jobs.
+</p>
+<div class="mb-4">
+  <app-proposal-form [job]="job$ | async"
+                     [loading]="(loading$ | async) ?? false"
+                     (save)="saveProposal($event.id, $event.job)">
+  </app-proposal-form>
+</div>
+<app-proposal-list [job]="job$ | async">
+</app-proposal-list>

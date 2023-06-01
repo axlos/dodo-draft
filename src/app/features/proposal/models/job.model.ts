@@ -1,6 +1,7 @@
 import { Proposal } from "./proposal.model";
 
 export interface Job {
+  readonly _id: string;
   readonly title: string;
   readonly details: string;
   readonly question: string;

@@ -25,12 +25,15 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { HttpClientModule } from "@angular/common/http";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
+import { SortPipe } from "./pipes/sort.pipe";
 
 const COMPONENTS: any[] = [
   ProposalAiComponent,
 ];
 
-const PIPES: any[] = [];
+const PIPES: any[] = [
+  SortPipe
+];
 
 const MODULES: any[] = [
   CommonModule,

@@ -4,7 +4,7 @@ import { Job } from "../../models/job.model";
 export const LoadActions = createActionGroup({
   source: "Load Job",
   events: {
-    "do": emptyProps(),
+    "do": props<{ id: string }>(),
     "success": props<{ job: Job }>(),
     "failure": (error: any) => (
       { error }

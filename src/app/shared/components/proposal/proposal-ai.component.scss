@@ -5,7 +5,7 @@
   background: nb-theme(color-basic-200);
   padding: 1.5rem 40px 1rem 1.5rem;
   margin-bottom: 0;
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
 .copy-wrapper {
@@ -16,4 +16,8 @@
 
 .date-time {
   margin-right: -1.5rem;
+}
+
+.cover-letter {
+  word-break: break-all;
 }

@@ -71,6 +71,7 @@ export const profileReducer = createReducer(
       error,
       uploading: false,
       uploaded: false,
+      loading: false
     }
   ))
 );

@@ -92,6 +92,7 @@ export const jobReducer = createReducer(
         ...state,
         error,
         saving: false,
+        loading: false,
         saved: false
       }
     )
