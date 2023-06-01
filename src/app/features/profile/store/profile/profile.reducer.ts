@@ -43,7 +43,9 @@ export const profileReducer = createReducer(
   on(ProfileActions.LoadActions.failure, (state, { error }) => (
     {
       ...state,
-      error
+      error,
+      loading: false,
+      loaded: false
     }
   )),
   // Upload Profile
@@ -66,9 +68,9 @@ export const profileReducer = createReducer(
   on(ProfileActions.UploadActions.failure, (state, { error }) => (
     {
       ...state,
+      error,
       uploading: false,
       uploaded: false,
-      error
     }
   ))
 );

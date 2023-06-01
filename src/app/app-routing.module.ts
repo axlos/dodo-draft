@@ -8,14 +8,9 @@ const routes: Routes = [
       import('./features/profile/profile.module').then(m => m.ProfileModule)
   },
   {
-    path: 'create-proposal',
+    path: 'proposal',
     loadChildren: () =>
-      import('./features/proposal/create-proposal.module').then(m => m.CreateProposalModule)
-  },
-  {
-    path: 'history',
-    loadChildren: () =>
-      import('./features/history/history.module').then(m => m.HistoryModule)
+      import('./features/proposal/proposal.module').then(m => m.ProposalModule)
   }
 ];
 
