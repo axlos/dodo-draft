@@ -6,14 +6,12 @@ import { User } from "../../models/user.model";
 export interface UserState {
   user: User | null;
   loading: boolean;
-  loaded: boolean;
   error: string | null;
 }
 
 export const initialState: UserState = {
   user: null,
   loading: false,
-  loaded: false,
   error: null,
 };
 
@@ -25,16 +23,14 @@ export const userReducer = createReducer(
       ...state,
       user: null,
       error: null,
-      loading: true,
-      loaded: false
+      loading: true
     }
   )),
   on(LoadActions.success, (state, { user }) => (
     {
       ...state,
       user,
-      loading: false,
-      loaded: true
+      loading: false
     }
   )),
   on(LoadActions.failure, (state, { error }) => (

@@ -10,4 +10,6 @@ export interface Job {
   readonly certifications: boolean;
   readonly languages: boolean;
   readonly proposals: Proposal[];
+  readonly createdAt: string;
+  readonly updatedAt: string;
 }

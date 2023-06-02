@@ -11,4 +11,7 @@ export class ProposalAiComponent {
   @Input()
   public proposal: Proposal | null = null;
 
+  @Input()
+  public loading: boolean = false;
+
 }

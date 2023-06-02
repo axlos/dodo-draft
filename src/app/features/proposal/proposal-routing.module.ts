@@ -10,13 +10,13 @@ const routes: Routes = [
     component: ProposalComponent,
   },
   {
-    path: ':id',
-    component: ProposalComponent,
-  },
-  {
     path: 'history',
     component: HistoryComponent,
   },
+  {
+    path: ':id',
+    component: ProposalComponent,
+  }
 ];
 
 @NgModule({

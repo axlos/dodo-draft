@@ -12,6 +12,10 @@ export class JobService {
   ) {
   }
 
+  public findAll(): Observable<Job[]> {
+    return this.http.get<Job[]>(`/api/jobs`);
+  }
+
   public findById(id: string): Observable<Job> {
     return this.http.get<Job>(`/api/jobs/${id}`);
   }

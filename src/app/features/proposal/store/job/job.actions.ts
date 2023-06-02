@@ -1,6 +1,17 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Job } from "../../models/job.model";
 
+export const LoadAllActions = createActionGroup({
+  source: "Load All Job",
+  events: {
+    "do": emptyProps(),
+    "success": props<{ jobs: Job[] }>(),
+    "failure": (error: any) => (
+      { error }
+    )
+  }
+});
+
 export const LoadActions = createActionGroup({
   source: "Load Job",
   events: {
@@ -34,11 +45,11 @@ export const UpdateActions = createActionGroup({
   }
 });
 
-export const RemoveActions = createActionGroup({
-  source: "Remove Job",
+export const DeleteActions = createActionGroup({
+  source: "Delete Job",
   events: {
     "do": props<{ id: string }>(),
-    "success": emptyProps(),
+    "success": props<{ id: string }>(),
     "failure": (error: any) => (
       { error }
     )

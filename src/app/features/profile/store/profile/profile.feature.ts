@@ -25,7 +25,6 @@ export const {
   selectProfileState,
   selectProfile,
   selectLoading,
-  selectLoaded,
   selectError,
   selectUploadedError,
   selectUploaded,

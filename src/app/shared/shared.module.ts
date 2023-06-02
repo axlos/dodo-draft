@@ -26,9 +26,11 @@ import { NgxDropzoneModule } from "ngx-dropzone";
 import { HttpClientModule } from "@angular/common/http";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
 import { SortPipe } from "./pipes/sort.pipe";
+import { DeleteButtonComponent } from "./components/delete-button/delete-button.component";
 
 const COMPONENTS: any[] = [
   ProposalAiComponent,
+  DeleteButtonComponent
 ];
 
 const PIPES: any[] = [

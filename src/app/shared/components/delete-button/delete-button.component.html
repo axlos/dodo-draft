@@ -1,0 +1,32 @@
+<button nbButton ghost
+        status="primary"
+        size="small"
+        shape="semi-round"
+        [class.placeholder]="loading"
+        [disabled]="loading"
+        (click)="confirm()"
+        *ngIf="displayRemove">
+  <nb-icon icon="trash-outline"></nb-icon>
+</button>
+
+<div class="d-flex column"
+     *ngIf="displayConfirm">
+  <button nbButton ghost
+          status="primary"
+          size="small"
+          shape="semi-round"
+          [class.placeholder]="loading"
+          [disabled]="loading"
+          (click)="delete.emit()">
+    <nb-icon icon="checkmark-outline"></nb-icon>
+  </button>
+  <button nbButton ghost
+          status="primary"
+          size="small"
+          shape="semi-round"
+          [class.placeholder]="loading"
+          [disabled]="loading"
+          (click)="cancel()">
+    <nb-icon icon="close-outline"></nb-icon>
+  </button>
+</div>

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, of, switchMap } from "rxjs";
 import { map } from "rxjs/operators";
 import { JobService } from "../../services/job.service";
-import { CreateActions, LoadActions, RemoveActions, UpdateActions } from './job.actions';
+import { CreateActions, DeleteActions, LoadActions, LoadAllActions, UpdateActions } from './job.actions';
 
 @Injectable()
 export class JobEffects {
@@ -13,6 +13,22 @@ export class JobEffects {
     private jobService: JobService
   ) {
   }
+
+  public loadAllJobs$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(LoadAllActions.do),
+      switchMap(() =>
+        this.jobService.findAll().pipe(
+          map(jobs =>
+            LoadAllActions.success({ jobs })
+          ),
+          catchError(error =>
+            of(LoadAllActions.failure({ error }))
+          )
+        )
+      )
+    )
+  );
 
   public loadJob$ = createEffect(() =>
     this.actions$.pipe(
@@ -64,14 +80,16 @@ export class JobEffects {
 
   public removeJob$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(RemoveActions.do),
+      ofType(DeleteActions.do),
       switchMap(action =>
         this.jobService.remove(action.id).pipe(
           map(() =>
-            RemoveActions.success()
+            DeleteActions.success({
+              id: action.id
+            })
           ),
           catchError(error =>
-            of(RemoveActions.failure({ error }))
+            of(DeleteActions.failure({ error }))
           )
         )
       )

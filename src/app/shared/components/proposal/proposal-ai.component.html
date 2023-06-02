@@ -1,18 +1,31 @@
-<div class="proposal" *ngIf="proposal !== null">
-  <div class="d-flex flex-row align-items-start">
-    <p class="lh-base font-monospace cover-letter">
+<div class="proposal"
+     [class.placeholder-glow]="true"
+     *ngIf="proposal !== null && proposal">
+  <div class="flex-row align-items-start" [ngClass]="{ 'd-flex': !loading }">
+    <p class="lh-base font-monospace cover-letter" *ngIf="!loading">
       {{proposal.coverLetter}}
     </p>
-    <figure>
-    </figure>
+    <div *ngIf="loading">
+      <span class="placeholder col-8"></span>
+      <span class="placeholder col-8"></span>
+      <span class="placeholder col-8"></span>
+      <span class="placeholder col-8"></span>
+    </div>
     <div class="copy-wrapper">
-      <button nbButton ghost status="primary" size="small" shape="round">
+      <button nbButton ghost
+              status="primary"
+              size="small"
+              shape="semi-round"
+              [class.placeholder]="loading"
+              [disabled]="loading">
         <nb-icon icon="clipboard-outline"></nb-icon>
       </button>
     </div>
   </div>
-  <div class="d-flex justify-content-end date-time">
-    <small class="fst-italic text-muted right">
+  <div class="justify-content-end date-time d-flex"
+       [ngClass]="{ 'd-flex': !loading }">
+    <small class="fst-italic text-muted right"
+           [ngClass]="{ 'col-1': loading, 'placeholder': loading, 'placeholder-xs': loading }">
       {{proposal.createdAt | date: 'dd/MM/yyyy HH:mm'}}
     </small>
   </div>
