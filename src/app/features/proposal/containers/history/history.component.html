@@ -1,8 +1,11 @@
 <h1>History</h1>
-<div *ngFor="let jobHistory of (jobs$ | async) ?? [] | sort:'updatedAt' ">
+<div *ngFor="let jobHistory of (jobs$ | async) ?? []">
   <app-proposal-history [jobHistory]="jobHistory"
                         [loading]="(loading$ | async) ?? false"
                         (delete)="delete($event)">
   </app-proposal-history>
 </div>
-
+<div class="alert alert-primary" role="alert" *ngIf="(jobs$ | async)?.length === 0">
+  <h6 class="alert-heading">No history</h6>
+  There is no history. click <a class="alert-link" (click)="create()">here</a> to create a new proposal.
+</div>

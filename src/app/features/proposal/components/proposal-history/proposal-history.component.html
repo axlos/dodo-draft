@@ -1,4 +1,6 @@
-<nb-card *ngIf="jobHistory !== null" [class.placeholder-glow]="true">
+<nb-card [class.placeholder-glow]="true"
+         [accent]="accent"
+         *ngIf="jobHistory !== null">
   <nb-card-body class="m-4">
     <h6 class="mb-4">
       <span [ngClass]="{ 'col-4': loading, 'placeholder': loading, 'placeholder-lg': loading }">
@@ -11,13 +13,12 @@
                 shape="semi-round"
                 class="me-1"
                 [class.placeholder]="loading"
-                [disabled]="loading"
+                [disabled]="loading || jobHistory.removing"
                 [routerLink]="['/proposal', jobHistory.job._id]">
           <nb-icon icon="edit-outline"></nb-icon>
         </button>
-        <app-delete-button [loading]="loading"
-                           [removing]="jobHistory.removing"
-                           (delete)="delete.emit(jobHistory.job._id)">
+        <app-delete-button [loading]="loading || jobHistory.removing"
+                           (delete)="onDelete()">
         </app-delete-button>
       </div>
     </h6>

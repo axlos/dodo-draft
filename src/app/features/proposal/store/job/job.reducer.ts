@@ -2,15 +2,15 @@ import { createReducer, on } from "@ngrx/store";
 import * as JobActions from './job.actions';
 import { Job } from "../../models/job.model";
 import { Proposal } from "../../models/proposal.model";
+import { JobItem } from "../../models/job-item.model";
 
 export interface JobState {
   job: Job | null;
-  jobs: Job[];
+  jobs: JobItem[];
   loading: boolean;
   saving: boolean;
   saved: boolean;
   deleting: boolean;
-  error: string | null;
 }
 
 export const initialState: JobState = {
@@ -19,68 +19,126 @@ export const initialState: JobState = {
   loading: false,
   saving: false,
   saved: false,
-  deleting: false,
-  error: null,
+  deleting: false
 };
 
 export const jobReducer = createReducer(
   initialState,
+  on(JobActions.CreateActions.reset, state => (
+    {
+      ...state,
+      job: null,
+      loading: false,
+      saving: false,
+      saved: false,
+      deleting: false
+    }
+  )),
   on(JobActions.LoadAllActions.do, state => (
     {
       ...state,
       jobs: [
         {
-          proposals: [
-            {} as Proposal
-          ]
-        } as Job, {
-          proposals: [
-            {} as Proposal
-          ]
-        } as Job
+          job: {
+            proposals: [
+              {} as Proposal
+            ]
+          } as Job
+        } as JobItem, {
+          job: {
+            proposals: [
+              {} as Proposal
+            ]
+          } as Job
+        } as JobItem
       ],
-      error: null,
       loading: true
     }
   )),
   on(JobActions.LoadAllActions.success, (state, { jobs }) => (
     {
       ...state,
-      jobs: jobs,
-      error: null,
-      loading: false
+      loading: false,
+      jobs: [...jobs]
+        .map(job => (
+          {
+            job,
+            removing: false
+          }
+        ))
+        .sort((a: JobItem, b: JobItem) => {
+          const aDate = a.job.updatedAt;
+          const bDate = b.job.updatedAt;
+          if (aDate < bDate) {
+            return 1;
+          } else if (aDate > bDate) {
+            return -1;
+          }
+          return 0;
+        })
     }
   )),
   on(JobActions.LoadActions.do, state => (
     {
       ...state,
-      job: null,
-      error: null,
+      job: {
+        proposals: [
+          {} as Proposal,
+          {} as Proposal,
+        ]
+      } as Job,
       loading: true
     }
   )),
   on(JobActions.LoadActions.success, (state, { job }) => (
     {
       ...state,
-      job,
-      loading: false
-    }
-  )),
-  on(JobActions.LoadActions.failure, (state, { error }) => (
-    {
-      ...state,
-      error,
-      loading: false
+      loading: false,
+      job: {
+        ...job,
+        proposals: [...job.proposals]
+          .sort((a: Proposal, b: Proposal) => {
+            const aDate = a.updatedAt;
+            const bDate = b.updatedAt;
+            if (aDate < bDate) {
+              return 1;
+            } else if (aDate > bDate) {
+              return -1;
+            }
+            return 0;
+          }),
+      }
     }
   )),
   on(
     JobActions.CreateActions.do,
-    JobActions.DeleteActions.do,
-    state => (
+    (state) => (
+      {
+        ...state,
+        job: {
+          proposals: [] as Proposal[]
+        } as Job,
+        saving: true,
+        saved: false,
+        deleting: true
+      }
+    )
+  ),
+  on(JobActions.DeleteActions.do, (state, { id }) => (
       {
         ...state,
         job: null,
-        error: null,
+        jobs: [
+          ...state.jobs.map(job => {
+            if (job.job._id === id) {
+              return {
+                ...job,
+                removing: true
+              }
+            }
+            return job;
+          })
+        ],
         saving: true,
         saved: false,
         deleting: true
@@ -92,7 +150,6 @@ export const jobReducer = createReducer(
     state => (
       {
         ...state,
-        error: null,
         saving: true,
         saved: false,
         deleting: true
@@ -120,26 +177,9 @@ export const jobReducer = createReducer(
       deleting: false,
       jobs: [
         ...state.jobs.filter(job =>
-          job._id !== id
+          job.job._id !== id
         )
       ]
     }
-  )),
-  // Failure
-  on(
-    JobActions.CreateActions.failure,
-    JobActions.UpdateActions.failure,
-    JobActions.DeleteActions.failure,
-    JobActions.LoadAllActions.failure,
-    (state, { error }) => (
-      {
-        ...state,
-        error,
-        saving: false,
-        loading: false,
-        saved: false,
-        deleting: false,
-      }
-    )
-  )
+  ))
 );

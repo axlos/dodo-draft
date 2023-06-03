@@ -15,20 +15,14 @@ export class ProposalComponent {
 
   public job$: Observable<Job | null>;
   public loading$: Observable<boolean>;
+  public saving$: Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
     private store: Store
   ) {
-    this.loading$ = combineLatest([
-      this.store.select(jobFeature.selectSaving),
-      this.store.select(jobFeature.selectLoading)
-    ]).pipe(
-      map(([saving, loading]) =>
-        saving || loading
-      )
-    );
-
+    this.saving$ = this.store.select(jobFeature.selectSaving);
+    this.loading$ = this.store.select(jobFeature.selectLoading);
     this.job$ = this.store.select(jobFeature.selectJob);
 
     // get angular parameter from router
@@ -48,7 +42,6 @@ export class ProposalComponent {
   }
 
   public saveProposal(id: string | null, job: Job): void {
-    console.log('saveProposal: ', id);
     if (id) {
       this.store.dispatch(JobActions.UpdateActions.do({
         id: id,

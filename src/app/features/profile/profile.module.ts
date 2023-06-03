@@ -13,7 +13,7 @@ import { profileFeature } from "./store/profile/profile.feature";
 import { ProfileEffects } from "./store/profile/profile.effects";
 import { stepNavigationFeature } from "./store/step-navigation/step-navigation.feature";
 import { StepNavigationEffects } from "./store/step-navigation/step-navigation.effects";
-import { ProfileGuard } from "./guards/profile.guard";
+import { SetupGuard } from "./guards/setup.guard";
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { ProfileGuard } from "./guards/profile.guard";
   exports: [],
   providers: [
     ProfileService,
-    ProfileGuard
+    SetupGuard
   ]
 })
 export class ProfileModule {

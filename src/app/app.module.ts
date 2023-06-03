@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
 import { environment } from "../environments/environment";
-import { NbGlobalPhysicalPosition, NbMenuModule, NbThemeModule, NbToastrModule } from "@nebular/theme";
+import { NbGlobalPhysicalPosition, NbMenuModule, NbSidebarModule, NbThemeModule, NbToastrModule } from "@nebular/theme";
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { NbGlobalPhysicalPosition, NbMenuModule, NbThemeModule, NbToastrModule }
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
+    NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbThemeModule.forRoot({
       name: 'default'

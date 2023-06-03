@@ -1,4 +1,7 @@
+import { HeaderMenu } from "../enums/header-menu.enum";
+
 export interface HeaderMenuModel {
+  readonly id: HeaderMenu;
   readonly title: string;
   readonly icon?: string;
   readonly class?: string;

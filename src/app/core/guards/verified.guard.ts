@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable, take } from "rxjs";
-import { userFeature } from "../../../core/store/features/user.feature";
-import { map } from "rxjs/operators";
-import { SetupProfile } from "../enums/setup-profile.enum";
+import { filter, map } from "rxjs/operators";
+import { userFeature } from "../store/features/user.feature";
+import { SetupProfile } from "../../features/profile/enums/setup-profile.enum";
 
 @Injectable()
-export class ProfileGuard implements CanActivate {
+export class VerifiedGuard implements CanActivate {
 
   constructor(
     private store: Store,
@@ -20,13 +20,15 @@ export class ProfileGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const user = this.store.select(userFeature.selectUser);
-
     return user.pipe(
+      filter(user =>
+        user !== null
+      ),
       map(user => {
-        if (user && SetupProfile.Verified !== user.setupProfile) {
-          return true;
+        if (SetupProfile.Verified !== user?.setupProfile) {
+          return this.router.parseUrl('/profile/setup');
         } else {
-          return this.router.parseUrl('/create-proposal');
+          return true;
         }
       }),
       take(1)

@@ -5,7 +5,6 @@ import { StepNavigation } from "./step-navigation.actions";
 import * as ProfileActions from '../profile/profile.actions';
 import * as UserActions from "../../../../core/store/actions/user.actions";
 import { SetupProfile } from "../../enums/setup-profile.enum";
-import { delay } from "rxjs";
 
 @Injectable()
 export class StepNavigationEffects {

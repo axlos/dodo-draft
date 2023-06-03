@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { NbStepperComponent, NbToastrService } from "@nebular/theme";
-import { filter, map, skip } from "rxjs/operators";
+import { NbStepperComponent } from "@nebular/theme";
+import { filter, map, tap } from "rxjs/operators";
 import { combineLatest, Observable } from "rxjs";
 
 import { Profile } from "../../models/profile.model";
 import * as ProfileFeature from "src/app/features/profile/store/profile/profile.feature";
+import * as UserFeature from "src/app/core/store/features/user.feature";
 import * as ProfileActions from "src/app/features/profile/store/profile/profile.actions";
 import * as UserActions from "../../../../core/store/actions/user.actions";
 import { userFeature } from "../../../../core/store/features/user.feature";
@@ -13,12 +14,13 @@ import { stepNavigationFeature } from "../../store/step-navigation/step-navigati
 import { SetupProfile } from "../../enums/setup-profile.enum";
 import { User } from "../../../../core/models/user.model";
 import { StepNavigation } from "../../store/step-navigation/step-navigation.actions";
+import { UIActions } from "../../../../core/store/actions/core.actions";
 
 @Component({
   templateUrl: './setup.component.html',
   styleUrls: ['./setup.component.scss']
 })
-export class SetupComponent implements OnInit {
+export class SetupComponent implements AfterViewInit {
 
   @ViewChild('stepper')
   public stepper: NbStepperComponent | null = null;
@@ -28,7 +30,7 @@ export class SetupComponent implements OnInit {
   public profile$: Observable<Profile | null>;
 
   constructor(
-    private toastrService: NbToastrService,
+    private cdr: ChangeDetectorRef,
     private store: Store
   ) {
     // Profile Selectors
@@ -38,6 +40,7 @@ export class SetupComponent implements OnInit {
     this.loading$ = combineLatest([
       this.store.select(ProfileFeature.selectUploading),
       this.store.select(ProfileFeature.selectLoading),
+      this.store.select(UserFeature.selectLoading),
       this.store.select(userFeature.selectUser)
         .pipe(
           map((user) =>
@@ -45,28 +48,54 @@ export class SetupComponent implements OnInit {
           )
         )
     ]).pipe(
-      map(([uploading, loadingProfile, uploadingStatus]) => {
-        if (uploadingStatus) {
-          this.toastrService.default('Uploading profile', 'Refresh the page in a couple of seconds');
+      tap(([
+        uploading,
+        loadingProfile,
+        loadingUser,
+        uploadingStatus
+      ]) => {
+        if (!loadingUser && uploadingStatus) {
+          this.store.dispatch(
+            UIActions.displaymessage({
+              params: {
+                message: 'This process may take some time. Please consider refreshing the page in a few moments.',
+                title: 'Uploading profile',
+                config: {
+                  status: 'basic',
+                  duration: 5000,
+                  preventDuplicates: true,
+                  icon: {
+                    icon: 'refresh-outline',
+                    pack: 'eva'
+                  }
+                }
+              }
+            })
+          )
         }
-        return uploading || loadingProfile || uploadingStatus;
-      })
+      }),
+      map(([
+          uploading,
+          loadingProfile,
+          loadingUser,
+          uploadingStatus
+        ],) =>
+          uploading || loadingProfile || loadingUser || uploadingStatus
+      )
     );
   }
 
-  ngOnInit(): void {
-    // Load User to verify the setup wizard step
-    this.store.dispatch(UserActions.LoadActions.do());
-
-    // Control the step navigation based on StepNavigation Store
+  ngAfterViewInit() {
     this.store.select(stepNavigationFeature.selectIndex)
       .pipe(
-        skip(1)
+        filter(() =>
+          this.stepper !== null
+        )
       )
       .subscribe((index) => {
-        if (this.stepper !== null) {
-          this.stepper.selectedIndex = index;
-        }
+        // @ts-ignore
+        this.stepper.selectedIndex = index;
+        this.cdr.detectChanges();
       });
 
     // When profile is uploaded, go to next step
@@ -75,15 +104,16 @@ export class SetupComponent implements OnInit {
       filter((uploaded) =>
         uploaded === true
       ),
-    ).subscribe(() =>
+    ).subscribe(() => {
       this.store.dispatch(
         StepNavigation.go({
-          index: (
-            this.stepper !== null
-          ) ? this.stepper.selectedIndex + 1 : 0
+          // @ts-ignore
+          index: this.stepper.selectedIndex + 1
         })
-      )
-    );
+      );
+      // @ts-ignore
+      this.stepper.selectedIndex = 1;
+    });
 
     // Display error message if profile upload fails
     const selectUploadedError = this.store.select(ProfileFeature.selectUploadedError);
@@ -91,9 +121,19 @@ export class SetupComponent implements OnInit {
       filter((error) =>
         error !== null
       ),
-    ).subscribe((error) => {
-      this.toastrService.warning(error, 'Profile Upload');
-    });
+    ).subscribe((error) =>
+      this.store.dispatch(
+        UIActions.displaymessage({
+          params: {
+            message: 'An error occurred while uploading your profile. Please try again later.',
+            title: 'Profile Upload',
+            config: {
+              status: 'warning',
+            }
+          }
+        })
+      )
+    );
   }
 
   public fileSelected(file: File | null): void {
@@ -101,15 +141,33 @@ export class SetupComponent implements OnInit {
   }
 
   public uploadFile(): void {
-    if (this.file !== null) {
-      this.store.dispatch(
-        ProfileActions.UploadActions.do({
-          file: (
-            this.file as File
-          )
-        })
-      );
+    if (this.file === null) {
+      return;
     }
+
+    this.store.dispatch(
+      UIActions.displaymessage({
+        params: {
+          message: 'The process of extracting your profile may require some time. Please be patient!',
+          title: 'Extracting profile',
+          config: {
+            status: 'primary',
+            icon: {
+              icon: 'settings-outline',
+              pack: 'eva'
+            }
+          }
+        }
+      })
+    );
+
+    this.store.dispatch(
+      ProfileActions.UploadActions.do({
+        file: (
+          this.file as File
+        )
+      })
+    );
   }
 
   public verify(): void {
@@ -121,4 +179,5 @@ export class SetupComponent implements OnInit {
       })
     );
   }
+
 }

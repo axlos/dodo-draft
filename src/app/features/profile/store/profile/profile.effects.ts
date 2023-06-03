@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { ProfileService } from "../../services/profile.service";
 import { LoadActions, UploadActions } from './profile.actions';
+import * as CoreActions from "../../../../core/store/actions/core.actions";
 
 @Injectable()
 export class ProfileEffects {
@@ -24,7 +25,16 @@ export class ProfileEffects {
               LoadActions.success({ profile })
             ),
             catchError((error: any) =>
-              of(LoadActions.failure({ error }))
+              of(CoreActions.UIActions.displaymessage({
+                params: {
+                  message: error.message,
+                  title: 'Unexpected Server Error',
+                  config: {
+                    preventDuplicates: true,
+                    status: 'danger'
+                  }
+                }
+              }))
             )
           )
       )
@@ -40,8 +50,15 @@ export class ProfileEffects {
             UploadActions.success()
           ),
           catchError(error =>
-            of(UploadActions.failure({
-              error: 'Error uploading file, try again!'
+            of(CoreActions.UIActions.displaymessage({
+              params: {
+                message: error.message,
+                title: 'Unexpected Server Error',
+                config: {
+                  preventDuplicates: true,
+                  status: 'danger'
+                }
+              }
             }))
           )
         )

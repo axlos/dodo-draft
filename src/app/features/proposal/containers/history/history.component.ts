@@ -3,7 +3,8 @@ import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import { jobFeature } from "../../store/job/job.feature";
 import * as JobActions from "../../store/job/job.actions";
-import { JobHistory } from "../../models/job-history.model";
+import { JobItem } from "../../models/job-item.model";
+import { Router } from "@angular/router";
 
 @Component({
   templateUrl: './history.component.html',
@@ -11,16 +12,14 @@ import { JobHistory } from "../../models/job-history.model";
 })
 export class HistoryComponent implements OnInit {
 
-  public jobs$: Observable<JobHistory[]>;
+  public jobs$: Observable<JobItem[]>;
   public loading$: Observable<boolean>;
 
   constructor(
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {
-    this.jobs$ = this.store.select(jobFeature.mapToJobHistory);
-    this.jobs$.pipe().subscribe((jobs) => {
-      console.log(jobs);
-    });
+    this.jobs$ = this.store.select(jobFeature.selectJobs);
     this.loading$ = this.store.select(jobFeature.selectLoading);
   }
 
@@ -33,6 +32,15 @@ export class HistoryComponent implements OnInit {
   public delete(id: string): void {
     this.store.dispatch(
       JobActions.DeleteActions.do({ id })
+    );
+  }
+
+  public create(): void {
+    // add router Angular navigate to route /proposal/create
+    this.router.navigate(['/proposal/create']).then(() =>
+      this.store.dispatch(
+        JobActions.CreateActions.reset()
+      )
     );
   }
 }

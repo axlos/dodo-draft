@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { UserService } from "../../services/user.service";
 import { LoadActions, UpdateActions } from "../actions/user.actions";
+import * as CoreActions from "../actions/core.actions";
 
 @Injectable()
 export class UserEffects {
@@ -24,7 +25,16 @@ export class UserEffects {
               LoadActions.success({ user })
             ),
             catchError((error: any) =>
-              of(LoadActions.failure({ error }))
+              of(CoreActions.UIActions.displaymessage({
+                params: {
+                  message: error.message,
+                  title: 'Unexpected Server Error',
+                  config: {
+                    preventDuplicates: true,
+                    status: 'danger'
+                  }
+                }
+              }))
             )
           )
       )
@@ -42,7 +52,16 @@ export class UserEffects {
               UpdateActions.success({ user })
             ),
             catchError((error: any) =>
-              of(UpdateActions.failure({ error }))
+              of(CoreActions.UIActions.displaymessage({
+                params: {
+                  message: error.message,
+                  title: 'Unexpected Server Error',
+                  config: {
+                    preventDuplicates: true,
+                    status: 'danger'
+                  }
+                }
+              }))
             )
           )
       )

@@ -35,7 +35,8 @@
           Verify your information is correct
         </p>
         <div class="pt-4">
-          <app-profile-form [profile]="profile$ | async">
+          <app-profile-form [profile]="profile$ | async"
+                            [loading]="(loading$ | async) ?? false">
           </app-profile-form>
         </div>
         <div class="mt-4 d-flex justify-content-between">
@@ -53,7 +54,7 @@
           <p class="mb-5">
             Now you can start creating awesome proposals!
           </p>
-          <button nbButton status="success" routerLink="/create-proposal">
+          <button nbButton status="success" routerLink="/proposal/create">
             Let's start
           </button>
         </div>

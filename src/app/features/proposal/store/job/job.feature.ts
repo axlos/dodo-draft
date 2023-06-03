@@ -1,23 +1,9 @@
-import { createFeature, createSelector } from "@ngrx/store";
+import { createFeature } from "@ngrx/store";
 import { jobReducer } from "./job.reducer";
 
 export const jobFeature = createFeature({
   name: 'job',
-  reducer: jobReducer,
-  extraSelectors: ({
-    selectJobs
-  }) => (
-    {
-      mapToJobHistory: createSelector(selectJobs, (jobs) =>
-        jobs.map(job => (
-          {
-            job: job,
-            removing: false
-          }
-        ))
-      )
-    }
-  )
+  reducer: jobReducer
 });
 
 export const {
@@ -28,6 +14,5 @@ export const {
   selectLoading,
   selectSaving,
   selectSaved,
-  selectError,
-  selectJobs,
+  selectJobs
 } = jobFeature;

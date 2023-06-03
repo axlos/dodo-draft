@@ -15,7 +15,7 @@ export const stepNavigationReducer = createReducer(
   on(StepNavigation.go, (state, { index }) => (
     {
       ...state,
-      index: index,
+      index
     }
   )),
 );

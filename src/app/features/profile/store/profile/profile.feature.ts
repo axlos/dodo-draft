@@ -25,8 +25,7 @@ export const {
   selectProfileState,
   selectProfile,
   selectLoading,
-  selectError,
-  selectUploadedError,
   selectUploaded,
-  selectUploading
+  selectUploading,
+  selectUploadedError
 } = profileFeature;

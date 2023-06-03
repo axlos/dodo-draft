@@ -1,16 +1,19 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { filter, map } from "rxjs/operators";
+import { filter, map, tap } from "rxjs/operators";
 import { CoreService } from "../../services/core.service";
 import * as UserActions from "../../../core/store/actions/user.actions";
 import { SetupProfile } from "../../../features/profile/enums/setup-profile.enum";
-import { HeaderMenuActions } from "../actions/core.actions";
+import { HeaderMenuActions, UIActions } from "../actions/core.actions";
+import { HeaderMenu } from "../../enums/header-menu.enum";
+import { NbToastrService } from "@nebular/theme";
 
 @Injectable()
 export class CoreEffects {
   constructor(
     private actions$: Actions,
-    private coreService: CoreService
+    private coreService: CoreService,
+    private toastrService: NbToastrService
   ) {
   }
 
@@ -27,16 +30,19 @@ export class CoreEffects {
         HeaderMenuActions.load({
           menu: [
             {
+              id: HeaderMenu.Create,
               title: 'Create New',
               icon: 'add-icon',
               class: 'ml-2 create-new',
               router: '/proposal/create'
             },
             {
+              id: HeaderMenu.History,
               title: 'History',
               router: '/proposal/history'
             },
             {
+              id: HeaderMenu.Profile,
               title: 'Profile',
               router: 'profile'
             }
@@ -44,6 +50,20 @@ export class CoreEffects {
         })
       )
     )
+  );
+
+  private displayMessage$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(UIActions.displaymessage),
+        tap(action => {
+          this.toastrService.show(
+            action.params.message,
+            action.params.title,
+            action.params.config
+          );
+        })
+      ),
+    { dispatch: false }
   );
 
 }

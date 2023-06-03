@@ -12,5 +12,4 @@ export const {
   selectUserState,
   selectUser,
   selectLoading,
-  selectError,
 } = userFeature;

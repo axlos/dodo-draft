@@ -1,14 +1,31 @@
-<h1>
-  Create Proposal
-</h1>
-<p class="lead">
-  Have an effective proposal as Freelancer can be a decisive factor in landing jobs.
-</p>
-<div class="mb-4">
-  <app-proposal-form [job]="job$ | async"
-                     [loading]="(loading$ | async) ?? false"
-                     (save)="saveProposal($event.id, $event.job)">
-  </app-proposal-form>
-</div>
-<app-proposal-list [job]="job$ | async">
-</app-proposal-list>
+<nb-layout>
+  <nb-sidebar [fixed]="true"
+              [state]="'expanded'"
+              [containerFixed]="true"
+              [responsive]="false"
+              [right]="true">
+    <app-proposal-form [job]="job$ | async"
+                       [loading]="(loading$ | async) ?? false || (saving$ | async) ?? false"
+                       (save)="saveProposal($event.id, $event.job)">
+    </app-proposal-form>
+  </nb-sidebar>
+
+  <nb-layout-column class="custom-layout">
+    <h1>
+      Create Proposal
+    </h1>
+
+    <div class="content-wrapper">
+
+      <div class="alert alert-primary" role="alert" *ngIf="(job$ | async) === null">
+        <h6 class="alert-heading">Title</h6>
+        Have an effective proposal as Freelancer can be a decisive factor in landing jobs.
+      </div>
+
+      <app-proposal-list [job]="job$ | async"
+                         [loading]="(loading$ | async) ?? false"
+                         [saving]="(saving$ | async) ?? false">
+      </app-proposal-list>
+    </div>
+  </nb-layout-column>
+</nb-layout>

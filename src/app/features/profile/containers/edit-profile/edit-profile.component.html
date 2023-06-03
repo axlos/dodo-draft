@@ -1,1 +1,3 @@
-<app-profile-form></app-profile-form>
+<app-profile-form [profile]="profile$ | async"
+                  [loading]="(loading$ | async) ?? false">
+</app-profile-form>

@@ -10,9 +10,6 @@ export class DeleteButtonComponent {
   @Input()
   public loading: boolean = false;
 
-  @Input()
-  public removing: boolean = false;
-
   @Output()
   public delete = new EventEmitter<void>();
 

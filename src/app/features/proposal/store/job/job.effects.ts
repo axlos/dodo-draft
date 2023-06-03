@@ -4,6 +4,7 @@ import { catchError, of, switchMap } from "rxjs";
 import { map } from "rxjs/operators";
 import { JobService } from "../../services/job.service";
 import { CreateActions, DeleteActions, LoadActions, LoadAllActions, UpdateActions } from './job.actions';
+import * as CoreActions from './../../../../core/store/actions/core.actions';
 
 @Injectable()
 export class JobEffects {
@@ -23,7 +24,16 @@ export class JobEffects {
             LoadAllActions.success({ jobs })
           ),
           catchError(error =>
-            of(LoadAllActions.failure({ error }))
+            of(CoreActions.UIActions.displaymessage({
+              params: {
+                message: error.message,
+                title: 'Unexpected Server Error',
+                config: {
+                  preventDuplicates: true,
+                  status: 'danger'
+                }
+              }
+            }))
           )
         )
       )
@@ -39,7 +49,16 @@ export class JobEffects {
             LoadActions.success({ job })
           ),
           catchError(error =>
-            of(LoadActions.failure({ error }))
+            of(CoreActions.UIActions.displaymessage({
+              params: {
+                message: error.message,
+                title: 'Unexpected Server Error',
+                config: {
+                  preventDuplicates: true,
+                  status: 'danger'
+                }
+              }
+            }))
           )
         )
       )
@@ -55,7 +74,16 @@ export class JobEffects {
             CreateActions.success({ job })
           ),
           catchError(error =>
-            of(CreateActions.failure({ error }))
+            of(CoreActions.UIActions.displaymessage({
+              params: {
+                message: error.message,
+                title: 'Unexpected Server Error',
+                config: {
+                  preventDuplicates: true,
+                  status: 'danger'
+                }
+              }
+            }))
           )
         )
       )
@@ -71,7 +99,16 @@ export class JobEffects {
             UpdateActions.success({ job })
           ),
           catchError(error =>
-            of(UpdateActions.failure({ error }))
+            of(CoreActions.UIActions.displaymessage({
+              params: {
+                message: error.message,
+                title: 'Unexpected Server Error',
+                config: {
+                  preventDuplicates: true,
+                  status: 'danger'
+                }
+              }
+            }))
           )
         )
       )
@@ -89,7 +126,16 @@ export class JobEffects {
             })
           ),
           catchError(error =>
-            of(DeleteActions.failure({ error }))
+            of(CoreActions.UIActions.displaymessage({
+              params: {
+                message: error.message,
+                title: 'Unexpected Server Error',
+                config: {
+                  preventDuplicates: true,
+                  status: 'danger'
+                }
+              }
+            }))
           )
         )
       )

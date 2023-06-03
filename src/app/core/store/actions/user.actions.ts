@@ -5,10 +5,7 @@ export const LoadActions = createActionGroup({
   source: "Load User",
   events: {
     "do": emptyProps(),
-    "success": props<{ user: User }>(),
-    "failure": (error: any) => (
-      { error }
-    )
+    "success": props<{ user: User }>()
   }
 });
 
@@ -16,9 +13,6 @@ export const UpdateActions = createActionGroup({
   source: "Update User",
   events: {
     "do": props<{ user: User }>(),
-    "success": props<{ user: User }>(),
-    "failure": (error: any) => (
-      { error }
-    )
+    "success": props<{ user: User }>()
   }
 });

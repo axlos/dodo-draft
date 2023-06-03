@@ -15,7 +15,7 @@ export const initialState: ProfileState = {
   loading: false,
   uploading: false,
   uploaded: false,
-  error: null,
+  error: null
 };
 
 export const profileReducer = createReducer(
@@ -36,20 +36,12 @@ export const profileReducer = createReducer(
       loading: false
     }
   )),
-  on(ProfileActions.LoadActions.failure, (state, { error }) => (
-    {
-      ...state,
-      error,
-      loading: false
-    }
-  )),
   // Upload Profile
   on(ProfileActions.UploadActions.do, state => (
     {
       ...state,
       uploading: true,
-      uploaded: false,
-      error: null
+      uploaded: false
     }
   )),
   on(ProfileActions.UploadActions.success, state => (

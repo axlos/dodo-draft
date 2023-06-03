@@ -1,9 +1,17 @@
-<nb-card *ngIf="job !== null">
+<nb-card *ngIf="job !== null" accent="basic">
   <nb-card-body class="m-4">
-    <h6 class="mb-4">
-      {{job.title}}
-    </h6>
-    <div class="proposal" *ngFor="let proposal of job.proposals | sort:'updatedAt'">
+    <h5>
+      Proposals <span *ngIf="!loading">({{job.proposals.length}})</span>
+    </h5>
+    <p class="mb-4">
+      TODO: Change this text, Have an effective proposal as Freelancer can be a decisive factor in landing jobs.
+    </p>
+    <div class="proposal" *ngIf="saving">
+      <app-proposal-ai [proposal]="fakeProposal"
+                       [loading]="true">
+      </app-proposal-ai>
+    </div>
+    <div class="proposal" *ngFor="let proposal of job.proposals">
       <app-proposal-ai [proposal]="proposal"
                        [loading]="loading">
       </app-proposal-ai>

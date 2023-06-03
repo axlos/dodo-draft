@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Job } from "../../models/job.model";
 
 @Component({
   selector: 'app-proposal-form',
   templateUrl: './proposal-form.component.html',
-  styleUrls: ['./proposal-form.component.scss']
+  styleUrls: ['./proposal-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProposalFormComponent implements OnInit, OnChanges {
 
@@ -25,18 +26,21 @@ export class ProposalFormComponent implements OnInit, OnChanges {
   constructor(
     private fb: FormBuilder
   ) {
+
     this.proposalForm = this.fb.group({
       title: ['', Validators.required],
       details: ['', Validators.required],
       question: [''],
-      experiences: [true],
-      educations: [false],
-      certifications: [false],
-      languages: [false]
+      experiences: [null],
+      educations: [null],
+      certifications: [null],
+      languages: [null]
     });
   }
 
   ngOnInit() {
+    // TODO: Disable form on loading  (DONE)
+
   }
 
   ngOnChanges() {
@@ -51,6 +55,14 @@ export class ProposalFormComponent implements OnInit, OnChanges {
         certifications: this.job.certifications,
         languages: this.job.languages
       });
+    } else {
+      this.id = null;
+      this.proposalForm.reset();
+    }
+    if (this.loading) {
+      this.proposalForm.disable();
+    } else {
+      this.proposalForm.enable();
     }
   }
 

@@ -1,87 +1,81 @@
-<nb-card [nbSpinner]="loading"
-         nbSpinnerStatus="success"
-         nbSpinnerSize="giant">
-  <nb-card-body class="m-4">
-    <form (ngSubmit)="createProposal()"
-          [formGroup]="proposalForm">
-      <div class="mb-4">
-        <label for="title">Job title</label>
-        <input nbInput fullWidth
-               id="title"
-               type="text"
-               fieldSize="large"
-               formControlName="title">
-      </div>
-      <div class="mb-4">
-        <label for="description" class="form-label">
-          Job details
-        </label>
-        <textarea nbInput fullWidth
-                  id="description"
-                  fieldSize="large"
-                  rows="8"
-                  formControlName="details">
+<form (ngSubmit)="createProposal()"
+      [formGroup]="proposalForm">
+  <div class="mb-4">
+    <label for="title">Job title</label>
+    <input nbInput fullWidth
+           id="title"
+           type="text"
+           fieldSize="large"
+           formControlName="title">
+  </div>
+  <div class="mb-4">
+    <label for="description" class="form-label">
+      Job details
+    </label>
+    <textarea nbInput fullWidth
+              id="description"
+              fieldSize="large"
+              rows="8"
+              formControlName="details">
         </textarea>
-      </div>
-      <div class="mb-4">
-        <label for="question" class="form-label">
-          Relevant Question <span class="text-muted">(Optional)</span>
-        </label>
-        <input nbInput fullWidth
-               id="question"
-               fieldSize="large"
-               formControlName="question"/>
-        <div id="emailHelp" class="form-text">
-          Asking a question about the project can demonstrate your commitment to it and may help you stand out among
-          other proposals
-        </div>
-      </div>
-      <div class="mb-4">
-        <label for="description" class="form-label">
-          Talk about
-        </label>
-        <div class="d-flex flex-row">
-          <nb-toggle status="basic"
-                     class="me-4"
-                     formControlName="experiences">
-            Job experiences
-          </nb-toggle>
-          <nb-toggle status="basic"
-                     class="me-4"
-                     formControlName="educations">
-            Educations
-          </nb-toggle>
-          <nb-toggle status="basic"
-                     class="me-4"
-                     formControlName="certifications">
-            Certifications
-          </nb-toggle>
-          <nb-toggle status="basic"
-                     class="me-4"
-                     formControlName="languages">
-            Languages
-          </nb-toggle>
-        </div>
-      </div>
-      <div class="pt-2 d-flex justify-content-between">
-        <button nbButton
-                size="large"
-                status="primary"
-                type="submit"
-                [disabled]="proposalForm.invalid">
-          Generate
-        </button>
-        <div class="d-flex flex-row align-items-center">
-          <button nbButton size="large" status="basic" class="position-relative">
-            <span>
-              Buy Credits
-            </span>
-            <span class="position-absolute top-0 start-100 translate-middle badge su">
-              4
-            </span>
-          </button>
-        </div>
-      </div>
-    </form>
-  </nb-card-body>
-</nb-card>
+  </div>
+  <div class="mb-4">
+    <label for="question" class="form-label">
+      Add a relevant question <span class="text-muted">(Optional)</span>
+    </label>
+    <input nbInput fullWidth
+           id="question"
+           fieldSize="large"
+           formControlName="question"/>
+    <div id="emailHelp" class="form-text">
+      Asking a question about the project can demonstrate your commitment to it and may help you stand out among
+      other proposals
+    </div>
+  </div>
+  <div class="mb-4">
+    <label for="description" class="form-label">
+      Talk about
+    </label>
+    <div class="d-flex flex-column">
+      <nb-toggle status="basic"
+                 class="mb-2"
+                 formControlName="experiences">
+        Job experiences
+      </nb-toggle>
+      <nb-toggle status="basic"
+                 class="mb-2"
+                 formControlName="educations">
+        Educations
+      </nb-toggle>
+      <nb-toggle status="basic"
+                 class="mb-2"
+                 formControlName="certifications">
+        Certifications
+      </nb-toggle>
+      <nb-toggle status="basic"
+                 class="mb-2"
+                 formControlName="languages">
+        Languages
+      </nb-toggle>
+    </div>
+  </div>
+  <div class="pt-2 d-flex justify-content-between">
+    <button nbButton
+            size="large"
+            status="primary"
+            type="submit"
+            [disabled]="proposalForm.invalid || loading">
+      Generate
+    </button>
+    <div class="d-flex flex-row align-items-center">
+      <button nbButton size="large" status="basic" class="position-relative">
+        <span>
+          Buy Credits
+        </span>
+        <span class="position-absolute top-0 start-100 translate-middle badge su">
+          4
+        </span>
+      </button>
+    </div>
+  </div>
+</form>

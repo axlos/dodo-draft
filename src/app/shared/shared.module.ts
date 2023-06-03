@@ -12,11 +12,10 @@ import {
   NbContextMenuModule,
   NbIconModule,
   NbInputModule,
-  NbLayoutModule,
+  NbLayoutModule, NbSidebarModule,
   NbSpinnerModule,
   NbStepperModule,
   NbTagModule,
-  NbToastrModule,
   NbToggleModule,
   NbTooltipModule,
   NbUserModule
@@ -25,7 +24,6 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { HttpClientModule } from "@angular/common/http";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
-import { SortPipe } from "./pipes/sort.pipe";
 import { DeleteButtonComponent } from "./components/delete-button/delete-button.component";
 
 const COMPONENTS: any[] = [
@@ -34,7 +32,6 @@ const COMPONENTS: any[] = [
 ];
 
 const PIPES: any[] = [
-  SortPipe
 ];
 
 const MODULES: any[] = [
@@ -60,8 +57,8 @@ const MODULES: any[] = [
   NbTooltipModule,
   NbStepperModule,
   NbSpinnerModule,
-  NbToastrModule,
-  NgxDropzoneModule
+  NgxDropzoneModule,
+  NbSidebarModule
 ];
 
 @NgModule({

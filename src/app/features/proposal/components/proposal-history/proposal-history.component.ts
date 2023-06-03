@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Job } from "../../models/job.model";
-import { JobHistory } from "../../models/job-history.model";
+import { JobItem } from "../../models/job-item.model";
+import { NbComponentStatus } from "@nebular/theme/components/component-status";
 
 @Component({
   selector: 'app-proposal-history',
@@ -13,9 +13,20 @@ export class ProposalHistoryComponent {
   public loading: boolean = false;
 
   @Input()
-  public jobHistory: JobHistory | null = null
+  public jobHistory: JobItem | null = null
 
   @Output()
   public delete = new EventEmitter<string>();
 
+  onDelete() {
+    this.delete.emit(this.jobHistory?.job._id);
+  }
+
+  public get accent(): NbComponentStatus {
+    let _accent: NbComponentStatus = 'basic';
+    if (this.jobHistory !== null && this.jobHistory.removing) {
+      _accent = 'danger';
+    }
+    return _accent;
+  }
 }
