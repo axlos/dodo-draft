@@ -1,22 +1,23 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
+import { NbDialogService, NbTagComponent, NbTagInputAddEvent } from "@nebular/theme";
+import { filter, tap } from "rxjs/operators";
 import { Profile } from "../../models/profile.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProfileFormControls } from "../../enums/profile-form-controls.enum";
 import { CrudButtonsConfig } from "../../../../shared/components/crud-buttons/crud-buttons-config";
-import { NbDialogService } from "@nebular/theme";
 import { ExperienceDialogComponent } from "../experience-dialog/experience-dialog.component";
 import { Experience } from "../../models/experience.model";
 import { LanguageDialogComponent } from "../language-dialog/language-dialog.component";
-import { CertificationDialogComponent } from "../certification-dialog/certification-dialog.component";
 import { EducationDialogComponent } from "../education-dialog/education-dialog.component";
-import { filter } from "rxjs/operators";
 import { Language } from "../../models/language.model";
 import { Education } from "../../models/education.model";
+import { CertificationDialogComponent } from "../certification-dialog/certification-dialog.component";
 
 @Component({
   selector: 'app-profile-form',
   templateUrl: './profile-form.component.html',
-  styleUrls: ['./profile-form.component.scss']
+  styleUrls: ['./profile-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileFormComponent implements OnChanges {
 
@@ -43,6 +44,13 @@ export class ProfileFormComponent implements OnChanges {
     delete: false,
   };
   public editSummary: boolean = false;
+  // Summary config
+  public skillsCrudButtonsConfig: CrudButtonsConfig = {
+    edit: true,
+    delete: false,
+  };
+  public currentSkills: string[] = [];
+  public editSkills: boolean = false;
   // Headline config
   public headlineCrudButtonsConfig: CrudButtonsConfig = {
     edit: true,
@@ -50,7 +58,29 @@ export class ProfileFormComponent implements OnChanges {
   };
   public editHeadline: boolean = false;
   // Experience config
-  public experiencesCrudButtons: { experience: Experience, config: CrudButtonsConfig }[] = [];
+  public experiencesCrudButtons: {
+    experience: Experience,
+    config: CrudButtonsConfig,
+    reset: boolean
+  }[] = [];
+  // Language config
+  public languagesCrudButtons: {
+    language: Language,
+    config: CrudButtonsConfig,
+    reset: boolean
+  }[] = [];
+  // Language config
+  public certificationsCrudButtons: {
+    certification: string,
+    config: CrudButtonsConfig,
+    reset: boolean
+  }[] = [];
+  // Education config
+  public educationsCrudButtons: {
+    education: Education,
+    config: CrudButtonsConfig,
+    reset: boolean
+  }[] = [];
 
   constructor(
     private dialogService: NbDialogService
@@ -76,16 +106,55 @@ export class ProfileFormComponent implements OnChanges {
       pathValues[this.ProfileFormControls.Headline] = this.profile.headline;
       this.profileForm.patchValue(pathValues);
 
-      this.experiencesCrudButtons = this.profile.experiences
-        .map((experience: Experience) => (
-          {
-            experience,
-            config: {
-              edit: true,
-              delete: true
-            }
+      this.currentSkills = this.profile.skills || [];
+      this.experiencesCrudButtons = (
+        this.profile.experiences || []
+      ).map((experience: Experience) => (
+        {
+          experience,
+          reset: false,
+          config: {
+            edit: true,
+            delete: true
           }
-        ));
+        }
+      ));
+      this.languagesCrudButtons = (
+        this.profile.languages || []
+      ).map((language: Language) => (
+        {
+          language,
+          reset: false,
+          config: {
+            edit: true,
+            delete: true
+          }
+        }
+      ));
+      this.certificationsCrudButtons = (
+        this.profile.certifications || []
+      ).map((certification: string) => (
+        {
+          certification,
+          reset: false,
+          config: {
+            edit: true,
+            delete: true
+          }
+        }
+      ));
+      this.educationsCrudButtons = (
+        this.profile.educations || []
+      ).map((education: Education) => (
+        {
+          education,
+          reset: false,
+          config: {
+            edit: true,
+            delete: true
+          }
+        }
+      ));
     }
   }
 
@@ -109,14 +178,31 @@ export class ProfileFormComponent implements OnChanges {
         });
         this.editHeadline = false;
         break;
+      case this.ProfileFormControls.Skills:
+        this.save.emit({
+          skills: this.currentSkills
+        });
+        this.editSkills = false;
+        break;
     }
   }
 
-  public openExperienceDialog(experience?: Experience, index?: number): void {
+  public openExperienceDialog(
+    experienceCrud?: { experience: Experience; config: CrudButtonsConfig, reset: boolean },
+    index?: number
+  ): void {
     this.dialogService.open(ExperienceDialogComponent, {
-      context: { experience, index }
+      context: {
+        experience: experienceCrud?.experience,
+        index
+      }
     }).onClose
       .pipe(
+        tap(() => {
+          if (experienceCrud) {
+            experienceCrud.reset = true;
+          }
+        }),
         filter((res: { experience: Experience, index: number }) =>
           !!res
         )
@@ -156,65 +242,222 @@ export class ProfileFormComponent implements OnChanges {
   }
 
   public editExperience(
-    experienceCrud: { experience: Experience; config: CrudButtonsConfig },
+    experienceCrud: { experience: Experience; config: CrudButtonsConfig, reset: boolean },
     index: number
   ): void {
-    this.openExperienceDialog(experienceCrud.experience, index);
+    experienceCrud.reset = false;
+    this.openExperienceDialog(experienceCrud, index);
   }
 
-  public addLanguage(): void {
-    this.dialogService.open(LanguageDialogComponent).onClose
+  public openLanguageDialog(
+    languageCrud?: { language: Language; config: CrudButtonsConfig, reset: boolean },
+    index?: number
+  ): void {
+
+    this.dialogService.open(LanguageDialogComponent, {
+      context: {
+        language: languageCrud?.language,
+        index
+      }
+    }).onClose
       .pipe(
-        filter((language: Language) =>
-          !!language
+        tap(() => {
+          if (languageCrud) {
+            languageCrud.reset = true;
+          }
+        }),
+        filter((res: { language: Language, index: number }) =>
+          !!res
         )
       )
-      .subscribe((language: Language) => {
+      .subscribe((res: { language: Language, index: number }) => {
         const profile = this.profile as Profile;
-        this.save.emit({
-          languages: [
-            ...profile.languages || [],
-            language
-          ]
-        });
+        if (index !== undefined) {
+          // Replace language
+          this.save.emit({
+            languages: [
+              ...profile.languages.map((l, index) =>
+                index === res.index ? res.language : l
+              )
+            ]
+          });
+        } else {
+          // Add language
+          this.save.emit({
+            languages: [
+              ...profile.languages || [],
+              res.language
+            ]
+          });
+        }
       })
   }
 
-  public addCertification(): void {
-    this.dialogService.open(CertificationDialogComponent).onClose
+  public editLanguage(
+    languageCrud: { language: Language; config: CrudButtonsConfig, reset: boolean },
+    index: number
+  ): void {
+    console.log('asdasd');
+    languageCrud.reset = false;
+    this.openLanguageDialog(languageCrud, index);
+  }
+
+  deleteLanguage(index: number) {
+    const profile = this.profile as Profile;
+    this.save.emit({
+      languages: [
+        ...profile.languages.filter((e, i) =>
+          i !== index
+        )
+      ]
+    });
+  }
+
+  public openCertificationDialog(
+    certificationCrud?: { certification: string; config: CrudButtonsConfig, reset: boolean },
+    index?: number
+  ): void {
+
+    this.dialogService.open(CertificationDialogComponent, {
+      context: {
+        certification: certificationCrud?.certification,
+        index
+      }
+    }).onClose
       .pipe(
-        filter((certification: string) =>
-          !!certification && certification.trim().length > 0
+        tap(() => {
+          if (certificationCrud) {
+            certificationCrud.reset = true;
+          }
+        }),
+        filter((res: { certification: string, index: number }) =>
+          !!res
         )
       )
-      .subscribe((certification: string) => {
+      .subscribe((res: { certification: string, index: number }) => {
         const profile = this.profile as Profile;
-        this.save.emit({
-          certifications: [
-            ...profile.certifications || [],
-            certification
-          ]
-        });
+        if (index !== undefined) {
+          // Replace certifications
+          this.save.emit({
+            certifications: [
+              ...profile.certifications.map((l, index) =>
+                index === res.index ? res.certification : l
+              )
+            ]
+          });
+        } else {
+          // Add certifications
+          this.save.emit({
+            certifications: [
+              ...profile.certifications || [],
+              res.certification
+            ]
+          });
+        }
+      })
+  }
+
+
+  public editCertification(
+    certificationCrud: { certification: string; config: CrudButtonsConfig, reset: boolean },
+    index: number
+  ): void {
+    certificationCrud.reset = false;
+    this.openCertificationDialog(certificationCrud, index);
+  }
+
+  deleteCertification(i: number) {
+    const profile = this.profile as Profile;
+    this.save.emit({
+      certifications: [
+        ...profile.certifications.filter((e, index) =>
+          index !== i
+        )
+      ]
+    });
+  }
+
+  public openEducationDialog(
+    educationCrud?: { education: Education; config: CrudButtonsConfig, reset: boolean },
+    index?: number
+  ): void {
+    this.dialogService.open(EducationDialogComponent, {
+      context: {
+        education: educationCrud?.education,
+        index
+      }
+    }).onClose
+      .pipe(
+        tap(() => {
+          if (educationCrud) {
+            educationCrud.reset = true;
+          }
+        }),
+        filter((res: { education: Education, index: number }) =>
+          !!res
+        )
+      )
+      .subscribe((res: { education: Education, index: number }) => {
+        const profile = this.profile as Profile;
+        if (index !== undefined) {
+          // Replace certifications
+          this.save.emit({
+            educations: [
+              ...profile.educations.map((l, index) =>
+                index === res.index ? res.education : l
+              )
+            ]
+          });
+        } else {
+          // Add certifications
+          this.save.emit({
+            educations: [
+              ...profile.educations || [],
+              res.education
+            ]
+          });
+        }
       });
   }
 
-  public addEducation(): void {
-    this.dialogService.open(EducationDialogComponent).onClose
-      .pipe(
-        filter((education: Education) =>
-          !!education
-        )
-      )
-      .subscribe((education: Education) => {
-        const profile = this.profile as Profile;
-        this.save.emit({
-          educations: [
-            ...profile.educations || [],
-            education
-          ]
-        });
-      });
+  public editEducation(
+    educationCrud: { education: Education; config: CrudButtonsConfig; reset: boolean },
+    index: number
+  ): void {
+    educationCrud.reset = false;
+    this.openEducationDialog(educationCrud, index);
   }
 
+  public deleteEducation(i: number): void {
+    const profile = this.profile as Profile;
+    this.save.emit({
+      educations: [
+        ...profile.educations.filter((e, index) =>
+          index !== i
+        )
+      ]
+    });
+  }
 
+  public deleteSkill(tagToRemove: NbTagComponent): void {
+    this.currentSkills = this.currentSkills.filter((s) =>
+      s !== tagToRemove.text
+    );
+  }
+
+  public addSkill({ value, input }: NbTagInputAddEvent): void {
+    if (value) {
+      const profile = this.profile as Profile;
+      this.currentSkills = [
+        ...this.currentSkills,
+        value
+      ];
+    }
+    input.nativeElement.value = '';
+  }
+
+  public cancelSkills() : void {
+    this.currentSkills = this.profile?.skills || [];
+    this.editSkills = false;
+  }
 }

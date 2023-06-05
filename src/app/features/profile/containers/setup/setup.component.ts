@@ -27,6 +27,7 @@ export class SetupComponent implements AfterViewInit {
 
   public file: File | null = null;
   public loading$: Observable<boolean>;
+  public saving$: Observable<boolean>;
   public profile$: Observable<Profile | null>;
 
   constructor(
@@ -35,6 +36,7 @@ export class SetupComponent implements AfterViewInit {
   ) {
     // Profile Selectors
     this.profile$ = this.store.select(ProfileFeature.selectProfile);
+    this.saving$ = this.store.select(ProfileFeature.selectSaving);
 
     // Loading, when it's uploading, loading the profile or the Setup profile is still uploading the file
     this.loading$ = combineLatest([

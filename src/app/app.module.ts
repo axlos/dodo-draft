@@ -30,7 +30,7 @@ import {
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot({
       hasBackdrop: true,
-      autoFocus: true
+      autoFocus: false
     }),
     NbThemeModule.forRoot({
       name: 'default'

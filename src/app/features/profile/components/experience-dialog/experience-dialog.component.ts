@@ -10,7 +10,6 @@ export class ExperienceDialogComponent implements OnInit {
 
   public experience: Experience | null = null
   public index: number | null = null;
-
   public formExperience: FormGroup;
 
   constructor(

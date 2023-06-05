@@ -20,6 +20,7 @@
 
         <div class="mt-4 d-flex justify-content-end">
           <button nbButton
+                  type="button"
                   [disabled]="file == null || (loading$ | async)"
                   (click)="uploadFile()">
             next
@@ -37,12 +38,20 @@
         <div class="pt-4">
           <app-profile-form [profile]="profile$ | async"
                             [loading]="(loading$ | async) ?? false"
+                            [saving]="(saving$ | async) ?? false"
                             (save)="saveProfile($event)">
           </app-profile-form>
         </div>
         <div class="mt-4 d-flex justify-content-between">
-          <button nbButton nbStepperPrevious>back</button>
-          <button nbButton nbStepperNext (click)="verify()">Verify</button>
+          <button nbButton nbStepperPrevious
+                  type="button">
+            back
+          </button>
+          <button nbButton nbStepperNext
+                  type="button"
+                  (click)="verify()">
+            Verify
+          </button>
         </div>
       </nb-step>
 
@@ -55,7 +64,7 @@
           <p class="mb-5">
             Now you can start creating awesome proposals!
           </p>
-          <button nbButton status="success" routerLink="/proposal/create">
+          <button nbButton status="success" routerLink="/proposal/create" type="button">
             Let's start
           </button>
         </div>

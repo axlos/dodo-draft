@@ -13,27 +13,28 @@
               <button nbButton ghost
                       status="primary"
                       size="small"
+                      type="button"
                       shape="round"
                       [disabled]="loading"
                       [class.placeholder]="loading"
-                      (click)="addLanguage()">
+                      (click)="openLanguageDialog()">
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
             </h6>
             <ul class="d-flex flex-column">
-              <li *ngFor="let language of profile?.languages">
+              <li *ngFor="let languageCrud of languagesCrudButtons; let i = index">
                 <div class="d-flex flex-row align-items-center">
-                  <span>
-                    {{language.language | titlecase}}
+                  <span class="me-1" [class.me-auto]="!languageCrud.language.level">
+                    {{languageCrud.language.language | titlecase}}
                   </span>
-                  <small class="text-secondary me-2">
-                    ({{language.level | titlecase}})
+                  <small class="text-secondary me-2 me-auto" *ngIf="languageCrud.language.level">
+                    ({{languageCrud.language.level | titlecase}})
                   </small>
-                  <app-crud-buttons [config]="fullNameCrudButtonsConfig"
-                                    [loading]="saving || loading"
-                                    (save)="onSave(this.ProfileFormControls.FullName)"
-                                    (edit)="editFullName = true"
-                                    (cancel)="editFullName = false">
+                  <app-crud-buttons [config]="languageCrud.config"
+                                    [loading]="saving"
+                                    [reset]="languageCrud.reset"
+                                    (edit)="editLanguage(languageCrud, i)"
+                                    (delete)="deleteLanguage(i)">
                   </app-crud-buttons>
                 </div>
               </li>
@@ -65,21 +66,21 @@
                       type="button"
                       [disabled]="loading"
                       [class.placeholder]="loading"
-                      (click)="addCertification()">
+                      (click)="openCertificationDialog()">
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
             </h6>
             <ul class="lh-base">
-              <li *ngFor="let certification of profile?.certifications">
+              <li *ngFor="let certificationCrud of certificationsCrudButtons; let i = index">
                 <div class="d-flex flex-row align-items-center justify-content-start">
-                  <span>
-                    {{certification}}
+                  <span class="me-1 me-auto">
+                    {{certificationCrud.certification}}
                   </span>
-                  <app-crud-buttons [config]="fullNameCrudButtonsConfig"
-                                    [loading]="saving || loading"
-                                    (save)="onSave(this.ProfileFormControls.FullName)"
-                                    (edit)="editFullName = true"
-                                    (cancel)="editFullName = false">
+                  <app-crud-buttons [config]="certificationCrud.config"
+                                    [loading]="saving"
+                                    [reset]="certificationCrud.reset"
+                                    (edit)="editCertification(certificationCrud, i)"
+                                    (delete)="deleteCertification(i)">
                   </app-crud-buttons>
                 </div>
               </li>
@@ -159,19 +160,25 @@
               <span class="placeholder bg-secondary col-2"></span>
             </p>
             <!-- / placeholder -->
-            <div *ngIf="!loading">
-              <nb-tag-list [multiple]="true" class="me-2">
-                <nb-tag [text]="skill" *ngFor="let skill of profile?.skills">
+            <div *ngIf="!loading" class="d-flex flex-row align-items-center">
+              <nb-tag-list [multiple]="true" class="me-2" (tagRemove)="deleteSkill($event)">
+                <nb-tag status="primary" appearance="outline"
+                        [text]="skill"
+                        [removable]="editSkills"
+                        *ngFor="let skill of currentSkills">
                 </nb-tag>
+                <input fullWidth nbTagInput
+                       type="text"
+                       (tagAdd)="addSkill($event)"
+                       [disabled]="saving"
+                       *ngIf="editSkills">
               </nb-tag-list>
-              <button nbButton ghost
-                      status="primary"
-                      size="small"
-                      shape="round"
-                      [disabled]="loading"
-                      [class.placeholder]="loading">
-                <nb-icon icon="edit-outline"></nb-icon>
-              </button>
+              <app-crud-buttons [config]="skillsCrudButtonsConfig"
+                                [loading]="saving || loading"
+                                (edit)="editSkills = true"
+                                (cancel)="cancelSkills()"
+                                (save)="onSave(this.ProfileFormControls.Skills)">
+              </app-crud-buttons>
             </div>
           </div>
           <!-- Summary -->
@@ -218,6 +225,7 @@
               </span>
               <button nbButton ghost
                       status="primary"
+                      type="button"
                       size="small"
                       shape="round"
                       [disabled]="loading || saving"
@@ -238,17 +246,18 @@
             <div class="mb-4" *ngFor="let experienceCrud of experiencesCrudButtons; let i = index">
               <p class="fw-semibold mb-0 d-flex align-items-center">
                 <span class="me-2">
-                  {{experienceCrud.experience.company}}
+                  {{experienceCrud.experience.company | titlecase}}
                 </span>
                 <app-crud-buttons [config]="experienceCrud.config"
                                   [loading]="saving"
-                                  (delete)="deleteExperience(i)"
-                                  (edit)="editExperience(experienceCrud, i)">
+                                  [reset]="experienceCrud.reset"
+                                  (edit)="editExperience(experienceCrud, i)"
+                                  (delete)="deleteExperience(i)">
                 </app-crud-buttons>
               </p>
-              <div *ngIf="!loading">
+              <div>
                 <p class="mb-0">
-                  {{experienceCrud.experience.position}}
+                  {{experienceCrud.experience.position | titlecase}}
                 </p>
                 <p class="lh-base" *ngIf="experienceCrud.experience.description">
                   {{experienceCrud.experience.description}}
@@ -264,12 +273,13 @@
                 Education
               </span>
               <button nbButton ghost
+                      type="button"
                       status="primary"
                       size="small"
                       shape="round"
-                      [disabled]="loading"
+                      [disabled]="loading || saving"
                       [class.placeholder]="loading"
-                      (click)="addEducation()">
+                      (click)="openEducationDialog()">
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
             </h5>
@@ -282,27 +292,20 @@
               </p>
             </div>
             <!-- / placeholder -->
-            <div class="mb-4" *ngFor="let education of profile?.educations">
+            <div class="mb-4" *ngFor="let educationCrud of educationsCrudButtons; let i = index">
               <p class="fw-semibold mb-0 d-flex align-items-center">
                 <span class="me-2">
-                  {{education.institution}}
+                  {{educationCrud.education.institution}}
                 </span>
-                <button nbButton ghost
-                        status="primary"
-                        size="small"
-                        shape="round"
-                        class="me-1">
-                  <nb-icon icon="edit-outline"></nb-icon>
-                </button>
-                <button nbButton ghost
-                        status="primary"
-                        size="small"
-                        shape="round">
-                  <nb-icon icon="trash-outline"></nb-icon>
-                </button>
+                <app-crud-buttons [config]="educationCrud.config"
+                                  [loading]="saving"
+                                  [reset]="educationCrud.reset"
+                                  (edit)="editEducation(educationCrud, i)"
+                                  (delete)="deleteEducation(i)">
+                </app-crud-buttons>
               </p>
               <p>
-                {{education.degree}}
+                {{educationCrud.education.degree}}
               </p>
             </div>
           </div>

@@ -1,12 +1,14 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NbDialogRef } from "@nebular/theme";
 
 @Component({
   templateUrl: './certification-dialog.component.html'
 })
-export class CertificationDialogComponent {
+export class CertificationDialogComponent implements OnInit {
 
+  public certification: string | null = null;
+  public index: number | null = null;
   public formCertification: FormGroup;
 
   constructor(
@@ -14,15 +16,26 @@ export class CertificationDialogComponent {
     protected dialogRef: NbDialogRef<CertificationDialogComponent>
   ) {
     this.formCertification = this.fb.group({
-      certification: ['certification', Validators.required]
+      certification: [null, Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    if (this.certification) {
+      this.formCertification.patchValue({
+        certification: this.certification
+      });
+    }
   }
 
   public save(): void {
     if (this.formCertification.invalid) {
       return;
     }
-    this.dialogRef.close(this.formCertification.get('certification')?.value);
+    this.dialogRef.close({
+      certification: this.formCertification.get('certification')?.value,
+      index: this.index
+    });
   }
 
   public cancel(): void {
