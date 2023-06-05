@@ -1,0 +1,36 @@
+<form (ngSubmit)="save()"
+      [formGroup]="formCertification">
+  <nb-card>
+    <nb-card-header>
+      <h6>
+        Certification
+      </h6>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-form-field class="mb-4">
+        <label for="certification">Certification</label>
+        <input nbInput fullWidth
+               id="certification"
+               type="text"
+               fieldSize="large"
+               formControlName="certification">
+      </nb-form-field>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="d-flex justify-content-end">
+        <button nbButton
+                status="basic"
+                class="me-2"
+                (click)="cancel()">
+          Cancel
+        </button>
+        <button nbButton
+                status="primary"
+                type="submit"
+                [disabled]="formCertification.invalid">
+          Save
+        </button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</form>

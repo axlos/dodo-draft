@@ -17,9 +17,9 @@
                 [routerLink]="['/proposal', jobHistory.job._id]">
           <nb-icon icon="edit-outline"></nb-icon>
         </button>
-        <app-delete-button [loading]="loading || jobHistory.removing"
-                           (delete)="onDelete()">
-        </app-delete-button>
+        <app-crud-buttons [loading]="loading || jobHistory.removing"
+                          (delete)="onDelete()">
+        </app-crud-buttons>
       </div>
     </h6>
     <p class="lh-base"

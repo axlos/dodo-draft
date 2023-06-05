@@ -23,4 +23,7 @@ export class ProfileService {
   }
 
 
+  public save(profile: Partial<Profile>): Observable<Profile> {
+    return this.http.put<Profile>('/api/profiles', profile);
+  }
 }

@@ -1,0 +1,52 @@
+<form (ngSubmit)="save()"
+      [formGroup]="formExperience">
+  <nb-card>
+    <nb-card-header>
+      <h6>
+        Experience
+      </h6>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-form-field class="mb-4">
+        <label for="company">Company</label>
+        <input nbInput fullWidth
+               id="company"
+               type="text"
+               fieldSize="large"
+               formControlName="company">
+      </nb-form-field>
+      <nb-form-field class="mb-4">
+        <label for="position">Position</label>
+        <input nbInput fullWidth
+               id="position"
+               type="text"
+               fieldSize="large"
+               formControlName="position">
+      </nb-form-field>
+      <nb-form-field>
+        <label for="description">Description (Optional)</label>
+        <textarea nbInput fullWidth
+                  id="description"
+                  rows="4"
+                  fieldSize="large"
+                  formControlName="description"></textarea>
+      </nb-form-field>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="d-flex justify-content-end">
+        <button nbButton
+                status="basic"
+                class="me-2"
+                (click)="cancel()">
+          Cancel
+        </button>
+        <button nbButton
+                status="primary"
+                type="submit"
+                [disabled]="formExperience.invalid">
+          Save
+        </button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</form>

@@ -19,3 +19,11 @@ export const UploadActions = createActionGroup({
     )
   }
 });
+
+export const SaveActions = createActionGroup({
+  source: "Save Profile",
+  events: {
+    "do": props<{ profile: Partial<Profile> }>(),
+    "success": props<{ profile: Profile }>()
+  }
+});

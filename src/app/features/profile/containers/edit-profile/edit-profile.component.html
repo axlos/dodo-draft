@@ -1,3 +1,5 @@
 <app-profile-form [profile]="profile$ | async"
-                  [loading]="(loading$ | async) ?? false">
+                  [loading]="(loading$ | async) ?? false"
+                  [saving]="(saving$ | async) ?? false"
+                  (save)="save($event)">
 </app-profile-form>

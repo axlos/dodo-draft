@@ -10,17 +10,28 @@ import * as ProfileActions from "../../store/profile/profile.actions";
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
-  public loading$: Observable<boolean>;
 
+  public loading$: Observable<boolean>;
+  public saving$: Observable<boolean>;
   public profile$: Observable<Profile | null>;
 
   constructor(private store: Store) {
     this.loading$ = this.store.select(ProfileFeature.selectLoading);
+    this.saving$ = this.store.select(ProfileFeature.selectSaving);
     this.profile$ = this.store.select(ProfileFeature.selectProfile);
   }
 
   ngOnInit(): void {
-    this.store.dispatch(ProfileActions.LoadActions.do());
+    this.store.dispatch(
+      ProfileActions.LoadActions.do()
+    );
   }
 
+  public save(profile: Partial<Profile>) {
+    this.store.dispatch(
+      ProfileActions.SaveActions.do({
+        profile
+      })
+    );
+  }
 }

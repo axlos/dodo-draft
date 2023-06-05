@@ -9,7 +9,6 @@ export interface JobState {
   jobs: JobItem[];
   loading: boolean;
   saving: boolean;
-  saved: boolean;
   deleting: boolean;
 }
 
@@ -18,7 +17,6 @@ export const initialState: JobState = {
   jobs: [],
   loading: false,
   saving: false,
-  saved: false,
   deleting: false
 };
 
@@ -30,7 +28,6 @@ export const jobReducer = createReducer(
       job: null,
       loading: false,
       saving: false,
-      saved: false,
       deleting: false
     }
   )),
@@ -119,7 +116,6 @@ export const jobReducer = createReducer(
           proposals: [] as Proposal[]
         } as Job,
         saving: true,
-        saved: false,
         deleting: true
       }
     )
@@ -140,7 +136,6 @@ export const jobReducer = createReducer(
           })
         ],
         saving: true,
-        saved: false,
         deleting: true
       }
     )
@@ -150,9 +145,7 @@ export const jobReducer = createReducer(
     state => (
       {
         ...state,
-        saving: true,
-        saved: false,
-        deleting: true
+        saving: true
       }
     )
   ),
@@ -163,8 +156,7 @@ export const jobReducer = createReducer(
       {
         ...state,
         job,
-        saving: false,
-        saved: true
+        saving: false
       }
     )
   ),
@@ -173,7 +165,6 @@ export const jobReducer = createReducer(
       ...state,
       job: null,
       saving: false,
-      saved: true,
       deleting: false,
       jobs: [
         ...state.jobs.filter(job =>

@@ -14,6 +14,10 @@ import { ProfileEffects } from "./store/profile/profile.effects";
 import { stepNavigationFeature } from "./store/step-navigation/step-navigation.feature";
 import { StepNavigationEffects } from "./store/step-navigation/step-navigation.effects";
 import { SetupGuard } from "./guards/setup.guard";
+import { ExperienceDialogComponent } from "./components/experience-dialog/experience-dialog.component";
+import { EducationDialogComponent } from "./components/education-dialog/education-dialog.component";
+import { CertificationDialogComponent } from "./components/certification-dialog/certification-dialog.component";
+import { LanguageDialogComponent } from "./components/language-dialog/language-dialog.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { SetupGuard } from "./guards/setup.guard";
     SetupComponent,
     UploadProfileComponent,
     DropzoneComponent,
-    ProfileFormComponent
+    ProfileFormComponent,
+    ExperienceDialogComponent,
+    EducationDialogComponent,
+    CertificationDialogComponent,
+    LanguageDialogComponent
   ],
   imports: [
     ProfileRoutingModule,

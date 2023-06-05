@@ -36,7 +36,8 @@
         </p>
         <div class="pt-4">
           <app-profile-form [profile]="profile$ | async"
-                            [loading]="(loading$ | async) ?? false">
+                            [loading]="(loading$ | async) ?? false"
+                            (save)="saveProfile($event)">
           </app-profile-form>
         </div>
         <div class="mt-4 d-flex justify-content-between">

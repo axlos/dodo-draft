@@ -1,0 +1,44 @@
+<form (ngSubmit)="save()"
+      [formGroup]="formEducation">
+  <nb-card>
+    <nb-card-header>
+      <h6>
+        Education
+      </h6>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-form-field class="mb-4">
+        <label for="degree">Degree</label>
+        <input nbInput fullWidth
+               id="degree"
+               type="text"
+               fieldSize="large"
+               formControlName="degree">
+      </nb-form-field>
+      <nb-form-field class="mb-4">
+        <label for="institution">Institution</label>
+        <input nbInput fullWidth
+               id="institution"
+               type="text"
+               fieldSize="large"
+               formControlName="institution">
+      </nb-form-field>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="d-flex justify-content-end">
+        <button nbButton
+                status="basic"
+                class="me-2"
+                (click)="cancel()">
+          Cancel
+        </button>
+        <button nbButton
+                status="primary"
+                type="submit"
+                [disabled]="formEducation.invalid">
+          Save
+        </button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</form>

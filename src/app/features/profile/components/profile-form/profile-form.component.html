@@ -1,277 +1,313 @@
-<div class="row">
-  <div class="col-md-3">
-    <nb-card accent="basic">
-      <nb-card-body class="m-2">
-        <!-- Languages -->
-        <div class="mb-4">
-          <h6 class="d-flex align-items-center">
-            <span class="me-2"
-                  [class.placeholder]="loading">
-              Languages
-            </span>
-            <button nbButton ghost
-                    status="primary"
-                    size="medium"
-                    shape="round"
-                    [disabled]="loading"
+<form [formGroup]="profileForm">
+  <div class="row">
+    <div class="col-md-3">
+      <nb-card accent="basic">
+        <nb-card-body class="m-2">
+          <!-- Languages -->
+          <div class="mb-4">
+            <h6 class="d-flex align-items-center">
+              <span class="me-2"
                     [class.placeholder]="loading">
-              <nb-icon icon="plus-circle-outline"></nb-icon>
-            </button>
-          </h6>
-          <ul class="d-flex flex-column">
-            <li *ngFor="let language of profile?.languages">
-                <span>
-                  {{language}}
-                  <!--                  <small class="text-secondary">(Full Professional)</small>-->
-                </span>
-            </li>
-          </ul>
-          <!-- placeholder -->
-          <ul *ngIf="loading">
-            <li>
-              <span class="placeholder bg-secondary col-3"></span>
-            </li>
-            <li>
-              <span class="placeholder bg-secondary col-3"></span>
-            </li>
-            <li>
-              <span class="placeholder bg-secondary col-3"></span>
-            </li>
-          </ul>
-        </div>
-        <!-- Certifications -->
-        <div>
-          <h6 class="d-flex align-items-center">
-            <span class="me-2"
-                  [class.placeholder]="loading">
-              Certifications
-            </span>
-            <button nbButton ghost
-                    status="primary"
-                    size="medium"
-                    shape="round"
-                    [disabled]="loading"
-                    [class.placeholder]="loading">
-              <nb-icon icon="plus-circle-outline"></nb-icon>
-            </button>
-          </h6>
-          <ul class="lh-base">
-            <li *ngFor="let certification of profile?.certifications">
-              <span>
-                {{certification}}
-              </span>
-            </li>
-          </ul>
-          <!-- placeholder -->
-          <ul *ngIf="loading">
-            <li>
-              <span class="placeholder bg-secondary col-3"></span>
-            </li>
-            <li>
-              <span class="placeholder bg-secondary col-3"></span>
-            </li>
-            <li>
-              <span class="placeholder bg-secondary col-3"></span>
-            </li>
-          </ul>
-        </div>
-      </nb-card-body>
-    </nb-card>
-  </div>
-  <div class="col-md-9">
-    <nb-card accent="basic">
-      <nb-card-body class="m-4">
-        <!-- Name -->
-        <h3 class="mb-1 d-flex align-items-center">
-          <span class="me-2"
-                [class.placeholder]="loading"
-                [ngClass]="loading ? 'col-4' : ''">
-            {{profile?.fullName}}
-          </span>
-          <button nbButton ghost
-                  status="primary"
-                  size="medium"
-                  shape="round"
-                  [disabled]="loading"
-                  [class.placeholder]="loading">
-            <nb-icon icon="edit-outline"></nb-icon>
-          </button>
-        </h3>
-        <!-- Headline -->
-        <p class="fs-6 d-flex align-items-center">
-          <span class="me-2"
-                [class.placeholder]="loading"
-                [ngClass]="loading ? 'col-4' : ''">
-            {{profile?.headline}}
-          </span>
-          <button nbButton ghost
-                  status="primary"
-                  size="small"
-                  shape="round"
-                  [disabled]="loading"
-                  [class.placeholder]="loading">
-            <nb-icon icon="edit-outline"></nb-icon>
-          </button>
-        </p>
-        <!-- Skills -->
-        <div class="mb-5">
-          <!-- placeholder -->
-          <p class="d-flex flex-row" *ngIf="loading">
-            <span class="placeholder bg-secondary col-2 me-2"></span>
-            <span class="placeholder bg-secondary col-2 me-2"></span>
-            <span class="placeholder bg-secondary col-2"></span>
-          </p>
-          <!-- / placeholder -->
-          <div *ngIf="!loading">
-            <nb-tag-list [multiple]="true" class="me-2">
-              <nb-tag [text]="skill" *ngFor="let skill of profile?.skills">
-              </nb-tag>
-            </nb-tag-list>
-            <button nbButton ghost
-                    status="primary"
-                    size="small"
-                    shape="round"
-                    [disabled]="loading"
-                    [class.placeholder]="loading">
-              <nb-icon icon="edit-outline"></nb-icon>
-            </button>
-          </div>
-        </div>
-        <!-- Summary -->
-        <div class="mb-5">
-          <h5 class="d-flex align-items-center">
-            <span class="me-2"
-                  [class.placeholder]="loading"
-                  [ngClass]="loading ? 'col-2' : ''">
-              Summary
-            </span>
-            <button nbButton ghost
-                    status="primary"
-                    size="medium"
-                    shape="round"
-                    [disabled]="loading"
-                    [class.placeholder]="loading">
-              <nb-icon icon="edit-outline"></nb-icon>
-            </button>
-          </h5>
-          <!-- placeholder -->
-          <p *ngIf="loading">
-            <span class="placeholder col-12"></span>
-            <span class="placeholder col-12"></span>
-            <span class="placeholder col-12"></span>
-          </p>
-          <!-- / placeholder -->
-          <p class="lh-base" *ngIf="!loading">
-            {{profile?.summary}}
-          </p>
-        </div>
-        <!-- Experiences -->
-        <div class="mb-5">
-          <h5 class="d-flex align-items-center">
-            <span class="me-2"
-                  [class.placeholder]="loading">
-              Experience
-            </span>
-            <button nbButton ghost
-                    status="primary"
-                    size="medium"
-                    shape="round"
-                    [disabled]="loading"
-                    [class.placeholder]="loading">
-              <nb-icon icon="plus-circle-outline"></nb-icon>
-            </button>
-          </h5>
-          <!-- placeholder -->
-          <div class="mb-4" *ngIf="loading">
-            <p class="d-flex flex-column">
-              <span class="placeholder col-3 mb-2"></span>
-              <span class="placeholder bg-secondary col-1 mb-2"></span>
-              <span class="placeholder col-12"></span>
-            </p>
-          </div>
-          <!-- / placeholder -->
-          <div class="mb-4" *ngFor="let experience of profile?.experiences">
-            <p class="fw-semibold mb-0 d-flex align-items-center">
-              <span class="me-2">
-                {{experience.company}}
+                Languages
               </span>
               <button nbButton ghost
                       status="primary"
                       size="small"
                       shape="round"
-                      class="me-1">
-                <nb-icon icon="edit-outline"></nb-icon>
+                      [disabled]="loading"
+                      [class.placeholder]="loading"
+                      (click)="addLanguage()">
+                <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
+            </h6>
+            <ul class="d-flex flex-column">
+              <li *ngFor="let language of profile?.languages">
+                <div class="d-flex flex-row align-items-center">
+                  <span>
+                    {{language.language | titlecase}}
+                  </span>
+                  <small class="text-secondary me-2">
+                    ({{language.level | titlecase}})
+                  </small>
+                  <app-crud-buttons [config]="fullNameCrudButtonsConfig"
+                                    [loading]="saving || loading"
+                                    (save)="onSave(this.ProfileFormControls.FullName)"
+                                    (edit)="editFullName = true"
+                                    (cancel)="editFullName = false">
+                  </app-crud-buttons>
+                </div>
+              </li>
+            </ul>
+            <!-- placeholder -->
+            <ul *ngIf="loading">
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+            </ul>
+          </div>
+          <!-- Certifications -->
+          <div>
+            <h6 class="d-flex align-items-center">
+              <span class="me-2"
+                    [class.placeholder]="loading">
+                Certifications
+              </span>
               <button nbButton ghost
                       status="primary"
                       size="small"
-                      shape="round">
-                <nb-icon icon="trash-outline"></nb-icon>
+                      shape="round"
+                      type="button"
+                      [disabled]="loading"
+                      [class.placeholder]="loading"
+                      (click)="addCertification()">
+                <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
+            </h6>
+            <ul class="lh-base">
+              <li *ngFor="let certification of profile?.certifications">
+                <div class="d-flex flex-row align-items-center justify-content-start">
+                  <span>
+                    {{certification}}
+                  </span>
+                  <app-crud-buttons [config]="fullNameCrudButtonsConfig"
+                                    [loading]="saving || loading"
+                                    (save)="onSave(this.ProfileFormControls.FullName)"
+                                    (edit)="editFullName = true"
+                                    (cancel)="editFullName = false">
+                  </app-crud-buttons>
+                </div>
+              </li>
+            </ul>
+            <!-- placeholder -->
+            <ul *ngIf="loading">
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+            </ul>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-md-9">
+      <nb-card accent="basic">
+        <nb-card-body class="m-4">
+          <!-- Name -->
+          <h3 class="mb-1 d-flex align-items-center">
+            <span class="me-2"
+                  [class.placeholder]="loading"
+                  [ngClass]="loading ? 'col-4' : ''"
+                  *ngIf="!editFullName">
+              {{profile?.fullName}}
+            </span>
+            <!-- Edit Full Name  -->
+            <input nbInput
+                   fieldSize="large"
+                   class="me-2"
+                   [id]="this.ProfileFormControls.FullName"
+                   [formControlName]="this.ProfileFormControls.FullName"
+                   *ngIf="editFullName"/>
+            <!-- / Edit Full Name  -->
+            <app-crud-buttons [config]="fullNameCrudButtonsConfig"
+                              [loading]="saving || loading"
+                              (save)="onSave(this.ProfileFormControls.FullName)"
+                              (edit)="editFullName = true"
+                              (cancel)="editFullName = false">
+            </app-crud-buttons>
+          </h3>
+
+          <!-- Headline -->
+          <p class="fs-6 d-flex align-items-center">
+            <span class="me-2"
+                  [class.placeholder]="loading"
+                  [ngClass]="loading ? 'col-4' : ''"
+                  *ngIf="!editHeadline">
+              {{profile?.headline}}
+            </span>
+            <!-- Edit Headline  -->
+            <input nbInput
+                   fieldSize="large"
+                   class="me-2 col-6"
+                   [id]="this.ProfileFormControls.Headline"
+                   [formControlName]="this.ProfileFormControls.Headline"
+                   *ngIf="editHeadline"/>
+            <!-- / Edit Headline  -->
+            <app-crud-buttons [config]="headlineCrudButtonsConfig"
+                              [loading]="saving || loading"
+                              (save)="onSave(this.ProfileFormControls.Headline)"
+                              (edit)="editHeadline = true"
+                              (cancel)="editHeadline = false">
+            </app-crud-buttons>
+          </p>
+          <!-- Skills -->
+          <div class="mb-5">
+            <!-- placeholder -->
+            <p class="d-flex flex-row" *ngIf="loading">
+              <span class="placeholder bg-secondary col-2 me-2"></span>
+              <span class="placeholder bg-secondary col-2 me-2"></span>
+              <span class="placeholder bg-secondary col-2"></span>
             </p>
+            <!-- / placeholder -->
             <div *ngIf="!loading">
-              <p class="mb-0">
-                {{experience.position}}
+              <nb-tag-list [multiple]="true" class="me-2">
+                <nb-tag [text]="skill" *ngFor="let skill of profile?.skills">
+                </nb-tag>
+              </nb-tag-list>
+              <button nbButton ghost
+                      status="primary"
+                      size="small"
+                      shape="round"
+                      [disabled]="loading"
+                      [class.placeholder]="loading">
+                <nb-icon icon="edit-outline"></nb-icon>
+              </button>
+            </div>
+          </div>
+          <!-- Summary -->
+          <div class="mb-5">
+            <h5 class="d-flex align-items-center">
+              <span class="me-2"
+                    [class.placeholder]="loading"
+                    [ngClass]="loading ? 'col-2' : ''">
+                Summary
+              </span>
+              <app-crud-buttons [config]="summaryCrudButtonsConfig"
+                                [loading]="saving || loading"
+                                (save)="onSave(this.ProfileFormControls.Summary)"
+                                (edit)="editSummary = true"
+                                (cancel)="editSummary = false">
+              </app-crud-buttons>
+            </h5>
+            <!-- placeholder -->
+            <p *ngIf="loading">
+              <span class="placeholder col-12"></span>
+              <span class="placeholder col-12"></span>
+              <span class="placeholder col-12"></span>
+            </p>
+            <!-- / placeholder -->
+            <p class="lh-base" *ngIf="!loading && !editSummary">
+              {{profile?.summary}}
+            </p>
+            <!-- Edit Summary  -->
+            <textarea nbInput fullWidth
+                      [id]="this.ProfileFormControls.Summary"
+                      fieldSize="large"
+                      rows="6"
+                      class="mb-2"
+                      [formControlName]="this.ProfileFormControls.Summary"
+                      *ngIf="editSummary"></textarea>
+            <!-- / Edit Summary  -->
+          </div>
+          <!-- Experiences -->
+          <div class="mb-5">
+            <h5 class="d-flex align-items-center">
+              <span class="me-2"
+                    [class.placeholder]="loading">
+                Experience
+              </span>
+              <button nbButton ghost
+                      status="primary"
+                      size="small"
+                      shape="round"
+                      [disabled]="loading || saving"
+                      [class.placeholder]="loading"
+                      (click)="openExperienceDialog()">
+                <nb-icon icon="plus-circle-outline"></nb-icon>
+              </button>
+            </h5>
+            <!-- placeholder -->
+            <div class="mb-4" *ngIf="loading">
+              <p class="d-flex flex-column">
+                <span class="placeholder col-3 mb-2"></span>
+                <span class="placeholder bg-secondary col-1 mb-2"></span>
+                <span class="placeholder col-12"></span>
               </p>
-              <p class="text-secondary">
-                {{experience.duration}}
+            </div>
+            <!-- / placeholder -->
+            <div class="mb-4" *ngFor="let experienceCrud of experiencesCrudButtons; let i = index">
+              <p class="fw-semibold mb-0 d-flex align-items-center">
+                <span class="me-2">
+                  {{experienceCrud.experience.company}}
+                </span>
+                <app-crud-buttons [config]="experienceCrud.config"
+                                  [loading]="saving"
+                                  (delete)="deleteExperience(i)"
+                                  (edit)="editExperience(experienceCrud, i)">
+                </app-crud-buttons>
               </p>
-              <p class="lh-base" *ngIf="experience.description">
-                {{experience.description}}
+              <div *ngIf="!loading">
+                <p class="mb-0">
+                  {{experienceCrud.experience.position}}
+                </p>
+                <p class="lh-base" *ngIf="experienceCrud.experience.description">
+                  {{experienceCrud.experience.description}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Education -->
+          <div class="mb-5">
+            <h5 class="d-flex align-items-center">
+              <span class="me-2"
+                    [class.placeholder]="loading">
+                Education
+              </span>
+              <button nbButton ghost
+                      status="primary"
+                      size="small"
+                      shape="round"
+                      [disabled]="loading"
+                      [class.placeholder]="loading"
+                      (click)="addEducation()">
+                <nb-icon icon="plus-circle-outline"></nb-icon>
+              </button>
+            </h5>
+            <!-- placeholder -->
+            <div class="mb-4" *ngIf="loading">
+              <p class="d-flex flex-column">
+                <span class="placeholder col-3 mb-2"></span>
+                <span class="placeholder bg-secondary col-1 mb-2"></span>
+                <span class="placeholder col-12"></span>
+              </p>
+            </div>
+            <!-- / placeholder -->
+            <div class="mb-4" *ngFor="let education of profile?.educations">
+              <p class="fw-semibold mb-0 d-flex align-items-center">
+                <span class="me-2">
+                  {{education.institution}}
+                </span>
+                <button nbButton ghost
+                        status="primary"
+                        size="small"
+                        shape="round"
+                        class="me-1">
+                  <nb-icon icon="edit-outline"></nb-icon>
+                </button>
+                <button nbButton ghost
+                        status="primary"
+                        size="small"
+                        shape="round">
+                  <nb-icon icon="trash-outline"></nb-icon>
+                </button>
+              </p>
+              <p>
+                {{education.degree}}
               </p>
             </div>
           </div>
-        </div>
-        <!-- Education -->
-        <div class="mb-5">
-          <h5 class="d-flex align-items-center">
-            <span class="me-2"
-                  [class.placeholder]="loading">
-              Education
-            </span>
-            <button nbButton ghost
-                    status="primary"
-                    size="medium"
-                    shape="round"
-                    [disabled]="loading"
-                    [class.placeholder]="loading">
-              <nb-icon icon="plus-circle-outline"></nb-icon>
-            </button>
-          </h5>
-          <!-- placeholder -->
-          <div class="mb-4" *ngIf="loading">
-            <p class="d-flex flex-column">
-              <span class="placeholder col-3 mb-2"></span>
-              <span class="placeholder bg-secondary col-1 mb-2"></span>
-              <span class="placeholder col-12"></span>
-            </p>
-          </div>
-          <!-- / placeholder -->
-          <div class="mb-4" *ngFor="let education of profile?.educations">
-            <p class="fw-semibold mb-0 d-flex align-items-center">
-              <span class="me-2">
-                {{education.institution}}
-              </span>
-              <button nbButton ghost
-                      status="primary"
-                      size="small"
-                      shape="round"
-                      class="me-1">
-                <nb-icon icon="edit-outline"></nb-icon>
-              </button>
-              <button nbButton ghost
-                      status="primary"
-                      size="small"
-                      shape="round">
-                <nb-icon icon="trash-outline"></nb-icon>
-              </button>
-            </p>
-            <p>
-              {{education.degree}}
-            </p>
-          </div>
-        </div>
-      </nb-card-body>
-    </nb-card>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
-</div>
+</form>

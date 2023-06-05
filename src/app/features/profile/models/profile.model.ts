@@ -1,5 +1,6 @@
 import { Experience } from "./experience.model";
 import { Education } from "./education.model";
+import { Language } from "./language.model";
 
 export interface Profile {
   readonly fullName: string;
@@ -9,5 +10,5 @@ export interface Profile {
   readonly educations: Education[];
   readonly skills: string[];
   readonly certifications: string[];
-  readonly languages: string[];
+  readonly languages: Language[];
 }

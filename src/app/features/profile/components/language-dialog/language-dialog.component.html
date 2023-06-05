@@ -1,0 +1,62 @@
+<form (ngSubmit)="save()"
+      [formGroup]="formLanguage">
+  <nb-card>
+    <nb-card-header>
+      <h6>
+        Language
+      </h6>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="d-flex flex-row">
+        <nb-form-field class="me-4">
+          <label for="language">Language</label>
+          <input nbInput fullWidth
+                 id="language"
+                 type="text"
+                 fieldSize="large"
+                 formControlName="language">
+        </nb-form-field>
+        <nb-form-field>
+          <label for="level">Level</label>
+          <nb-select id="level"
+                     formControlName="level">
+            <nb-option [value]="null">
+              Please select
+            </nb-option>
+            <nb-option [value]="'elementary'">
+              Elementary
+            </nb-option>
+            <nb-option [value]="'limited working'">
+              Limited working
+            </nb-option>
+            <nb-option [value]="'Professional working'">
+              Professional working
+            </nb-option>
+            <nb-option [value]="'full professional'">
+              Full professional
+            </nb-option>
+            <nb-option [value]="'native or bilingual'">
+              Native or bilingual
+            </nb-option>
+          </nb-select>
+        </nb-form-field>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="d-flex justify-content-end">
+        <button nbButton
+                status="basic"
+                class="me-2"
+                (click)="cancel()">
+          Cancel
+        </button>
+        <button nbButton
+                status="primary"
+                type="submit"
+                [disabled]="formLanguage.invalid">
+          Save
+        </button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</form>

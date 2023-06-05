@@ -5,6 +5,7 @@ import * as ProfileActions from './profile.actions';
 export interface ProfileState {
   profile: Profile | null;
   loading: boolean;
+  saving: boolean;
   uploading: boolean;
   uploaded: boolean;
   error: string | null;
@@ -13,6 +14,7 @@ export interface ProfileState {
 export const initialState: ProfileState = {
   profile: null,
   loading: false,
+  saving: false,
   uploading: false,
   uploaded: false,
   error: null
@@ -50,6 +52,19 @@ export const profileReducer = createReducer(
       uploading: false,
       uploaded: true,
       loading: false
+    }
+  )),
+  on(ProfileActions.SaveActions.do, state => (
+    {
+      ...state,
+      saving: true
+    }
+  )),
+  on(ProfileActions.SaveActions.success, (state, { profile }) => (
+    {
+      ...state,
+      profile,
+      saving: false,
     }
   )),
   on(ProfileActions.UploadActions.failure, (state, { error }) => (

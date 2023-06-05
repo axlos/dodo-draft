@@ -9,10 +9,10 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
-  NbContextMenuModule,
+  NbContextMenuModule, NbFormFieldModule,
   NbIconModule,
   NbInputModule,
-  NbLayoutModule, NbSidebarModule,
+  NbLayoutModule, NbSelectModule, NbSidebarModule,
   NbSpinnerModule,
   NbStepperModule,
   NbTagModule,
@@ -24,11 +24,11 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { HttpClientModule } from "@angular/common/http";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
-import { DeleteButtonComponent } from "./components/delete-button/delete-button.component";
+import { CrudButtonsComponent } from "./components/crud-buttons/crud-buttons.component";
 
 const COMPONENTS: any[] = [
   ProposalAiComponent,
-  DeleteButtonComponent
+  CrudButtonsComponent
 ];
 
 const PIPES: any[] = [
@@ -58,7 +58,9 @@ const MODULES: any[] = [
   NbStepperModule,
   NbSpinnerModule,
   NgxDropzoneModule,
-  NbSidebarModule
+  NbSidebarModule,
+  NbFormFieldModule,
+  NbSelectModule
 ];
 
 @NgModule({

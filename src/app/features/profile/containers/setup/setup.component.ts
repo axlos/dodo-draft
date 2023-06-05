@@ -151,6 +151,7 @@ export class SetupComponent implements AfterViewInit {
           message: 'The process of extracting your profile may require some time. Please be patient!',
           title: 'Extracting profile',
           config: {
+            duration: 5000,
             status: 'primary',
             icon: {
               icon: 'settings-outline',
@@ -176,6 +177,14 @@ export class SetupComponent implements AfterViewInit {
         user: {
           setupProfile: SetupProfile.Verified
         } as User
+      })
+    );
+  }
+
+  public saveProfile(profile: Partial<Profile>): void {
+    this.store.dispatch(
+      ProfileActions.SaveActions.do({
+        profile
       })
     );
   }

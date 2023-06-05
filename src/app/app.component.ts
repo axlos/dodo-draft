@@ -32,7 +32,9 @@ export class AppComponent implements OnInit {
     this.headerMenu$ = this.store.select(coreFeature.selectHeaderMenu);
 
     // Dispatch an action to load the user once the page is loaded
-    this.store.dispatch(UserActions.LoadActions.do());
+    this.store.dispatch(
+      UserActions.LoadActions.do()
+    );
   }
 
   ngOnInit() {
@@ -52,7 +54,9 @@ export class AppComponent implements OnInit {
 
   public onAction(item: HeaderMenuModel): void {
     if (HeaderMenu.Create === item.id) {
-      this.store.dispatch(JobActions.CreateActions.reset());
+      this.store.dispatch(
+        JobActions.CreateActions.reset()
+      );
     }
     this.router.navigate([item.router]);
   }

@@ -3,7 +3,7 @@ import { catchError, of, switchMap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { ProfileService } from "../../services/profile.service";
-import { LoadActions, UploadActions } from './profile.actions';
+import { LoadActions, SaveActions, UploadActions } from './profile.actions';
 import * as CoreActions from "../../../../core/store/actions/core.actions";
 
 @Injectable()
@@ -37,6 +37,33 @@ export class ProfileEffects {
               }))
             )
           )
+      )
+    )
+  );
+
+  // create ngrx effect to save a profile
+  public saveProfile$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SaveActions.do),
+      switchMap(action =>
+        this.profileService.save(action.profile).pipe(
+          map(profile =>
+            SaveActions.success({ profile })
+          ),
+          catchError(error =>
+            of(CoreActions.UIActions.displaymessage({
+                params: {
+                  message: error.message,
+                  title: 'Unexpected Server Error',
+                  config: {
+                    preventDuplicates: true,
+                    status: 'danger'
+                  }
+                }
+              }
+            ))
+          )
+        )
       )
     )
   );

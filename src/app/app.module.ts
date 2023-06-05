@@ -7,7 +7,14 @@ import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
 import { environment } from "../environments/environment";
-import { NbGlobalPhysicalPosition, NbMenuModule, NbSidebarModule, NbThemeModule, NbToastrModule } from "@nebular/theme";
+import {
+  NbDialogModule,
+  NbGlobalPhysicalPosition,
+  NbMenuModule,
+  NbSidebarModule,
+  NbThemeModule,
+  NbToastrModule
+} from "@nebular/theme";
 
 @NgModule({
   declarations: [
@@ -21,6 +28,10 @@ import { NbGlobalPhysicalPosition, NbMenuModule, NbSidebarModule, NbThemeModule,
     CoreModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
+    NbDialogModule.forRoot({
+      hasBackdrop: true,
+      autoFocus: true
+    }),
     NbThemeModule.forRoot({
       name: 'default'
     }),

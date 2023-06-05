@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { combineLatest, Observable } from "rxjs";
-import { filter, map } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { filter } from "rxjs/operators";
 import { Job } from "../../models/job.model";
 import * as JobActions from "../../store/job/job.actions";
 import { jobFeature } from "../../store/job/job.feature";
@@ -43,14 +43,18 @@ export class ProposalComponent {
 
   public saveProposal(id: string | null, job: Job): void {
     if (id) {
-      this.store.dispatch(JobActions.UpdateActions.do({
-        id: id,
-        job
-      }));
+      this.store.dispatch(
+        JobActions.UpdateActions.do({
+          id: id,
+          job
+        })
+      );
     } else {
-      this.store.dispatch(JobActions.CreateActions.do({
-        job
-      }));
+      this.store.dispatch(
+        JobActions.CreateActions.do({
+          job
+        })
+      );
     }
   }
 }
