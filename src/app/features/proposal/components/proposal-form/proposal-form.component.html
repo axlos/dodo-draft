@@ -1,6 +1,6 @@
 <form (ngSubmit)="createProposal()"
       [formGroup]="proposalForm">
-  <div class="mb-4">
+  <div class="mb-3">
     <label for="title">Job title</label>
     <input nbInput fullWidth
            id="title"
@@ -8,7 +8,7 @@
            fieldSize="large"
            formControlName="title">
   </div>
-  <div class="mb-4">
+  <div class="mb-2">
     <label for="description" class="form-label">
       Job details
     </label>
@@ -19,21 +19,31 @@
               formControlName="details">
     </textarea>
   </div>
-  <div class="mb-4">
-    <label for="question" class="form-label">
+  <div class="mb-3">
+    <label for="question" class="form-label me-1">
       Add a relevant question <span class="text-muted">(Optional)</span>
     </label>
+    <button nbButton ghost
+            status="info"
+            size="small"
+            shape="round"
+            type="button"
+            [nbPopover]="infoQuestionRef"
+            nbPopoverPlacement="bottom">
+      <nb-icon icon="question-mark-circle-outline"></nb-icon>
+    </button>
+    <ng-template #infoQuestionRef>
+      <small class="wrapper-popover">
+        Asking a question about the project can demonstrate your commitment to it and may help you stand out among other proposals
+      </small>
+    </ng-template>
     <textarea nbInput fullWidth
               id="question"
               fieldSize="large"
               rows="4"
               formControlName="question"></textarea>
-    <div id="emailHelp" class="form-text">
-      Asking a question about the project can demonstrate your commitment to it and may help you stand out among
-      other proposals
-    </div>
   </div>
-  <div class="mb-4">
+  <div class="mb-3">
     <label for="description" class="form-label">
       Talk about
     </label>

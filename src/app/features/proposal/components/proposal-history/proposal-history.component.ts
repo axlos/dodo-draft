@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { JobItem } from "../../models/job-item.model";
 import { NbComponentStatus } from "@nebular/theme/components/component-status";
+import { CrudButtonsConfig } from "../../../../shared/components/crud-buttons/crud-buttons-config";
 
 @Component({
   selector: 'app-proposal-history',
@@ -17,6 +18,11 @@ export class ProposalHistoryComponent {
 
   @Output()
   public delete = new EventEmitter<string>();
+
+  public crudConfig: CrudButtonsConfig = {
+    edit: false,
+    delete: true
+  };
 
   onDelete() {
     this.delete.emit(this.jobHistory?.job._id);

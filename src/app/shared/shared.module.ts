@@ -9,10 +9,14 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
-  NbContextMenuModule, NbFormFieldModule,
+  NbContextMenuModule,
+  NbFormFieldModule,
   NbIconModule,
   NbInputModule,
-  NbLayoutModule, NbSelectModule, NbSidebarModule,
+  NbLayoutModule,
+  NbPopoverModule,
+  NbSelectModule,
+  NbSidebarModule,
   NbSpinnerModule,
   NbStepperModule,
   NbTagModule,
@@ -31,8 +35,7 @@ const COMPONENTS: any[] = [
   CrudButtonsComponent
 ];
 
-const PIPES: any[] = [
-];
+const PIPES: any[] = [];
 
 const MODULES: any[] = [
   CommonModule,
@@ -60,7 +63,8 @@ const MODULES: any[] = [
   NgxDropzoneModule,
   NbSidebarModule,
   NbFormFieldModule,
-  NbSelectModule
+  NbSelectModule,
+  NbPopoverModule
 ];
 
 @NgModule({
