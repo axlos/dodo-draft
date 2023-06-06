@@ -20,6 +20,23 @@ export const initialState: JobState = {
   deleting: false
 };
 
+const sortJobProposals = (job: Job): Job => {
+  return {
+    ...job,
+    proposals: [...job.proposals]
+      .sort((a: Proposal, b: Proposal) => {
+        const aDate = a.updatedAt;
+        const bDate = b.updatedAt;
+        if (aDate < bDate) {
+          return 1;
+        } else if (aDate > bDate) {
+          return -1;
+        }
+        return 0;
+      }),
+  };
+}
+
 export const jobReducer = createReducer(
   initialState,
   on(JobActions.CreateActions.reset, state => (
@@ -59,7 +76,7 @@ export const jobReducer = createReducer(
       jobs: [...jobs]
         .map(job => (
           {
-            job,
+            job: sortJobProposals(job),
             removing: false
           }
         ))
@@ -91,20 +108,7 @@ export const jobReducer = createReducer(
     {
       ...state,
       loading: false,
-      job: {
-        ...job,
-        proposals: [...job.proposals]
-          .sort((a: Proposal, b: Proposal) => {
-            const aDate = a.updatedAt;
-            const bDate = b.updatedAt;
-            if (aDate < bDate) {
-              return 1;
-            } else if (aDate > bDate) {
-              return -1;
-            }
-            return 0;
-          }),
-      }
+      job: sortJobProposals(job)
     }
   )),
   on(
@@ -155,7 +159,7 @@ export const jobReducer = createReducer(
     (state, { job }) => (
       {
         ...state,
-        job,
+        job: sortJobProposals(job),
         saving: false
       }
     )

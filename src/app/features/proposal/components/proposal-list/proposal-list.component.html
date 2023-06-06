@@ -3,9 +3,6 @@
     <h5>
       Proposals <span *ngIf="!loading">({{job.proposals.length}})</span>
     </h5>
-    <p class="mb-4">
-      TODO: Change this text, Have an effective proposal as Freelancer can be a decisive factor in landing jobs.
-    </p>
     <div class="proposal" *ngIf="saving">
       <app-proposal-ai [proposal]="fakeProposal"
                        [loading]="true">

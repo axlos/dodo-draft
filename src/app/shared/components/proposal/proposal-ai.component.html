@@ -2,8 +2,9 @@
      [class.placeholder-glow]="true"
      *ngIf="proposal !== null && proposal">
   <div class="flex-row align-items-start" [ngClass]="{ 'd-flex': !loading }">
-    <p class="lh-base font-monospace cover-letter" *ngIf="!loading">
-      {{proposal.coverLetter}}
+    <p class="lh-base font-monospace cover-letter"
+       [innerHTML]="proposal.coverLetter"
+       *ngIf="!loading" >
     </p>
     <div *ngIf="loading">
       <span class="placeholder col-8"></span>
