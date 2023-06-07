@@ -11,7 +11,7 @@
           Upload your profile
         </h5>
         <p class="lh-base">
-          Every job proposal we create is meticulously tailored and crafted to be original and matched your profile.
+          The first step is to upload your LinkedIn profile. This enables us to craft a unique proposal that aligns with your profile when creating job or project proposals.
         </p>
         <div class="pt-4">
           <app-upload-profile (fileSelected)="fileSelected($event)">
@@ -33,7 +33,7 @@
           Verify profile
         </h5>
         <p class="lh-base">
-          Thoroughly check your profile information and fill in as much detail as possible. The more complete your profile, the better job proposals will be created, tailored to your skills and experience
+          Carefully look at your profile information and add as many details as you can.
         </p>
         <div class="pt-4">
           <app-profile-form [profile]="profile$ | async"

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
 import { NbDialogService, NbTagComponent, NbTagInputAddEvent } from "@nebular/theme";
 import { filter, tap } from "rxjs/operators";
-import { Profile } from "../../models/profile.model";
+import { Profile } from "../../../../core/models/profile.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProfileFormControls } from "../../enums/profile-form-controls.enum";
 import { CrudButtonsConfig } from "../../../../shared/components/crud-buttons/crud-buttons-config";
@@ -297,7 +297,6 @@ export class ProfileFormComponent implements OnChanges {
     languageCrud: { language: Language; config: CrudButtonsConfig, reset: boolean },
     index: number
   ): void {
-    console.log('asdasd');
     languageCrud.reset = false;
     this.openLanguageDialog(languageCrud, index);
   }

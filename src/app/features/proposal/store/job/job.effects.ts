@@ -1,10 +1,18 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, of, switchMap } from "rxjs";
+import { catchError, delay, of, switchMap } from "rxjs";
 import { map } from "rxjs/operators";
 import { JobService } from "../../services/job.service";
-import { CreateActions, DeleteActions, LoadActions, LoadAllActions, UpdateActions } from './job.actions';
+import {
+  CreateActions,
+  DeleteActions,
+  DeleteProposalActions,
+  LoadActions,
+  LoadAllActions,
+  UpdateActions
+} from './job.actions';
 import * as CoreActions from './../../../../core/store/actions/core.actions';
+import { UnexpectedServerError } from "../../../../core/models/message-config.model";
 
 @Injectable()
 export class JobEffects {
@@ -14,6 +22,16 @@ export class JobEffects {
     private jobService: JobService
   ) {
   }
+
+  // Create an effect for resetting the job state
+  public resetJob$ = createEffect(() =>
+    this.actions$.pipe(
+      delay(200),
+      ofType(CreateActions.reset),
+      map(() =>
+        CreateActions.restarted()
+      ))
+  );
 
   public loadAllJobs$ = createEffect(() =>
     this.actions$.pipe(
@@ -25,14 +43,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: {
-                message: error.message,
-                title: 'Unexpected Server Error',
-                config: {
-                  preventDuplicates: true,
-                  status: 'danger'
-                }
-              }
+              params: new UnexpectedServerError(error.message)
             }))
           )
         )
@@ -50,14 +61,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: {
-                message: error.message,
-                title: 'Unexpected Server Error',
-                config: {
-                  preventDuplicates: true,
-                  status: 'danger'
-                }
-              }
+              params: new UnexpectedServerError(error.message)
             }))
           )
         )
@@ -75,14 +79,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: {
-                message: error.message,
-                title: 'Unexpected Server Error',
-                config: {
-                  preventDuplicates: true,
-                  status: 'danger'
-                }
-              }
+              params: new UnexpectedServerError(error.message)
             }))
           )
         )
@@ -100,14 +97,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: {
-                message: error.message,
-                title: 'Unexpected Server Error',
-                config: {
-                  preventDuplicates: true,
-                  status: 'danger'
-                }
-              }
+              params: new UnexpectedServerError(error.message)
             }))
           )
         )
@@ -115,11 +105,11 @@ export class JobEffects {
     )
   );
 
-  public removeJob$ = createEffect(() =>
+  public deleteJob$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DeleteActions.do),
       switchMap(action =>
-        this.jobService.remove(action.id).pipe(
+        this.jobService.delete(action.id).pipe(
           map(() =>
             DeleteActions.success({
               id: action.id
@@ -127,14 +117,29 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: {
-                message: error.message,
-                title: 'Unexpected Server Error',
-                config: {
-                  preventDuplicates: true,
-                  status: 'danger'
-                }
-              }
+              params: new UnexpectedServerError(error.message)
+            }))
+          )
+        )
+      )
+    )
+  );
+
+  // Create effects to delete proposal by proposal id from job
+  public deleteProposalFromJob$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DeleteProposalActions.do),
+      switchMap(action =>
+        this.jobService.deleteProposalFromJob(action.proposalId).pipe(
+          map(() =>
+            DeleteProposalActions.success({
+              jobId: action.jobId,
+              proposalId: action.proposalId
+            })
+          ),
+          catchError(error =>
+            of(CoreActions.UIActions.displaymessage({
+              params: new UnexpectedServerError(error.message)
             }))
           )
         )

@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
-import { catchError, delay, exhaustMap, of, switchMap } from "rxjs";
+import { catchError, exhaustMap, of, switchMap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { UserService } from "../../services/user.service";
 import { LoadActions, UpdateActions } from "../actions/user.actions";
 import * as CoreActions from "../actions/core.actions";
+import { UnexpectedServerError } from "../../models/message-config.model";
 
 @Injectable()
 export class UserEffects {
@@ -26,14 +27,7 @@ export class UserEffects {
             ),
             catchError((error: any) =>
               of(CoreActions.UIActions.displaymessage({
-                params: {
-                  message: error.message,
-                  title: 'Unexpected Server Error',
-                  config: {
-                    preventDuplicates: true,
-                    status: 'danger'
-                  }
-                }
+                params: new UnexpectedServerError(error.message)
               }))
             )
           )
@@ -53,14 +47,7 @@ export class UserEffects {
             ),
             catchError((error: any) =>
               of(CoreActions.UIActions.displaymessage({
-                params: {
-                  message: error.message,
-                  title: 'Unexpected Server Error',
-                  config: {
-                    preventDuplicates: true,
-                    status: 'danger'
-                  }
-                }
+                params: new UnexpectedServerError(error.message)
               }))
             )
           )

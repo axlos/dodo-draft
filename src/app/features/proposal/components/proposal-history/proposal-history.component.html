@@ -29,6 +29,7 @@
       {{jobHistory.job.details}}
     </p>
     <app-proposal-ai [proposal]="jobHistory.job.proposals[0]"
+                     [crudConfig]="proposalCrudConfig"
                      [loading]="loading">
     </app-proposal-ai>
   </nb-card-body>

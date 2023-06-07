@@ -13,5 +13,6 @@ export const {
   selectJob,
   selectLoading,
   selectSaving,
-  selectJobs
+  selectJobs,
+  selectReset
 } = jobFeature;

@@ -1,5 +1,5 @@
 import { createFeature, createSelector } from "@ngrx/store";
-import { profileReducer } from "./profile.reducer";
+import { profileReducer } from "../reducers/profile.reducer";
 
 export const profileFeature = createFeature({
   name: 'profile',

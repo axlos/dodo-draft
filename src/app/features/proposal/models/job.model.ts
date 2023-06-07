@@ -4,7 +4,7 @@ export interface Job {
   readonly _id: string;
   readonly title: string;
   readonly details: string;
-  readonly question: string;
+  readonly additionalContent: string;
   readonly experiences: boolean;
   readonly educations: boolean;
   readonly certifications: boolean;

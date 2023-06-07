@@ -10,6 +10,7 @@ export interface JobState {
   loading: boolean;
   saving: boolean;
   deleting: boolean;
+  reset: boolean;
 }
 
 export const initialState: JobState = {
@@ -17,7 +18,8 @@ export const initialState: JobState = {
   jobs: [],
   loading: false,
   saving: false,
-  deleting: false
+  deleting: false,
+  reset: false
 };
 
 const sortJobProposals = (job: Job): Job => {
@@ -45,7 +47,18 @@ export const jobReducer = createReducer(
       job: null,
       loading: false,
       saving: false,
-      deleting: false
+      deleting: false,
+      reset: false
+    }
+  )),
+  on(JobActions.CreateActions.restarted, state => (
+    {
+      ...state,
+      job: null,
+      loading: false,
+      saving: false,
+      deleting: false,
+      reset: true
     }
   )),
   on(JobActions.LoadAllActions.do, state => (
@@ -53,6 +66,7 @@ export const jobReducer = createReducer(
       ...state,
       jobs: [
         {
+          // This is to simulate the placeholder when a job is creating in the user interface
           job: {
             proposals: [
               {} as Proposal
@@ -73,23 +87,23 @@ export const jobReducer = createReducer(
     {
       ...state,
       loading: false,
-      jobs: [...jobs]
-        .map(job => (
-          {
-            job: sortJobProposals(job),
-            removing: false
-          }
-        ))
-        .sort((a: JobItem, b: JobItem) => {
-          const aDate = a.job.updatedAt;
-          const bDate = b.job.updatedAt;
-          if (aDate < bDate) {
-            return 1;
-          } else if (aDate > bDate) {
-            return -1;
-          }
-          return 0;
-        })
+      jobs: [
+        ...jobs
+      ].map(job => (
+        {
+          job: sortJobProposals(job),
+          removing: false
+        } as JobItem
+      )).sort((a: JobItem, b: JobItem) => {
+        const aDate = a.job.updatedAt;
+        const bDate = b.job.updatedAt;
+        if (aDate < bDate) {
+          return 1;
+        } else if (aDate > bDate) {
+          return -1;
+        }
+        return 0;
+      })
     }
   )),
   on(JobActions.LoadActions.do, state => (
@@ -175,6 +189,19 @@ export const jobReducer = createReducer(
           job.job._id !== id
         )
       ]
+    }
+  )),
+  on(JobActions.DeleteProposalActions.success, (state, { jobId, proposalId }) => (
+    {
+      ...state,
+      job: {
+        ...state.job,
+        proposals: [
+          ...state.job.proposals.filter(proposal =>
+            proposal._id !== proposalId
+          )
+        ]
+      }
     }
   ))
 );

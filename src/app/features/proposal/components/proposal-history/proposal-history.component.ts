@@ -23,6 +23,10 @@ export class ProposalHistoryComponent {
     edit: false,
     delete: true
   };
+  public proposalCrudConfig: CrudButtonsConfig = {
+    edit: false,
+    delete: false
+  };
 
   onDelete() {
     this.delete.emit(this.jobHistory?.job._id);

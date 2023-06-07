@@ -28,8 +28,13 @@ export class JobService {
     return this.http.put<Job>(`/api/jobs/${id}`, job);
   }
 
-  // create a remove method that makes a delete request to /api/jobs/:id
-  public remove(id: string): Observable<any> {
+  // create a delete method that makes a delete request to /api/jobs/:id
+  public delete(id: string): Observable<any> {
     return this.http.delete(`/api/jobs/${id}`);
   }
+
+  public deleteProposalFromJob(proposalId: string) {
+    return this.http.delete(`/api/jobs/proposals/${proposalId}`);
+  }
+
 }

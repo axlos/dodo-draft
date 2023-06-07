@@ -4,10 +4,10 @@ import { NbStepperComponent } from "@nebular/theme";
 import { filter, map, tap } from "rxjs/operators";
 import { combineLatest, Observable } from "rxjs";
 
-import { Profile } from "../../models/profile.model";
-import * as ProfileFeature from "src/app/features/profile/store/profile/profile.feature";
+import { Profile } from "../../../../core/models/profile.model";
+import * as ProfileFeature from "src/app/core/store/features/profile.feature";
 import * as UserFeature from "src/app/core/store/features/user.feature";
-import * as ProfileActions from "src/app/features/profile/store/profile/profile.actions";
+import * as ProfileActions from "src/app/core/store/actions/profile.actions";
 import * as UserActions from "../../../../core/store/actions/user.actions";
 import { userFeature } from "../../../../core/store/features/user.feature";
 import { stepNavigationFeature } from "../../store/step-navigation/step-navigation.feature";

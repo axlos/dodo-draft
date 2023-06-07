@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { filter, map } from "rxjs/operators";
 import { StepNavigation } from "./step-navigation.actions";
-import * as ProfileActions from '../profile/profile.actions';
+import * as ProfileActions from '../../../../core/store/actions/profile.actions';
 import * as UserActions from "../../../../core/store/actions/user.actions";
 import { SetupProfile } from "../../enums/setup-profile.enum";
 

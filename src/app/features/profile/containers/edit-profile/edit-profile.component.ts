@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import * as ProfileFeature from "../../store/profile/profile.feature";
-import { Profile } from "../../models/profile.model";
-import * as ProfileActions from "../../store/profile/profile.actions";
+import * as ProfileFeature from "../../../../core/store/features/profile.feature";
+import { Profile } from "../../../../core/models/profile.model";
+import * as ProfileActions from "../../../../core/store/actions/profile.actions";
 
 @Component({
   templateUrl: './edit-profile.component.html',
@@ -22,9 +22,6 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(
-      ProfileActions.LoadActions.do()
-    );
   }
 
   public save(profile: Partial<Profile>) {

@@ -11,16 +11,22 @@
       <span class="placeholder col-8"></span>
       <span class="placeholder col-8"></span>
     </div>
-    <div class="copy-wrapper">
+    <div class="copy-wrapper d-flex">
       <button nbButton ghost
               type="button"
+              class="me-1"
               status="primary"
               size="small"
               shape="semi-round"
               [class.placeholder]="loading"
-              [disabled]="loading">
+              [disabled]="loading"
+              (click)="copyToClipboard()">
         <nb-icon icon="clipboard-outline"></nb-icon>
       </button>
+      <app-crud-buttons [loading]="loading"
+                        [config]="crudConfig"
+                        (delete)="onDelete()">
+      </app-crud-buttons>
     </div>
   </div>
   <div class="justify-content-end date-time d-flex"

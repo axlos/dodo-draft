@@ -10,8 +10,12 @@
     </div>
     <div class="proposal" *ngFor="let proposal of job.proposals">
       <app-proposal-ai [proposal]="proposal"
-                       [loading]="loading">
+                       [loading]="loading"
+                       (delete)="delete.emit({ job: job, proposal: $event })">
       </app-proposal-ai>
     </div>
+    <p *ngIf="job.proposals.length === 0 && !loading">
+      Create a proposal to get started.
+    </p>
   </nb-card-body>
 </nb-card>

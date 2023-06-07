@@ -4,10 +4,11 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { filter } from "rxjs/operators";
 import { Job } from "../../models/job.model";
-import { Profile } from "../../../profile/models/profile.model";
+import { Profile } from "../../../../core/models/profile.model";
 import * as JobActions from "../../store/job/job.actions";
 import { jobFeature } from "../../store/job/job.feature";
-import { profileFeature } from "../../../profile/store/profile/profile.feature";
+import { profileFeature } from "../../../../core/store/features/profile.feature";
+import { Proposal } from "../../models/proposal.model";
 
 @Component({
   templateUrl: './proposal.component.html',
@@ -19,6 +20,7 @@ export class ProposalComponent implements OnInit {
   public job$: Observable<Job | null>;
   public loading$: Observable<boolean>;
   public saving$: Observable<boolean>;
+  public reset$: Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +29,7 @@ export class ProposalComponent implements OnInit {
     this.saving$ = this.store.select(jobFeature.selectSaving);
     this.loading$ = this.store.select(jobFeature.selectLoading);
     this.job$ = this.store.select(jobFeature.selectJob);
+    this.reset$ = this.store.select(jobFeature.selectReset);
     this.profile$ = this.store.select(profileFeature.selectProfile);
 
     // get angular parameter from router
@@ -63,5 +66,15 @@ export class ProposalComponent implements OnInit {
         })
       );
     }
+  }
+
+  public deleteProposal(job: Job, proposal: Proposal): void {
+    // dispatch delete proposal action
+    this.store.dispatch(
+      JobActions.DeleteProposalActions.do({
+        jobId: job._id,
+        proposalId: proposal._id
+      })
+    );
   }
 }

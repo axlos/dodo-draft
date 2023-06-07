@@ -1,7 +1,16 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Job } from "../../models/job.model";
-import { Profile } from "../../../profile/models/profile.model";
+import { Profile } from "../../../../core/models/profile.model";
 
 @Component({
   selector: 'app-proposal-form',
@@ -17,14 +26,12 @@ export class ProposalFormComponent implements OnInit, OnChanges {
     job: Job
   }>();
   @Input()
-  public profile: Profile | null = null;
-  @Input()
-  public job: Job | null = null;
-  @Input()
   public loading: boolean = false;
 
   public proposalForm: FormGroup;
   private id: string | null = null;
+  private _job: Job | null = null;
+  private _profile: Profile | null = null;
 
   constructor(
     private fb: FormBuilder
@@ -33,7 +40,7 @@ export class ProposalFormComponent implements OnInit, OnChanges {
     this.proposalForm = this.fb.group({
       title: ['', Validators.required],
       details: ['', Validators.required],
-      question: [''],
+      additionalContent: [''],
       experiences: [null],
       educations: [null],
       certifications: [null],
@@ -42,30 +49,71 @@ export class ProposalFormComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    // TODO: Disable form on loading  (DONE)
-
   }
 
-  ngOnChanges() {
-    if (this.job) {
-      this.id = this.job._id;
+  @Input()
+  set job (job: Job) {
+    if (job) {
+      this._job = job;
+      this.id = job._id;
       this.proposalForm.patchValue({
-        title: this.job.title,
-        details: this.job.details,
-        question: this.job.question,
-        experiences: this.job.experiences,
-        educations: this.job.educations,
-        certifications: this.job.certifications,
-        languages: this.job.languages
+        title: job.title,
+        details: job.details,
+        additionalContent: job.additionalContent,
+        experiences: job.experiences,
+        educations: job.educations,
+        certifications: job.certifications,
+        languages: job.languages
       });
-    } else {
+    }
+  }
+
+  get job() {
+    return this._job;
+  }
+
+  @Input()
+  set reset(reset: boolean) {
+    if (reset) {
       this.id = null;
       this.proposalForm.reset();
     }
-    if (this.loading) {
-      this.proposalForm.disable();
-    } else {
-      this.proposalForm.enable();
+  }
+
+
+  @Input()
+  set profile(profile: Profile) {
+    if (profile) {
+      this._profile = profile;
+      if (profile.experiences.length === 0) {
+        this.proposalForm.get('experiences').disable();
+      }
+      if (profile.educations.length === 0) {
+        this.proposalForm.get('educations').disable();
+      }
+      if (profile.certifications.length === 0) {
+        this.proposalForm.get('certifications').disable();
+      }
+      if (profile.languages.length === 0) {
+        this.proposalForm.get('languages').disable();
+      }
+    }
+  }
+
+  ngOnChanges() {
+    if (this._profile && this._job) {
+      if (this._profile.experiences.length === 0) {
+        this.proposalForm.get('experiences').setValue(false);
+      }
+      if (this._profile.educations.length === 0) {
+        this.proposalForm.get('educations').setValue(false);
+      }
+      if (this._profile.certifications.length === 0) {
+        this.proposalForm.get('certifications').setValue(false);
+      }
+      if (this._profile.languages.length === 0) {
+        this.proposalForm.get('languages').setValue(false);
+      }
     }
   }
 
@@ -76,3 +124,4 @@ export class ProposalFormComponent implements OnInit, OnChanges {
     });
   }
 }
+

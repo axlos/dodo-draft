@@ -1,6 +1,6 @@
-import { Experience } from "./experience.model";
-import { Education } from "./education.model";
-import { Language } from "./language.model";
+import { Experience } from "../../features/profile/models/experience.model";
+import { Education } from "../../features/profile/models/education.model";
+import { Language } from "../../features/profile/models/language.model";
 
 export interface Profile {
   readonly fullName: string;

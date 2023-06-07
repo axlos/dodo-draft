@@ -3,8 +3,9 @@ import { catchError, from, of, switchMap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { ProfileService } from "../../services/profile.service";
-import { LoadActions, SaveActions, UploadActions } from './profile.actions';
-import * as CoreActions from "../../../../core/store/actions/core.actions";
+import { LoadActions, SaveActions, UploadActions } from '../actions/profile.actions';
+import * as CoreActions from "../actions/core.actions";
+import { UnexpectedServerError } from "../../models/message-config.model";
 
 @Injectable()
 export class ProfileEffects {
@@ -26,14 +27,7 @@ export class ProfileEffects {
             ),
             catchError((error: any) =>
               of(CoreActions.UIActions.displaymessage({
-                params: {
-                  message: error.message,
-                  title: 'Unexpected Server Error',
-                  config: {
-                    preventDuplicates: true,
-                    status: 'danger'
-                  }
-                }
+                params: new UnexpectedServerError(error.message)
               }))
             )
           )
@@ -83,14 +77,7 @@ export class ProfileEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: {
-                message: error.message,
-                title: 'Unexpected Server Error',
-                config: {
-                  preventDuplicates: true,
-                  status: 'danger'
-                }
-              }
+              params: new UnexpectedServerError(error.message)
             }))
           )
         )

@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { NbToastrService } from "@nebular/theme";
 import { filter, map, tap } from "rxjs/operators";
 import { CoreService } from "../../services/core.service";
 import * as UserActions from "../../../core/store/actions/user.actions";
 import { SetupProfile } from "../../../features/profile/enums/setup-profile.enum";
 import { HeaderMenuActions, UIActions } from "../actions/core.actions";
 import { HeaderMenu } from "../../enums/header-menu.enum";
-import { NbToastrService } from "@nebular/theme";
 
 @Injectable()
 export class CoreEffects {

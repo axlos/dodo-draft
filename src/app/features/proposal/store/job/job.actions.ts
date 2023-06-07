@@ -21,6 +21,7 @@ export const CreateActions = createActionGroup({
   source: "Create Job",
   events: {
     "reset": emptyProps(),
+    "restarted": emptyProps(),
     "do": props<{ job: Job }>(),
     "success": props<{ job: Job }>()
   }
@@ -39,5 +40,19 @@ export const DeleteActions = createActionGroup({
   events: {
     "do": props<{ id: string }>(),
     "success": props<{ id: string }>()
+  }
+});
+
+export const DeleteProposalActions = createActionGroup({
+  source: "Delete Proposal from Job",
+  events: {
+    "do": props<{
+      jobId: string,
+      proposalId: string
+    }>(),
+    "success": props<{
+      jobId: string,
+      proposalId: string
+    }>()
   }
 });
