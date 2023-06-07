@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { catchError, of, switchMap } from "rxjs";
+import { catchError, from, of, switchMap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { ProfileService } from "../../services/profile.service";
@@ -51,17 +51,22 @@ export class ProfileEffects {
             SaveActions.success({ profile })
           ),
           catchError(error =>
-            of(CoreActions.UIActions.displaymessage({
-                params: {
-                  message: error.message,
-                  title: 'Unexpected Server Error',
-                  config: {
-                    preventDuplicates: true,
-                    status: 'danger'
+            from([
+              CoreActions.UIActions.displaymessage({
+                  params: {
+                    message: 'Please check that you have entered your information correctly',
+                    title: 'Save profile',
+                    config: {
+                      preventDuplicates: true,
+                      status: 'warning'
+                    }
                   }
                 }
-              }
-            ))
+              ),
+              SaveActions.failure({
+                error: error.message
+              })
+            ])
           )
         )
       )

@@ -9,6 +9,7 @@ import { HeaderMenuModel } from "./core/models/header-menu.model";
 import { coreFeature } from "./core/store/features/core.feature";
 import * as JobActions from "./features/proposal/store/job/job.actions";
 import { HeaderMenu } from "./core/enums/header-menu.enum";
+import * as ProfileActions from "./features/profile/store/profile/profile.actions";
 
 @Component({
   selector: 'app-root',
@@ -34,6 +35,9 @@ export class AppComponent implements OnInit {
     // Dispatch an action to load the user once the page is loaded
     this.store.dispatch(
       UserActions.LoadActions.do()
+    );
+    this.store.dispatch(
+      ProfileActions.LoadActions.do()
     );
   }
 

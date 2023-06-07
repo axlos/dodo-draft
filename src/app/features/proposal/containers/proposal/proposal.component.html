@@ -6,6 +6,7 @@
               [right]="true">
     <app-proposal-form [job]="job$ | async"
                        [loading]="(loading$ | async) ?? false || (saving$ | async) ?? false"
+                       [profile]="profile$ | async"
                        (save)="saveProposal($event.id, $event.job)">
     </app-proposal-form>
   </nb-sidebar>

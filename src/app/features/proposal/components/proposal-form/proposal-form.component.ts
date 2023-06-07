@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Job } from "../../models/job.model";
+import { Profile } from "../../../profile/models/profile.model";
 
 @Component({
   selector: 'app-proposal-form',
@@ -15,6 +16,8 @@ export class ProposalFormComponent implements OnInit, OnChanges {
     id: string | null,
     job: Job
   }>();
+  @Input()
+  public profile: Profile | null = null;
   @Input()
   public job: Job | null = null;
   @Input()

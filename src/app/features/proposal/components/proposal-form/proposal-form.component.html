@@ -51,22 +51,26 @@
     <div class="d-flex flex-column">
       <nb-toggle status="basic"
                  class="mb-2"
-                 formControlName="experiences">
+                 formControlName="experiences"
+                 *ngIf="profile?.experiences.length > 0">
         Experiences
       </nb-toggle>
       <nb-toggle status="basic"
                  class="mb-2"
-                 formControlName="educations">
+                 formControlName="educations"
+                 *ngIf="profile?.educations.length > 0">
         Educations
       </nb-toggle>
       <nb-toggle status="basic"
                  class="mb-2"
-                 formControlName="certifications">
+                 formControlName="certifications"
+                 *ngIf="profile?.certifications.length > 0">
         Certifications
       </nb-toggle>
       <nb-toggle status="basic"
                  class="mb-2"
-                 formControlName="languages">
+                 formControlName="languages"
+                 *ngIf="profile?.languages.length > 0">
         Languages
       </nb-toggle>
     </div>
