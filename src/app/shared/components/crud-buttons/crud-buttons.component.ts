@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CrudButtonsConfig } from "./crud-buttons-config";
 
 @Component({
@@ -6,16 +6,15 @@ import { CrudButtonsConfig } from "./crud-buttons-config";
   templateUrl: './crud-buttons.component.html',
   styleUrls: ['./crud-buttons.component.scss']
 })
-export class CrudButtonsComponent implements OnChanges {
+export class CrudButtonsComponent {
 
   @Input()
   public loading: boolean = false;
   @Input()
-  public reset: boolean = false;
-  @Input()
   public config: CrudButtonsConfig = {
     edit: true,
-    delete: true
+    delete: true,
+    confirmEdit: false
   };
   @Output()
   public delete = new EventEmitter<void>();
@@ -29,14 +28,6 @@ export class CrudButtonsComponent implements OnChanges {
   public deleting: boolean = false;
   public editing: boolean = false;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['reset'] && this.reset) {
-      this.editing = false;
-      this.deleting = false;
-      this.reset = false;
-    }
-  }
-
   public onConfirm(): void {
     if (this.editing) {
       this.editing = false;
@@ -48,7 +39,9 @@ export class CrudButtonsComponent implements OnChanges {
   }
 
   public onEdit(): void {
-    this.editing = true;
+    if (this.config.confirmEdit) {
+      this.editing = true;
+    }
     this.edit.emit();
   }
 

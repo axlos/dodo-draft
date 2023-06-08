@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
 import { NbDialogService, NbTagComponent, NbTagInputAddEvent } from "@nebular/theme";
-import { filter, tap } from "rxjs/operators";
+import { filter } from "rxjs/operators";
 import { Profile } from "../../../../core/models/profile.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ProfileFormControls } from "../../enums/profile-form-controls.enum";
@@ -36,50 +36,50 @@ export class ProfileFormComponent implements OnChanges {
   public fullNameCrudButtonsConfig: CrudButtonsConfig = {
     edit: true,
     delete: false,
+    confirmEdit: true
   };
   public editFullName: boolean = false;
   // Summary config
   public summaryCrudButtonsConfig: CrudButtonsConfig = {
     edit: true,
     delete: false,
+    confirmEdit: true
   };
   public editSummary: boolean = false;
   // Summary config
   public skillsCrudButtonsConfig: CrudButtonsConfig = {
     edit: true,
     delete: false,
+    confirmEdit: true
   };
   public currentSkills: string[] = [];
   public editSkills: boolean = false;
   // Headline config
   public headlineCrudButtonsConfig: CrudButtonsConfig = {
     edit: true,
-    delete: false
+    delete: false,
+    confirmEdit: true
   };
   public editHeadline: boolean = false;
   // Experience config
   public experiencesCrudButtons: {
     experience: Experience,
-    config: CrudButtonsConfig,
-    reset: boolean
+    config: CrudButtonsConfig
   }[] = [];
   // Language config
   public languagesCrudButtons: {
     language: Language,
-    config: CrudButtonsConfig,
-    reset: boolean
+    config: CrudButtonsConfig
   }[] = [];
   // Language config
   public certificationsCrudButtons: {
     certification: string,
-    config: CrudButtonsConfig,
-    reset: boolean
+    config: CrudButtonsConfig
   }[] = [];
   // Education config
   public educationsCrudButtons: {
     education: Education,
-    config: CrudButtonsConfig,
-    reset: boolean
+    config: CrudButtonsConfig
   }[] = [];
 
   constructor(
@@ -112,10 +112,10 @@ export class ProfileFormComponent implements OnChanges {
       ).map((experience: Experience) => (
         {
           experience,
-          reset: false,
           config: {
             edit: true,
-            delete: true
+            delete: true,
+            confirmEdit: false
           }
         }
       ));
@@ -124,10 +124,10 @@ export class ProfileFormComponent implements OnChanges {
       ).map((language: Language) => (
         {
           language,
-          reset: false,
           config: {
             edit: true,
-            delete: true
+            delete: true,
+            confirmEdit: false
           }
         }
       ));
@@ -136,10 +136,10 @@ export class ProfileFormComponent implements OnChanges {
       ).map((certification: string) => (
         {
           certification,
-          reset: false,
           config: {
             edit: true,
-            delete: true
+            delete: true,
+            confirmEdit: false
           }
         }
       ));
@@ -148,10 +148,10 @@ export class ProfileFormComponent implements OnChanges {
       ).map((education: Education) => (
         {
           education,
-          reset: false,
           config: {
             edit: true,
-            delete: true
+            delete: true,
+            confirmEdit: false
           }
         }
       ));
@@ -187,22 +187,14 @@ export class ProfileFormComponent implements OnChanges {
     }
   }
 
-  public openExperienceDialog(
-    experienceCrud?: { experience: Experience; config: CrudButtonsConfig, reset: boolean },
-    index?: number
-  ): void {
+  public openExperienceDialog(experience?: Experience, index?: number): void {
     this.dialogService.open(ExperienceDialogComponent, {
       context: {
-        experience: experienceCrud?.experience,
+        experience,
         index
       }
     }).onClose
       .pipe(
-        tap(() => {
-          if (experienceCrud) {
-            experienceCrud.reset = true;
-          }
-        }),
         filter((res: { experience: Experience, index: number }) =>
           !!res
         )
@@ -241,31 +233,19 @@ export class ProfileFormComponent implements OnChanges {
     });
   }
 
-  public editExperience(
-    experienceCrud: { experience: Experience; config: CrudButtonsConfig, reset: boolean },
-    index: number
-  ): void {
-    experienceCrud.reset = false;
-    this.openExperienceDialog(experienceCrud, index);
+  public editExperience(experience: Experience, index: number): void {
+    this.openExperienceDialog(experience, index);
   }
 
-  public openLanguageDialog(
-    languageCrud?: { language: Language; config: CrudButtonsConfig, reset: boolean },
-    index?: number
-  ): void {
+  public openLanguageDialog(language?: Language, index?: number): void {
 
     this.dialogService.open(LanguageDialogComponent, {
       context: {
-        language: languageCrud?.language,
+        language,
         index
       }
     }).onClose
       .pipe(
-        tap(() => {
-          if (languageCrud) {
-            languageCrud.reset = true;
-          }
-        }),
         filter((res: { language: Language, index: number }) =>
           !!res
         )
@@ -293,12 +273,8 @@ export class ProfileFormComponent implements OnChanges {
       })
   }
 
-  public editLanguage(
-    languageCrud: { language: Language; config: CrudButtonsConfig, reset: boolean },
-    index: number
-  ): void {
-    languageCrud.reset = false;
-    this.openLanguageDialog(languageCrud, index);
+  public editLanguage(language: Language, index: number): void {
+    this.openLanguageDialog(language, index);
   }
 
   deleteLanguage(index: number) {
@@ -312,23 +288,15 @@ export class ProfileFormComponent implements OnChanges {
     });
   }
 
-  public openCertificationDialog(
-    certificationCrud?: { certification: string; config: CrudButtonsConfig, reset: boolean },
-    index?: number
-  ): void {
+  public openCertificationDialog(certification?: string, index?: number): void {
 
     this.dialogService.open(CertificationDialogComponent, {
       context: {
-        certification: certificationCrud?.certification,
+        certification: certification,
         index
       }
     }).onClose
       .pipe(
-        tap(() => {
-          if (certificationCrud) {
-            certificationCrud.reset = true;
-          }
-        }),
         filter((res: { certification: string, index: number }) =>
           !!res
         )
@@ -357,12 +325,8 @@ export class ProfileFormComponent implements OnChanges {
   }
 
 
-  public editCertification(
-    certificationCrud: { certification: string; config: CrudButtonsConfig, reset: boolean },
-    index: number
-  ): void {
-    certificationCrud.reset = false;
-    this.openCertificationDialog(certificationCrud, index);
+  public editCertification(certification: string, index: number): void {
+    this.openCertificationDialog(certification, index);
   }
 
   deleteCertification(i: number) {
@@ -376,22 +340,14 @@ export class ProfileFormComponent implements OnChanges {
     });
   }
 
-  public openEducationDialog(
-    educationCrud?: { education: Education; config: CrudButtonsConfig, reset: boolean },
-    index?: number
-  ): void {
+  public openEducationDialog(education?: Education, index?: number): void {
     this.dialogService.open(EducationDialogComponent, {
       context: {
-        education: educationCrud?.education,
+        education: education,
         index
       }
     }).onClose
       .pipe(
-        tap(() => {
-          if (educationCrud) {
-            educationCrud.reset = true;
-          }
-        }),
         filter((res: { education: Education, index: number }) =>
           !!res
         )
@@ -419,12 +375,8 @@ export class ProfileFormComponent implements OnChanges {
       });
   }
 
-  public editEducation(
-    educationCrud: { education: Education; config: CrudButtonsConfig; reset: boolean },
-    index: number
-  ): void {
-    educationCrud.reset = false;
-    this.openEducationDialog(educationCrud, index);
+  public editEducation(education: Education, index: number): void {
+    this.openEducationDialog(education, index);
   }
 
   public deleteEducation(i: number): void {
@@ -455,7 +407,7 @@ export class ProfileFormComponent implements OnChanges {
     input.nativeElement.value = '';
   }
 
-  public cancelSkills() : void {
+  public cancelSkills(): void {
     this.currentSkills = this.profile?.skills || [];
     this.editSkills = false;
   }

@@ -35,8 +35,7 @@
                   </small>
                   <app-crud-buttons [config]="languageCrud.config"
                                     [loading]="saving"
-                                    [reset]="languageCrud.reset"
-                                    (edit)="editLanguage(languageCrud, i)"
+                                    (edit)="editLanguage(languageCrud.language, i)"
                                     (delete)="deleteLanguage(i)">
                   </app-crud-buttons>
                 </div>
@@ -84,8 +83,7 @@
                   </span>
                   <app-crud-buttons [config]="certificationCrud.config"
                                     [loading]="saving"
-                                    [reset]="certificationCrud.reset"
-                                    (edit)="editCertification(certificationCrud, i)"
+                                    (edit)="editCertification(certificationCrud.certification, i)"
                                     (delete)="deleteCertification(i)">
                   </app-crud-buttons>
                 </div>
@@ -268,8 +266,7 @@
                 </span>
                 <app-crud-buttons [config]="experienceCrud.config"
                                   [loading]="saving"
-                                  [reset]="experienceCrud.reset"
-                                  (edit)="editExperience(experienceCrud, i)"
+                                  (edit)="editExperience(experienceCrud.experience, i)"
                                   (delete)="deleteExperience(i)">
                 </app-crud-buttons>
               </p>
@@ -277,8 +274,7 @@
                 <p class="mb-0">
                   {{experienceCrud.experience.position | titlecase}}
                 </p>
-                <p class="lh-base" *ngIf="experienceCrud.experience.description">
-                  {{experienceCrud.experience.description}}
+                <p class="lh-base" *ngIf="experienceCrud.experience.description" [innerHTML]="experienceCrud.experience.description">
                 </p>
               </div>
             </div>
@@ -320,8 +316,7 @@
                 </span>
                 <app-crud-buttons [config]="educationCrud.config"
                                   [loading]="saving"
-                                  [reset]="educationCrud.reset"
-                                  (edit)="editEducation(educationCrud, i)"
+                                  (edit)="editEducation(educationCrud.education, i)"
                                   (delete)="deleteEducation(i)">
                 </app-crud-buttons>
               </p>

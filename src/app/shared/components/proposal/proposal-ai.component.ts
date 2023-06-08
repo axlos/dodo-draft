@@ -16,7 +16,8 @@ export class ProposalAiComponent {
   @Input()
   public crudConfig: CrudButtonsConfig = {
     edit: false,
-    delete: true
+    delete: true,
+    confirmEdit: false
   };
   @Output()
   public delete = new EventEmitter<Proposal>();
