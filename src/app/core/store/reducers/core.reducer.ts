@@ -1,13 +1,30 @@
 import { createReducer, on } from "@ngrx/store";
-import { HeaderMenuModel } from "../../models/header-menu.model";
+import { HeaderMenuInterface } from "../../interfaces/header-menu.interface";
 import { HeaderMenuActions } from "../actions/core.actions";
+import { HeaderMenu } from "../../enums/header-menu.enum";
 
 export interface CoreState {
-  headerMenu: HeaderMenuModel[];
+  headerMenu: HeaderMenuInterface[];
 }
 
 export const initialState: CoreState = {
-  headerMenu: []
+  headerMenu: [
+    {
+      id: HeaderMenu.Create,
+      title: 'Features',
+      router: '/features'
+    },
+    {
+      id: HeaderMenu.Create,
+      title: 'FAQ',
+      router: '/faq'
+    },
+    {
+      id: HeaderMenu.Create,
+      title: 'Contact',
+      router: '/contact'
+    }
+  ]
 };
 
 export const coreReducer = createReducer(
@@ -16,7 +33,9 @@ export const coreReducer = createReducer(
   on(HeaderMenuActions.load, (state, { menu }) => (
     {
       ...state,
-      headerMenu: menu,
+      headerMenu: [
+        ...menu
+      ],
     }
   )),
 );

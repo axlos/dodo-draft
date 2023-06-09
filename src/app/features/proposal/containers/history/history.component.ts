@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import { jobFeature } from "../../store/job/job.feature";
 import * as JobActions from "../../store/job/job.actions";
-import { JobItem } from "../../models/job-item.model";
+import { JobItem } from "../../interfaces/job-item.interface";
 import { Router } from "@angular/router";
 
 @Component({

@@ -29,10 +29,12 @@ import { NgxDropzoneModule } from "ngx-dropzone";
 import { HttpClientModule } from "@angular/common/http";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
 import { CrudButtonsComponent } from "./components/crud-buttons/crud-buttons.component";
+import { UserMenuComponent } from "./components/user-menu/user-menu.component";
 
 const COMPONENTS: any[] = [
   ProposalAiComponent,
-  CrudButtonsComponent
+  CrudButtonsComponent,
+  UserMenuComponent
 ];
 
 const PIPES: any[] = [];

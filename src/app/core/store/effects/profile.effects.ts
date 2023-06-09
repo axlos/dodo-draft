@@ -5,7 +5,8 @@ import { map } from "rxjs/operators";
 import { ProfileService } from "../../services/profile.service";
 import { LoadActions, SaveActions, UploadActions } from '../actions/profile.actions';
 import * as CoreActions from "../actions/core.actions";
-import { UnexpectedServerError } from "../../models/message-config.model";
+import { UnexpectedErrorMessage } from "../../interfaces/message-config.interface";
+import { LoginActions } from "../actions/auth.actions";
 
 @Injectable()
 export class ProfileEffects {
@@ -14,6 +15,16 @@ export class ProfileEffects {
     private profileService: ProfileService
   ) {
   }
+
+  // Fetch the profile when the user logs in
+  public loadProfileAfterLogin$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(LoginActions.success),
+      map(() =>
+        LoadActions.do()
+      )
+    )
+  );
 
   // create ngrx effect to fetch a edit-profile
   public loadProfile$ = createEffect(() =>
@@ -27,7 +38,7 @@ export class ProfileEffects {
             ),
             catchError((error: any) =>
               of(CoreActions.UIActions.displaymessage({
-                params: new UnexpectedServerError(error.message)
+                params: new UnexpectedErrorMessage(error.message)
               }))
             )
           )
@@ -77,7 +88,7 @@ export class ProfileEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedServerError(error.message)
+              params: new UnexpectedErrorMessage(error.message)
             }))
           )
         )

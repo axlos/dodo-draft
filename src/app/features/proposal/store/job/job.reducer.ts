@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import * as JobActions from './job.actions';
 import { Job } from "../../models/job.model";
 import { Proposal } from "../../models/proposal.model";
-import { JobItem } from "../../models/job-item.model";
+import { JobItem } from "../../interfaces/job-item.interface";
 
 export interface JobState {
   job: Job | null;

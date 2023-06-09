@@ -5,8 +5,8 @@ import { filter, map, tap } from "rxjs/operators";
 import { CoreService } from "../../services/core.service";
 import * as UserActions from "../../../core/store/actions/user.actions";
 import { SetupProfile } from "../../../features/profile/enums/setup-profile.enum";
-import { HeaderMenuActions, UIActions } from "../actions/core.actions";
 import { HeaderMenu } from "../../enums/header-menu.enum";
+import { HeaderMenuActions, UIActions } from "../actions/core.actions";
 
 @Injectable()
 export class CoreEffects {
@@ -32,7 +32,7 @@ export class CoreEffects {
             {
               id: HeaderMenu.Create,
               title: 'Create New',
-              icon: 'add-icon',
+              icon: 'plus-outline',
               class: 'ml-2 create-new',
               router: '/proposal/create'
             },

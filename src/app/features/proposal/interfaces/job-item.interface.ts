@@ -1,4 +1,4 @@
-import { Job } from "./job.model";
+import { Job } from "../models/job.model";
 
 export interface JobItem {
 

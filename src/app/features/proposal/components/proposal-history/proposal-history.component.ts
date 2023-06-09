@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { JobItem } from "../../models/job-item.model";
+import { JobItem } from "../../interfaces/job-item.interface";
 import { NbComponentStatus } from "@nebular/theme/components/component-status";
 import { CrudButtonsConfig } from "../../../../shared/components/crud-buttons/crud-buttons-config";
 

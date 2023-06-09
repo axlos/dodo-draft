@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VerifiedGuard } from "./core/guards/verified.guard";
+import { AuthGuard } from "@auth0/auth0-angular";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/proposal/create',
-    pathMatch: 'full'
+    loadChildren: () =>
+      import('./features/home/home.module').then(m =>
+        m.HomeModule
+      )
   },
   {
     path: 'profile',
@@ -14,6 +17,9 @@ const routes: Routes = [
       import('./features/profile/profile.module').then(m =>
         m.ProfileModule
       ),
+    canActivate: [
+      AuthGuard
+    ]
   },
   {
     path: 'proposal',
@@ -22,13 +28,14 @@ const routes: Routes = [
         m.ProposalModule
       ),
     canActivate: [
+      AuthGuard,
       VerifiedGuard
     ]
   },
-  {
-    path: '**',
-    redirectTo: '/profile/setup'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '/'
+  // }
 ];
 
 @NgModule({

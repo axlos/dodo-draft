@@ -4,12 +4,14 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { filter, map } from 'rxjs/operators';
 import { Observable } from "rxjs";
-import * as UserActions from "./core/store/actions/user.actions";
-import { HeaderMenuModel } from "./core/models/header-menu.model";
+import { HeaderMenuInterface } from "./core/interfaces/header-menu.interface";
 import { coreFeature } from "./core/store/features/core.feature";
 import * as JobActions from "./features/proposal/store/job/job.actions";
+import * as AuthActions from "./core/store/actions/auth.actions";
 import { HeaderMenu } from "./core/enums/header-menu.enum";
-import * as ProfileActions from "./core/store/actions/profile.actions";
+import { authFeature } from './core/store/features/auth.feature';
+import { User } from "@auth0/auth0-spa-js";
+
 
 @Component({
   selector: 'app-root',
@@ -17,12 +19,10 @@ import * as ProfileActions from "./core/store/actions/profile.actions";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  public items = [
-    { title: 'Buy Credits' },
-    { title: 'Logout' },
-  ];
-  public headerMenu$: Observable<HeaderMenuModel[] | null>;
+  
+  public headerMenu$: Observable<HeaderMenuInterface[] | null>;
+  public isAuthenticated$: Observable<boolean>;
+  public user$: Observable<User>;
 
   constructor(
     private router: Router,
@@ -31,31 +31,30 @@ export class AppComponent implements OnInit {
     @Inject(NB_WINDOW) private window: Window,
   ) {
     this.headerMenu$ = this.store.select(coreFeature.selectHeaderMenu);
+    this.isAuthenticated$ = this.store.select(authFeature.selectIsAuthenticated);
+    this.user$ = this.store.select(authFeature.selectUser);
   }
 
   ngOnInit() {
-    // Dispatch an action to load the user once the page is loaded
-    this.store.dispatch(
-      UserActions.LoadActions.do()
-    );
-    this.store.dispatch(
-      ProfileActions.LoadActions.do()
-    );
-
     this.nbMenuService.onItemClick()
       .pipe(
-        filter(({ tag }) =>
-          tag === 'my-context-menu'),
-        map(({ item: { title } }) =>
-          title
+        filter((menu) =>
+          menu.tag === 'my-context-menu'),
+        map(({ item: { title, ariaRole } }) =>
+          ariaRole
         ),
       )
-      .subscribe(title =>
-        console.log(`${title} was clicked!`)
+      .subscribe(ariaRole => {
+          if (ariaRole === 'logout') {
+            this.store.dispatch(
+              AuthActions.LogoutActions.do()
+            );
+          }
+        }
       );
   }
 
-  public onAction(item: HeaderMenuModel): void {
+  public onAction(item: HeaderMenuInterface): void {
     if (HeaderMenu.Create === item.id) {
       this.store.dispatch(
         JobActions.CreateActions.reset()
@@ -63,4 +62,11 @@ export class AppComponent implements OnInit {
     }
     this.router.navigate([item.router]);
   }
+
+  public login(): void {
+    this.store.dispatch(
+      AuthActions.LoginActions.do()
+    );
+  }
+
 }

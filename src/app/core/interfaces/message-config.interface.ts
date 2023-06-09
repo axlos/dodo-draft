@@ -6,7 +6,7 @@ export interface MessageConfig {
   readonly config?: Partial<NbToastrConfig>;
 }
 
-export class UnexpectedServerError implements MessageConfig {
+export class UnexpectedErrorMessage implements MessageConfig {
 
   readonly message: string;
   readonly title: string;

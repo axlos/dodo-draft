@@ -12,7 +12,7 @@ import {
   UpdateActions
 } from './job.actions';
 import * as CoreActions from './../../../../core/store/actions/core.actions';
-import { UnexpectedServerError } from "../../../../core/models/message-config.model";
+import { UnexpectedErrorMessage } from "../../../../core/interfaces/message-config.interface";
 
 @Injectable()
 export class JobEffects {
@@ -43,7 +43,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedServerError(error.message)
+              params: new UnexpectedErrorMessage(error.message)
             }))
           )
         )
@@ -61,7 +61,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedServerError(error.message)
+              params: new UnexpectedErrorMessage(error.message)
             }))
           )
         )
@@ -79,7 +79,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedServerError(error.message)
+              params: new UnexpectedErrorMessage(error.message)
             }))
           )
         )
@@ -97,7 +97,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedServerError(error.message)
+              params: new UnexpectedErrorMessage(error.message)
             }))
           )
         )
@@ -117,7 +117,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedServerError(error.message)
+              params: new UnexpectedErrorMessage(error.message)
             }))
           )
         )
@@ -139,7 +139,7 @@ export class JobEffects {
           ),
           catchError(error =>
             of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedServerError(error.message)
+              params: new UnexpectedErrorMessage(error.message)
             }))
           )
         )

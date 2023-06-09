@@ -1,6 +1,6 @@
 import { createActionGroup, props } from "@ngrx/store";
-import { HeaderMenuModel } from "../../models/header-menu.model";
-import { MessageConfig } from "../../models/message-config.model";
+import { HeaderMenuInterface } from "../../interfaces/header-menu.interface";
+import { MessageConfig } from "../../interfaces/message-config.interface";
 
 export const UIActions = createActionGroup({
   source: "UI Actions",
@@ -14,6 +14,6 @@ export const UIActions = createActionGroup({
 export const HeaderMenuActions = createActionGroup({
   source: "Header Menu",
   events: {
-    "load": props<{ menu: HeaderMenuModel[] }>(),
+    "load": props<{ menu: HeaderMenuInterface[] }>(),
   }
 });

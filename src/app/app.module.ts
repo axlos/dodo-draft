@@ -2,11 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SharedModule } from "./shared/shared.module";
-import { CoreModule } from "./core/core.module";
-import { environment } from "../environments/environment";
+import { AuthModule } from '@auth0/auth0-angular';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import {
   NbDialogModule,
   NbGlobalPhysicalPosition,
@@ -15,6 +12,15 @@ import {
   NbThemeModule,
   NbToastrModule
 } from "@nebular/theme";
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { SharedModule } from "./shared/shared.module";
+import { CoreModule } from "./core/core.module";
+import { environment } from "../environments/environment";
+
+import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
+import { ErrorInterceptorService } from './core/services/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -44,8 +50,28 @@ import {
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    // Import the module into the application, with configuration
+    AuthModule.forRoot({
+      domain: environment.auth0.domain,
+      clientId: environment.auth0.clientId,
+      authorizationParams: {
+        audience: environment.auth0.audience,
+        redirect_uri: window.location.origin,
+      }
+    }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [
     AppComponent
   ]
