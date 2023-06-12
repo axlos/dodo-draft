@@ -19,7 +19,7 @@ import { User } from "@auth0/auth0-spa-js";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  
+
   public headerMenu$: Observable<HeaderMenuInterface[] | null>;
   public isAuthenticated$: Observable<boolean>;
   public user$: Observable<User>;

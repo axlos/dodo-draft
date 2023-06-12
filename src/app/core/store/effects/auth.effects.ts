@@ -2,7 +2,11 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
 import { AuthService } from "../../services/auth.service";
-import { LoginActions, LogoutActions } from "../actions/auth.actions";
+import { LoginActions, LogoutActions, UpdateUserActions } from "../actions/auth.actions";
+import { catchError, of, switchMap } from "rxjs";
+import * as CoreActions from "../actions/core.actions";
+import { UnexpectedErrorMessage } from "../../interfaces/message-config.interface";
+import { SetupProfile } from "../../enums/setup-profile.enum";
 
 @Injectable()
 export class AuthEffects {
@@ -33,5 +37,26 @@ export class AuthEffects {
     { dispatch: false }
   );
 
+  // Create effect to handle verify profile action
+  public verifyProfile$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UpdateUserActions.verify),
+      switchMap(() =>
+        this.authService.verifyProfile()
+          .pipe(
+            map(user =>
+              UpdateUserActions.setupprofile({
+                status: SetupProfile.Verified
+              })
+            ),
+            catchError((error: any) =>
+              of(CoreActions.UIActions.displaymessage({
+                params: new UnexpectedErrorMessage(error.message)
+              }))
+            )
+          )
+      )
+    )
+  );
 
 }

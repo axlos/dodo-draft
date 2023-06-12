@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CrudButtonsConfig } from "./crud-buttons-config";
+import { NbComponentSize } from "@nebular/theme/components/component-size";
 
 @Component({
   selector: 'app-crud-buttons',
@@ -16,6 +17,8 @@ export class CrudButtonsComponent {
     delete: true,
     confirmEdit: false
   };
+  @Input()
+  public size: NbComponentSize = 'small';
   @Output()
   public delete = new EventEmitter<void>();
   @Output()

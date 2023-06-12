@@ -1,3 +1,39 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins/breakpoints";
+
+.custom-layout {
+  padding: 0 !important;
+  max-width: calc(100% - 400px);
+  margin-left: auto;
+}
+
+.content-wrapper {
+}
+
+@include media-breakpoint-down(xxl) {
+  .content-wrapper {
+  }
+}
+
+@include media-breakpoint-down(xl) {
+  .content-wrapper {
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .content-wrapper {
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .content-wrapper {
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .content-wrapper {
+  }
+}
+
+

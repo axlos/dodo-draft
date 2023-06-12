@@ -4,17 +4,16 @@ import { NbStepperComponent } from "@nebular/theme";
 import { filter, map, tap } from "rxjs/operators";
 import { combineLatest, Observable } from "rxjs";
 
-import { Profile } from "../../../../core/models/profile.model";
-import * as ProfileFeature from "src/app/core/store/features/profile.feature";
-import * as UserFeature from "src/app/core/store/features/user.feature";
-import * as ProfileActions from "src/app/core/store/actions/profile.actions";
-import * as UserActions from "../../../../core/store/actions/user.actions";
-import { userFeature } from "../../../../core/store/features/user.feature";
-import { stepNavigationFeature } from "../../store/step-navigation/step-navigation.feature";
 import { SetupProfile } from "../../enums/setup-profile.enum";
-import { User } from "../../../../core/models/user.model";
+import { Profile } from "../../../../core/models/profile.model";
+import { stepNavigationFeature } from "../../store/step-navigation/step-navigation.feature";
+import { profileFeature } from "src/app/core/store/features/profile.feature";
+import { authFeature } from "../../../../core/store/features/auth.feature";
 import { StepNavigation } from "../../store/step-navigation/step-navigation.actions";
 import { UIActions } from "../../../../core/store/actions/core.actions";
+import * as ProfileActions from "src/app/core/store/actions/profile.actions";
+import * as AuthActions from "../../../../core/store/actions/auth.actions";
+import { AuthUser } from "../../../../core/interfaces/auth-user.interface";
 
 @Component({
   templateUrl: './setup.component.html',
@@ -29,44 +28,44 @@ export class SetupComponent implements AfterViewInit {
   public loading$: Observable<boolean>;
   public saving$: Observable<boolean>;
   public profile$: Observable<Profile | null>;
+  public user$: Observable<AuthUser>;
+  public newUpload: boolean = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private store: Store
   ) {
     // Profile Selectors
-    this.profile$ = this.store.select(ProfileFeature.selectProfile);
-    this.saving$ = this.store.select(ProfileFeature.selectSaving);
+    this.profile$ = this.store.select(profileFeature.selectProfile);
+    this.saving$ = this.store.select(profileFeature.selectSaving);
+    this.user$ = this.store.select(authFeature.selectUser);
 
     // Loading, when it's uploading, loading the profile or the Setup profile is still uploading the file
     this.loading$ = combineLatest([
-      this.store.select(ProfileFeature.selectUploading),
-      this.store.select(ProfileFeature.selectLoading),
-      this.store.select(UserFeature.selectLoading),
-      this.store.select(userFeature.selectUser)
+      this.store.select(profileFeature.selectUploading),
+      this.store.select(profileFeature.selectLoading),
+      this.store.select(authFeature.selectUser)
         .pipe(
           map((user) =>
-            user !== null && SetupProfile.Uploading === user.setupProfile
+            user !== null && SetupProfile.Uploading === user['setupProfile']
           )
         )
     ]).pipe(
       tap(([
         uploading,
         loadingProfile,
-        loadingUser,
+        // loadingUser,
         uploadingStatus
       ]) => {
-        if (!loadingUser && uploadingStatus) {
+        if (uploadingStatus) {
+          // if (!loadingUser && uploadingStatus) {
           this.store.dispatch(
             UIActions.displaymessage({
               params: {
                 message: 'This process may take some time. Please consider refreshing the page in a few moments.',
                 title: 'Uploading profile',
                 config: {
-                  status: 'basic',
-                  duration: 5000,
-                  preventDuplicates: true,
-                  icon: {
+                  status: 'basic', duration: 5000, preventDuplicates: true, icon: {
                     icon: 'refresh-outline',
                     pack: 'eva'
                   }
@@ -79,15 +78,36 @@ export class SetupComponent implements AfterViewInit {
       map(([
           uploading,
           loadingProfile,
-          loadingUser,
+          // loadingUser,
           uploadingStatus
         ],) =>
-          uploading || loadingProfile || loadingUser || uploadingStatus
+          uploading || loadingProfile || uploadingStatus
+        // uploading || loadingProfile || loadingUser || uploadingStatus
       )
     );
   }
 
   ngAfterViewInit() {
+    this.user$.pipe(
+      filter(user =>
+        user !== null
+      )
+    ).subscribe((user) => {
+      let index = 0;
+      switch (user.setupProfile) {
+        case SetupProfile.Verify:
+          index = 1;
+          break
+        case SetupProfile.Verified:
+          index = 2;
+      }
+      this.store.dispatch(
+        StepNavigation.go({
+          index
+        })
+      );
+    });
+
     this.store.select(stepNavigationFeature.selectIndex)
       .pipe(
         filter(() =>
@@ -101,7 +121,7 @@ export class SetupComponent implements AfterViewInit {
       });
 
     // When profile is uploaded, go to next step
-    const selectUploaded = this.store.select(ProfileFeature.selectUploaded);
+    const selectUploaded = this.store.select(profileFeature.selectUploaded);
     selectUploaded.pipe(
       filter((uploaded) =>
         uploaded === true
@@ -118,7 +138,7 @@ export class SetupComponent implements AfterViewInit {
     });
 
     // Display error message if profile upload fails
-    const selectUploadedError = this.store.select(ProfileFeature.selectUploadedError);
+    const selectUploadedError = this.store.select(profileFeature.selectUploadedError);
     selectUploadedError.pipe(
       filter((error) =>
         error !== null
@@ -140,12 +160,15 @@ export class SetupComponent implements AfterViewInit {
 
   public fileSelected(file: File | null): void {
     this.file = file;
+    this.newUpload = true;
   }
 
   public uploadFile(): void {
     if (this.file === null) {
       return;
     }
+
+    this.newUpload = false;
 
     this.store.dispatch(
       UIActions.displaymessage({
@@ -175,11 +198,7 @@ export class SetupComponent implements AfterViewInit {
 
   public verify(): void {
     this.store.dispatch(
-      UserActions.UpdateActions.do({
-        user: {
-          setupProfile: SetupProfile.Verified
-        } as User
-      })
+      AuthActions.UpdateUserActions.verify()
     );
   }
 
@@ -188,6 +207,14 @@ export class SetupComponent implements AfterViewInit {
       ProfileActions.SaveActions.do({
         profile
       })
+    );
+  }
+
+  public get isInVerification(): Observable<boolean> {
+    return this.user$.pipe(
+      map((user) =>
+        user !== null && SetupProfile.Verify === user['setupProfile']
+      )
     );
   }
 

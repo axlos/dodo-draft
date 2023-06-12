@@ -57,6 +57,7 @@ import { ErrorInterceptorService } from './core/services/error-interceptor.servi
       authorizationParams: {
         audience: environment.auth0.audience,
         redirect_uri: window.location.origin,
+        scope: 'profile email update:current_user_metadata'
       }
     }),
   ],

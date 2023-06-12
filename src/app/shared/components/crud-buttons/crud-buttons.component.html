@@ -2,9 +2,9 @@
   <button nbButton ghost
           type="button"
           status="primary"
-          size="small"
           shape="semi-round"
           class="me-1"
+          [size]="size"
           [class.placeholder]="loading"
           [disabled]="loading"
           (click)="onEdit()"
@@ -14,8 +14,8 @@
   <button nbButton ghost
           type="button"
           status="primary"
-          size="small"
           shape="semi-round"
+          [size]="size"
           [class.placeholder]="loading"
           [disabled]="loading"
           (click)="onDelete()"
@@ -28,9 +28,9 @@
   <button nbButton ghost
           type="button"
           status="primary"
-          size="small"
           shape="semi-round"
           class="me-1"
+          [size]="size"
           [class.placeholder]="loading"
           [disabled]="loading"
           (click)="onConfirm()">
@@ -39,8 +39,8 @@
   <button nbButton ghost
           type="button"
           status="primary"
-          size="small"
           shape="semi-round"
+          [size]="size"
           [class.placeholder]="loading"
           [disabled]="loading"
           (click)="onCancel()">

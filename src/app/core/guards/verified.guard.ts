@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Store } from "@ngrx/store";
 import { Observable, take } from "rxjs";
 import { filter, map } from "rxjs/operators";
-import { userFeature } from "../store/features/user.feature";
+import { authFeature } from "../store/features/auth.feature";
 import { SetupProfile } from "../../features/profile/enums/setup-profile.enum";
 
 @Injectable()
@@ -19,13 +19,13 @@ export class VerifiedGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const user = this.store.select(userFeature.selectUser);
+    const user = this.store.select(authFeature.selectUser);
     return user.pipe(
       filter(user =>
         user !== null
       ),
       map(user => {
-        if (SetupProfile.Verified !== user?.setupProfile) {
+        if (SetupProfile.Verified !== user['setupProfile']) {
           return this.router.parseUrl('/profile/setup');
         } else {
           return true;

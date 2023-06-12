@@ -5,7 +5,8 @@ export const LoadActions = createActionGroup({
   source: "Load Profile",
   events: {
     "do": emptyProps(),
-    "success": props<{ profile: Profile }>()
+    "success": props<{ profile: Profile }>(),
+    "failure": emptyProps()
   }
 });
 

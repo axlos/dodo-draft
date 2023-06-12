@@ -9,7 +9,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/home/home.module').then(m =>
         m.HomeModule
-      )
+      ),
+    canActivate: [
+      VerifiedGuard
+    ]
   },
   {
     path: 'profile',

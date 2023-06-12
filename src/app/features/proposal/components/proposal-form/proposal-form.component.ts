@@ -80,38 +80,37 @@ export class ProposalFormComponent implements OnInit, OnChanges {
     }
   }
 
-
   @Input()
   set profile(profile: Profile) {
     if (profile) {
       this._profile = profile;
-      if (profile.experiences.length === 0) {
+      if (profile.experiences && profile.experiences.length === 0) {
         this.proposalForm.get('experiences').disable();
       }
-      if (profile.educations.length === 0) {
+      if (profile.educations && profile.educations.length === 0) {
         this.proposalForm.get('educations').disable();
       }
-      if (profile.certifications.length === 0) {
+      if (profile.certifications && profile.certifications.length === 0) {
         this.proposalForm.get('certifications').disable();
       }
-      if (profile.languages.length === 0) {
+      if (profile.languages && profile.languages.length === 0) {
         this.proposalForm.get('languages').disable();
       }
     }
   }
 
   ngOnChanges() {
-    if (this._profile && this._job) {
-      if (this._profile.experiences.length === 0) {
+    if (this._profile && this._profile !== null) {
+      if (this._profile.experiences && this._profile.experiences.length === 0) {
         this.proposalForm.get('experiences').setValue(false);
       }
-      if (this._profile.educations.length === 0) {
+      if (this._profile.educations && this._profile.educations.length === 0) {
         this.proposalForm.get('educations').setValue(false);
       }
-      if (this._profile.certifications.length === 0) {
+      if (this._profile.certifications && this._profile.certifications.length === 0) {
         this.proposalForm.get('certifications').setValue(false);
       }
-      if (this._profile.languages.length === 0) {
+      if (this._profile.languages && this._profile.languages.length === 0) {
         this.proposalForm.get('languages').setValue(false);
       }
     }

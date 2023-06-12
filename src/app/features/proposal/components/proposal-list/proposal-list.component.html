@@ -14,7 +14,7 @@
                        (delete)="delete.emit({ job: job, proposal: $event })">
       </app-proposal-ai>
     </div>
-    <p *ngIf="job.proposals.length === 0 && !loading">
+    <p *ngIf="job.proposals.length === 0 && !loading && !saving">
       Create a proposal to get started.
     </p>
   </nb-card-body>

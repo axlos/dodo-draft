@@ -23,16 +23,24 @@ export const initialState: ProfileState = {
 export const profileReducer = createReducer(
   initialState,
   // Load Profile
-  on(ProfileActions.LoadActions.do, state => ({
-    ...state,
-    profile: null,
-    error: null,
-    loading: true
-  })),
+  on(ProfileActions.LoadActions.do, state => (
+    {
+      ...state,
+      profile: null,
+      error: null,
+      loading: true
+    }
+  )),
   on(ProfileActions.LoadActions.success, (state, { profile }) => (
     {
       ...state,
       profile,
+      loading: false
+    }
+  )),
+  on(ProfileActions.LoadActions.failure, state => (
+    {
+      ...state,
       loading: false
     }
   )),

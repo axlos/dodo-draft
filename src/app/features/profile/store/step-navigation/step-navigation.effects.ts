@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { filter, map } from "rxjs/operators";
 import { StepNavigation } from "./step-navigation.actions";
 import * as ProfileActions from '../../../../core/store/actions/profile.actions';
-import * as UserActions from "../../../../core/store/actions/user.actions";
+import * as AuthActions from '../../../../core/store/actions/auth.actions';
 import { SetupProfile } from "../../enums/setup-profile.enum";
 
 @Injectable()
@@ -16,10 +16,10 @@ export class StepNavigationEffects {
 
   public loadUser$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UserActions.LoadActions.success),
+      ofType(AuthActions.LoginActions.success),
       map((action) => {
         let index = 0;
-        switch (action.user.setupProfile) {
+        switch (action.user['setupProfile']) {
           case SetupProfile.Verify:
             index = 1;
             break

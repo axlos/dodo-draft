@@ -19,3 +19,13 @@ export const LogoutActions = createActionGroup({
     "success ": emptyProps(),
   }
 });
+
+export const UpdateUserActions = createActionGroup({
+  source: "Auth Update User Actions",
+  events: {
+    "verify": emptyProps(),
+    "setupProfile": props<{
+      status: number
+    }>()
+  }
+});

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { NbToastrService } from "@nebular/theme";
 import { filter, map, tap } from "rxjs/operators";
 import { CoreService } from "../../services/core.service";
-import * as UserActions from "../../../core/store/actions/user.actions";
+import * as AuthActions from "../../../core/store/actions/auth.actions";
 import { SetupProfile } from "../../../features/profile/enums/setup-profile.enum";
 import { HeaderMenu } from "../../enums/header-menu.enum";
 import { HeaderMenuActions, UIActions } from "../actions/core.actions";
@@ -20,12 +20,15 @@ export class CoreEffects {
   public loadHeaderMenu$ = createEffect(() =>
     this.actions$.pipe(
       ofType(
-        UserActions.LoadActions.success,
-        UserActions.UpdateActions.success
+        AuthActions.LoginActions.success,
+        AuthActions.UpdateUserActions.setupprofile
       ),
-      filter(action =>
-        SetupProfile.Verified === action.user.setupProfile
-      ),
+      filter((action: any) => {
+        if (action.user) {
+          return SetupProfile.Verified === action.user.setupProfile;
+        }
+        return true;
+      }),
       map(() =>
         HeaderMenuActions.load({
           menu: [

@@ -1,11 +1,13 @@
-<h1>History</h1>
+<h3>History</h3>
+<p *ngIf="(jobs$ | async)?.length > 0">
+  Your personal archive of crafted professional proposals
+</p>
 <div *ngFor="let jobHistory of (jobs$ | async) ?? []">
   <app-proposal-history [jobHistory]="jobHistory"
                         [loading]="(loading$ | async) ?? false"
                         (delete)="delete($event)">
   </app-proposal-history>
 </div>
-<div class="alert alert-primary" role="alert" *ngIf="(jobs$ | async)?.length === 0">
-  <h6 class="alert-heading">No history</h6>
+<div class="alert alert-primary mt-4" role="alert" *ngIf="(jobs$ | async)?.length === 0">
   There is no history. click <a class="alert-link" (click)="create()">here</a> to create a new proposal.
 </div>

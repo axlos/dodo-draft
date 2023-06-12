@@ -1,10 +1,11 @@
 import { createReducer, on } from "@ngrx/store";
-import { User } from "@auth0/auth0-spa-js";
 
-import { LoginActions, LogoutActions } from '../actions/auth.actions';
+import { LoginActions, LogoutActions, UpdateUserActions } from '../actions/auth.actions';
+import { SetupProfile } from "../../enums/setup-profile.enum";
+import { AuthUser } from "../../interfaces/auth-user.interface";
 
 export interface AuthState {
-  user: User | null;
+  user: AuthUser | null;
   isAuthenticated: boolean;
 }
 
@@ -19,7 +20,13 @@ export const authReducer = createReducer(
   on(LoginActions.success, (state, { user, isAuthenticated }) => (
     {
       ...state,
-      user,
+      user: {
+        email: user['name'],
+        name: user['name'],
+        sub: user['sub'],
+        setupProfile: user['setupProfile'],
+        emailVerified: user['email_verified'] === true
+      },
       isAuthenticated
     }
   )),
@@ -31,4 +38,14 @@ export const authReducer = createReducer(
       isAuthenticated: false
     }
   )),
+  on(UpdateUserActions.setupprofile, (state, { status }) => (
+    {
+      ...state,
+      user: {
+        ...state.user,
+        setupProfile: status
+      },
+    }
+  ))
 );
+

@@ -110,9 +110,9 @@ export const jobReducer = createReducer(
     {
       ...state,
       job: {
+        // This is to simulate the placeholder when a job is loading its proposals
         proposals: [
-          {} as Proposal,
-          {} as Proposal,
+          {} as Proposal
         ]
       } as Job,
       loading: true

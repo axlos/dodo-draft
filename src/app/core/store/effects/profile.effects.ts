@@ -6,7 +6,8 @@ import { ProfileService } from "../../services/profile.service";
 import { LoadActions, SaveActions, UploadActions } from '../actions/profile.actions';
 import * as CoreActions from "../actions/core.actions";
 import { UnexpectedErrorMessage } from "../../interfaces/message-config.interface";
-import { LoginActions } from "../actions/auth.actions";
+import { LoginActions, UpdateUserActions } from "../actions/auth.actions";
+import { SetupProfile } from "../../enums/setup-profile.enum";
 
 @Injectable()
 export class ProfileEffects {
@@ -18,12 +19,13 @@ export class ProfileEffects {
 
   // Fetch the profile when the user logs in
   public loadProfileAfterLogin$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(LoginActions.success),
-      map(() =>
-        LoadActions.do()
+    this.actions$
+      .pipe(
+        ofType(LoginActions.success),
+        map(() =>
+          LoadActions.do()
+        )
       )
-    )
   );
 
   // create ngrx effect to fetch a edit-profile
@@ -36,10 +38,8 @@ export class ProfileEffects {
             map(profile =>
               LoadActions.success({ profile })
             ),
-            catchError((error: any) =>
-              of(CoreActions.UIActions.displaymessage({
-                params: new UnexpectedErrorMessage(error.message)
-              }))
+            catchError(() =>
+              of(LoadActions.failure())
             )
           )
       )
@@ -51,29 +51,30 @@ export class ProfileEffects {
     this.actions$.pipe(
       ofType(SaveActions.do),
       switchMap(action =>
-        this.profileService.save(action.profile).pipe(
-          map(profile =>
-            SaveActions.success({ profile })
-          ),
-          catchError(error =>
-            from([
-              CoreActions.UIActions.displaymessage({
-                  params: {
-                    message: 'Please check that you have entered your information correctly',
-                    title: 'Save profile',
-                    config: {
-                      preventDuplicates: true,
-                      status: 'warning'
+        this.profileService.save(action.profile)
+          .pipe(
+            map(profile =>
+              SaveActions.success({ profile })
+            ),
+            catchError(error =>
+              from([
+                CoreActions.UIActions.displaymessage({
+                    params: {
+                      message: 'Please check that you have entered your information correctly',
+                      title: 'Save profile',
+                      config: {
+                        preventDuplicates: true,
+                        status: 'warning'
+                      }
                     }
                   }
-                }
-              ),
-              SaveActions.failure({
-                error: error.message
-              })
-            ])
+                ),
+                SaveActions.failure({
+                  error: error.message
+                })
+              ])
+            )
           )
-        )
       )
     )
   );
@@ -82,18 +83,31 @@ export class ProfileEffects {
     this.actions$.pipe(
       ofType(UploadActions.do),
       switchMap(action =>
-        this.profileService.upload(action.file).pipe(
-          map(() =>
-            UploadActions.success()
-          ),
-          catchError(error =>
-            of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedErrorMessage(error.message)
-            }))
+        this.profileService.upload(action.file)
+          .pipe(
+            map(() =>
+              UploadActions.success()
+            ),
+            catchError(error =>
+              of(CoreActions.UIActions.displaymessage({
+                params: new UnexpectedErrorMessage(error.message)
+              }))
+            )
           )
-        )
       )
     )
+  );
+
+  public setToVerifyStatus$ = createEffect(() =>
+    this.actions$
+      .pipe(
+        ofType(UploadActions.success),
+        map(() =>
+          UpdateUserActions.setupprofile({
+            status: SetupProfile.Verify
+          })
+        )
+      )
   );
 
 

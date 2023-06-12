@@ -8,10 +8,13 @@
 
       <nb-step label="Upload">
         <h5>
-          Upload your profile
+          Upload Your LinkedIn Profile
         </h5>
         <p class="lh-base">
-          The first step is to upload your LinkedIn profile. This enables us to craft a unique proposal that aligns with your profile when creating job or project proposals.
+          Simply upload your LinkedIn profile in PDF format. We'll extract the vital information to understand your unique skills, experiences, and qualifications. Using this data, our system will generate specific, targeted proposals that align with your profile and desired job descriptions.
+        </p>
+        <p>
+          Make your job hunt smarter and more efficient with us. <em>Start by uploading your LinkedIn profile now!</em>
         </p>
         <div class="pt-4">
           <app-upload-profile (fileSelected)="fileSelected($event)">
@@ -19,10 +22,16 @@
         </div>
 
         <div class="mt-4 d-flex justify-content-end">
+          <button nbButton nbStepperNext
+                  type="button"
+                  *ngIf="(isInVerification | async) && !newUpload">
+            next
+          </button>
           <button nbButton
                   type="button"
                   [disabled]="file == null || (loading$ | async)"
-                  (click)="uploadFile()">
+                  (click)="uploadFile()"
+                  *ngIf="!(isInVerification | async) || newUpload">
             next
           </button>
         </div>
@@ -33,7 +42,7 @@
           Verify profile
         </h5>
         <p class="lh-base">
-          Carefully look at your profile information and add as many details as you can.
+          Input as many details as possible about your skills, experience, education, and more. Why is this important? The more information you provide, the better our AI can craft a proposal that fits perfectly with the job description you're aiming for.
         </p>
         <div class="pt-4">
           <app-profile-form [profile]="profile$ | async"
