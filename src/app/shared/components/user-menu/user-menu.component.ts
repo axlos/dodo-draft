@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { User } from "@auth0/auth0-spa-js";
 import { NbMenuItem } from "@nebular/theme";
 
 @Component({
@@ -10,7 +9,7 @@ import { NbMenuItem } from "@nebular/theme";
 export class UserMenuComponent {
 
   @Input()
-  public user: User | null = null;
+  public user: string | null = null;
   @Input()
   public loading: boolean = false;
 

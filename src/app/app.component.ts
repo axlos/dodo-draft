@@ -3,14 +3,16 @@ import { NB_WINDOW, NbMenuService } from '@nebular/theme';
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { filter, map } from 'rxjs/operators';
-import { Observable } from "rxjs";
+import { combineLatest, Observable } from "rxjs";
 import { HeaderMenuInterface } from "./core/interfaces/header-menu.interface";
+import { HeaderMenu } from "./core/enums/header-menu.enum";
+import { Profile } from "./core/models/profile.model";
+import { AuthUser } from "./core/interfaces/auth-user.interface";
 import { coreFeature } from "./core/store/features/core.feature";
+import { authFeature } from './core/store/features/auth.feature';
+import { profileFeature } from "./core/store/features/profile.feature";
 import * as JobActions from "./features/proposal/store/job/job.actions";
 import * as AuthActions from "./core/store/actions/auth.actions";
-import { HeaderMenu } from "./core/enums/header-menu.enum";
-import { authFeature } from './core/store/features/auth.feature';
-import { User } from "@auth0/auth0-spa-js";
 
 
 @Component({
@@ -22,7 +24,8 @@ export class AppComponent implements OnInit {
 
   public headerMenu$: Observable<HeaderMenuInterface[] | null>;
   public isAuthenticated$: Observable<boolean>;
-  public user$: Observable<User>;
+  public user$: Observable<AuthUser>;
+  public profile$: Observable<Profile>;
 
   constructor(
     private router: Router,
@@ -33,6 +36,7 @@ export class AppComponent implements OnInit {
     this.headerMenu$ = this.store.select(coreFeature.selectHeaderMenu);
     this.isAuthenticated$ = this.store.select(authFeature.selectIsAuthenticated);
     this.user$ = this.store.select(authFeature.selectUser);
+    this.profile$ = this.store.select(profileFeature.selectProfile);
   }
 
   ngOnInit() {
@@ -66,6 +70,20 @@ export class AppComponent implements OnInit {
   public login(): void {
     this.store.dispatch(
       AuthActions.LoginActions.do()
+    );
+  }
+
+  public get userName(): Observable<string> {
+    return combineLatest([
+      this.user$,
+      this.profile$,
+    ]).pipe(
+      map(([user, profile]) => {
+        if (user && profile) {
+          return profile.fullName || user.name;
+        }
+        return 'Guest';
+      })
     );
   }
 

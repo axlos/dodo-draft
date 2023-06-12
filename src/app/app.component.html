@@ -21,7 +21,7 @@
       </nb-action>
       <nb-action class="push-to-right"
                  *ngIf="isAuthenticated$ | async">
-        <app-user-menu [user]="user$ | async"></app-user-menu>
+        <app-user-menu [user]="userName | async"></app-user-menu>
       </nb-action>
     </nb-actions>
   </nb-layout-header>
