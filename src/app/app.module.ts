@@ -39,7 +39,7 @@ import { ErrorInterceptorService } from './core/services/error-interceptor.servi
       autoFocus: false
     }),
     NbThemeModule.forRoot({
-      name: 'default'
+      name: 'dodo'
     }),
     NbToastrModule.forRoot({
       hasIcon: true,
@@ -59,7 +59,7 @@ import { ErrorInterceptorService } from './core/services/error-interceptor.servi
         redirect_uri: window.location.origin,
         scope: 'profile email update:current_user_metadata'
       }
-    }),
+    })
   ],
   providers: [
     {

@@ -1,9 +1,9 @@
-@use "@nebular/theme/styles/globals" as *;
-@use "src/styles/themes" as *;
+@use 'themes' as *;
+@use '@nebular/theme/styles/globals' as *;
 
 @include nb-install() {
   @include nb-theme-global();
-}
+};
 
 /* You can add global styles to this file, and also import other style files */
 .content-center {
@@ -26,3 +26,6 @@ nb-card {
   border-radius: 0.5rem;
 }
 
+h1, h2, h3, h4, h5 {
+  color: nb-theme(color-warning-300);
+}

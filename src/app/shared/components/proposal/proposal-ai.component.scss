@@ -1,22 +1,22 @@
 @use "src/styles/themes" as *;
 
 .proposal {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.footer {
   position: relative;
-  background: nb-theme(color-basic-200);
-  padding: 2rem 40px 1rem 1.5rem;
-  margin-bottom: 0;
-  border-radius: 0.5rem;
+  padding-right: 0;
 }
 
 .copy-wrapper {
-  position: absolute;
-  right: 5px;
-  top: 5px;
+  margin-left: auto;
 }
 
 .date-time {
-  margin-right: -1.5rem;
+  color: nb-theme(color-warning-300);
 }
 
 .cover-letter {
+  margin-bottom: 0;
 }

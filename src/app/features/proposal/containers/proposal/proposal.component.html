@@ -12,17 +12,17 @@
   </nb-sidebar>
 
   <nb-layout-column class="custom-layout">
-    <h3>
+    <h2>
       Create Proposal
-    </h3>
+    </h2>
 
-    <p *ngIf="(job$ | async) !== null">
+    <p class="pb-4" *ngIf="(job$ | async) !== null">
       Having a robust, personalized proposal often makes the difference in the competitive job market. With our tool, you'll have an advantage, as your proposals will be crafted based on the unique details of your profile and the job description.
     </p>
 
     <div class="content-wrapper">
 
-      <div class="alert alert-primary mt-4" role="alert" *ngIf="(job$ | async) === null">
+      <div class="mt-4" role="alert" *ngIf="(job$ | async) === null">
         <h6 class="alert-heading">Start here!</h6>
         <p>
           Making a strong proposal can help you get jobs or projects. We help you make a cover letter that shows what

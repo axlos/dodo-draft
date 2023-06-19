@@ -1,33 +1,60 @@
 <nb-layout>
 
   <nb-layout-header fixed>
+
     <nb-actions size="medium" class="">
-      <nb-action icon="message-square-outline" routerLink="/home"></nb-action>
-      <nb-action [routerLink]="item.router"
-                 (click)="onAction(item)"
+      <nb-action (click)="onClickLogo()">
+        <div class="logo">
+          <img src="../assets/img/dodo_draft_logo.png">
+        </div>
+      </nb-action>
+      <nb-action (click)="onAction(item)"
                  *ngFor="let item of headerMenu$ | async">
-        <span [class]="item.class">
-          {{item.title}}
-        </span>
+            <span [class]="item.class">
+              {{item.title}}
+            </span>
         <nb-icon class="action-icon" [icon]="item.icon" *ngIf="item.icon">
         </nb-icon>
       </nb-action>
       <nb-action class="push-to-right"
                  (click)="login()"
                  *ngIf="!(isAuthenticated$ | async)">
-        <span>
-          Log in
-        </span>
+            <span>
+              Log in
+            </span>
       </nb-action>
       <nb-action class="push-to-right"
                  *ngIf="isAuthenticated$ | async">
         <app-user-menu [user]="userName | async"></app-user-menu>
       </nb-action>
     </nb-actions>
+
   </nb-layout-header>
 
   <nb-layout-column>
-    <router-outlet></router-outlet>
+    <div class="w-75 me-auto ms-auto" [class.w-100]="isAuthenticated$ | async">
+      <router-outlet></router-outlet>
+    </div>
   </nb-layout-column>
+
+  <nb-layout-footer class="footer" *ngIf="!(isAuthenticated$ | async)">
+    <nb-actions size="medium">
+      <nb-action routerLink="/home">
+        <div class="logo">
+          <img src="../assets/img/dodo_draft_logo_footer.png">
+        </div>
+      </nb-action>
+      <nb-action class="push-to-right"></nb-action>
+      <nb-action [routerLink]="item.router"
+                 (click)="onAction(item)"
+                 *ngFor="let item of headerMenu$ | async">
+            <span [class]="item.class">
+              {{item.title}}
+            </span>
+        <nb-icon class="action-icon" [icon]="item.icon" *ngIf="item.icon">
+        </nb-icon>
+      </nb-action>
+    </nb-actions>
+  </nb-layout-footer>
 
 </nb-layout>

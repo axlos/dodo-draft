@@ -64,13 +64,34 @@ export class AppComponent implements OnInit {
         JobActions.CreateActions.reset()
       );
     }
-    this.router.navigate([item.router]);
+    this.router.navigate([
+      item.router
+    ], {
+      fragment: item.fragment
+    });
   }
 
   public login(): void {
     this.store.dispatch(
-      AuthActions.LoginActions.do()
+      AuthActions.LoginActions.do({
+        screenHint: 'login'
+      })
     );
+  }
+
+  public onClickLogo(): void {
+    this.isAuthenticated$
+      .subscribe(isAuthenticated => {
+        if (isAuthenticated) {
+          this.router.navigate(['/proposal/history']);
+        } else {
+          this.router.navigate([
+            '/home'
+          ], {
+            fragment: 'home'
+          });
+        }
+      });
   }
 
   public get userName(): Observable<string> {

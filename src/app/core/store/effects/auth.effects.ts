@@ -20,8 +20,8 @@ export class AuthEffects {
   public login$ = createEffect(() =>
       this.actions$.pipe(
         ofType(LoginActions.do),
-        map(() =>
-          this.authService.login()
+        map((action) =>
+          this.authService.login(action.screenHint)
         )
       ),
     { dispatch: false }

@@ -1,8 +1,6 @@
 <nb-card
   [nbSpinner]="(loading$ | async) ?? false"
-  nbSpinnerStatus="success"
-  nbSpinnerSize="giant"
->
+  nbSpinnerSize="giant">
   <nb-card-body>
     <nb-stepper #stepper orientation="horizontal" disableStepNavigation [selectedIndex]="0">
 
@@ -11,7 +9,9 @@
           Upload Your LinkedIn Profile
         </h5>
         <p class="lh-base">
-          Simply upload your LinkedIn profile in PDF format. We'll extract the vital information to understand your unique skills, experiences, and qualifications. Using this data, our system will generate specific, targeted proposals that align with your profile and desired job descriptions.
+          We'll extract the vital information to understand your unique skills, experiences, and qualifications. Using
+          this data, our system will generate specific, targeted
+          proposals that align with your profile and desired job descriptions.
         </p>
         <p>
           Make your job hunt smarter and more efficient with us. <em>Start by uploading your LinkedIn profile now!</em>
@@ -23,13 +23,14 @@
 
         <div class="mt-4 d-flex justify-content-end">
           <button nbButton nbStepperNext
+                  status="basic"
                   type="button"
                   *ngIf="(isInVerification | async) && !newUpload">
             next
           </button>
           <button nbButton
                   type="button"
-                  [disabled]="file == null || (loading$ | async)"
+                  status="basic"
                   (click)="uploadFile()"
                   *ngIf="!(isInVerification | async) || newUpload">
             next
@@ -42,7 +43,9 @@
           Verify profile
         </h5>
         <p class="lh-base">
-          Input as many details as possible about your skills, experience, education, and more. Why is this important? The more information you provide, the better our AI can craft a proposal that fits perfectly with the job description you're aiming for.
+          Input as many details as possible about your skills, experience, education, and more. Why is this important?
+          The more information you provide, the better our AI can craft a proposal that fits perfectly with the job
+          description you're aiming for.
         </p>
         <div class="pt-4">
           <app-profile-form [profile]="profile$ | async"

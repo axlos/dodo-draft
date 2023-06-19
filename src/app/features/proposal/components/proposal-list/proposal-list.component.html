@@ -1,21 +1,19 @@
-<nb-card *ngIf="job !== null" accent="basic">
-  <nb-card-body class="m-4">
-    <h5>
-      Proposals <span *ngIf="!loading">({{job.proposals.length}})</span>
-    </h5>
-    <div class="proposal" *ngIf="saving">
-      <app-proposal-ai [proposal]="fakeProposal"
-                       [loading]="true">
-      </app-proposal-ai>
-    </div>
-    <div class="proposal" *ngFor="let proposal of job.proposals">
-      <app-proposal-ai [proposal]="proposal"
-                       [loading]="loading"
-                       (delete)="delete.emit({ job: job, proposal: $event })">
-      </app-proposal-ai>
-    </div>
-    <p *ngIf="job.proposals.length === 0 && !loading && !saving">
-      Create a proposal to get started.
-    </p>
-  </nb-card-body>
-</nb-card>
+<div *ngIf="job !== null">
+  <h5 class="mb-2">
+    Proposals <span *ngIf="!loading">({{job.proposals.length}})</span>
+  </h5>
+  <div class="proposal" *ngIf="saving">
+    <app-proposal-ai [proposal]="fakeProposal"
+                     [loading]="true">
+    </app-proposal-ai>
+  </div>
+  <div class="proposal" *ngFor="let proposal of job.proposals">
+    <app-proposal-ai [proposal]="proposal"
+                     [loading]="loading"
+                     (delete)="delete.emit({ job: job, proposal: $event })">
+    </app-proposal-ai>
+  </div>
+  <p *ngIf="job.proposals.length === 0 && !loading && !saving">
+    Create a proposal to get started.
+  </p>
+</div>

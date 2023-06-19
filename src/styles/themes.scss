@@ -1,25 +1,36 @@
 @forward '@nebular/theme/styles/theming';
 @use '@nebular/theme/styles/theming' as *;
-@use '@nebular/theme/styles/themes/default';
+@use '@nebular/theme/styles/themes/cosmic';
+
+$nb-enable-css-custom-properties: true; // <-- enable css custom propertie
 
 $nb-themes: nb-register-theme((
   sidebar-width: 25rem,
-  // add your variables here like:
-
-  // color-primary-100: #f2f6ff,
-  // color-primary-200: #d9e4ff,
-  // color-primary-300: #a6c1ff,
-  // color-primary-400: #598bff,
-  // color-primary-500: #3366ff,
-  // color-primary-600: #274bdb,
-  // color-primary-700: #1a34b8,
-  // color-primary-800: #102694,
-  // color-primary-900: #091c7a,
-
-), default, default);
+  tag-outline-primary-text-color: nb-theme(color-primary-400),
+  tag-outline-primary-hover-text-color: nb-theme(color-primary-400),
+  card-divider-color: nb-theme(color-basic-900),
+  actions-divider-color: transparent,
+  footer-background-color: var(--layout-background-color),
+  user-picture-box-background-color: nb-theme(color-primary-400),
+  user-picture-box-border-color: nb-theme(color-primary-400),
+  //text-primary-color: black,
+  //card-background-color: #CBC3E3,
+  //tag-outline-primary-border-color: nb-theme(color-warning-300),
+  //tag-outline-primary-background-color: nb-theme(color-warning-transparent-100),
+  //header-background-color: nb-theme(color-basic-800),
+), dodo, cosmic);
 
 nb-sidebar {
   .main-container {
-    background-color: nb-theme(color-basic-100);
+    //background-color: nb-theme(color-basic-100);
   }
 }
+
+.form-text, .text-muted {
+  color: nb-theme(color-primary-200) !important;
+}
+
+.color-warning-300 {
+  color: nb-theme(color-warning-300);
+}
+

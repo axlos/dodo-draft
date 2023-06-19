@@ -1,8 +1,10 @@
-<h3>History</h3>
-<p *ngIf="(jobs$ | async)?.length > 0">
+<h2>
+  History
+</h2>
+<p class="pb-4" *ngIf="(jobs$ | async)?.length > 0">
   Your personal archive of crafted professional proposals
 </p>
-<div *ngFor="let jobHistory of (jobs$ | async) ?? []">
+<div class="mb-2" *ngFor="let jobHistory of (jobs$ | async) ?? []">
   <app-proposal-history [jobHistory]="jobHistory"
                         [loading]="(loading$ | async) ?? false"
                         (delete)="delete($event)">

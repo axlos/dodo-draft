@@ -6,13 +6,15 @@ import { AuthGuard } from "@auth0/auth0-angular";
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
     loadChildren: () =>
       import('./features/home/home.module').then(m =>
         m.HomeModule
-      ),
-    canActivate: [
-      VerifiedGuard
-    ]
+      )
   },
   {
     path: 'profile',

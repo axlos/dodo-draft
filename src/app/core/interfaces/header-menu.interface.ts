@@ -6,4 +6,5 @@ export interface HeaderMenuInterface {
   readonly icon?: string;
   readonly class?: string;
   readonly router: string;
+  readonly fragment?: string;
 }

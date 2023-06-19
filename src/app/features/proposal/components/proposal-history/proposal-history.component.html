@@ -1,36 +1,32 @@
-<nb-card [class.placeholder-glow]="true"
-         [accent]="accent"
-         *ngIf="jobHistory !== null">
-  <nb-card-body class="m-4">
-    <h6 class="mb-4">
+<div [class.placeholder-glow]="true" *ngIf="jobHistory !== null">
+  <h6 class="mb-4">
       <span [ngClass]="{ 'col-4': loading, 'placeholder': loading, 'placeholder-lg': loading }">
         {{jobHistory.job.title}}
       </span>
-      <div class="d-flex flex-row edit-wrapper" aria-hidden="true">
-        <button nbButton ghost
-                type="button"
-                status="primary"
-                size="small"
-                shape="semi-round"
-                class="me-1"
-                [class.placeholder]="loading"
-                [disabled]="loading || jobHistory.removing"
-                [routerLink]="['/proposal', jobHistory.job._id]">
-          <nb-icon icon="edit-outline"></nb-icon>
-        </button>
-        <app-crud-buttons [loading]="loading || jobHistory.removing"
-                          [config]="crudConfig"
-                          (delete)="onDelete()">
-        </app-crud-buttons>
-      </div>
-    </h6>
-    <p class="lh-base"
-       [ngClass]="{ 'col-12': loading, 'placeholder': loading }">
-      {{jobHistory.job.details}}
-    </p>
-    <app-proposal-ai [proposal]="jobHistory.job.proposals[0]"
-                     [crudConfig]="proposalCrudConfig"
-                     [loading]="loading">
-    </app-proposal-ai>
-  </nb-card-body>
-</nb-card>
+    <div class="d-flex flex-row edit-wrapper" aria-hidden="true">
+      <button nbButton ghost
+              type="button"
+              status="primary"
+              size="small"
+              shape="semi-round"
+              class="me-1"
+              [class.placeholder]="loading"
+              [disabled]="loading || jobHistory.removing"
+              [routerLink]="['/proposal', jobHistory.job._id]">
+        <nb-icon icon="edit-outline"></nb-icon>
+      </button>
+      <app-crud-buttons [loading]="loading || jobHistory.removing"
+                        [config]="crudConfig"
+                        (delete)="onDelete()">
+      </app-crud-buttons>
+    </div>
+  </h6>
+  <p class="lh-base"
+     [ngClass]="{ 'col-12': loading, 'placeholder': loading }">
+    {{jobHistory.job.details}}
+  </p>
+  <app-proposal-ai [proposal]="jobHistory.job.proposals[0]"
+                   [crudConfig]="proposalCrudConfig"
+                   [loading]="loading">
+  </app-proposal-ai>
+</div>

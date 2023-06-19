@@ -1,16 +1,24 @@
-<div class="proposal"
-     [class.placeholder-glow]="true"
-     *ngIf="proposal !== null && proposal">
-  <div class="flex-row align-items-start" [ngClass]="{ 'd-flex': !loading }">
-    <p class="lh-base font-monospace cover-letter"
-       [innerHTML]="proposal.coverLetter"
-       *ngIf="!loading" >
-    </p>
-    <div *ngIf="loading">
-      <span class="placeholder col-8"></span>
-      <span class="placeholder col-8"></span>
-      <span class="placeholder col-8"></span>
+<nb-card class="proposal"
+         [class.placeholder-glow]="true"
+         *ngIf="proposal !== null && proposal">
+  <nb-card-body>
+    <div class="flex-row align-items-start" [ngClass]="{ 'd-flex': !loading }">
+      <p class="lh-base font-monospace cover-letter"
+         [innerHTML]="proposal.coverLetter"
+         *ngIf="!loading" >
+      </p>
+      <div *ngIf="loading">
+        <span class="placeholder col-8"></span>
+        <span class="placeholder col-8"></span>
+        <span class="placeholder col-8"></span>
+      </div>
     </div>
+  </nb-card-body>
+  <nb-card-footer class="footer d-flex align-items-center">
+    <small class="fst-italic date-time right"
+           [ngClass]="{ 'col-1': loading, 'placeholder': loading, 'placeholder-xs': loading }">
+      {{proposal.createdAt | date: 'dd/MM/yyyy HH:mm'}}
+    </small>
     <div class="copy-wrapper d-flex">
       <button nbButton ghost
               type="button"
@@ -28,12 +36,5 @@
                         (delete)="onDelete()">
       </app-crud-buttons>
     </div>
-  </div>
-  <div class="justify-content-end date-time d-flex"
-       [ngClass]="{ 'd-flex': !loading }">
-    <small class="fst-italic text-muted right"
-           [ngClass]="{ 'col-1': loading, 'placeholder': loading, 'placeholder-xs': loading }">
-      {{proposal.createdAt | date: 'dd/MM/yyyy HH:mm'}}
-    </small>
-  </div>
-</div>
+  </nb-card-footer>
+</nb-card>

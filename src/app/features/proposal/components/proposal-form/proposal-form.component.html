@@ -1,7 +1,7 @@
 <form (ngSubmit)="createProposal()"
       [formGroup]="proposalForm">
   <div class="mb-3">
-    <label for="title">Job title</label>
+    <label for="title" class="form-label">Job title</label>
     <input nbInput fullWidth
            id="title"
            type="text"
@@ -15,17 +15,17 @@
     <textarea nbInput fullWidth
               id="description"
               fieldSize="large"
-              rows="6"
+              rows="8"
               formControlName="details">
     </textarea>
   </div>
   <div class="d-flex flex-column mb-3">
     <div class="d-flex flex-row align-items-center">
       <label for="additionalContent" class="form-label mb-0">
-        Add a relevant content <span class="text-muted">(Optional)</span>
+        Relevant content <small class="text-optional">(Optional)</small>
       </label>
       <button nbButton ghost
-              status="info"
+              status="primary"
               size="small"
               shape="round"
               type="button"
@@ -36,14 +36,19 @@
     </div>
     <ng-template #infoQuestionRef>
       <small class="wrapper-popover">
-        Feel free to ask any questions regarding the project or provide any additional content that you believe is crucial for the proposal. Write in your own words, even in your native language, and we'll make your content better to help it stand out.
+        Feel free to ask any questions regarding the project or provide any additional content that you believe is crucial for the proposal.
+        <br>
+        Write in your own words, "even in your native language". We'll make your content better to help it stand out.
       </small>
     </ng-template>
     <textarea nbInput fullWidth
               id="additionalContent"
               fieldSize="large"
-              rows="2"
+              rows="4"
               formControlName="additionalContent"></textarea>
+    <div class="form-text text-color-basic">
+      Add your personal touch to make it truly yours.
+    </div>
   </div>
   <div class="mb-3">
     <label for="description" class="form-label">

@@ -1,5 +1,11 @@
 @use "src/styles/themes" as *;
 
+.logo {
+  img {
+    height: 50px;
+  }
+}
+
 .push-to-right {
   margin-left: auto;
 }
@@ -24,4 +30,14 @@ nb-user {
 
 nb-actions {
   width: 100%;
+}
+
+.footer {
+  background-color: nb-theme(color-primary-100);
+
+  .logo {
+    img {
+      height: 40px;
+    }
+  }
 }

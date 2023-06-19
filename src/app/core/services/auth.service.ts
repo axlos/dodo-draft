@@ -35,8 +35,12 @@ export class AuthService {
     this.auth0.logout();
   }
 
-  public login(): void {
-    this.auth0.loginWithRedirect();
+  public login(screenHint: string = 'login'): void {
+    this.auth0.loginWithRedirect({
+      authorizationParams: {
+        screen_hint: screenHint
+      }
+    });
   }
 
   public getAccessTokenSilently(): Observable<string> {

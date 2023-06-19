@@ -8,6 +8,7 @@ import * as CoreActions from "../actions/core.actions";
 import { UnexpectedErrorMessage } from "../../interfaces/message-config.interface";
 import { LoginActions, UpdateUserActions } from "../actions/auth.actions";
 import { SetupProfile } from "../../enums/setup-profile.enum";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class ProfileEffects {
@@ -88,10 +89,15 @@ export class ProfileEffects {
             map(() =>
               UploadActions.success()
             ),
-            catchError(error =>
-              of(CoreActions.UIActions.displaymessage({
-                params: new UnexpectedErrorMessage(error.message)
-              }))
+            catchError((error: HttpErrorResponse) =>
+              of(
+                UploadActions.failure({
+                  error: error.message
+                }),
+                CoreActions.UIActions.displaymessage({
+                  params: new UnexpectedErrorMessage('There was an error uploading your file, verify the profile and try again!')
+                })
+              )
             )
           )
       )

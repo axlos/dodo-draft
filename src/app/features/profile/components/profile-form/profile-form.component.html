@@ -1,11 +1,11 @@
 <form [formGroup]="profileForm">
   <div class="row">
     <div class="col-md-3">
-      <nb-card accent="basic">
-        <nb-card-body class="m-2">
+      <nb-card>
+        <nb-card-body class="m-1 pe-2">
           <!-- Languages -->
           <div class="mb-4">
-            <h6 class="d-flex align-items-center">
+            <h6 class="d-flex align-items-center color-warning-300">
               <span class="me-2"
                     [class.placeholder]="loading">
                 Languages
@@ -21,22 +21,24 @@
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
             </h6>
+            <p class="text-muted small fst-italic" *ngIf="!loading && languagesCrudButtons.length === 0">
+              By adding the languages you're fluent in, you can better inform clients about your language capabilities.
+            </p>
             <ul class="d-flex flex-column">
-              <li class="text-muted small fst-italic" *ngIf="!loading && languagesCrudButtons.length === 0">
-                By adding the languages you're fluent in, you can better inform clients about your language capabilities.
-              </li>
               <li class="mb-1" *ngFor="let languageCrud of languagesCrudButtons; let i = index">
                 <div class="d-flex flex-row align-items-center">
-                  <span class="me-1" [class.me-auto]="!languageCrud.language.level">
-                    {{languageCrud.language.language | titlecase}}
-                  </span>
-                  <small class="text-secondary me-2 me-auto" *ngIf="languageCrud.language.level">
-                    ({{languageCrud.language.level | titlecase}})
-                  </small>
+                  <div class="d-flex flex-column me-auto">
+                    <span class="me-1" [class.me-auto]="!languageCrud.language.level">
+                      {{languageCrud.language.language | titlecase}}
+                    </span>
+                    <small class="color-warning-300 me-2 me-auto" *ngIf="languageCrud.language.level">
+                      ({{languageCrud.language.level | titlecase}})
+                    </small>
+                  </div>
                   <app-crud-buttons [config]="languageCrud.config"
                                     [loading]="saving"
                                     (edit)="editLanguage(languageCrud.language, i)"
-                                    (delete)="deleteLanguage(i)">
+                                    (delete)="deleteLanguage(i)" class="align-self-start">
                   </app-crud-buttons>
                 </div>
               </li>
@@ -56,7 +58,7 @@
           </div>
           <!-- Certifications -->
           <div>
-            <h6 class="d-flex align-items-center">
+            <h6 class="d-flex align-items-center color-warning-300">
               <span class="me-2"
                     [class.placeholder]="loading">
                 Certifications
@@ -72,15 +74,15 @@
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
             </h6>
+            <p class="text-muted small fst-italic" *ngIf="!loading && certificationsCrudButtons.length === 0">
+              Certifications validate your skills, proving your expertise in a specific area and helping you stand out from the crowd.
+            </p>
             <ul class="lh-base">
-              <li class="text-muted small fst-italic" *ngIf="!loading && certificationsCrudButtons.length === 0">
-                Certifications validate your skills, proving your expertise in a specific area and helping you stand out from the crowd.
-              </li>
-              <li *ngFor="let certificationCrud of certificationsCrudButtons; let i = index">
+              <li class="mb-1" *ngFor="let certificationCrud of certificationsCrudButtons; let i = index">
                 <div class="d-flex flex-row align-items-center justify-content-start">
-                  <span class="me-1 me-auto">
+                  <small class="me-1 me-auto">
                     {{certificationCrud.certification}}
-                  </span>
+                  </small>
                   <app-crud-buttons [config]="certificationCrud.config"
                                     [loading]="saving"
                                     (edit)="editCertification(certificationCrud.certification, i)"
@@ -106,8 +108,8 @@
       </nb-card>
     </div>
     <div class="col-md-9">
-      <nb-card accent="basic">
-        <nb-card-body class="m-4">
+      <nb-card>
+        <nb-card-body class="m-2">
           <!-- Name -->
           <h3 class="mb-1 d-flex align-items-center">
             <span class="me-2"
@@ -194,7 +196,7 @@
           </div>
           <!-- Summary -->
           <div class="mb-5">
-            <h5 class="d-flex align-items-center">
+            <h5 class="d-flex align-items-center mb-3">
               <span class="me-2"
                     [class.placeholder]="loading"
                     [ngClass]="loading ? 'col-2' : ''">
@@ -217,7 +219,7 @@
             <div class="form-text mb-2 fst-italic" *ngIf="!loading && !editSummary && !profile?.summary">
               Highlight your skills, years of experience, and achievements. Sharing your professional journey and key milestones can make your profile more engaging and attractive to potential clients.
             </div>
-            <p class="lh-base" *ngIf="!loading && !editSummary">
+            <p class="lh-base" *ngIf="!loading && !editSummary && profile?.summary">
               {{profile?.summary}}
             </p>
             <!-- Edit Summary  -->
@@ -232,7 +234,7 @@
           </div>
           <!-- Experiences -->
           <div class="mb-5">
-            <h5 class="d-flex align-items-center">
+            <h5 class="d-flex align-items-center mb-3">
               <span class="me-2"
                     [class.placeholder]="loading">
                 Experience
@@ -281,8 +283,8 @@
             </div>
           </div>
           <!-- Education -->
-          <div class="mb-5">
-            <h5 class="d-flex align-items-center">
+          <div>
+            <h5 class="d-flex align-items-center mb-3">
               <span class="me-2"
                     [class.placeholder]="loading">
                 Education

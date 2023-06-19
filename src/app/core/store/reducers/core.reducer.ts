@@ -11,8 +11,9 @@ export const initialState: CoreState = {
   headerMenu: [
     {
       id: HeaderMenu.Create,
-      title: 'Features',
-      router: '/features'
+      title: 'How it works',
+      router: '/home',
+      fragment: 'how-it-works'
     },
     {
       id: HeaderMenu.Create,
