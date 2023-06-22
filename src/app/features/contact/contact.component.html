@@ -1,0 +1,63 @@
+<div>
+  <h1 class="fw-bold mb-3">
+    Contact
+  </h1>
+
+  <p class="lead mb-5">
+    Reach out to us, Expect a response within a day.
+  </p>
+
+  <form (ngSubmit)="submit()"
+        [formGroup]="formContact">
+    <nb-card class="w-75">
+      <nb-card-body>
+        <div class="row">
+          <nb-form-field class="col-6">
+            <input nbInput fullWidth
+                   id="name"
+                   type="text"
+                   shape="rectangle"
+                   placeholder="Name"
+                   fieldSize="giant"
+                   formControlName="name">
+          </nb-form-field>
+          <nb-form-field class="col-6">
+            <input nbInput fullWidth
+                   id="email"
+                   type="text"
+                   shape="rectangle"
+                   placeholder="Email"
+                   fieldSize="giant"
+                   formControlName="email">
+          </nb-form-field>
+        </div>
+        <nb-form-field class="col-6 w-100 mt-4">
+        <textarea nbInput fullWidth
+                  id="message"
+                  rows="5"
+                  placeholder="Let's know what we can help you!"
+                  fieldSize="giant"
+                  formControlName="message"></textarea>
+        </nb-form-field>
+      </nb-card-body>
+      <nb-card-footer class="text-end">
+        <button nbButton class="ms-auto"
+                shape="rectangle"
+                status="primary"
+                size="large"
+                type="submit"
+                [disabled]="formContact.invalid || (loading$ | async)">
+          Send
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </form>
+
+  <p class="small text-muted d-flex align-content-center">
+    <nb-icon icon="email"></nb-icon>
+    <span class="ms-2">
+      info@dododraft.com
+    </span>
+  </p>
+
+</div>

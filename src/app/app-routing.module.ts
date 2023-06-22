@@ -17,6 +17,20 @@ const routes: Routes = [
       )
   },
   {
+    path: 'faq',
+    loadChildren: () =>
+      import('./features/faq/faq.module').then(m =>
+        m.FaqModule
+      )
+  },
+  {
+    path: 'contact',
+    loadChildren: () =>
+      import('./features/contact/contact.module').then(m =>
+        m.ContactModule
+      )
+  },
+  {
     path: 'profile',
     loadChildren: () =>
       import('./features/profile/profile.module').then(m =>
