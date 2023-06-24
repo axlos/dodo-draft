@@ -109,7 +109,7 @@ export class ProfileEffects {
       .pipe(
         ofType(UploadActions.success),
         map(() =>
-          UpdateUserActions.setupprofile({
+          UpdateUserActions.status({
             status: SetupProfile.Verify
           })
         )

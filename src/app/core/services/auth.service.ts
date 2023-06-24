@@ -5,17 +5,16 @@ import { HttpClient } from "@angular/common/http";
 import { filter } from "rxjs/operators";
 
 import { combineLatest, Observable } from 'rxjs';
-import { LoginActions } from '../store/actions/auth.actions';
+import { LoginActions } from "../store/actions/auth.actions";
 
 @Injectable()
 export class AuthService {
 
   constructor(
-    private auth0: Auth0Service,
+    public auth0: Auth0Service,
     private store: Store,
     private http: HttpClient
   ) {
-    console.log('AuthService');
     // Dispatch login/logout actions after login or logout
     combineLatest([
       this.auth0.isAuthenticated$,
@@ -29,6 +28,7 @@ export class AuthService {
         LoginActions.success({ user, isAuthenticated })
       )
     );
+
   }
 
   public logout(): void {
@@ -38,7 +38,8 @@ export class AuthService {
   public login(screenHint: string = 'login'): void {
     this.auth0.loginWithRedirect({
       authorizationParams: {
-        screen_hint: screenHint
+        screen_hint: screenHint,
+        redirect_uri: `${window.location.origin}/callback`,
       }
     });
   }

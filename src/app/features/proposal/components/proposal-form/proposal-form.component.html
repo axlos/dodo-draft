@@ -89,7 +89,8 @@
             [disabled]="proposalForm.invalid || loading">
       Generate
     </button>
-    <div class="d-flex flex-row align-items-center">
+    <!-- Disabled at the moment -->
+    <div class="d-flex flex-row align-items-center" *ngIf="false">
       <button nbButton size="large" status="basic" class="position-relative" type="button">
         <span>
           Buy Credits

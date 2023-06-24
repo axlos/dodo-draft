@@ -21,7 +21,7 @@ export class CoreEffects {
     this.actions$.pipe(
       ofType(
         AuthActions.LoginActions.success,
-        AuthActions.UpdateUserActions.setupprofile
+        AuthActions.UpdateUserActions.status
       ),
       filter((action: any) => {
         if (action.user) {

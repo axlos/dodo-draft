@@ -27,7 +27,7 @@ export const UpdateUserActions = createActionGroup({
   source: "Auth Update User Actions",
   events: {
     "verify": emptyProps(),
-    "setupProfile": props<{
+    "status": props<{
       status: number
     }>()
   }

@@ -14,6 +14,7 @@ import { UIActions } from "../../../../core/store/actions/core.actions";
 import * as ProfileActions from "src/app/core/store/actions/profile.actions";
 import * as AuthActions from "../../../../core/store/actions/auth.actions";
 import { AuthUser } from "../../../../core/interfaces/auth-user.interface";
+import { Router } from "@angular/router";
 
 @Component({
   templateUrl: './setup.component.html',
@@ -30,10 +31,12 @@ export class SetupComponent implements AfterViewInit {
   public profile$: Observable<Profile | null>;
   public user$: Observable<AuthUser>;
   public newUpload: boolean = false;
+  public SetupProfile = SetupProfile;
 
   constructor(
     private cdr: ChangeDetectorRef,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {
     // Profile Selectors
     this.profile$ = this.store.select(profileFeature.selectProfile);
@@ -65,7 +68,10 @@ export class SetupComponent implements AfterViewInit {
                 message: 'This process may take some time. Please consider refreshing the page in a few moments.',
                 title: 'Uploading profile',
                 config: {
-                  status: 'basic', duration: 5000, preventDuplicates: true, icon: {
+                  status: 'primary',
+                  duration: 5000,
+                  preventDuplicates: true,
+                  icon: {
                     icon: 'refresh-outline',
                     pack: 'eva'
                   }
@@ -218,4 +224,7 @@ export class SetupComponent implements AfterViewInit {
     );
   }
 
+  public startCreating(): void {
+    this.router.navigate(['/proposal/create']);
+  }
 }

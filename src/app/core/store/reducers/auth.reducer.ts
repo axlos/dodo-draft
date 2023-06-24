@@ -38,7 +38,7 @@ export const authReducer = createReducer(
       isAuthenticated: false
     }
   )),
-  on(UpdateUserActions.setupprofile, (state, { status }) => (
+  on(UpdateUserActions.status, (state, { status }) => (
     {
       ...state,
       user: {

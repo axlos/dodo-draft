@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VerifiedGuard } from "./core/guards/verified.guard";
 import { AuthGuard } from "@auth0/auth0-angular";
+import { AuthCallbackComponent } from "./features/auth/auth-callback.component";
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
     canActivate: [
       AuthGuard
     ]
+  },
+  {
+    path: 'callback',
+    component: AuthCallbackComponent,
   },
   {
     path: 'proposal',

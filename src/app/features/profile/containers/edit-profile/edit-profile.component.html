@@ -1,5 +1,9 @@
-<app-profile-form [profile]="profile$ | async"
-                  [loading]="(loading$ | async) ?? false"
-                  [saving]="(saving$ | async) ?? false"
-                  (save)="save($event)">
-</app-profile-form>
+<nb-layout>
+  <nb-layout-column class="p-0">
+    <app-profile-form [profile]="profile$ | async"
+                      [loading]="(loading$ | async) ?? false"
+                      [saving]="(saving$ | async) ?? false"
+                      (save)="save($event)">
+    </app-profile-form>
+  </nb-layout-column>
+</nb-layout>

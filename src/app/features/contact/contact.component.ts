@@ -40,7 +40,7 @@ export class ContactComponent {
             message: 'Email sent, thanks for contacting us!',
             title: 'Email sent',
             config: {
-              status: 'basic',
+              status: 'primary',
             }
           }
         })

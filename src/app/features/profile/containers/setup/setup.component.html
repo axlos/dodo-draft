@@ -1,86 +1,93 @@
-<nb-card
-  [nbSpinner]="(loading$ | async) ?? false"
-  nbSpinnerSize="giant">
-  <nb-card-body>
-    <nb-stepper #stepper orientation="horizontal" disableStepNavigation [selectedIndex]="0">
+<nb-layout>
+  <nb-layout-column class="p-0">
+    <nb-card
+      [nbSpinner]="(loading$ | async) ?? false"
+      nbSpinnerSize="giant">
+      <nb-card-body>
+        <nb-stepper #stepper orientation="horizontal" disableStepNavigation [selectedIndex]="0">
 
-      <nb-step label="Upload">
-        <h5>
-          Upload Your LinkedIn Profile
-        </h5>
-        <p class="lh-base">
-          We'll extract the vital information to understand your unique skills, experiences, and qualifications. Using
-          this data, our system will generate specific, targeted
-          proposals that align with your profile and desired job descriptions.
-        </p>
-        <p>
-          Make your job hunt smarter and more efficient with us. <em>Start by uploading your LinkedIn profile now!</em>
-        </p>
-        <div class="pt-4">
-          <app-upload-profile (fileSelected)="fileSelected($event)">
-          </app-upload-profile>
-        </div>
+          <nb-step label="Upload">
+            <h5>
+              Upload Your LinkedIn Profile
+            </h5>
+            <p class="lh-base">
+              We'll extract the vital information to understand your unique skills, experiences, and qualifications. Using
+              this data, our system will generate specific, targeted
+              proposals that align with your profile and desired job descriptions.
+            </p>
+            <p>
+              Make your job hunt smarter and more efficient with us. <em>Start by uploading your LinkedIn profile now!</em>
+            </p>
+            <div class="pt-4">
+              <app-upload-profile (fileSelected)="fileSelected($event)">
+              </app-upload-profile>
+            </div>
 
-        <div class="mt-4 d-flex justify-content-end">
-          <button nbButton nbStepperNext
-                  status="basic"
-                  type="button"
-                  *ngIf="(isInVerification | async) && !newUpload">
-            next
-          </button>
-          <button nbButton
-                  type="button"
-                  status="basic"
-                  (click)="uploadFile()"
-                  *ngIf="!(isInVerification | async) || newUpload">
-            next
-          </button>
-        </div>
-      </nb-step>
+            <div class="mt-4 d-flex justify-content-end">
+              <button nbButton nbStepperNext
+                      status="basic"
+                      type="button"
+                      *ngIf="(isInVerification | async) && !newUpload">
+                next
+              </button>
+              <button nbButton
+                      type="button"
+                      status="basic"
+                      (click)="uploadFile()"
+                      *ngIf="!(isInVerification | async) || newUpload">
+                next
+              </button>
+            </div>
+          </nb-step>
 
-      <nb-step label="Verify">
-        <h5>
-          Verify profile
-        </h5>
-        <p class="lh-base">
-          Input as many details as possible about your skills, experience, education, and more. Why is this important?
-          The more information you provide, the better our AI can craft a proposal that fits perfectly with the job
-          description you're aiming for.
-        </p>
-        <div class="pt-4">
-          <app-profile-form [profile]="profile$ | async"
-                            [loading]="(loading$ | async) ?? false"
-                            [saving]="(saving$ | async) ?? false"
-                            (save)="saveProfile($event)">
-          </app-profile-form>
-        </div>
-        <div class="mt-4 d-flex justify-content-between">
-          <button nbButton nbStepperPrevious
-                  type="button">
-            back
-          </button>
-          <button nbButton nbStepperNext
-                  type="button"
-                  (click)="verify()">
-            Verify
-          </button>
-        </div>
-      </nb-step>
+          <nb-step label="Verify">
+            <h5>
+              Verify profile
+            </h5>
+            <p class="lh-base">
+              Input as many details as possible about your skills, experience, education, and more. Why is this important?
+              The more information you provide, the better our AI can craft a proposal that fits perfectly with the job
+              description you're aiming for.
+            </p>
+            <div class="pt-4">
+              <app-profile-form [profile]="profile$ | async"
+                                [loading]="(loading$ | async) ?? false"
+                                [saving]="(saving$ | async) ?? false"
+                                (save)="saveProfile($event)">
+              </app-profile-form>
+            </div>
+            <div class="mt-4 d-flex justify-content-between">
+              <button nbButton nbStepperPrevious
+                      type="button">
+                back
+              </button>
+              <button nbButton nbStepperNext
+                      type="button"
+                      (click)="verify()">
+                Verify
+              </button>
+            </div>
+          </nb-step>
 
-      <nb-step label="Done">
-        <div class="d-flex align-items-center flex-column">
-          <nb-icon icon="bulb-outline" status="success" class="icon-done"></nb-icon>
-          <h2 class="mt-2">
-            Congratulations!
-          </h2>
-          <p class="mb-5">
-            Now you can start creating awesome proposals!
-          </p>
-          <button nbButton status="success" routerLink="/proposal/create" type="button">
-            Let's start
-          </button>
-        </div>
-      </nb-step>
-    </nb-stepper>
-  </nb-card-body>
-</nb-card>
+          <nb-step label="Done">
+            <div class="d-flex align-items-center flex-column">
+              <nb-icon icon="bulb-outline" status="success" class="icon-done"></nb-icon>
+              <h2 class="mt-2">
+                Congratulations!
+              </h2>
+              <p class="mb-5">
+                Now you can start creating awesome proposals!
+              </p>
+              <button nbButton status="success" type="button"
+                      (click)="startCreating()"
+                      [disabled]="(user$ | async)?.setupProfile === SetupProfile.Verify">
+                Let's start
+              </button>
+            </div>
+          </nb-step>
+        </nb-stepper>
+      </nb-card-body>
+    </nb-card>
+
+  </nb-layout-column>
+</nb-layout>

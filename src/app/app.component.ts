@@ -103,7 +103,7 @@ export class AppComponent implements OnInit {
         if (user && profile) {
           return profile.fullName || user.name;
         }
-        return 'Guest';
+        return 'Loading...';
       })
     );
   }

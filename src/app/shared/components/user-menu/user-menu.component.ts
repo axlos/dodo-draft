@@ -14,11 +14,11 @@ export class UserMenuComponent {
   public loading: boolean = false;
 
   public userMenu: NbMenuItem[] = [
-    {
-      title: 'Buy Credits',
-      ariaRole: 'credits',
-      icon: 'credit-card-outline'
-    },
+    // {
+    //   title: 'Buy Credits',
+    //   ariaRole: 'credits',
+    //   icon: 'credit-card-outline'
+    // },
     {
       title: 'Logout',
       ariaRole: 'logout',

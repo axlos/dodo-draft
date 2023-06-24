@@ -13,18 +13,19 @@ import {
   NbToastrModule
 } from "@nebular/theme";
 
+import { environment } from "../environments/environment";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
-import { environment } from "../environments/environment";
-
 import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
 import { ErrorInterceptorService } from './core/services/error-interceptor.service';
+import { AuthCallbackComponent } from "./features/auth/auth-callback.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthCallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +33,7 @@ import { ErrorInterceptorService } from './core/services/error-interceptor.servi
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
+    AuthModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot({
@@ -56,7 +58,6 @@ import { ErrorInterceptorService } from './core/services/error-interceptor.servi
       clientId: environment.auth0.clientId,
       authorizationParams: {
         audience: environment.auth0.audience,
-        redirect_uri: window.location.origin,
         scope: 'profile email update:current_user_metadata'
       }
     })

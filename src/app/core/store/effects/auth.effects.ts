@@ -45,7 +45,7 @@ export class AuthEffects {
         this.authService.verifyProfile()
           .pipe(
             map(user =>
-              UpdateUserActions.setupprofile({
+              UpdateUserActions.status({
                 status: SetupProfile.Verified
               })
             ),

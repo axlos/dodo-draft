@@ -4,7 +4,7 @@
       <nb-card>
         <nb-card-body class="m-1 pe-2">
           <!-- Languages -->
-          <div class="mb-4">
+          <div class="mb-3">
             <h6 class="d-flex align-items-center color-warning-300">
               <span class="me-2"
                     [class.placeholder]="loading">
@@ -21,7 +21,9 @@
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
             </h6>
-            <p class="text-muted small fst-italic" *ngIf="!loading && languagesCrudButtons.length === 0">
+            <p class="text-hint small fst-italic d-flex align-items-start"
+               *ngIf="!loading && languagesCrudButtons.length === 0">
+              <nb-icon icon="info-outline" class="me-2"></nb-icon>
               By adding the languages you're fluent in, you can better inform clients about your language capabilities.
             </p>
             <ul class="d-flex flex-column">
@@ -74,8 +76,11 @@
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
             </h6>
-            <p class="text-muted small fst-italic" *ngIf="!loading && certificationsCrudButtons.length === 0">
-              Certifications validate your skills, proving your expertise in a specific area and helping you stand out from the crowd.
+            <p class="text-hint small fst-italic d-flex align-items-start"
+               *ngIf="!loading && certificationsCrudButtons.length === 0">
+              <nb-icon icon="info-outline" class="me-2"></nb-icon>
+              Certifications validate your skills, proving your expertise in a specific area and helping you stand out
+              from the crowd.
             </p>
             <ul class="lh-base">
               <li class="mb-1" *ngFor="let certificationCrud of certificationsCrudButtons; let i = index">
@@ -135,10 +140,13 @@
           </h3>
 
           <!-- Headline -->
-          <div class="fs-6 mb-2 d-flex flex-row align-items-center">
-            <div class="form-text fst-italic" *ngIf="!loading && !editHeadline && !profile?.headline">
-              Write a headline for your profile. This is a short sentence that describes your main skills or job. It helps others understand what you do quickly
-            </div>
+          <div class="fs-6 mt-2 mb-2 d-flex flex-row align-items-center">
+            <p class="text-hint small fst-italic d-flex align-items-start mb-0 me-2"
+                 *ngIf="!loading && !editHeadline && !profile?.headline">
+              <nb-icon icon="info-outline" class="me-2"></nb-icon>
+              Write a headline for your profile. This is a short sentence that describes your main skills or job. It
+              helps others understand what you do quickly
+            </p>
             <span class="me-2"
                   [class.placeholder]="loading"
                   [ngClass]="loading ? 'col-4' : ''"
@@ -171,9 +179,11 @@
             </p>
             <!-- / placeholder -->
             <div *ngIf="!loading" class="d-flex flex-row align-items-center">
-              <div class="form-text fst-italic" *ngIf="!editSkills && currentSkills.length === 0">
+              <p class="text-hint small fst-italic d-flex align-items-start mb-0 me-2"
+                 *ngIf="!editSkills && currentSkills.length === 0">
+                <nb-icon icon="info-outline" class="me-2"></nb-icon>
                 Display your main skills, pick up at least 5 skills you are best at.
-              </div>
+              </p>
               <nb-tag-list [multiple]="true" class="me-2" (tagRemove)="deleteSkill($event)">
                 <nb-tag status="primary" appearance="outline"
                         [text]="skill"
@@ -216,8 +226,11 @@
               <span class="placeholder col-12"></span>
             </p>
             <!-- / placeholder -->
-            <div class="form-text mb-2 fst-italic" *ngIf="!loading && !editSummary && !profile?.summary">
-              Highlight your skills, years of experience, and achievements. Sharing your professional journey and key milestones can make your profile more engaging and attractive to potential clients.
+            <div class="text-hint small fst-italic d-flex align-items-start mb-2"
+                 *ngIf="!loading && !editSummary && !profile?.summary">
+              <nb-icon icon="info-outline" class="me-2"></nb-icon>
+              Highlight your skills, years of experience, and achievements. Sharing your professional journey and key
+              milestones can make your profile more engaging and attractive to potential clients.
             </div>
             <p class="lh-base" *ngIf="!loading && !editSummary && profile?.summary">
               {{profile?.summary}}
@@ -259,8 +272,11 @@
               </p>
             </div>
             <!-- / placeholder -->
-            <small class="text-muted small fst-italic" *ngIf="!loading && experiencesCrudButtons.length === 0">
-              Add your job experiences to highlight your practical skills and past successes. This will help potential clients understand your capabilities and track record.
+            <small class="text-hint small fst-italic d-flex align-items-start"
+                   *ngIf="!loading && experiencesCrudButtons.length === 0">
+              <nb-icon icon="info-outline" class="me-2"></nb-icon>
+              Add your job experiences to highlight your practical skills and past successes. This will help potential
+              clients understand your capabilities and track record.
             </small>
             <div class="mb-4" *ngFor="let experienceCrud of experiencesCrudButtons; let i = index">
               <p class="fw-semibold mb-0 d-flex align-items-center">
@@ -277,7 +293,15 @@
                 <p class="mb-0">
                   {{experienceCrud.experience.position | titlecase}}
                 </p>
-                <p class="lh-base" *ngIf="experienceCrud.experience.description" [innerHTML]="experienceCrud.experience.description">
+                <p class="lh-base"
+                   [innerHTML]="experienceCrud.experience.description"
+                   *ngIf="experienceCrud.experience.description">
+                </p>
+                <p class="text-hint small fst-italic d-flex align-items-start mt-2"
+                   *ngIf="!experienceCrud.experience.description">
+                  <nb-icon icon="info-outline" class="me-2"></nb-icon>
+                  Help us make your proposal shine! Add a detailed job description. It gives us valuable insights to
+                  tailor your proposal.
                 </p>
               </div>
             </div>
@@ -309,8 +333,11 @@
               </p>
             </div>
             <!-- / placeholder -->
-            <small class="text-muted small fst-italic" *ngIf="!loading && educationsCrudButtons.length === 0">
-              Include your education details to showcase your qualifications and specialized skills. This will enhance your credibility and make you more appealing to potential clients
+            <small class="text-hint small fst-italic d-flex align-items-start"
+                   *ngIf="!loading && educationsCrudButtons.length === 0">
+              <nb-icon icon="info-outline" class="me-2"></nb-icon>
+              Include your education details to showcase your qualifications and specialized skills. This will enhance
+              your credibility and make you more appealing to potential clients
             </small>
             <div class="mb-4" *ngFor="let educationCrud of educationsCrudButtons; let i = index">
               <p class="fw-semibold mb-0 d-flex align-items-center">
