@@ -1,34 +1,32 @@
-<!--<nb-card>-->
-<!--  <nb-card-header>-->
-<!--    -->
-<!--  </nb-card-header>-->
-<!--</nb-card>-->
-
-<div [class.placeholder-glow]="true" *ngIf="jobHistory !== null">
-  <h6 class="mb-4 d-flex align-items-center">
-    <span [ngClass]="{ 'col-4': loading, 'placeholder': loading, 'placeholder-lg': loading }">
-      {{jobHistory.job.title}}
-    </span>
-    <div class="d-flex flex-row ms-2" aria-hidden="true">
-      <button nbButton ghost
-              type="button"
-              status="primary"
-              size="small"
-              shape="semi-round"
-              class="me-1"
-              [class.placeholder]="loading"
-              [disabled]="loading || jobHistory.removing"
-              [routerLink]="['/proposal', jobHistory.job._id]">
-        <nb-icon icon="edit-outline"></nb-icon>
-      </button>
-      <app-crud-buttons [loading]="loading || jobHistory.removing"
-                        [config]="crudConfig"
-                        (delete)="onDelete()">
-      </app-crud-buttons>
+<nb-card>
+  <nb-card-header>
+    <div class="d-flex align-items-center">
+      <span [ngClass]="{ 'col-4': loading, 'placeholder': loading, 'placeholder-lg': loading }">
+        {{jobHistory.job.title}}
+      </span>
+      <div class="d-flex flex-row ms-2 ms-auto" aria-hidden="true">
+        <button nbButton ghost
+                type="button"
+                status="primary"
+                size="small"
+                shape="semi-round"
+                class="me-1"
+                [class.placeholder]="loading"
+                [disabled]="loading || jobHistory.removing"
+                [routerLink]="['/proposal', jobHistory.job._id]">
+          <nb-icon icon="edit-outline"></nb-icon>
+        </button>
+        <app-crud-buttons [loading]="loading || jobHistory.removing"
+                          [config]="crudConfig"
+                          (delete)="onDelete()">
+        </app-crud-buttons>
+      </div>
     </div>
-  </h6>
-  <p class="lh-base d-inline-block"
-     [ngClass]="{ 'col-12': loading, 'placeholder': loading }">
-    {{jobHistory.job.details}}
-  </p>
-</div>
+  </nb-card-header>
+  <nb-card-body>
+    <p class="lh-base job-description"
+       [ngClass]="{ 'col-12': loading, 'placeholder': loading }">
+      {{jobHistory.job.details}}
+    </p>
+  </nb-card-body>
+</nb-card>

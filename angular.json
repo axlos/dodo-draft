@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "job-proposal-creator": {
+    "dodo-draft": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/job-proposal-creator",
+            "outputPath": "dist/dodo-draft",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -87,10 +87,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "job-proposal-creator:build:production"
+              "browserTarget": "dodo-draft:build:production"
             },
             "development": {
-              "browserTarget": "job-proposal-creator:build:development"
+              "browserTarget": "dodo-draft:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,7 +98,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "job-proposal-creator:build"
+            "browserTarget": "dodo-draft:build"
           }
         },
         "test": {

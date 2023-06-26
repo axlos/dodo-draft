@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://job-proposal-creator.ai",
+    "target": "https://www.dodo-draft.com",
     "secure": true,
     "logLevel": "info",
     "changeOrigin": true
