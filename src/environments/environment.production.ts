@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   api: {
-    url: 'https://www.dododraft.com/api',
+    url: 'https://api.dododraft.com/api',
   },
   stripe: 'pk_test_51JdzlBJgfrHXf7bK6mQSDi0vDko8GNXwqGotRCVbJNEXXPkoDCpYeBvhEswJW7Fm4Kb3K1RTxGfhmQAgmNBFpVlD00GOCO4uhq',
   auth0: {

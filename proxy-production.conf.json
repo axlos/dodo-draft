@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://www.dodo-draft.com",
+    "target": "https://api.dododraft.com",
     "secure": true,
     "logLevel": "info",
     "changeOrigin": true
