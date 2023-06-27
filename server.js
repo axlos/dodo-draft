@@ -11,5 +11,7 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/dodo-draft/index.html'));
 });
 
+console.log('------------------------> %', __dirname + '/dist/dodo-draft');
+
 // default Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 80);
