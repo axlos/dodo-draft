@@ -11,8 +11,8 @@
   },
   "scripts": {
     "ng": "ng",
-    "start-local": "ng serve -c=development --open --proxy-config=proxy.conf.json",
-    "start-prod": "ng serve -c=production --proxy-config=proxy-production.conf.json",
+    "start-local": "ng serve -c=development --open --proxy-config=src/proxy.conf.json",
+    "start-prod": "ng serve -c=production --proxy-config=src/proxy-production.conf.json",
     "build-local": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build -c=development --aot",
     "build-prod": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build -c=production --aot",
     "watch": "ng build --watch -c=development",

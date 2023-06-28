@@ -27,7 +27,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/proxy-production.conf.json"
             ],
             "styles": [
               "src/styles/styles.scss",
@@ -112,7 +113,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/proxy.conf.json"
             ],
             "styles": [
               "src/styles/styles.scss"
