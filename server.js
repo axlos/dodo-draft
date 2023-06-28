@@ -1,7 +1,17 @@
 const express = require('express');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
+
+app.use(
+  '/api',
+  createProxyMiddleware({
+    target: 'https://api.dododraft.com',
+    changeOrigin: true,
+    secure: true,
+  })
+);
 
 // Serve static files
 app.use(express.static(__dirname + '/dist/dodo-draft'));
@@ -12,4 +22,4 @@ app.get('/*', function (req, res) {
 });
 
 // default Heroku port
-app.listen(process.env.PORT || 80);
+app.listen(process.env.PORT || 4200);
