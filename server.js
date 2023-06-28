@@ -5,9 +5,9 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
 
 app.use(
-  '/api',
+  '/api/*',
   createProxyMiddleware({
-    target: 'https://api.dododraft.com/api',
+    target: 'https://api.dododraft.com',
     changeOrigin: true,
     secure: true,
   })
