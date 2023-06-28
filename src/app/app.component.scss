@@ -1,5 +1,9 @@
 @use "src/styles/themes" as *;
 
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
 .logo {
   img {
     height: 50px;
@@ -34,10 +38,27 @@ nb-actions {
 
 .footer {
   background-color: nb-theme(color-primary-100);
+  display: block;
 
   .logo {
     img {
       height: 40px;
     }
+  }
+}
+
+.main-layout {
+  width: 100%;
+}
+
+@include media-breakpoint-up(md) {
+  .main-layout {
+    width: 75%;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .footer {
+    display: none !important;
   }
 }
