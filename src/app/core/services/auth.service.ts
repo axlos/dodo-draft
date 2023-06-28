@@ -32,7 +32,11 @@ export class AuthService {
   }
 
   public logout(): void {
-    this.auth0.logout();
+    this.auth0.logout({
+      logoutParams: {
+        returnTo: `${window.location.origin}/home`
+      }
+    });
   }
 
   public login(screenHint: string = 'login'): void {
