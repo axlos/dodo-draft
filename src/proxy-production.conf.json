@@ -1,8 +1,0 @@
-{
-  "/api/*": {
-    "target": "https://api.dododraft.com",
-    "secure": true,
-    "logLevel": "info",
-    "changeOrigin": true
-  }
-}
