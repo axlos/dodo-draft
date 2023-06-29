@@ -1,0 +1,21 @@
+<nb-layout>
+  <nb-layout-column class="p-0">
+    <h2>
+      Create Proposal
+    </h2>
+
+    <p class="lh-sm">
+      <span class="fw-bold">Start here!</span>
+      Making a strong proposal can help you get jobs or projects. We help you make a cover letter that shows what
+      makes you special. We match your skills with what the job needs, so your proposal makes sense and convinces
+      potential employers
+    </p>
+
+    <div class="mt-4">
+      <app-proposal-form [loading]="(loading$ | async) ?? false || (saving$ | async) ?? false"
+                         [profile]="profile$ | async"
+                         (save)="saveProposal($event.id, $event.job)">
+      </app-proposal-form>
+    </div>
+  </nb-layout-column>
+</nb-layout>

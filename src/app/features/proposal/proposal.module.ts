@@ -12,6 +12,7 @@ import { ProposalHistoryComponent } from "./components/proposal-history/proposal
 import { JobEffects } from "./store/job/job.effects";
 import { jobFeature } from "./store/job/job.feature";
 import { JobService } from "./services/job.service";
+import { CreateProposalComponent } from "./containers/proposal/create-proposal/create-proposal.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { JobService } from "./services/job.service";
     ProposalFormComponent,
     ProposalListComponent,
     HistoryComponent,
-    ProposalHistoryComponent
+    ProposalHistoryComponent,
+    CreateProposalComponent
   ],
   imports: [
     SharedModule,

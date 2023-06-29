@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { ProposalComponent } from "./containers/proposal/proposal.component";
 import { HistoryComponent } from "./containers/history/history.component";
+import { CreateProposalComponent } from "./containers/proposal/create-proposal/create-proposal.component";
 
 const routes: Routes = [
   {
     path: 'create',
-    component: ProposalComponent,
+    component: CreateProposalComponent,
   },
   {
     path: 'history',
