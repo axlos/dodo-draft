@@ -7,30 +7,38 @@
       </h6>
     </nb-card-header>
     <nb-card-body>
-      <nb-form-field class="mb-4">
-        <label for="company">Company</label>
-        <input nbInput fullWidth
-               id="company"
-               type="text"
-               fieldSize="large"
-               formControlName="company">
-      </nb-form-field>
-      <nb-form-field class="mb-4">
-        <label for="position">Position</label>
-        <input nbInput fullWidth
-               id="position"
-               type="text"
-               fieldSize="large"
-               formControlName="position">
-      </nb-form-field>
-      <nb-form-field>
-        <label for="description">Description (Optional)</label>
-        <textarea nbInput fullWidth
-                  id="description"
-                  rows="4"
-                  fieldSize="large"
-                  formControlName="description"></textarea>
-      </nb-form-field>
+      <div class="row g-2">
+        <div class="col-md-6 col-sm-12">
+          <label for="company" class="label">
+            Company
+          </label>
+          <input nbInput fullWidth
+                 id="company"
+                 type="text"
+                 fieldSize="large"
+                 formControlName="company">
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <label for="position" class="label">
+            Position
+          </label>
+          <input nbInput fullWidth
+                 id="position"
+                 type="text"
+                 fieldSize="large"
+                 formControlName="position">
+        </div>
+        <div class="col-sm-12">
+          <label for="description" class="label">
+            Description (Optional)
+          </label>
+          <textarea nbInput fullWidth
+                    id="description"
+                    rows="4"
+                    fieldSize="large"
+                    formControlName="description"></textarea>
+        </div>
+      </div>
     </nb-card-body>
     <nb-card-footer>
       <div class="d-flex justify-content-end">

@@ -5,7 +5,6 @@
           shape="semi-round"
           class="me-1"
           [size]="size"
-          [class.placeholder]="loading"
           [disabled]="loading"
           (click)="onEdit()"
           *ngIf="config.edit">
@@ -16,7 +15,6 @@
           status="primary"
           shape="semi-round"
           [size]="size"
-          [class.placeholder]="loading"
           [disabled]="loading"
           (click)="onDelete()"
           *ngIf="config.delete">
@@ -31,7 +29,6 @@
           shape="semi-round"
           class="me-1"
           [size]="size"
-          [class.placeholder]="loading"
           [disabled]="loading"
           (click)="onConfirm()">
     <nb-icon icon="checkmark-outline"></nb-icon>
@@ -41,7 +38,6 @@
           status="primary"
           shape="semi-round"
           [size]="size"
-          [class.placeholder]="loading"
           [disabled]="loading"
           (click)="onCancel()">
     <nb-icon icon="close-outline"></nb-icon>

@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
 import { JobItem } from "../../interfaces/job-item.interface";
-import { NbComponentStatus } from "@nebular/theme/components/component-status";
 import { CrudButtonsConfig } from "../../../../shared/components/crud-buttons/crud-buttons-config";
 
 @Component({
@@ -8,7 +7,7 @@ import { CrudButtonsConfig } from "../../../../shared/components/crud-buttons/cr
   templateUrl: './proposal-history.component.html',
   styleUrls: ['./proposal-history.component.scss']
 })
-export class ProposalHistoryComponent {
+export class ProposalHistoryComponent implements OnInit {
 
   @Input()
   public loading: boolean = false;
@@ -18,25 +17,23 @@ export class ProposalHistoryComponent {
 
   @Output()
   public delete = new EventEmitter<string>();
-
   public crudConfig: CrudButtonsConfig = {
     edit: false,
     delete: true
   };
-  public proposalCrudConfig: CrudButtonsConfig = {
-    edit: false,
-    delete: false
-  };
+  public breakpoints: string;
 
-  onDelete() {
+  ngOnInit() {
+    this.breakpoints = window.innerWidth <= 576 ? 'sm' : 'md';
+  }
+
+  public onDelete() {
     this.delete.emit(this.jobHistory?.job._id);
   }
 
-  public get accent(): NbComponentStatus {
-    let _accent: NbComponentStatus = 'basic';
-    if (this.jobHistory !== null && this.jobHistory.removing) {
-      _accent = 'danger';
-    }
-    return _accent;
+  @HostListener('window:resize', ['$event'])
+  public onWindowResize(event: any) {
+    const screenWidth = event.target.innerWidth;
+    this.breakpoints = screenWidth <= 576 ? 'sm' : 'md';
   }
 }

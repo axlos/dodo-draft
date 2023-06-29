@@ -1,118 +1,6 @@
 <form [formGroup]="profileForm">
-  <div class="row">
-    <div class="col-md-3">
-      <nb-card>
-        <nb-card-body class="m-1 pe-2">
-          <!-- Languages -->
-          <div class="mb-3">
-            <h6 class="d-flex align-items-center color-warning-300">
-              <span class="me-2"
-                    [class.placeholder]="loading">
-                Languages
-              </span>
-              <button nbButton ghost
-                      status="primary"
-                      size="small"
-                      type="button"
-                      shape="round"
-                      [disabled]="loading"
-                      [class.placeholder]="loading"
-                      (click)="openLanguageDialog()">
-                <nb-icon icon="plus-circle-outline"></nb-icon>
-              </button>
-            </h6>
-            <p class="text-hint small fst-italic d-flex align-items-start"
-               *ngIf="!loading && languagesCrudButtons.length === 0">
-              <nb-icon icon="info-outline" class="me-2"></nb-icon>
-              By adding the languages you're fluent in, you can better inform clients about your language capabilities.
-            </p>
-            <ul class="d-flex flex-column">
-              <li class="mb-1" *ngFor="let languageCrud of languagesCrudButtons; let i = index">
-                <div class="d-flex flex-row align-items-center">
-                  <div class="d-flex flex-column me-auto">
-                    <span class="me-1" [class.me-auto]="!languageCrud.language.level">
-                      {{languageCrud.language.language | titlecase}}
-                    </span>
-                    <small class="color-warning-300 me-2 me-auto" *ngIf="languageCrud.language.level">
-                      ({{languageCrud.language.level | titlecase}})
-                    </small>
-                  </div>
-                  <app-crud-buttons [config]="languageCrud.config"
-                                    [loading]="saving"
-                                    (edit)="editLanguage(languageCrud.language, i)"
-                                    (delete)="deleteLanguage(i)" class="align-self-start">
-                  </app-crud-buttons>
-                </div>
-              </li>
-            </ul>
-            <!-- placeholder -->
-            <ul *ngIf="loading">
-              <li>
-                <span class="placeholder bg-secondary col-3"></span>
-              </li>
-              <li>
-                <span class="placeholder bg-secondary col-3"></span>
-              </li>
-              <li>
-                <span class="placeholder bg-secondary col-3"></span>
-              </li>
-            </ul>
-          </div>
-          <!-- Certifications -->
-          <div>
-            <h6 class="d-flex align-items-center color-warning-300">
-              <span class="me-2"
-                    [class.placeholder]="loading">
-                Certifications
-              </span>
-              <button nbButton ghost
-                      status="primary"
-                      size="small"
-                      shape="round"
-                      type="button"
-                      [disabled]="loading"
-                      [class.placeholder]="loading"
-                      (click)="openCertificationDialog()">
-                <nb-icon icon="plus-circle-outline"></nb-icon>
-              </button>
-            </h6>
-            <p class="text-hint small fst-italic d-flex align-items-start"
-               *ngIf="!loading && certificationsCrudButtons.length === 0">
-              <nb-icon icon="info-outline" class="me-2"></nb-icon>
-              Certifications validate your skills, proving your expertise in a specific area and helping you stand out
-              from the crowd.
-            </p>
-            <ul class="lh-base">
-              <li class="mb-1" *ngFor="let certificationCrud of certificationsCrudButtons; let i = index">
-                <div class="d-flex flex-row align-items-center justify-content-start">
-                  <small class="me-1 me-auto">
-                    {{certificationCrud.certification}}
-                  </small>
-                  <app-crud-buttons [config]="certificationCrud.config"
-                                    [loading]="saving"
-                                    (edit)="editCertification(certificationCrud.certification, i)"
-                                    (delete)="deleteCertification(i)">
-                  </app-crud-buttons>
-                </div>
-              </li>
-            </ul>
-            <!-- placeholder -->
-            <ul *ngIf="loading">
-              <li>
-                <span class="placeholder bg-secondary col-3"></span>
-              </li>
-              <li>
-                <span class="placeholder bg-secondary col-3"></span>
-              </li>
-              <li>
-                <span class="placeholder bg-secondary col-3"></span>
-              </li>
-            </ul>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
-    <div class="col-md-9">
+  <div class="row flex-sm-row-reverse">
+    <div class="col-lg-9 col-md-12">
       <nb-card>
         <nb-card-body class="m-2">
           <!-- Name -->
@@ -208,8 +96,7 @@
           <div class="mb-5">
             <h5 class="d-flex align-items-center mb-3">
               <span class="me-2"
-                    [class.placeholder]="loading"
-                    [ngClass]="loading ? 'col-2' : ''">
+                    [class.placeholder]="loading">
                 Summary
               </span>
               <app-crud-buttons [config]="summaryCrudButtonsConfig"
@@ -258,7 +145,6 @@
                       size="small"
                       shape="round"
                       [disabled]="loading || saving"
-                      [class.placeholder]="loading"
                       (click)="openExperienceDialog()">
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
@@ -319,7 +205,6 @@
                       size="small"
                       shape="round"
                       [disabled]="loading || saving"
-                      [class.placeholder]="loading"
                       (click)="openEducationDialog()">
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
@@ -354,6 +239,116 @@
                 {{educationCrud.education.degree}}
               </p>
             </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-lg-3 col-md-12">
+      <nb-card>
+        <nb-card-body class="m-1 pe-2">
+          <!-- Languages -->
+          <div class="mb-3">
+            <h6 class="d-flex align-items-center color-warning-300">
+              <span class="me-2"
+                    [class.placeholder]="loading">
+                Languages
+              </span>
+              <button nbButton ghost
+                      status="primary"
+                      size="small"
+                      type="button"
+                      shape="round"
+                      [disabled]="loading"
+                      (click)="openLanguageDialog()">
+                <nb-icon icon="plus-circle-outline"></nb-icon>
+              </button>
+            </h6>
+            <p class="text-hint small fst-italic d-flex align-items-start"
+               *ngIf="!loading && languagesCrudButtons.length === 0">
+              <nb-icon icon="info-outline" class="me-2"></nb-icon>
+              By adding the languages you're fluent in, you can better inform clients about your language capabilities.
+            </p>
+            <ul class="d-flex flex-column">
+              <li class="mb-1" *ngFor="let languageCrud of languagesCrudButtons; let i = index">
+                <div class="d-flex flex-row align-items-center">
+                  <div class="d-flex flex-column me-auto">
+                    <span class="me-1" [class.me-auto]="!languageCrud.language.level">
+                      {{languageCrud.language.language | titlecase}}
+                    </span>
+                    <small class="color-warning-300 me-2 me-auto" *ngIf="languageCrud.language.level">
+                      ({{languageCrud.language.level | titlecase}})
+                    </small>
+                  </div>
+                  <app-crud-buttons [config]="languageCrud.config"
+                                    [loading]="saving"
+                                    (edit)="editLanguage(languageCrud.language, i)"
+                                    (delete)="deleteLanguage(i)" class="align-self-start">
+                  </app-crud-buttons>
+                </div>
+              </li>
+            </ul>
+            <!-- placeholder -->
+            <ul *ngIf="loading">
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+            </ul>
+          </div>
+          <!-- Certifications -->
+          <div>
+            <h6 class="d-flex align-items-center color-warning-300">
+              <span class="me-2"
+                    [class.placeholder]="loading">
+                Certifications
+              </span>
+              <button nbButton ghost
+                      status="primary"
+                      size="small"
+                      shape="round"
+                      type="button"
+                      [disabled]="loading"
+                      (click)="openCertificationDialog()">
+                <nb-icon icon="plus-circle-outline"></nb-icon>
+              </button>
+            </h6>
+            <p class="text-hint small fst-italic d-flex align-items-start"
+               *ngIf="!loading && certificationsCrudButtons.length === 0">
+              <nb-icon icon="info-outline" class="me-2"></nb-icon>
+              Certifications validate your skills, proving your expertise in a specific area and helping you stand out
+              from the crowd.
+            </p>
+            <ul class="lh-base">
+              <li class="mb-1" *ngFor="let certificationCrud of certificationsCrudButtons; let i = index">
+                <div class="d-flex flex-row align-items-center justify-content-start">
+                  <small class="me-1 me-auto">
+                    {{certificationCrud.certification}}
+                  </small>
+                  <app-crud-buttons [config]="certificationCrud.config"
+                                    [loading]="saving"
+                                    (edit)="editCertification(certificationCrud.certification, i)"
+                                    (delete)="deleteCertification(i)">
+                  </app-crud-buttons>
+                </div>
+              </li>
+            </ul>
+            <!-- placeholder -->
+            <ul *ngIf="loading">
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+              <li>
+                <span class="placeholder bg-secondary col-3"></span>
+              </li>
+            </ul>
           </div>
         </nb-card-body>
       </nb-card>

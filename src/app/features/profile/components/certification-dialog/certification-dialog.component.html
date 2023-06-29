@@ -7,14 +7,18 @@
       </h6>
     </nb-card-header>
     <nb-card-body>
-      <nb-form-field class="mb-4">
-        <label for="certification">Certification</label>
-        <input nbInput fullWidth
-               id="certification"
-               type="text"
-               fieldSize="large"
-               formControlName="certification">
-      </nb-form-field>
+      <div class="row g-2">
+        <div class="col">
+          <label for="certification" class="label">
+            Certification
+          </label>
+          <input nbInput fullWidth
+                 id="certification"
+                 type="text"
+                 fieldSize="large"
+                 formControlName="certification">
+        </div>
+      </div>
     </nb-card-body>
     <nb-card-footer>
       <div class="d-flex justify-content-end">

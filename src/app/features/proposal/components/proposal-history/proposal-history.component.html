@@ -4,14 +4,13 @@
       <span [ngClass]="{ 'col-4': loading, 'placeholder': loading, 'placeholder-lg': loading }">
         {{jobHistory.job.title}}
       </span>
-      <div class="d-flex flex-row ms-2 ms-auto" aria-hidden="true">
+      <div class="d-flex flex-row ms-2 ms-auto" aria-hidden="true" *ngIf="breakpoints === 'md'">
         <button nbButton ghost
                 type="button"
                 status="primary"
                 size="small"
                 shape="semi-round"
                 class="me-1"
-                [class.placeholder]="loading"
                 [disabled]="loading || jobHistory.removing"
                 [routerLink]="['/proposal', jobHistory.job._id]">
           <nb-icon icon="edit-outline"></nb-icon>
@@ -29,4 +28,22 @@
       {{jobHistory.job.details}}
     </p>
   </nb-card-body>
+  <nb-card-footer *ngIf="breakpoints === 'sm'">
+    <div class="d-flex flex-row justify-content-end" aria-hidden="true">
+      <button nbButton ghost
+              type="button"
+              status="primary"
+              size="small"
+              shape="semi-round"
+              class="me-1"
+              [disabled]="loading || jobHistory.removing"
+              [routerLink]="['/proposal', jobHistory.job._id]">
+        <nb-icon icon="edit-outline"></nb-icon>
+      </button>
+      <app-crud-buttons [loading]="loading || jobHistory.removing"
+                        [config]="crudConfig"
+                        (delete)="onDelete()">
+      </app-crud-buttons>
+    </div>
+  </nb-card-footer>
 </nb-card>

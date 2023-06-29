@@ -6,12 +6,12 @@
   Reach out to us, Expect a response within a day.
 </p>
 
-<form (ngSubmit)="submit()"
-      [formGroup]="formContact">
-  <nb-card class="card-contact">
-    <nb-card-body>
+<nb-card class="card-contact">
+  <nb-card-body>
+    <form (ngSubmit)="submit()"
+          [formGroup]="formContact">
       <div class="row">
-        <nb-form-field class="col-sm-12 col-md-6 mb-3">
+        <div class="col-sm-12 col-md-6 mb-3">
           <input nbInput fullWidth
                  id="name"
                  type="text"
@@ -19,8 +19,8 @@
                  placeholder="Name"
                  fieldSize="giant"
                  formControlName="name">
-        </nb-form-field>
-        <nb-form-field class="col-sm-12 col-md-6 mb-3">
+        </div>
+        <div class="col-sm-12 col-md-6 mb-3">
           <input nbInput fullWidth
                  id="email"
                  type="text"
@@ -28,33 +28,31 @@
                  placeholder="Email"
                  fieldSize="giant"
                  formControlName="email">
-        </nb-form-field>
+        </div>
       </div>
-      <nb-form-field class="col-sm-12 col-6 w-100">
+      <div class="col-sm-12 col-6 w-100">
           <textarea nbInput fullWidth
                     id="message"
                     rows="5"
                     placeholder="Let's know what we can help you!"
                     fieldSize="giant"
                     formControlName="message"></textarea>
-      </nb-form-field>
-    </nb-card-body>
-    <nb-card-footer class="text-end">
-      <button nbButton class="ms-auto"
-              shape="rectangle"
-              status="primary"
-              size="large"
-              type="submit"
-              [disabled]="formContact.invalid || (loading$ | async)">
-        Send
-      </button>
-    </nb-card-footer>
-  </nb-card>
-</form>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer class="text-end">
+    <button nbButton class="ms-auto"
+            shape="rectangle"
+            status="primary"
+            size="large"
+            type="submit"
+            [disabled]="formContact.invalid || (loading$ | async)">
+      Send
+    </button>
+  </nb-card-footer>
+</nb-card>
 
 <p class="small text-muted d-flex align-content-center">
   <nb-icon icon="email"></nb-icon>
-  <span class="ms-2">
-      info@dododraft.com
-    </span>
+  <span class="ms-2">info@dododraft.com</span>
 </p>

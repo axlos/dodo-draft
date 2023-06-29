@@ -7,22 +7,28 @@
       </h6>
     </nb-card-header>
     <nb-card-body>
-      <nb-form-field class="mb-4">
-        <label for="degree">Degree</label>
-        <input nbInput fullWidth
-               id="degree"
-               type="text"
-               fieldSize="large"
-               formControlName="degree">
-      </nb-form-field>
-      <nb-form-field class="mb-4">
-        <label for="institution">Institution</label>
-        <input nbInput fullWidth
-               id="institution"
-               type="text"
-               fieldSize="large"
-               formControlName="institution">
-      </nb-form-field>
+      <div class="row g-2">
+        <div class="col-md-6 col-sm-12">
+          <label for="degree" class="label">
+            Degree
+          </label>
+          <input nbInput fullWidth
+                 id="degree"
+                 type="text"
+                 fieldSize="large"
+                 formControlName="degree">
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <label for="institution" class="label">
+            Institution
+          </label>
+          <input nbInput fullWidth
+                 id="institution"
+                 type="text"
+                 fieldSize="large"
+                 formControlName="institution">
+        </div>
+      </div>
     </nb-card-body>
     <nb-card-footer>
       <div class="d-flex justify-content-end">

@@ -7,19 +7,22 @@
       </h6>
     </nb-card-header>
     <nb-card-body>
-      <div class="d-flex flex-row">
-        <nb-form-field class="me-4">
-          <label for="language">Language</label>
+      <div class="row g-2">
+        <div class="col-md-6 col-sm-12">
+          <label for="language" class="label">
+            Language
+          </label>
           <input nbInput fullWidth
                  id="language"
                  type="text"
                  fieldSize="large"
                  formControlName="language">
-        </nb-form-field>
-        <nb-form-field>
-          <label for="level">Level</label>
-          <nb-select id="level"
-                     formControlName="level">
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <label for="level" class="label">
+            Level
+          </label>
+          <nb-select id="level" size="large" formControlName="level" class="w-100">
             <nb-option [value]="null">
               Please select
             </nb-option>
@@ -39,7 +42,7 @@
               Native or bilingual
             </nb-option>
           </nb-select>
-        </nb-form-field>
+        </div>
       </div>
     </nb-card-body>
     <nb-card-footer>
