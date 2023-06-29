@@ -1,32 +1,36 @@
 <nb-layout>
   <nb-layout-header fixed>
 
-    <nb-actions size="medium" *ngIf="true">
-      <nb-action [nbContextMenu]="headerMenu$ | async">
+    <nb-actions size="medium" *ngIf="breakpoints === 'sm'">
+      <nb-action class="btn-menu" (click)="toggle()">
         <nb-icon class="action-ico" icon="menu-outline">
         </nb-icon>
       </nb-action>
-      <nb-action class="push-to-right"
+      <nb-action class="push-to-right color-primary-500"
                  (click)="login()"
                  *ngIf="!(isAuthenticated$ | async)">
         <span>
           Log in
         </span>
       </nb-action>
+      <nb-action class="push-to-right btn-menu"
+                 *ngIf="isAuthenticated$ | async">
+        <app-user-menu [user]="userName | async"></app-user-menu>
+      </nb-action>
     </nb-actions>
 
-    <nb-actions size="medium" *ngIf="false">
+    <nb-actions size="medium" *ngIf="breakpoints === 'md'">
       <nb-action (click)="onClickLogo()">
         <div class="logo">
-          <img src="../assets/img/dodo_draft_logo.png">
+          <img alt="Logo DodoDraft" src="../assets/img/dodo_draft_logo.png">
         </div>
       </nb-action>
       <nb-action (click)="onAction(item)"
                  *ngFor="let item of headerMenu$ | async">
-        <span [class]="item.class">
+        <span >
           {{item.title}}
         </span>
-        <nb-icon class="action-icon" [icon]="item.icon" *ngIf="item.icon">
+        <nb-icon class="action-icon" [icon]="item.icon.toString()" *ngIf="item.icon">
         </nb-icon>
       </nb-action>
       <nb-action class="push-to-right"
@@ -44,8 +48,13 @@
 
   </nb-layout-header>
 
+  <nb-sidebar tag="left" fixed responsive *ngIf="breakpoints === 'sm'">
+    <nb-menu [items]="headerMenu$ | async" (click)="toggle()"></nb-menu>
+  </nb-sidebar>
+
   <nb-layout-column>
-    <div class="main-layout me-auto ms-auto" [class.w-100]="isAuthenticated$ | async">
+    <div class="main-layout me-auto ms-auto mt-4 mt-sm-0"
+         [class.w-100]="isAuthenticated$ | async">
       <router-outlet></router-outlet>
     </div>
   </nb-layout-column>
@@ -54,17 +63,17 @@
     <nb-actions size="medium">
       <nb-action routerLink="/home">
         <div class="logo">
-          <img src="../assets/img/dodo_draft_logo_footer.png">
+          <img alt="Logo DodoDraft" src="../assets/img/dodo_draft_logo_footer.png">
         </div>
       </nb-action>
       <nb-action class="push-to-right"></nb-action>
-      <nb-action [routerLink]="item.router"
+      <nb-action [routerLink]="item.link"
                  (click)="onAction(item)"
                  *ngFor="let item of headerMenu$ | async">
-            <span [class]="item.class">
-              {{item.title}}
-            </span>
-        <nb-icon class="action-icon" [icon]="item.icon" *ngIf="item.icon">
+        <span>
+          {{item.title}}
+        </span>
+        <nb-icon class="action-icon" [icon]="item.icon.toString()" *ngIf="item.icon">
         </nb-icon>
       </nb-action>
     </nb-actions>

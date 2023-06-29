@@ -33,21 +33,21 @@ export class CoreEffects {
         HeaderMenuActions.load({
           menu: [
             {
-              id: HeaderMenu.Create,
+              data: HeaderMenu.Create,
               title: 'Create New',
               icon: 'plus-outline',
-              class: 'ml-2 create-new',
-              router: '/proposal/create'
+              // class: 'ml-2 color-primary-500',
+              link: '/proposal/create',
             },
             {
-              id: HeaderMenu.History,
+              data: HeaderMenu.History,
               title: 'History',
-              router: '/proposal/history'
+              link: '/proposal/history',
             },
             {
-              id: HeaderMenu.Profile,
+              data: HeaderMenu.Profile,
               title: 'Profile',
-              router: 'profile'
+              link: 'profile',
             }
           ]
         })

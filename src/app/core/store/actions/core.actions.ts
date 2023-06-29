@@ -1,5 +1,5 @@
 import { createActionGroup, props } from "@ngrx/store";
-import { HeaderMenuInterface } from "../../interfaces/header-menu.interface";
+import { NbMenuItem } from "@nebular/theme";
 import { MessageConfig } from "../../interfaces/message-config.interface";
 
 export const UIActions = createActionGroup({
@@ -14,6 +14,6 @@ export const UIActions = createActionGroup({
 export const HeaderMenuActions = createActionGroup({
   source: "Header Menu",
   events: {
-    "load": props<{ menu: HeaderMenuInterface[] }>(),
+    "load": props<{ menu: NbMenuItem[] }>(),
   }
 });

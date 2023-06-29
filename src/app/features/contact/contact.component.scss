@@ -1,1 +1,15 @@
 @use "src/styles/themes" as *;
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
+.card-contact {
+  width: 100%;
+}
+
+@include media-breakpoint-up(md) {
+  .card-contact {
+    width: 50%;
+  }
+}

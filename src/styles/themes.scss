@@ -5,7 +5,6 @@
 $nb-enable-css-custom-properties: true; // <-- enable css custom propertie
 
 $nb-themes: nb-register-theme((
-  sidebar-width: 25rem,
   color-danger-default: nb-theme(color-danger-600),
   color-success-default: nb-theme(color-success-600),
   color-warning-default: nb-theme(color-warning-400),
@@ -29,6 +28,7 @@ $nb-themes: nb-register-theme((
   toastr-icon-success-color: nb-theme(toastr-success-text-color),
   toastr-icon-danger-background-color: nb-theme(color-danger-default),
   toastr-icon-danger-color: nb-theme(toastr-success-text-color),
+  sidebar-width: 16rem,
   //card-background-color: #CBC3E3,
   //tag-outline-primary-border-color: nb-theme(color-warning-300),
   //tag-outline-primary-background-color: nb-theme(color-warning-transparent-100),
@@ -49,3 +49,6 @@ nb-sidebar {
   color: nb-theme(color-warning-300);
 }
 
+.color-primary-500 {
+  color: nb-theme(color-primary-500);
+}

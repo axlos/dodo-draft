@@ -1,29 +1,30 @@
 import { createReducer, on } from "@ngrx/store";
-import { HeaderMenuInterface } from "../../interfaces/header-menu.interface";
+import { NbMenuItem } from "@nebular/theme";
+
 import { HeaderMenuActions } from "../actions/core.actions";
 import { HeaderMenu } from "../../enums/header-menu.enum";
 
 export interface CoreState {
-  headerMenu: HeaderMenuInterface[];
+  headerMenu: NbMenuItem[];
 }
 
 export const initialState: CoreState = {
   headerMenu: [
     {
-      id: HeaderMenu.Create,
+      data: HeaderMenu.Create,
       title: 'How it works',
-      router: '/home',
-      fragment: 'how-it-works'
+      link: '/home',
+      fragment: 'how-it-works',
     },
     {
-      id: HeaderMenu.Create,
+      data: HeaderMenu.Create,
       title: 'FAQ',
-      router: '/faq'
+      link: '/faq'
     },
     {
-      id: HeaderMenu.Create,
+      data: HeaderMenu.Create,
       title: 'Contact',
-      router: '/contact'
+      link: '/contact'
     }
   ]
 };

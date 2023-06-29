@@ -1,10 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { NB_WINDOW, NbMenuItem, NbMenuService } from '@nebular/theme';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { NB_WINDOW, NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { filter, map } from 'rxjs/operators';
 import { combineLatest, Observable } from "rxjs";
-import { HeaderMenuInterface } from "./core/interfaces/header-menu.interface";
 import { HeaderMenu } from "./core/enums/header-menu.enum";
 import { Profile } from "./core/models/profile.model";
 import { AuthUser } from "./core/interfaces/auth-user.interface";
@@ -14,7 +13,6 @@ import { profileFeature } from "./core/store/features/profile.feature";
 import * as JobActions from "./features/proposal/store/job/job.actions";
 import * as AuthActions from "./core/store/actions/auth.actions";
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,16 +20,18 @@ import * as AuthActions from "./core/store/actions/auth.actions";
 })
 export class AppComponent implements OnInit {
 
-  public headerMenu$: Observable<HeaderMenuInterface[] | null>;
+  public headerMenu$: Observable<NbMenuItem[]>;
   public isAuthenticated$: Observable<boolean>;
   public user$: Observable<AuthUser>;
   public profile$: Observable<Profile>;
+  public breakpoints: string;
 
   constructor(
     private router: Router,
     private store: Store,
     private nbMenuService: NbMenuService,
     @Inject(NB_WINDOW) private window: Window,
+    private sidebarService: NbSidebarService
   ) {
     this.headerMenu$ = this.store.select(coreFeature.selectHeaderMenu);
     this.isAuthenticated$ = this.store.select(authFeature.selectIsAuthenticated);
@@ -40,6 +40,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.breakpoints = window.innerWidth <= 576 ? 'sm' : 'md';
+
     this.nbMenuService.onItemClick()
       .pipe(
         filter((menu) =>
@@ -58,14 +60,18 @@ export class AppComponent implements OnInit {
       );
   }
 
-  public onAction(item: HeaderMenuInterface): void {
-    if (HeaderMenu.Create === item.id) {
+  public toggle() {
+    this.sidebarService.toggle(true, 'left');
+  }
+
+  public onAction(item: NbMenuItem): void {
+    if (HeaderMenu.Create === item.data) {
       this.store.dispatch(
         JobActions.CreateActions.reset()
       );
     }
     this.router.navigate([
-      item.router
+      item.link
     ], {
       fragment: item.fragment
     });
@@ -106,6 +112,12 @@ export class AppComponent implements OnInit {
         return 'Loading...';
       })
     );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  public onWindowResize(event: any) {
+    const screenWidth = event.target.innerWidth;
+    this.breakpoints = screenWidth <= 576 ? 'sm' : 'md';
   }
 
 }

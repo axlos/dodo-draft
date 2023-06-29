@@ -28,10 +28,6 @@ nb-user {
   color: nb-theme(color-primary-500);
 }
 
-.create-new {
-  color: nb-theme(color-primary-500);
-}
-
 nb-actions {
   width: 100%;
 }
@@ -47,11 +43,15 @@ nb-actions {
   }
 }
 
+.btn-menu {
+  padding: 0;
+}
+
 .main-layout {
   width: 100%;
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(xl) {
   .main-layout {
     width: 75%;
   }

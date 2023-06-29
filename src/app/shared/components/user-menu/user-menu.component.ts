@@ -3,8 +3,7 @@ import { NbMenuItem } from "@nebular/theme";
 
 @Component({
   selector: 'app-user-menu',
-  templateUrl: './user-menu.component.html',
-  styleUrls: ['./user-menu.component.scss']
+  templateUrl: './user-menu.component.html'
 })
 export class UserMenuComponent {
 
