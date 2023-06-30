@@ -1,0 +1,7 @@
+<app-proposal-form [profile]="profile"
+                   [job]="job"
+                   [loading]="loading"
+                   [displayCancel]="true"
+                   (save)="saveProposal($event.id, $event.job)"
+                   (cancel)="cancel()">
+</app-proposal-form>

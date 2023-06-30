@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
-import { NbDialogService, NbTagComponent, NbTagInputAddEvent } from "@nebular/theme";
+import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent } from "@nebular/theme";
 import { filter } from "rxjs/operators";
 import { Profile } from "../../../../core/models/profile.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -17,7 +17,9 @@ import { CertificationDialogComponent } from "../certification-dialog/certificat
   selector: 'app-profile-form',
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [
+    NbDialogRef
+  ],
 })
 export class ProfileFormComponent implements OnChanges {
 

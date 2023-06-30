@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges
-} from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Job } from "../../models/job.model";
 import { Profile } from "../../../../core/models/profile.model";
@@ -15,18 +6,21 @@ import { Profile } from "../../../../core/models/profile.model";
 @Component({
   selector: 'app-proposal-form',
   templateUrl: './proposal-form.component.html',
-  styleUrls: ['./proposal-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./proposal-form.component.scss']
 })
-export class ProposalFormComponent implements OnInit, OnChanges {
+export class ProposalFormComponent implements OnChanges {
 
+  @Input()
+  public loading: boolean = false;
+  @Input()
+  public displayCancel: boolean = false;
   @Output()
   public save = new EventEmitter<{
     id: string | null,
     job: Job
   }>();
-  @Input()
-  public loading: boolean = false;
+  @Output()
+  public cancel = new EventEmitter<void>();
 
   public proposalForm: FormGroup;
   private id: string | null = null;
@@ -48,11 +42,8 @@ export class ProposalFormComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnInit() {
-  }
-
   @Input()
-  set job (job: Job) {
+  set job(job: Job) {
     if (job) {
       this._job = job;
       this.id = job._id;
@@ -70,14 +61,6 @@ export class ProposalFormComponent implements OnInit, OnChanges {
 
   get job() {
     return this._job;
-  }
-
-  @Input()
-  set reset(reset: boolean) {
-    if (reset) {
-      this.id = null;
-      this.proposalForm.reset();
-    }
   }
 
   @Input()
@@ -100,7 +83,7 @@ export class ProposalFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this._profile && this._profile !== null) {
+    if (this._profile) {
       if (this._profile.experiences && this._profile.experiences.length === 0) {
         this.proposalForm.get('experiences').setValue(false);
       }
@@ -114,6 +97,9 @@ export class ProposalFormComponent implements OnInit, OnChanges {
         this.proposalForm.get('languages').setValue(false);
       }
     }
+    if (this.loading) {
+      this.proposalForm.disable();
+    }
   }
 
   public createProposal(): void {
@@ -122,5 +108,6 @@ export class ProposalFormComponent implements OnInit, OnChanges {
       job: this.proposalForm.value
     });
   }
+
 }
 

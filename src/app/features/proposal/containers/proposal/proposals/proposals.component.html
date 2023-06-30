@@ -1,0 +1,24 @@
+<nb-layout>
+  <nb-layout-column class="p-0 custom-layout">
+    <h2 class="d-flex align-items-center">
+      <span>
+        Proposals
+      </span>
+      <button nbButton status="primary" shape="round" class="ms-auto" type="button"
+              (click)="openProposalDialog()"
+              [disabled]="(loading$ | async) ?? false || (saving$ | async) ?? false">
+        <nb-icon icon="edit-outline"></nb-icon>
+      </button>
+    </h2>
+
+    <p class="pb-4 lead lh-sm">
+      Having a robust, personalized proposal often makes the difference in the competitive job market.
+    </p>
+
+    <app-proposal-list [job]="job$ | async"
+                       [loading]="(loading$ | async) ?? false"
+                       [saving]="(saving$ | async) ?? false"
+                       (delete)="deleteProposal($event.job, $event.proposal)">
+    </app-proposal-list>
+  </nb-layout-column>
+</nb-layout>

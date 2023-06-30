@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { ProposalComponent } from "./containers/proposal/proposal.component";
+import { ProposalsComponent } from "./containers/proposal/proposals/proposals.component";
 import { HistoryComponent } from "./containers/history/history.component";
 import { CreateProposalComponent } from "./containers/proposal/create-proposal/create-proposal.component";
 
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: ProposalComponent,
+    component: ProposalsComponent,
   }
 ];
 

@@ -2,7 +2,7 @@
       [formGroup]="proposalForm">
   <nb-card>
     <nb-card-body>
-      <div class="row g-3">
+      <div class="row g-3" [class.controls-wrapper]="displayCancel">
         <div class="col-12">
           <label for="title" class="label">
             Job title
@@ -85,6 +85,14 @@
     </nb-card-body>
     <nb-card-footer>
       <div class="d-flex justify-content-end">
+        <button nbButton
+                type="button"
+                status="basic"
+                class="me-2"
+                *ngIf="displayCancel"
+                (click)="cancel.emit()">
+          Cancel
+        </button>
         <button nbButton
                 size="large"
                 status="primary"

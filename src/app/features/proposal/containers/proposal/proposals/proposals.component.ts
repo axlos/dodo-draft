@@ -1,20 +1,22 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { combineLatest, Observable, take } from "rxjs";
 import { filter } from "rxjs/operators";
-import { Job } from "../../models/job.model";
-import { Profile } from "../../../../core/models/profile.model";
-import * as JobActions from "../../store/job/job.actions";
-import { jobFeature } from "../../store/job/job.feature";
-import { profileFeature } from "../../../../core/store/features/profile.feature";
-import { Proposal } from "../../models/proposal.model";
+import { Job } from "../../../models/job.model";
+import { Profile } from "../../../../../core/models/profile.model";
+import * as JobActions from "../../../store/job/job.actions";
+import { jobFeature } from "../../../store/job/job.feature";
+import { profileFeature } from "../../../../../core/store/features/profile.feature";
+import { Proposal } from "../../../models/proposal.model";
+import { NbDialogService } from "@nebular/theme";
+import { ProposalDialogComponent } from "../../../components/proposal-dialog/proposal-dialog.component";
 
 @Component({
-  templateUrl: './proposal.component.html',
-  styleUrls: ['./proposal.component.scss']
+  templateUrl: './proposals.component.html',
+  styleUrls: ['./proposals.component.scss']
 })
-export class ProposalComponent implements OnInit {
+export class ProposalsComponent implements OnInit {
 
   public profile$: Observable<Profile | null>;
   public job$: Observable<Job | null>;
@@ -24,7 +26,8 @@ export class ProposalComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store,
+    private dialogService: NbDialogService
   ) {
     this.saving$ = this.store.select(jobFeature.selectSaving);
     this.loading$ = this.store.select(jobFeature.selectLoading);
@@ -49,6 +52,33 @@ export class ProposalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  public openProposalDialog(): void {
+    combineLatest([
+      this.profile$,
+      this.job$
+    ]).pipe(
+      take(1),
+      filter(([profile, job]) =>
+        !!profile && !!job
+      )
+    ).subscribe(([profile, job]) => {
+      this.dialogService.open(ProposalDialogComponent, {
+        context: {
+          profile,
+          job
+        }
+      }).onClose
+        .pipe(
+          filter((res: { id: string, job: Job }) =>
+            !!res
+          )
+        )
+        .subscribe((res: { id: string, job: Job }) =>
+          this.saveProposal(res.id, res.job)
+        );
+    });
   }
 
   public saveProposal(id: string | null, job: Job): void {

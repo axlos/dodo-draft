@@ -1,5 +1,9 @@
 @use "src/styles/themes" as *;
 
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
 .credits {
   margin-right: 1.6rem;
   background-color: nb-theme(color-primary-100);
@@ -22,4 +26,11 @@
 
 .form-text, .text-optional {
   color: nb-theme(color-warning-300);
+}
+
+@include media-breakpoint-down(md) {
+  .controls-wrapper {
+    height: 80vh;
+  }
+
 }

@@ -1,7 +1,4 @@
 <div *ngIf="job !== null">
-  <h5 class="mb-2">
-    Proposals <span *ngIf="!loading">({{job.proposals.length}})</span>
-  </h5>
   <div class="proposal" *ngIf="saving">
     <app-proposal-ai [proposal]="fakeProposal"
                      [loading]="true">

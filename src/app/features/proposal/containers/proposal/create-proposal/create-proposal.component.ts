@@ -1,28 +1,32 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 
 import { Profile } from "../../../../../core/models/profile.model";
 import { Job } from "../../../models/job.model";
 import { jobFeature } from "../../../store/job/job.feature";
 import { profileFeature } from "../../../../../core/store/features/profile.feature";
 import * as JobActions from "../../../store/job/job.actions";
+import { filter } from "rxjs/operators";
+import { UIActions } from "../../../../../core/store/actions/core.actions";
 
 @Component({
   templateUrl: './create-proposal.component.html',
   styleUrls: ['./create-proposal.component.scss']
 })
-export class CreateProposalComponent implements OnInit {
+export class CreateProposalComponent implements OnInit, OnDestroy {
 
   public profile$: Observable<Profile | null>;
   public loading$: Observable<boolean>;
   public saving$: Observable<boolean>;
-  public reset$: Observable<boolean>;
+
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {
     this.saving$ = this.store.select(jobFeature.selectSaving);
     this.loading$ = this.store.select(jobFeature.selectLoading);
@@ -30,6 +34,18 @@ export class CreateProposalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const job$ = this.store.select(jobFeature.selectJob);
+    this.subscriptions.add(
+      job$.pipe(
+        filter(job => job !== null)
+      ).subscribe(job => {
+        this.router.navigate(['/proposal', job._id])
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   public saveProposal(id: string | null, job: Job): void {
@@ -41,6 +57,25 @@ export class CreateProposalComponent implements OnInit {
         })
       );
     } else {
+      this.store.dispatch(
+        UIActions.displaymessage({
+          params: {
+            message: 'This process may take some time. You will be redirected to the proposal page when done or you can check the proposal in the history page..',
+            title: 'Generating Proposal',
+            config: {
+              status: 'primary',
+              destroyByClick: true,
+              preventDuplicates: true,
+              duration: 10000,
+              icon: {
+                icon: 'settings-2-outline',
+                pack: 'eva'
+              }
+            }
+          }
+        })
+      );
+
       this.store.dispatch(
         JobActions.CreateActions.do({
           job
