@@ -1,15 +1,14 @@
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
-import { User as Auth0User } from "@auth0/auth0-spa-js";
-import { MessageConfig } from "../../interfaces/message-config.interface";
+import { User } from "@auth0/auth0-angular";
 
 export const LoginActions = createActionGroup({
   source: "Auth Login Actions",
   events: {
-    "do":  props<{
+    "do": props<{
       screenHint: string
     }>(),
     "success ": props<{
-      user: Auth0User,
+      user: User,
       isAuthenticated: boolean
     }>()
   }

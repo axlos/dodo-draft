@@ -20,8 +20,8 @@ export class AuthService {
       this.auth0.isAuthenticated$,
       this.auth0.user$
     ]).pipe(
-      filter(([isAuthenticated]) =>
-        isAuthenticated
+      filter(([isAuthenticated, user]) =>
+        isAuthenticated && user !== null
       )
     ).subscribe(([isAuthenticated, user]) =>
       this.store.dispatch(
@@ -42,8 +42,7 @@ export class AuthService {
   public login(screenHint: string = 'login'): void {
     this.auth0.loginWithRedirect({
       authorizationParams: {
-        screen_hint: screenHint,
-        redirect_uri: `${window.location.origin}/callback`,
+        screen_hint: screenHint
       }
     });
   }

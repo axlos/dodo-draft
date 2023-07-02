@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { catchError, from, of, switchMap } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
+import { HttpErrorResponse } from "@angular/common/http";
+
 import { ProfileService } from "../../services/profile.service";
-import { LoadActions, SaveActions, UploadActions } from '../actions/profile.actions';
+import * as ProfileActions from '../actions/profile.actions';
 import * as CoreActions from "../actions/core.actions";
 import { UnexpectedErrorMessage } from "../../interfaces/message-config.interface";
 import { LoginActions, UpdateUserActions } from "../actions/auth.actions";
 import { SetupProfile } from "../../enums/setup-profile.enum";
-import { HttpErrorResponse } from "@angular/common/http";
 
 @Injectable()
 export class ProfileEffects {
@@ -24,7 +25,7 @@ export class ProfileEffects {
       .pipe(
         ofType(LoginActions.success),
         map(() =>
-          LoadActions.do()
+          ProfileActions.LoadActions.do()
         )
       )
   );
@@ -32,15 +33,15 @@ export class ProfileEffects {
   // create ngrx effect to fetch a edit-profile
   public loadProfile$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(LoadActions.do),
+      ofType(ProfileActions.LoadActions.do),
       switchMap(() =>
         this.profileService.getProfile()
           .pipe(
             map(profile =>
-              LoadActions.success({ profile })
+              ProfileActions.LoadActions.success({ profile })
             ),
             catchError(() =>
-              of(LoadActions.failure())
+              of(ProfileActions.LoadActions.failure())
             )
           )
       )
@@ -50,12 +51,12 @@ export class ProfileEffects {
   // create ngrx effect to save a profile
   public saveProfile$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(SaveActions.do),
+      ofType(ProfileActions.SaveActions.do),
       switchMap(action =>
         this.profileService.save(action.profile)
           .pipe(
             map(profile =>
-              SaveActions.success({ profile })
+              ProfileActions.SaveActions.success({ profile })
             ),
             catchError(error =>
               from([
@@ -70,7 +71,7 @@ export class ProfileEffects {
                     }
                   }
                 ),
-                SaveActions.failure({
+                ProfileActions.SaveActions.failure({
                   error: error.message
                 })
               ])
@@ -82,16 +83,16 @@ export class ProfileEffects {
 
   public uploadFile$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UploadActions.do),
+      ofType(ProfileActions.UploadActions.do),
       switchMap(action =>
         this.profileService.upload(action.file)
           .pipe(
             map(() =>
-              UploadActions.success()
+              ProfileActions.UploadActions.success()
             ),
             catchError((error: HttpErrorResponse) =>
               of(
-                UploadActions.failure({
+                ProfileActions.UploadActions.failure({
                   error: error.message
                 }),
                 CoreActions.UIActions.displaymessage({
@@ -107,7 +108,7 @@ export class ProfileEffects {
   public setToVerifyStatus$ = createEffect(() =>
     this.actions$
       .pipe(
-        ofType(UploadActions.success),
+        ofType(ProfileActions.UploadActions.success),
         map(() =>
           UpdateUserActions.status({
             status: SetupProfile.Verify
@@ -115,6 +116,5 @@ export class ProfileEffects {
         )
       )
   );
-
 
 }

@@ -19,13 +19,10 @@ import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
 import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
-import { ErrorInterceptorService } from './core/services/error-interceptor.service';
-import { AuthCallbackComponent } from "./features/auth/auth-callback.component";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AuthCallbackComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +53,11 @@ import { AuthCallbackComponent } from "./features/auth/auth-callback.component";
     AuthModule.forRoot({
       domain: environment.auth0.domain,
       clientId: environment.auth0.clientId,
+      skipRedirectCallback: true,
       authorizationParams: {
         audience: environment.auth0.audience,
-        scope: 'profile email update:current_user_metadata'
+        scope: 'profile email update:current_user_metadata',
+        redirect_uri: environment.auth0.callback
       }
     })
   ],
@@ -66,13 +65,17 @@ import { AuthCallbackComponent } from "./features/auth/auth-callback.component";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,
-      multi: true
+      multi: true,
     },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptorService,
-      multi: true
-    }
+      provide: Window,
+      useValue: window,
+    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ErrorInterceptorService,
+    //   multi: true
+    // }
   ],
   bootstrap: [
     AppComponent

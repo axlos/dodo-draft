@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import * as ProfileFeature from "../../../../core/store/features/profile.feature";
+
 import { Profile } from "../../../../core/models/profile.model";
+import * as ProfileFeature from "../../../../core/store/features/profile.feature";
 import * as ProfileActions from "../../../../core/store/actions/profile.actions";
 
 @Component({

@@ -2,9 +2,10 @@ export const environment = {
   production: false,
   stripe: '',
   auth0: {
-    clientId: '',
     domain: '',
+    clientId: '',
+    audience: '',
     callbackURL: '',
-    audience: ''
+    callback: ''
   }
 };

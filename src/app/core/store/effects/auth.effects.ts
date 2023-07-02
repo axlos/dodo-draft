@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map } from "rxjs/operators";
-import { AuthService } from "../../services/auth.service";
-import { LoginActions, LogoutActions, UpdateUserActions } from "../actions/auth.actions";
 import { catchError, of, switchMap } from "rxjs";
+import { AuthService } from "../../services/auth.service";
+
+import { LoginActions, LogoutActions, UpdateUserActions } from "../actions/auth.actions";
 import * as CoreActions from "../actions/core.actions";
 import { UnexpectedErrorMessage } from "../../interfaces/message-config.interface";
 import { SetupProfile } from "../../enums/setup-profile.enum";

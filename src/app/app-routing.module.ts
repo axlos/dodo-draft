@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { VerifiedGuard } from "./core/guards/verified.guard";
 import { AuthGuard } from "@auth0/auth0-angular";
-import { AuthCallbackComponent } from "./features/auth/auth-callback.component";
+
+import { VerifiedGuard } from "./core/guards/verified.guard";
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
+  // {
+  //   path: '',
+  //   redirectTo: '/home',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'home',
     loadChildren: () =>
@@ -43,7 +43,10 @@ const routes: Routes = [
   },
   {
     path: 'callback',
-    component: AuthCallbackComponent,
+    loadChildren: () =>
+      import('./features/auth-callback/auth-callback.module').then(m =>
+        m.AuthCallbackModule
+      )
   },
   {
     path: 'proposal',
@@ -56,10 +59,13 @@ const routes: Routes = [
       VerifiedGuard
     ]
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '/'
-  // }
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./features/not-found/not-found.module').then(
+        (m) => m.NotFoundModule
+      ),
+  },
 ];
 
 @NgModule({
