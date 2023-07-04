@@ -5,11 +5,11 @@ import { AuthGuard } from "@auth0/auth0-angular";
 import { VerifiedGuard } from "./core/guards/verified.guard";
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/home',
-  //   pathMatch: 'full'
-  // },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
   {
     path: 'home',
     loadChildren: () =>
