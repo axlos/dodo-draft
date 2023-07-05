@@ -203,5 +203,11 @@ export const jobReducer = createReducer(
         ]
       }
     }
+  )),
+  on(JobActions.UpdateActions.failure, (state) => (
+    {
+      ...state,
+      saving: false
+    }
   ))
 );

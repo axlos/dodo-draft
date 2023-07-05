@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { AuthService } from "./auth.service";
 
 @Injectable()
@@ -23,10 +23,7 @@ export class JwtInterceptorService implements HttpInterceptor {
             setHeaders: { authorization: `Bearer ${token}` }
           });
           return next.handle(tokenReq);
-        }),
-        catchError(() =>
-          next.handle(req)
-        )
+        })
       );
   }
 }

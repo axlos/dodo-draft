@@ -96,9 +96,12 @@ export class JobEffects {
             UpdateActions.success({ job })
           ),
           catchError(error =>
-            of(CoreActions.UIActions.displaymessage({
-              params: new UnexpectedErrorMessage(error.message)
-            }))
+            of(
+              UpdateActions.failure(),
+              CoreActions.UIActions.displaymessage({
+                params: new UnexpectedErrorMessage(error.error.message.message)
+              })
+            )
           )
         )
       )

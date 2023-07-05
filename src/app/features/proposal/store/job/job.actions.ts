@@ -31,7 +31,8 @@ export const UpdateActions = createActionGroup({
   source: "Update Job",
   events: {
     "do": props<{ id: string, job: Job }>(),
-    "success": props<{ job: Job }>()
+    "success": props<{ job: Job }>(),
+    "failure": emptyProps()
   }
 });
 
