@@ -6,12 +6,11 @@
         <nb-icon class="action-ico" icon="menu-outline">
         </nb-icon>
       </nb-action>
-      <nb-action class="push-to-right color-primary-500"
-                 (click)="login()"
+      <nb-action class="push-to-right color-primary-500 pe-0"
                  *ngIf="!(isAuthenticated$ | async)">
-        <span>
+        <button nbButton status="basic" type="button" (click)="login()" size="small">
           Log in
-        </span>
+        </button>
       </nb-action>
       <nb-action class="push-to-right btn-menu"
                  *ngIf="isAuthenticated$ | async">
@@ -22,7 +21,7 @@
     <nb-actions size="medium" *ngIf="breakpoints === 'md'">
       <nb-action (click)="onClickLogo()">
         <div class="logo">
-          <img alt="Logo DodoDraft" src="../assets/img/dodo_draft_logo.png">
+          <img ngSrc="../assets/img/dodo_draft_logo.png" alt="Logo DodoDraft" height="50" width="108">
         </div>
       </nb-action>
       <nb-action (click)="onAction(item)"
@@ -34,11 +33,10 @@
         </nb-icon>
       </nb-action>
       <nb-action class="push-to-right"
-                 (click)="login()"
                  *ngIf="!(isAuthenticated$ | async)">
-        <span>
+        <button nbButton status="basic" type="button" (click)="login()">
           Log in
-        </span>
+        </button>
       </nb-action>
       <nb-action class="push-to-right"
                  *ngIf="isAuthenticated$ | async">
@@ -62,7 +60,7 @@
     <nb-actions size="medium">
       <nb-action routerLink="/home">
         <div class="logo">
-          <img alt="Logo DodoDraft" src="../assets/img/dodo_draft_logo_footer.png">
+          <img ngSrc="../assets/img/dodo_draft_logo_footer.png" alt="Logo DodoDraft" width="108" height="50">
         </div>
       </nb-action>
       <nb-action class="push-to-right"></nb-action>

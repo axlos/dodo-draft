@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "dodo-draft",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": {
     "email": "ingaxl@gmail.com",
     "name": "Alex Ospina"
@@ -14,7 +14,7 @@
     "start-local": "ng serve -c=development --proxy-config=src/proxy-dev.conf.json",
     "start-prod": "ng serve -c=production --proxy-config=src/proxy.conf.json",
     "build-local": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build -c=development --aot",
-    "build-prod": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build -c=production --aot",
+    "build-prod": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build -c=production --aot --extract-licenses=true",
     "watch": "ng build --watch -c=development",
     "test": "ng test",
     "postinstall": "npm run build-prod",
@@ -42,22 +42,14 @@
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
     "ngx-dropzone": "^3.1.0",
-    "path": "^0.12.7",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.8",
     "@angular/compiler-cli": "^15.2.0",
     "@schematics/angular": "~15.2.8",
-    "@types/jasmine": "~4.3.0",
-    "jasmine-core": "~4.5.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.0.0",
+    "depcheck": "^1.4.3",
     "typescript": "~4.9.4"
   }
 }

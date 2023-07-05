@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
 import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
+import { NgOptimizedImage } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
     SharedModule,
     CoreModule,
     AuthModule,
+    NgOptimizedImage,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot({
