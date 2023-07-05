@@ -24,7 +24,7 @@ export const authReducer = createReducer(
         email: user['name'],
         name: user['name'],
         sub: user['sub'],
-        setupProfile: user['setupProfile'],
+        setupProfile: user['setupProfile'] || 0,
         emailVerified: user['email_verified'] === true
       },
       isAuthenticated

@@ -24,9 +24,9 @@ export class AuthService {
         isAuthenticated && user !== null
       )
     ).subscribe(([isAuthenticated, user]) =>
-      this.store.dispatch(
-        LoginActions.success({ user, isAuthenticated })
-      )
+        this.store.dispatch(
+          LoginActions.success({ user, isAuthenticated })
+        )
     );
 
   }

@@ -16,10 +16,7 @@ import { CertificationDialogComponent } from "../certification-dialog/certificat
 @Component({
   selector: 'app-profile-form',
   templateUrl: './profile-form.component.html',
-  styleUrls: ['./profile-form.component.scss'],
-  providers: [
-    NbDialogRef
-  ],
+  styleUrls: ['./profile-form.component.scss']
 })
 export class ProfileFormComponent implements OnChanges {
 
