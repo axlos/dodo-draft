@@ -66,7 +66,7 @@ export class ProfileEffects {
                       title: 'Save profile',
                       config: {
                         preventDuplicates: true,
-                        status: 'warning'
+                        status: 'danger'
                       }
                     }
                   }
@@ -96,7 +96,7 @@ export class ProfileEffects {
                   error: error.message
                 }),
                 CoreActions.UIActions.displaymessage({
-                  params: new UnexpectedErrorMessage('There was an error uploading your file, verify the profile and try again!')
+                  params: new UnexpectedErrorMessage(error.error.message.message)
                 })
               )
             )

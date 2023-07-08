@@ -4,7 +4,7 @@
       <span>
         Proposals
       </span>
-      <button nbButton status="primary" shape="round" class="ms-auto" type="button"
+      <button nbButton status="basic" shape="round" class="ms-auto" type="button" size="medium"
               (click)="openProposalDialog()"
               [disabled]="(loading$ | async) ?? false || (saving$ | async) ?? false">
         <nb-icon icon="edit-outline"></nb-icon>

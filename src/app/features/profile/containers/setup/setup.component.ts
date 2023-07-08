@@ -65,11 +65,11 @@ export class SetupComponent implements AfterViewInit {
           this.store.dispatch(
             UIActions.displaymessage({
               params: {
-                message: 'This process may take some time. Please consider refreshing the page in a few moments.',
-                title: 'Uploading profile',
+                message: 'The process is still in progress. Please consider refreshing the page between 30 seconds to 1 minute.',
+                title: 'Extracting profile',
                 config: {
                   status: 'primary',
-                  duration: 5000,
+                  duration: 0,
                   preventDuplicates: true,
                   icon: {
                     icon: 'refresh-outline',
@@ -142,26 +142,6 @@ export class SetupComponent implements AfterViewInit {
       // @ts-ignore
       this.stepper.selectedIndex = 1;
     });
-
-    // Display error message if profile upload fails
-    const selectUploadedError = this.store.select(profileFeature.selectUploadedError);
-    selectUploadedError.pipe(
-      filter((error) =>
-        error !== null
-      ),
-    ).subscribe((error) =>
-      this.store.dispatch(
-        UIActions.displaymessage({
-          params: {
-            message: 'An error occurred while uploading your profile. Please try again later.',
-            title: 'Profile Upload',
-            config: {
-              status: 'warning',
-            }
-          }
-        })
-      )
-    );
   }
 
   public fileSelected(file: File | null): void {
@@ -179,11 +159,12 @@ export class SetupComponent implements AfterViewInit {
     this.store.dispatch(
       UIActions.displaymessage({
         params: {
-          message: 'The process of extracting your profile may require some time. Please be patient!',
+          message: 'The process of extracting your profile may require between 30 seconds to 1 minute.',
           title: 'Extracting profile',
           config: {
-            duration: 5000,
+            duration: 0,
             status: 'primary',
+            preventDuplicates: true,
             icon: {
               icon: 'settings-outline',
               pack: 'eva'

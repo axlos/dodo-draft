@@ -14,10 +14,11 @@ export class UnexpectedErrorMessage implements MessageConfig {
 
   constructor(message: string) {
     this.message = message;
-    this.title = 'Unexpected Server Error';
+    this.title = 'Unexpected Error';
     this.config = {
       preventDuplicates: true,
-      status: 'danger'
+      status: 'warning',
+      duration: 5000
     };
   }
 }

@@ -20,7 +20,10 @@ export class JwtInterceptorService implements HttpInterceptor {
       .pipe(
         mergeMap(token => {
           const tokenReq = req.clone({
-            setHeaders: { authorization: `Bearer ${token}` }
+            setHeaders: {
+              authorization: `Bearer ${token}`,
+              withCredentials: 'true'
+            }
           });
           return next.handle(tokenReq);
         })

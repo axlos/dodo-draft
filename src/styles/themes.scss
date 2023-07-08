@@ -49,14 +49,24 @@ h1, h2, h3, h4, h5 {
   color: nb-theme(color-primary-200) !important;
 }
 
-.color-warning-300 {
+.text-warning-300 {
   color: nb-theme(color-warning-300);
 }
 
-.color-primary-500 {
+.text-primary-500 {
   color: nb-theme(color-primary-500);
 }
 
 .text-basic-color {
   color: nb-theme(text-basic-color);
 }
+
+//.color-danger {
+//  color: nb-theme(color-danger-600);
+//}
+
+
+//color-danger-default: nb-theme(color-danger-600),
+//color-success-default: nb-theme(color-success-600),
+//color-warning-default: nb-theme(color-warning-400),
+//color-info-default: nb-theme(color-info-400),

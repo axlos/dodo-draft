@@ -31,6 +31,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ProposalAiComponent } from "./components/proposal/proposal-ai.component";
 import { CrudButtonsComponent } from "./components/crud-buttons/crud-buttons.component";
 import { UserMenuComponent } from "./components/user-menu/user-menu.component";
+import { WordCountPipe } from "./pipes/word-count.pipe";
 
 const COMPONENTS: any[] = [
   ProposalAiComponent,
@@ -38,7 +39,9 @@ const COMPONENTS: any[] = [
   UserMenuComponent
 ];
 
-const PIPES: any[] = [];
+const PIPES: any[] = [
+  WordCountPipe
+];
 
 const MODULES: any[] = [
   CommonModule,

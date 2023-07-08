@@ -2,6 +2,7 @@
   <nb-layout-column class="p-0">
     <nb-card
       [nbSpinner]="(loading$ | async) ?? false"
+      nbSpinnerStatus="primary"
       nbSpinnerSize="giant">
       <nb-card-body>
         <nb-stepper #stepper orientation="horizontal" disableStepNavigation [selectedIndex]="0">

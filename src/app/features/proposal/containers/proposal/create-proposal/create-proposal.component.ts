@@ -60,7 +60,7 @@ export class CreateProposalComponent implements OnInit, OnDestroy {
       this.store.dispatch(
         UIActions.displaymessage({
           params: {
-            message: 'This process may take some time. You will be redirected to the proposal page when done or you can check the proposal in the history page..',
+            message: 'This process may take from 30 seconds to 3 minutes. You\'ll be automatically redirected to the cover letter page once it\'s done. Alternatively, you can find it on your history page',
             title: 'Generating Proposal',
             config: {
               status: 'primary',

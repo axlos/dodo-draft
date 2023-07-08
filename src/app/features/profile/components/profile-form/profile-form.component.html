@@ -15,6 +15,7 @@
             <input nbInput
                    fieldSize="large"
                    class="me-2"
+                   maxlength="50"
                    [id]="this.ProfileFormControls.FullName"
                    [formControlName]="this.ProfileFormControls.FullName"
                    *ngIf="editFullName"/>
@@ -45,6 +46,7 @@
             <input nbInput
                    fieldSize="large"
                    class="me-2 col-6"
+                   maxlength="200"
                    [id]="this.ProfileFormControls.Headline"
                    [formControlName]="this.ProfileFormControls.Headline"
                    *ngIf="editHeadline"/>
@@ -128,6 +130,7 @@
                       fieldSize="large"
                       rows="6"
                       class="mb-2"
+                      maxlength="2000"
                       [formControlName]="this.ProfileFormControls.Summary"
                       *ngIf="editSummary"></textarea>
             <!-- / Edit Summary  -->
@@ -248,7 +251,7 @@
         <nb-card-body class="m-1 pe-2">
           <!-- Languages -->
           <div class="mb-3">
-            <h6 class="d-flex align-items-center color-warning-300">
+            <h6 class="d-flex align-items-center text-warning-300">
               <span class="me-2"
                     [class.placeholder]="loading">
                 Languages
@@ -275,7 +278,7 @@
                     <span class="me-1" [class.me-auto]="!languageCrud.language.level">
                       {{languageCrud.language.language | titlecase}}
                     </span>
-                    <small class="color-warning-300 me-2 me-auto" *ngIf="languageCrud.language.level">
+                    <small class="text-warning-300 me-2 me-auto" *ngIf="languageCrud.language.level">
                       ({{languageCrud.language.level | titlecase}})
                     </small>
                   </div>
@@ -302,7 +305,7 @@
           </div>
           <!-- Certifications -->
           <div>
-            <h6 class="d-flex align-items-center color-warning-300">
+            <h6 class="d-flex align-items-center text-warning-300">
               <span class="me-2"
                     [class.placeholder]="loading">
                 Certifications

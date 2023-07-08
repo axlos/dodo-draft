@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Job } from "../../models/job.model";
 import { Profile } from "../../../../core/models/profile.model";
+import { wordLimitValidator } from "../../../../shared/validators/word-limit.validator";
 
 @Component({
   selector: 'app-proposal-form',
@@ -22,6 +23,9 @@ export class ProposalFormComponent implements OnChanges {
   @Output()
   public cancel = new EventEmitter<void>();
 
+  public readonly titleWordLimit: number = 20;
+  public readonly detailsWordLimit: number = 300;
+
   public proposalForm: FormGroup;
   private id: string | null = null;
   private _job: Job | null = null;
@@ -32,9 +36,16 @@ export class ProposalFormComponent implements OnChanges {
   ) {
 
     this.proposalForm = this.fb.group({
-      title: ['', Validators.required],
-      details: ['', Validators.required],
-      additionalContent: [''],
+      title: [
+        null,
+        [Validators.required, wordLimitValidator(this.titleWordLimit)]
+      ],
+      details: [
+        null, [
+          Validators.required, wordLimitValidator(this.detailsWordLimit)
+        ]
+      ],
+      additionalContent: [null],
       experiences: [null],
       educations: [null],
       certifications: [null],

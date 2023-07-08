@@ -12,6 +12,9 @@
                  type="text"
                  fieldSize="large"
                  formControlName="title">
+          <div class="form-text text-end">
+            Words remaining: <span [innerHTML]="proposalForm.get('title').value | wordCount:titleWordLimit"></span>
+          </div>
         </div>
         <div class="col-12">
           <label for="description" class="label">
@@ -22,6 +25,9 @@
                     fieldSize="large"
                     rows="10"
                     formControlName="details"></textarea>
+          <div class="form-text text-end">
+            Words remaining: <span [innerHTML]="proposalForm.get('details').value | wordCount:detailsWordLimit"></span>
+          </div>
         </div>
         <div class="col-12" *ngIf="false">
           <div class="d-flex flex-row align-items-sm-end">
@@ -40,9 +46,11 @@
           </div>
           <ng-template #infoQuestionRef>
             <small class="wrapper-popover">
-              Feel free to ask any questions regarding the project or provide any additional content that you believe is crucial for the proposal.
+              Feel free to ask any questions regarding the project or provide any additional content that you believe is
+              crucial for the proposal.
               <br>
-              Write in your own words, "even in your native language". We'll make your content better to help it stand out.
+              Write in your own words, "even in your native language". We'll make your content better to help it stand
+              out.
             </small>
           </ng-template>
           <textarea nbInput fullWidth
