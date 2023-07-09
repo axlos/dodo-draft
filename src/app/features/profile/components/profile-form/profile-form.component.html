@@ -278,8 +278,8 @@
                     <span class="me-1" [class.me-auto]="!languageCrud.language.level">
                       {{languageCrud.language.language | titlecase}}
                     </span>
-                    <small class="text-warning-300 me-2 me-auto" *ngIf="languageCrud.language.level">
-                      ({{languageCrud.language.level | titlecase}})
+                    <small class="fst-italic me-2 me-auto" *ngIf="languageCrud.language.level">
+                      {{languageCrud.language.level | titlecase}}
                     </small>
                   </div>
                   <app-crud-buttons [config]="languageCrud.config"
