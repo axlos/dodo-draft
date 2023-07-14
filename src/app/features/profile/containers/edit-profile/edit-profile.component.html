@@ -3,7 +3,13 @@
     <app-profile-form [profile]="profile$ | async"
                       [loading]="(loading$ | async) ?? false"
                       [saving]="(saving$ | async) ?? false"
-                      (save)="save($event)">
+                      [suggesting]="(suggesting$ | async) ?? false"
+                      [savingVariant]="savingVariant$ | async"
+                      [summaryVariants]="variants$ | async"
+                      (save)="save($event)"
+                      (suggestVariants)="suggestVariant($event)"
+                      (approveVariant)="approveVariant($event)"
+                      (cancelVariants)="cancelVariants()">
     </app-profile-form>
   </nb-layout-column>
 </nb-layout>

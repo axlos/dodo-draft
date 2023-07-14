@@ -31,7 +31,7 @@
           <!-- Headline -->
           <div class="fs-6 mt-2 mb-2 d-flex flex-row align-items-center">
             <p class="text-hint small fst-italic d-flex align-items-start mb-0 me-2"
-                 *ngIf="!loading && !editHeadline && !profile?.headline">
+               *ngIf="!loading && !editHeadline && !profile?.headline">
               <nb-icon icon="info-outline" class="me-2"></nb-icon>
               Write a headline for your profile. This is a short sentence that describes your main skills or job. It
               helps others understand what you do quickly
@@ -124,6 +124,17 @@
             <p class="lh-base" *ngIf="!loading && !editSummary && profile?.summary">
               {{profile?.summary}}
             </p>
+            <!-- Optimize with AI  -->
+            <div *ngIf="!loading && !editSummary && profile?.summary">
+              <app-suggest-variants [suggesting]="suggesting"
+                                    [summaryVariants]="summaryVariants"
+                                    [savingVariant]="savingVariant"
+                                    (optimize)="suggestVariants.emit(profile.summary)"
+                                    (cancelAll)="cancelVariants.emit()"
+                                    (approve)="approveVariant.emit($event)">
+              </app-suggest-variants>
+            </div>
+
             <!-- Edit Summary  -->
             <textarea nbInput fullWidth
                       [id]="this.ProfileFormControls.Summary"

@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
-import { NbDialogRef, NbDialogService, NbTagComponent, NbTagInputAddEvent } from "@nebular/theme";
+import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
+import { NbDialogService, NbTagComponent, NbTagInputAddEvent } from "@nebular/theme";
 import { filter } from "rxjs/operators";
 import { Profile } from "../../../../core/models/profile.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -12,6 +12,7 @@ import { EducationDialogComponent } from "../education-dialog/education-dialog.c
 import { Language } from "../../models/language.model";
 import { Education } from "../../models/education.model";
 import { CertificationDialogComponent } from "../certification-dialog/certification-dialog.component";
+import { SuggestVariant } from "../../../../core/models/suggest-variant.model";
 
 @Component({
   selector: 'app-profile-form',
@@ -26,8 +27,20 @@ export class ProfileFormComponent implements OnChanges {
   public loading: boolean = false;
   @Input()
   public saving: boolean = false;
+  @Input()
+  public suggesting: boolean = false;
+  @Input()
+  public savingVariant: boolean = false;
+  @Input()
+  public summaryVariants: SuggestVariant[] = [];
   @Output()
   public save = new EventEmitter<Partial<Profile>>();
+  @Output()
+  public suggestVariants = new EventEmitter<string>();
+  @Output()
+  public approveVariant = new EventEmitter<string>();
+  @Output()
+  public cancelVariants = new EventEmitter<void>();
 
   public profileForm: FormGroup;
   public ProfileFormControls = ProfileFormControls;
@@ -390,14 +403,13 @@ export class ProfileFormComponent implements OnChanges {
   }
 
   public deleteSkill(tagToRemove: NbTagComponent): void {
-    this.currentSkills = this.currentSkills.filter((s) =>
+    this.currentSkills = this.currentSkills.filter((s): boolean =>
       s !== tagToRemove.text
     );
   }
 
   public addSkill({ value, input }: NbTagInputAddEvent): void {
     if (value) {
-      const profile = this.profile as Profile;
       this.currentSkills = [
         ...this.currentSkills,
         value

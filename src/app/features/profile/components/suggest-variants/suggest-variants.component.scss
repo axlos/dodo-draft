@@ -1,0 +1,9 @@
+@use "src/styles/themes" as *;
+
+.card-optimize-ai {
+  border-color: nb-theme(card-divider-color);
+
+  nb-card-footer {
+    padding: 0.5rem 1rem
+  }
+}

@@ -29,5 +29,9 @@ export const {
   selectSaving,
   selectUploaded,
   selectUploading,
-  selectUploadedError
+  selectUploadedError,
+  selectError,
+  selectVariants,
+  selectSuggesting,
+  selectSavingVariant,
 } = profileFeature;

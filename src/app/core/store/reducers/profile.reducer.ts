@@ -1,11 +1,16 @@
 import { createReducer, on } from "@ngrx/store";
 import { Profile } from "../../models/profile.model";
 import * as ProfileActions from '../actions/profile.actions';
+import { SuggestVariantsActions } from '../actions/profile.actions';
+import { SuggestVariant } from "../../models/suggest-variant.model";
 
 export interface ProfileState {
   profile: Profile | null;
+  variants: SuggestVariant[];
   loading: boolean;
   loaded: boolean;
+  suggesting: boolean;
+  savingVariant: boolean;
   saving: boolean;
   uploading: boolean;
   uploaded: boolean;
@@ -14,11 +19,14 @@ export interface ProfileState {
 
 export const initialState: ProfileState = {
   profile: null,
+  variants: [],
   loading: false,
   loaded: false,
   saving: false,
   uploading: false,
   uploaded: false,
+  suggesting: false,
+  savingVariant: false,
   error: null
 };
 
@@ -103,5 +111,45 @@ export const profileReducer = createReducer(
       loading: false,
       saving: false,
     }
-  ))
+  )),
+  on(SuggestVariantsActions.do, (state) => (
+    {
+      ...state,
+      suggesting: true,
+      variants: []
+    }
+  )),
+  on(SuggestVariantsActions.success, (state, { variants }) => (
+    {
+      ...state,
+      suggesting: false,
+      variants: variants
+    }
+  )),
+  on(SuggestVariantsActions.approve, (state) => (
+    {
+      ...state,
+      savingVariant: true
+    }
+  )),
+  on(SuggestVariantsActions.approvesuccess, (state, { profile }) => (
+    {
+      ...state,
+      profile,
+      savingVariant: false,
+      variants: []
+    }
+  )),
+  on(SuggestVariantsActions.cancel, (state) => (
+    {
+      ...state,
+      variants: []
+    }
+  )),
+  on(SuggestVariantsActions.failure, (state) => (
+    {
+      ...state,
+      suggesting: false
+    }
+  )),
 );

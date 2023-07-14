@@ -1,5 +1,6 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Profile } from "../../models/profile.model";
+import { SuggestVariant } from "../../models/suggest-variant.model";
 
 export const LoadActions = createActionGroup({
   source: "Load Profile",
@@ -31,3 +32,18 @@ export const SaveActions = createActionGroup({
     )
   }
 });
+
+export const SuggestVariantsActions = createActionGroup({
+  source: "Suggest Variants",
+  events: {
+    "do": props<{ content: string }>(),
+    "success": props<{ variants: SuggestVariant[] }>(),
+    "approve": props<{ content: string }>(),
+    "approveSuccess": props<{ profile: Profile }>(),
+    "cancel": emptyProps(),
+    "failure": (error: any) => (
+      { error }
+    )
+  }
+});
+

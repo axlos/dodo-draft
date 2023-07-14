@@ -15,6 +15,7 @@ import { ExperienceDialogComponent } from "./components/experience-dialog/experi
 import { EducationDialogComponent } from "./components/education-dialog/education-dialog.component";
 import { CertificationDialogComponent } from "./components/certification-dialog/certification-dialog.component";
 import { LanguageDialogComponent } from "./components/language-dialog/language-dialog.component";
+import { SuggestVariantsComponent } from "./components/suggest-variants/suggest-variants.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LanguageDialogComponent } from "./components/language-dialog/language-d
     ExperienceDialogComponent,
     EducationDialogComponent,
     CertificationDialogComponent,
-    LanguageDialogComponent
+    LanguageDialogComponent,
+    SuggestVariantsComponent
   ],
   imports: [
     ProfileRoutingModule,

@@ -117,4 +117,43 @@ export class ProfileEffects {
       )
   );
 
+  // create ngrx effect to suggest variants
+  public suggestVariants$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProfileActions.SuggestVariantsActions.do),
+      switchMap(action =>
+        this.profileService.suggestVariants(action.content)
+          .pipe(
+            map(variants =>
+              ProfileActions.SuggestVariantsActions.success({ variants })
+            ),
+            catchError(error =>
+              of(ProfileActions.SuggestVariantsActions.failure({
+                error: error.message
+              }))
+            )
+          )
+      )
+    )
+  );
+
+  public approveVariant$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProfileActions.SuggestVariantsActions.approve),
+      switchMap(action =>
+        this.profileService.save({ summary: action.content })
+          .pipe(
+            map(profile =>
+              ProfileActions.SuggestVariantsActions.approvesuccess({ profile })
+            ),
+            catchError(error =>
+              of(ProfileActions.SuggestVariantsActions.failure({
+                error: error.message
+              }))
+            )
+          )
+      )
+    )
+  );
+
 }
