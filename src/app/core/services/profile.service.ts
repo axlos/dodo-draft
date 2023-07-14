@@ -29,7 +29,8 @@ export class ProfileService {
 
   public suggestVariants(content: string): Observable<SuggestVariant[]> {
     return this.http.post<SuggestVariant[]>('/api/profiles/suggestVariants', {
-      content
+      content,
+      summary: true // TODO: This specifies that we want to get summary variants
     });
   }
 }

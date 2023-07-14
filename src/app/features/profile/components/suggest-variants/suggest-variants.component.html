@@ -46,18 +46,18 @@
           Approve
         </span>
       </button>
-      <button nbButton ghost
+      <button nbButton
               type="button"
-              status="primary"
+              status="basic"
               shape="round"
               size="tiny"
               [disabled]="currentIndex === 0 || savingVariant"
               (click)="back()">
         <nb-icon icon="arrow-ios-back"></nb-icon>
       </button>
-      <button nbButton ghost
+      <button nbButton
               type="button"
-              status="primary"
+              status="basic"
               shape="round"
               size="tiny"
               [disabled]="currentIndex === summaryVariants.length - 1 || savingVariant"
