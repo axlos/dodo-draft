@@ -1,0 +1,43 @@
+@use "src/styles/themes" as *;
+
+.testimonials {
+  display: flex;
+  justify-content: space-between;
+}
+
+.testimonial {
+  width: 30%;
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  &__role {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: nb-theme(color-basic-600);
+  }
+}
+
+.testimonial img {
+  margin: auto;
+  display: block;
+  width: 50%;
+  height: auto;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .testimonials {
+    flex-direction: column;
+  }
+
+  .testimonial {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

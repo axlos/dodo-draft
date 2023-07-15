@@ -1,8 +1,8 @@
-import { createReducer, on } from "@ngrx/store";
-import { NbMenuItem } from "@nebular/theme";
+import { createReducer, on } from '@ngrx/store';
+import { NbMenuItem } from '@nebular/theme';
 
-import { HeaderMenuActions } from "../actions/core.actions";
-import { HeaderMenu } from "../../enums/header-menu.enum";
+import { HeaderMenuActions } from '../actions/core.actions';
+import { HeaderMenu } from '../../enums/header-menu.enum';
 
 export interface CoreState {
   headerMenu: NbMenuItem[];
@@ -19,25 +19,21 @@ export const initialState: CoreState = {
     {
       data: HeaderMenu.Create,
       title: 'FAQ',
-      link: '/faq'
+      link: '/faq',
     },
     {
       data: HeaderMenu.Create,
       title: 'Contact',
-      link: '/contact'
-    }
-  ]
+      link: '/contact',
+    },
+  ],
 };
 
 export const coreReducer = createReducer(
   initialState,
   // Load User
-  on(HeaderMenuActions.load, (state, { menu }) => (
-    {
-      ...state,
-      headerMenu: [
-        ...menu
-      ],
-    }
-  )),
+  on(HeaderMenuActions.load, (state, { menu }) => ({
+    ...state,
+    headerMenu: [...menu],
+  }))
 );

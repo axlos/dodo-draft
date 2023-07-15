@@ -1,39 +1,42 @@
-@forward '@nebular/theme/styles/theming';
-@use '@nebular/theme/styles/theming' as *;
-@use '@nebular/theme/styles/themes/cosmic';
+@forward "@nebular/theme/styles/theming";
+@use "@nebular/theme/styles/theming" as *;
+@use "@nebular/theme/styles/themes/dark";
 
 $nb-enable-css-custom-properties: true; // <-- enable css custom propertie
 
-$nb-themes: nb-register-theme((
-  color-danger-default: nb-theme(color-danger-600),
-  color-success-default: nb-theme(color-success-600),
-  color-warning-default: nb-theme(color-warning-400),
-  color-info-default: nb-theme(color-info-400),
-
-  tag-outline-primary-text-color: nb-theme(color-primary-400),
-  tag-outline-primary-hover-text-color: nb-theme(color-primary-400),
-  card-divider-color: nb-theme(color-basic-900),
-  actions-divider-color: transparent,
-  footer-background-color: var(--layout-background-color),
-  user-picture-box-background-color: nb-theme(color-primary-400),
-  user-picture-box-border-color: nb-theme(color-primary-400),
-  // Toastr colors
-  toastr-icon-warning-background-color: nb-theme(color-warning-default),
-  toastr-icon-warning-color: nb-theme(toastr-warning-text-color),
-  toastr-icon-primary-background-color: nb-theme(color-primary-default),
-  toastr-icon-primary-color: nb-theme(toastr-primary-text-color),
-  toastr-icon-info-background-color: nb-theme(color-info-default),
-  toastr-icon-info-color: nb-theme(toastr-info-text-color),
-  toastr-icon-success-background-color: nb-theme(color-success-default),
-  toastr-icon-success-color: nb-theme(toastr-success-text-color),
-  toastr-icon-danger-background-color: nb-theme(color-danger-default),
-  toastr-icon-danger-color: nb-theme(toastr-success-text-color),
-  sidebar-width: 16rem,
-  //card-background-color: #CBC3E3,
-  //tag-outline-primary-border-color: nb-theme(color-warning-300),
-  //tag-outline-primary-background-color: nb-theme(color-warning-transparent-100),
-  //header-background-color: nb-theme(color-basic-800),
-), dodo, cosmic);
+$nb-themes: nb-register-theme(
+  (
+    color-danger-default: nb-theme(color-danger-600),
+    color-success-default: nb-theme(color-success-600),
+    color-warning-default: nb-theme(color-warning-400),
+    color-info-default: nb-theme(color-info-400),
+    tag-outline-primary-text-color: nb-theme(color-primary-400),
+    tag-outline-primary-hover-text-color: nb-theme(color-primary-400),
+    card-divider-color: nb-theme(color-basic-900),
+    actions-divider-color: transparent,
+    footer-background-color: var(--layout-background-color),
+    user-picture-box-background-color: nb-theme(color-primary-400),
+    user-picture-box-border-color: nb-theme(color-primary-400),
+    // Toastr colors
+    toastr-icon-warning-background-color: nb-theme(color-warning-default),
+    toastr-icon-warning-color: nb-theme(toastr-warning-text-color),
+    toastr-icon-primary-background-color: nb-theme(color-primary-default),
+    toastr-icon-primary-color: nb-theme(toastr-primary-text-color),
+    toastr-icon-info-background-color: nb-theme(color-info-default),
+    toastr-icon-info-color: nb-theme(toastr-info-text-color),
+    toastr-icon-success-background-color: nb-theme(color-success-default),
+    toastr-icon-success-color: nb-theme(toastr-success-text-color),
+    toastr-icon-danger-background-color: nb-theme(color-danger-default),
+    toastr-icon-danger-color: nb-theme(toastr-success-text-color),
+    sidebar-width: 16rem,
+    //card-background-color: #CBC3E3,
+    //tag-outline-primary-border-color: nb-theme(color-warning-300),
+    //tag-outline-primary-background-color: nb-theme(color-warning-transparent-100),
+    //header-background-color: nb-theme(color-basic-800),,,,,,,,,,,,,,,,,
+  ),
+  dodo,
+  dark
+);
 
 nb-sidebar {
   .main-container {
@@ -41,11 +44,16 @@ nb-sidebar {
   }
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   color: nb-theme(color-warning-300);
 }
 
-.form-text, .text-muted {
+.form-text,
+.text-muted {
   color: nb-theme(color-primary-200) !important;
 }
 
@@ -64,7 +72,6 @@ h1, h2, h3, h4, h5 {
 //.color-danger {
 //  color: nb-theme(color-danger-600);
 //}
-
 
 //color-danger-default: nb-theme(color-danger-600),
 //color-success-default: nb-theme(color-success-600),
