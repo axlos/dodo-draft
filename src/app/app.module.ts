@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthModule } from '@auth0/auth0-angular';
 import { HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
 import {
@@ -16,7 +16,7 @@ import { NgOptimizedImage } from "@angular/common";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
@@ -24,9 +24,7 @@ import { CoreModule } from "./core/core.module";
 import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,10 +37,10 @@ import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot({
       hasBackdrop: true,
-      autoFocus: false
+      autoFocus: false,
     }),
     NbThemeModule.forRoot({
-      name: 'dodo'
+      name: 'dodo',
     }),
     NbToastrModule.forRoot({
       hasIcon: true,
@@ -89,12 +87,9 @@ import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
     //   multi: true
     // }
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
