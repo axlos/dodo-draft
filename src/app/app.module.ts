@@ -1,30 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthModule } from '@auth0/auth0-angular';
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   NbDialogModule,
   NbGlobalPhysicalPosition,
   NbMenuModule,
   NbSidebarModule,
   NbThemeModule,
-  NbToastrModule
-} from "@nebular/theme";
+  NbToastrModule,
+} from '@nebular/theme';
 
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from "./shared/shared.module";
-import { CoreModule } from "./core/core.module";
-import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
-import { NgOptimizedImage } from "@angular/common";
-
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
+import { JwtInterceptorService } from './core/services/jwt-interceptor.service';
+import { NgOptimizedImage } from '@angular/common';
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,10 +34,10 @@ import { NgOptimizedImage } from "@angular/common";
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot({
       hasBackdrop: true,
-      autoFocus: false
+      autoFocus: false,
     }),
     NbThemeModule.forRoot({
-      name: 'dodo'
+      name: 'dodo',
     }),
     NbToastrModule.forRoot({
       hasIcon: true,
@@ -59,9 +56,9 @@ import { NgOptimizedImage } from "@angular/common";
       authorizationParams: {
         audience: environment.auth0.audience,
         scope: 'profile email update:current_user_metadata',
-        redirect_uri: environment.auth0.callback
-      }
-    })
+        redirect_uri: environment.auth0.callback,
+      },
+    }),
   ],
   providers: [
     {
@@ -79,9 +76,6 @@ import { NgOptimizedImage } from "@angular/common";
     //   multi: true
     // }
   ],
-  bootstrap: [
-    AppComponent
-  ]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -1,0 +1,28 @@
+<!-- Testimonials -->
+<div class="mt-5 mb-5 final-step">
+  <h2 class="display-5 fw-bold mb-4">Testimonials</h2>
+  <p class="lead mb-4 lh-sm">
+    See what our satisfied users are saying about how Dodo Draft transformed
+    their job application process.
+  </p>
+  <div>
+    <div class="testimonials" appLazyLoad>
+      <nb-card
+        class="testimonial col-sm-12"
+        *ngFor="let testimonial of testimonials"
+      >
+        <nb-card-header>
+          <img
+            [src]="testimonial.photo"
+            alt="Photo of {{ testimonial.name }}"
+          />
+          <span class="testimonial__name">{{ testimonial.name }}</span>
+          <span class="testimonial__role">{{ testimonial.role }}</span>
+        </nb-card-header>
+        <nb-card-body>
+          <p>{{ testimonial.text }}</p>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

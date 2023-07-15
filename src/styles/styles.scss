@@ -1,5 +1,5 @@
-@use 'themes' as *;
-@use '@nebular/theme/styles/globals' as *;
+@use "themes" as *;
+@use "@nebular/theme/styles/globals" as *;
 
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
@@ -31,4 +31,19 @@ nb-card {
   nb-dialog-container {
     width: calc(100vw - 2rem);
   }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loaded-content {
+  animation: fadeInUp 2s ease-out;
 }
