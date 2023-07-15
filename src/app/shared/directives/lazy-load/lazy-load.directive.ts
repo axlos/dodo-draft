@@ -4,16 +4,11 @@ import { Directive, ElementRef, AfterViewInit } from '@angular/core';
   selector: '[appLazyLoad]',
 })
 export class LazyLoadDirective implements AfterViewInit {
-  constructor(private el: ElementRef) {
-    console.log('loading directive LazyLoadDirective');
-  }
+  constructor(private el: ElementRef) {}
 
   ngAfterViewInit() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        console.log({
-          'evaluating entry': entry,
-        });
         if (entry.isIntersecting) {
           const content = this.el.nativeElement;
           content.classList.add('loaded-content');
