@@ -62,3 +62,13 @@ nb-actions {
   text-align: center;
   z-index: 1;
 }
+
+.hero-subtitle {
+  line-height: 1.5;
+}
+
+.highlight-word {
+  color: nb-theme(color-primary-600);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1px 5px;
+}
