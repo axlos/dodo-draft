@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { AuthModule } from '@auth0/auth0-angular';
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
 import {
   NbDialogModule,
   NbGlobalPhysicalPosition,
@@ -12,6 +12,9 @@ import {
   NbThemeModule,
   NbToastrModule
 } from "@nebular/theme";
+import { NgOptimizedImage } from "@angular/common";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { environment } from "../environments/environment";
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +22,6 @@ import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
 import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
-import { NgOptimizedImage } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -61,7 +63,15 @@ import { NgOptimizedImage } from "@angular/common";
         scope: 'profile email update:current_user_metadata',
         redirect_uri: environment.auth0.callback
       }
-    })
+    }),
+    TranslateModule.forRoot({
+      // defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
   providers: [
     {
@@ -84,4 +94,8 @@ import { NgOptimizedImage } from "@angular/common";
   ]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

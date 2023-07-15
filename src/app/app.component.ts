@@ -12,6 +12,7 @@ import { authFeature } from './core/store/features/auth.feature';
 import { profileFeature } from "./core/store/features/profile.feature";
 import * as JobActions from "./features/proposal/store/job/job.actions";
 import * as AuthActions from "./core/store/actions/auth.actions";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
