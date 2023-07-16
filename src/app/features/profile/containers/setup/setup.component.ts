@@ -15,6 +15,7 @@ import * as ProfileActions from "src/app/core/store/actions/profile.actions";
 import * as AuthActions from "../../../../core/store/actions/auth.actions";
 import { AuthUser } from "../../../../core/interfaces/auth-user.interface";
 import { Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   templateUrl: './setup.component.html',
@@ -36,7 +37,8 @@ export class SetupComponent implements AfterViewInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private store: Store,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     // Profile Selectors
     this.profile$ = this.store.select(profileFeature.selectProfile);
@@ -65,8 +67,8 @@ export class SetupComponent implements AfterViewInit {
           this.store.dispatch(
             UIActions.displaymessage({
               params: {
-                message: 'The process is still in progress. Please consider refreshing the page between 30 seconds to 1 minute.',
-                title: 'Extracting profile',
+                message: translate.instant('profile.setup.extract-profile-progress'),
+                title: translate.instant('profile.setup.extract-profile'),
                 config: {
                   status: 'primary',
                   duration: 0,
@@ -159,8 +161,8 @@ export class SetupComponent implements AfterViewInit {
     this.store.dispatch(
       UIActions.displaymessage({
         params: {
-          message: 'The process of extracting your profile may require between 30 seconds to 1 minute.',
-          title: 'Extracting profile',
+          message: this.translate.instant('profile.setup.extract-profile-wait'),
+          title: this.translate.instant('profile.setup.extract-profile'),
           config: {
             duration: 0,
             status: 'primary',

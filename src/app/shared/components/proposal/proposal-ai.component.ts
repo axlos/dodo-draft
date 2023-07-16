@@ -37,9 +37,7 @@ export class ProposalAiComponent {
     textContent = textContent.trim().replace(/[ \t]{2,}/g, ' ');
     // Copy to clipboard
     await navigator.clipboard.writeText(textContent).then(function() {
-      console.log('Copying to clipboard was successful!');
     }, function(err) {
-      console.error('Could not copy text: ', err);
     });
   }
 }

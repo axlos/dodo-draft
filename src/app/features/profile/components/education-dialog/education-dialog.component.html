@@ -3,14 +3,14 @@
   <nb-card>
     <nb-card-header>
       <h6>
-        Education
+        {{'profile.profile-form.education-section.title' | translate}}
       </h6>
     </nb-card-header>
     <nb-card-body>
       <div class="row g-2">
         <div class="col-md-6 col-sm-12">
           <label for="degree" class="label">
-            Degree
+            {{'profile.profile-form.education-section.degree' | translate}}
           </label>
           <input nbInput fullWidth
                  id="degree"
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-6 col-sm-12">
           <label for="institution" class="label">
-            Institution
+            {{'profile.profile-form.education-section.institution' | translate}}
           </label>
           <input nbInput fullWidth
                  id="institution"
@@ -39,13 +39,13 @@
                 status="basic"
                 class="me-2"
                 (click)="cancel()">
-          Cancel
+          {{'profile.profile-form.cancel' | translate}}
         </button>
         <button nbButton
                 status="primary"
                 type="submit"
                 [disabled]="formEducation.invalid">
-          Save
+          {{'profile.profile-form.save' | translate}}
         </button>
       </div>
     </nb-card-footer>

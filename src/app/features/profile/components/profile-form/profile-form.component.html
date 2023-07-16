@@ -33,8 +33,7 @@
             <p class="text-hint small fst-italic d-flex align-items-start mb-0 me-2"
                *ngIf="!loading && !editHeadline && !profile?.headline">
               <nb-icon icon="info-outline" class="me-2"></nb-icon>
-              Write a headline for your profile. This is a short sentence that describes your main skills or job. It
-              helps others understand what you do quickly
+              {{'profile.profile-form.headline-hint' | translate}}
             </p>
             <span class="me-2"
                   [class.placeholder]="loading"
@@ -72,7 +71,7 @@
               <p class="text-hint small fst-italic d-flex align-items-start mb-0 me-2"
                  *ngIf="!editSkills && currentSkills.length === 0">
                 <nb-icon icon="info-outline" class="me-2"></nb-icon>
-                Display your main skills, pick up at least 5 skills you are best at.
+                {{'profile.profile-form.main-skills' | translate}}
               </p>
               <nb-tag-list [multiple]="true" class="me-2" (tagRemove)="deleteSkill($event)">
                 <nb-tag status="primary" appearance="outline"
@@ -99,7 +98,7 @@
             <h5 class="d-flex align-items-center mb-3">
               <span class="me-2"
                     [class.placeholder]="loading">
-                Summary
+                {{'profile.profile-form.summary' | translate}}
               </span>
               <app-crud-buttons [config]="summaryCrudButtonsConfig"
                                 [loading]="saving || loading"
@@ -118,8 +117,7 @@
             <div class="text-hint small fst-italic d-flex align-items-start mb-2"
                  *ngIf="!loading && !editSummary && !profile?.summary">
               <nb-icon icon="info-outline" class="me-2"></nb-icon>
-              Highlight your skills, years of experience, and achievements. Sharing your professional journey and key
-              milestones can make your profile more engaging and attractive to potential clients.
+              {{'profile.profile-form.highlight-skills' | translate}}
             </div>
             <p class="lh-base" *ngIf="!loading && !editSummary && profile?.summary">
               {{profile?.summary}}
@@ -151,7 +149,7 @@
             <h5 class="d-flex align-items-center mb-3">
               <span class="me-2"
                     [class.placeholder]="loading">
-                Experience
+                {{'profile.profile-form.experience' | translate}}
               </span>
               <button nbButton ghost
                       status="primary"
@@ -175,8 +173,7 @@
             <small class="text-hint small fst-italic d-flex align-items-start"
                    *ngIf="!loading && experiencesCrudButtons.length === 0">
               <nb-icon icon="info-outline" class="me-2"></nb-icon>
-              Add your job experiences to highlight your practical skills and past successes. This will help potential
-              clients understand your capabilities and track record.
+              {{'profile.profile-form.add-experiences' | translate}}
             </small>
             <div class="mb-4" *ngFor="let experienceCrud of experiencesCrudButtons; let i = index">
               <p class="fw-semibold mb-0 d-flex align-items-center">
@@ -200,8 +197,7 @@
                 <p class="text-hint small fst-italic d-flex align-items-start mt-2"
                    *ngIf="!experienceCrud.experience.description">
                   <nb-icon icon="info-outline" class="me-2"></nb-icon>
-                  Help us make your proposal shine! Add a detailed job description. It gives us valuable insights to
-                  tailor your proposal.
+                  {{'profile.profile-form.add-job-details' | translate}}
                 </p>
               </div>
             </div>
@@ -211,7 +207,7 @@
             <h5 class="d-flex align-items-center mb-3">
               <span class="me-2"
                     [class.placeholder]="loading">
-                Education
+                {{'profile.profile-form.education' | translate}}
               </span>
               <button nbButton ghost
                       type="button"
@@ -235,8 +231,7 @@
             <small class="text-hint small fst-italic d-flex align-items-start"
                    *ngIf="!loading && educationsCrudButtons.length === 0">
               <nb-icon icon="info-outline" class="me-2"></nb-icon>
-              Include your education details to showcase your qualifications and specialized skills. This will enhance
-              your credibility and make you more appealing to potential clients
+              {{'profile.profile-form.add-education' | translate}}
             </small>
             <div class="mb-4" *ngFor="let educationCrud of educationsCrudButtons; let i = index">
               <p class="fw-semibold mb-0 d-flex align-items-center">
@@ -265,7 +260,7 @@
             <h6 class="d-flex align-items-center text-warning-300">
               <span class="me-2"
                     [class.placeholder]="loading">
-                Languages
+                {{'profile.profile-form.languages' | translate}}
               </span>
               <button nbButton ghost
                       status="primary"
@@ -280,7 +275,7 @@
             <p class="text-hint small fst-italic d-flex align-items-start"
                *ngIf="!loading && languagesCrudButtons.length === 0">
               <nb-icon icon="info-outline" class="me-2"></nb-icon>
-              By adding the languages you're fluent in, you can better inform clients about your language capabilities.
+              {{'profile.profile-form.add-languages' | translate}}
             </p>
             <ul class="d-flex flex-column">
               <li class="mb-1" *ngFor="let languageCrud of languagesCrudButtons; let i = index">
@@ -319,7 +314,7 @@
             <h6 class="d-flex align-items-center text-warning-300">
               <span class="me-2"
                     [class.placeholder]="loading">
-                Certifications
+                {{'profile.profile-form.certifications' | translate}}
               </span>
               <button nbButton ghost
                       status="primary"
@@ -334,8 +329,7 @@
             <p class="text-hint small fst-italic d-flex align-items-start"
                *ngIf="!loading && certificationsCrudButtons.length === 0">
               <nb-icon icon="info-outline" class="me-2"></nb-icon>
-              Certifications validate your skills, proving your expertise in a specific area and helping you stand out
-              from the crowd.
+              {{'profile.profile-form.certifications-hint' | translate}}
             </p>
             <ul class="lh-base">
               <li class="mb-1" *ngFor="let certificationCrud of certificationsCrudButtons; let i = index">

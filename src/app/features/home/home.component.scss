@@ -45,13 +45,36 @@ nb-actions {
   }
 }
 
-.video-background {
+.background-video {
   position: absolute;
   right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: 0;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  height: 100vh;
+
+  .video {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    bottom: 0;
+    min-width: 100vw;
+    min-height: 100%;
+    z-index: 0;
+  }
+
+  .linear-gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(180deg, transparent, nb-theme(layout-background-color) 100%);
+  }
 }
 
 .content-hero {

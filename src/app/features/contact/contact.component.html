@@ -1,9 +1,9 @@
 <h1 class="fw-bold mb-3">
-  Contact
+  {{'contact.title' | translate}}
 </h1>
 
 <p class="lead mb-5">
-  Reach out to us, Expect a response within a day.
+  {{'contact.reach-out' | translate}}
 </p>
 
 <nb-card class="card-contact">
@@ -47,7 +47,7 @@
             size="large"
             type="submit"
             [disabled]="formContact.invalid || (loading$ | async)">
-      Send
+      {{'contact.send' | translate}}
     </button>
   </nb-card-footer>
 </nb-card>

@@ -34,19 +34,19 @@ export class CoreEffects {
           menu: [
             {
               data: HeaderMenu.Create,
-              title: 'Create New',
+              title: 'main-menu.create',
               icon: 'plus-outline',
               // class: 'ml-2 color-primary-500',
               link: '/proposal/create',
             },
             {
               data: HeaderMenu.History,
-              title: 'History',
+              title: 'main-menu.history',
               link: '/proposal/history',
             },
             {
               data: HeaderMenu.Profile,
-              title: 'Profile',
+              title: 'main-menu.profile',
               link: 'profile',
             }
           ]

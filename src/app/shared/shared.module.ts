@@ -27,12 +27,12 @@ import {
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { HttpClientModule } from '@angular/common/http';
 import { ProposalAiComponent } from './components/proposal/proposal-ai.component';
 import { CrudButtonsComponent } from './components/crud-buttons/crud-buttons.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
 import { WordCountPipe } from './pipes/word-count.pipe';
 import { LazyLoadDirective } from './directives/lazy-load/lazy-load.directive';
+import { TranslateModule } from "@ngx-translate/core";
 
 const COMPONENTS: any[] = [
   ProposalAiComponent,
@@ -48,7 +48,6 @@ const MODULES: any[] = [
   CommonModule,
   RouterModule,
   FormsModule,
-  HttpClientModule,
   ReactiveFormsModule,
   NbActionsModule,
   NbLayoutModule,
@@ -73,6 +72,7 @@ const MODULES: any[] = [
   NbSelectModule,
   NbPopoverModule,
   NbAccordionModule,
+  TranslateModule
 ];
 
 @NgModule({
@@ -81,4 +81,5 @@ const MODULES: any[] = [
   exports: [...COMPONENTS, ...PIPES, ...DIRECTIVES, ...MODULES],
   providers: [...PIPES],
 })
-export class SharedModule {}
+export class SharedModule {
+}

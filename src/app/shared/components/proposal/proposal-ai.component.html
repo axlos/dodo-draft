@@ -26,7 +26,7 @@
               status="primary"
               size="small"
               shape="semi-round"
-              nbTooltip="Copy to clipboard"
+              [nbTooltip]="'common.clipboard' | translate"
               [disabled]="loading"
               (click)="copyToClipboard()">
         <nb-icon icon="clipboard-outline"></nb-icon>

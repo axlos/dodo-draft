@@ -32,9 +32,22 @@ export class AppComponent implements OnInit {
     private store: Store,
     private nbMenuService: NbMenuService,
     @Inject(NB_WINDOW) private window: Window,
-    private sidebarService: NbSidebarService
+    private sidebarService: NbSidebarService,
+    private translate: TranslateService
   ) {
-    this.headerMenu$ = this.store.select(coreFeature.selectHeaderMenu);
+    translate.addLangs(['en', 'es']);
+    translate.setDefaultLang('en');
+
+    this.translate.onDefaultLangChange.subscribe((event) => {
+      this.headerMenu$ = this.store.select(coreFeature.selectHeaderMenu).pipe(
+        map((headerMenu) => headerMenu.map((item) => (
+            {
+              ...item,
+              title: this.translate.instant(item.title)
+            }
+          ))
+        ));
+    });
     this.isAuthenticated$ = this.store.select(authFeature.selectIsAuthenticated);
     this.user$ = this.store.select(authFeature.selectUser);
     this.profile$ = this.store.select(profileFeature.selectProfile);
@@ -104,11 +117,10 @@ export class AppComponent implements OnInit {
   public get userName(): Observable<string> {
     return combineLatest([
       this.user$,
-      this.profile$,
     ]).pipe(
-      map(([user, profile]) => {
-        if (user && profile) {
-          return profile.fullName || user.name;
+      map(([user]) => {
+        if (user) {
+          return user.name;
         }
         return 'Loading...';
       })

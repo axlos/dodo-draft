@@ -1,9 +1,10 @@
 <!-- Testimonials -->
 <div class="mt-5 mb-5 final-step">
-  <h2 class="display-5 fw-bold mb-4">Testimonials</h2>
+  <h2 class="display-5 fw-bold mb-4">
+    {{'home.testimonials.title' | translate}}
+  </h2>
   <p class="lead mb-4 lh-sm">
-    See what our satisfied users are saying about how Dodo Draft transformed
-    their job application process.
+    {{'home.testimonials.description' | translate}}
   </p>
   <div>
     <div class="testimonials" appLazyLoad>
@@ -12,7 +13,7 @@
         *ngFor="let testimonial of testimonials"
       >
         <nb-card-header>
-          <img
+          <img class="mt-2 mb-2"
             [src]="testimonial.photo"
             alt="Photo of {{ testimonial.name }}"
           />

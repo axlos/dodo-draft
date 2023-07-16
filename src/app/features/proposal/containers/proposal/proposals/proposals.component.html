@@ -2,7 +2,7 @@
   <nb-layout-column class="p-0 custom-layout">
     <h2 class="d-flex align-items-center">
       <span>
-        Proposals
+        {{'proposal.list.title' | translate}}
       </span>
       <button nbButton status="basic" shape="round" class="ms-auto" type="button" size="medium"
               (click)="openProposalDialog()"
@@ -12,7 +12,7 @@
     </h2>
 
     <p class="pb-4 lead lh-sm">
-      Having a robust, personalized proposal often makes the difference in the competitive job market.
+      {{'proposal.list.hint' | translate}}
     </p>
 
     <app-proposal-list [job]="job$ | async"

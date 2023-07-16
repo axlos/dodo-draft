@@ -2,17 +2,18 @@
   <button nbButton
           type="button"
           size="tiny"
-          status="basic"
+          status="success"
           [disabled]="suggesting"
           (click)="onOptimize()"
           *ngIf="summaryVariants.length === 0">
-    {{ suggesting ? 'Optimizing...' : 'Optimize with AI' }}
+    🪄
+    {{ suggesting ? ('profile.variants.optimizing' | translate) : ('profile.variants.optimize' | translate) }}
   </button>
 </div>
 <nb-card class="card-optimize-ai" *ngIf="summaryVariants.length > 0">
   <nb-card-body>
     <small class="text-warning-300">
-      Suggested variants
+      {{'profile.variants.suggested' | translate}}
     </small>
     <div class="mt-2" *ngFor="let variant of summaryVariants; let i = index">
       <div *ngIf="currentIndex === i">
@@ -31,7 +32,7 @@
               (click)="cancelAll.emit()">
         <nb-icon icon="close-outline"></nb-icon>
         <span>
-          Cancel All
+          {{'profile.variants.cancel' | translate}}
         </span>
       </button>
       <button class="me-2"
@@ -43,7 +44,7 @@
               (click)="onApprove()">
         <nb-icon icon="checkmark"></nb-icon>
         <span>
-          Approve
+          {{'profile.variants.approve' | translate}}
         </span>
       </button>
       <button nbButton

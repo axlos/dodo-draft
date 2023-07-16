@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { AuthService } from "./auth.service";
 
@@ -26,7 +26,8 @@ export class JwtInterceptorService implements HttpInterceptor {
             }
           });
           return next.handle(tokenReq);
-        })
+        }),
+        catchError(() => next.handle(req))
       );
   }
 }

@@ -5,7 +5,7 @@
       <div class="row g-3" [class.controls-wrapper]="displayCancel">
         <div class="col-12">
           <label for="title" class="label">
-            Job title
+            {{'proposal.form.job-title' | translate}}
           </label>
           <input nbInput fullWidth
                  id="title"
@@ -13,12 +13,12 @@
                  fieldSize="large"
                  formControlName="title">
           <div class="form-text text-end">
-            Words remaining: <span [innerHTML]="proposalForm.get('title').value | wordCount:titleWordLimit"></span>
+            {{'proposal.form.remaining' | translate}}: <span [innerHTML]="proposalForm.get('title').value | wordCount:titleWordLimit"></span>
           </div>
         </div>
         <div class="col-12">
           <label for="description" class="label">
-            Job details
+            {{'proposal.form.job-details' | translate}}
           </label>
           <textarea nbInput fullWidth
                     id="description"
@@ -26,13 +26,13 @@
                     rows="10"
                     formControlName="details"></textarea>
           <div class="form-text text-end">
-            Words remaining: <span [innerHTML]="proposalForm.get('details').value | wordCount:detailsWordLimit"></span>
+            {{'proposal.form.remaining' | translate}}: <span [innerHTML]="proposalForm.get('details').value | wordCount:detailsWordLimit"></span>
           </div>
         </div>
         <div class="col-12" *ngIf="false">
           <div class="d-flex flex-row align-items-sm-end">
             <label for="additionalContent" class="label">
-              Relevant content <small class="text-optional">(Optional)</small>
+              {{'proposal.form.relevant' | translate}} <small class="text-optional">({{'proposal.form.optional' | translate}})</small>
             </label>
             <button nbButton ghost
                     status="primary"
@@ -46,11 +46,9 @@
           </div>
           <ng-template #infoQuestionRef>
             <small class="wrapper-popover">
-              Feel free to ask any questions regarding the project or provide any additional content that you believe is
-              crucial for the proposal.
+              {{'proposal.form.ask-questions' | translate}}
               <br>
-              Write in your own words, "even in your native language". We'll make your content better to help it stand
-              out.
+              {{'proposal.form.own-words' | translate}}
             </small>
           </ng-template>
           <textarea nbInput fullWidth
@@ -59,33 +57,33 @@
                     rows="6"
                     formControlName="additionalContent"></textarea>
           <div class="form-text text-color-basic">
-            Add your personal touch to make it truly yours.
+            {{'proposal.form.personal-touch' | translate}}
           </div>
         </div>
         <div class="col-12">
           <label for="description" class="label">
-            Talk about
+            {{'proposal.form.talk-about' | translate}}
           </label>
           <div class="row g-3">
             <nb-toggle status="basic"
                        class="col-6 col-sm-auto"
                        formControlName="experiences">
-              Experiences
+              {{'proposal.form.experiences' | translate}}
             </nb-toggle>
             <nb-toggle status="basic"
                        class="col-6 col-sm-auto"
                        formControlName="certifications">
-              Certifications
+              {{'proposal.form.certifications' | translate}}
             </nb-toggle>
             <nb-toggle status="basic"
                        class="col-6 col-sm-auto"
                        formControlName="educations">
-              Educations
+              {{'proposal.form.educations' | translate}}
             </nb-toggle>
             <nb-toggle status="basic"
                        class="col-6 col-sm-auto"
                        formControlName="languages">
-              Languages
+              {{'proposal.form.languages' | translate}}
             </nb-toggle>
           </div>
         </div>
@@ -99,14 +97,14 @@
                 class="me-2"
                 *ngIf="displayCancel"
                 (click)="cancel.emit()">
-          Cancel
+          {{'proposal.form.cancel' | translate}}
         </button>
         <button nbButton
                 size="large"
                 status="primary"
                 type="submit"
                 [disabled]="proposalForm.invalid || loading">
-          Generate
+          {{'proposal.form.generate' | translate}}
         </button>
         <!-- Disabled at the moment -->
         <div class="d-flex flex-row align-items-center" *ngIf="false">

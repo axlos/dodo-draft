@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthModule } from '@auth0/auth0-angular';
-import { HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common/http";
 import {
   NbDialogModule,
   NbGlobalPhysicalPosition,
@@ -27,12 +27,22 @@ import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
     CoreModule,
     AuthModule,
     NgOptimizedImage,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      useDefaultLang: true,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      }
+    }),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDialogModule.forRoot({
@@ -61,15 +71,7 @@ import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
         scope: 'profile email update:current_user_metadata',
         redirect_uri: environment.auth0.callback
       }
-    }),
-    TranslateModule.forRoot({
-      // defaultLanguage: 'en',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
+    })
   ],
   providers: [
     {
@@ -89,7 +91,8 @@ import { JwtInterceptorService } from "./core/services/jwt-interceptor.service";
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

@@ -8,7 +8,7 @@ import { SendEmailActions } from "./store/email.actions";
 import { emailFeature } from "./store/email.feature";
 import { Observable } from "rxjs";
 import * as CoreActions from "../../core/store/actions/core.actions";
-import { UnexpectedErrorMessage } from "../../core/interfaces/message-config.interface";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   templateUrl: './contact.component.html',
@@ -24,7 +24,8 @@ export class ContactComponent {
     private router: Router,
     private viewportScroller: ViewportScroller,
     private store: Store,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private translate: TranslateService
   ) {
     this.loading$ = this.store.select(emailFeature.selectLoading);
 
@@ -37,8 +38,8 @@ export class ContactComponent {
       this.store.dispatch(
         CoreActions.UIActions.displaymessage({
           params: {
-            message: 'Email sent, thanks for contacting us!',
-            title: 'Email sent',
+            message: translate.instant('contact.thanks'),
+            title: translate.instant('contact.email-sent'),
             config: {
               status: 'primary',
             }

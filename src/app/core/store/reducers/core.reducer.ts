@@ -12,18 +12,18 @@ export const initialState: CoreState = {
   headerMenu: [
     {
       data: HeaderMenu.Create,
-      title: 'How it works',
+      title: 'main-menu.how-works',
       link: '/home',
       fragment: 'how-it-works',
     },
     {
       data: HeaderMenu.Create,
-      title: 'FAQ',
+      title: 'main-menu.faq',
       link: '/faq',
     },
     {
       data: HeaderMenu.Create,
-      title: 'Contact',
+      title: 'main-menu.contact',
       link: '/contact',
     },
   ],

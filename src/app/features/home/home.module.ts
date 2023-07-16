@@ -8,6 +8,7 @@ import { FeaturesSupportedComponent } from './components/features-supported/feat
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { FinalCtaComponent } from './components/final-cta/final-cta.component';
 import { CallToActionButtonComponent } from './components/call-to-action-button/testimonials/call-to-action-button.component';
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { CallToActionButtonComponent } from './components/call-to-action-button/
     FinalCtaComponent,
     CallToActionButtonComponent,
   ],
-  imports: [HomeRoutingModule, SharedModule, NgOptimizedImage],
+  imports: [HomeRoutingModule, SharedModule, NgOptimizedImage, TranslateModule],
   exports: [],
   providers: [],
 })

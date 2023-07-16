@@ -1,3 +1,195 @@
 {
-  "HELLO": "2 hello {{value}}"
+  "main-menu": {
+    "how-works": "How it works",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "create": "Create New",
+    "history": "History",
+    "profile": "Profile"
+  },
+  "auth": {
+    "log-in": "Log in",
+    "logout": "Logout",
+    "loading": "Loading..."
+  },
+  "contact": {
+    "title": "Contact",
+    "reach-out": "Reach out to us, Expect a response within a day.",
+    "send": "Send",
+    "thanks": "Email sent, thanks for contacting us!",
+    "email-sent": "Email sent"
+  },
+  "faq": {
+    "title": "FAQ",
+    "quick-guide": "Quick Guide: Find Answers to Your Frequently Asked Questions Here",
+    "what-is": "What is DodoDraft and how does it work?",
+    "what-is-description": "DodoDraft is an artificial intelligence-based text generator that creates unique job proposals tailored to your LinkedIn profile. It's commonly used to apply for freelance projects or job offers. You can choose to include or exclude your professional experiences, certifications, or languages in the context of your cover letter.",
+    "differ": "How does DodoDraft differ from other cover letter generators?",
+    "differ-description": "Have you ever spent hours crafting winning proposals for your clients or companies? DodoDraft's main goal is to save your time by creating unique job or project proposals that perfectly match your LinkedIn profile. Instead of generic proposals, we offer context-driven ones that align with the project and profile. Plus, you can exclude any irrelevant information such as unrelated job experiences or certifications.",
+    "profile-publicly": "Is my profile publicly visible?",
+    "profile-publicly-description": "Your profile is securely stored in our databases and is not shared with any external companies or clients for any reason.",
+    "uploaded-stored": "Is my uploaded LinkedIn profile stored in any file system?",
+    "uploaded-stored-description": "Your PDF profile is completely removed from our system once the information is extracted."
+  },
+  "home": {
+    "title": "Transform Your Career Journey",
+    "use-power-ai": "Use the power of AI \uD83E\uDE84 to create impactful",
+    "resumes": "resumes",
+    "and": "and",
+    "cover-letters": "cover letters",
+    "dream-job": "to get your dream job.",
+    "create-now": "Create Now!",
+    "features": "Features",
+    "upload-profile": "Upload your LinkedIn profile",
+    "upload-profile-hint": "Share your LinkedIn profile to let our AI system analyze your skills and experiences, forming the basis for your custom cover letter.",
+    "resume-improvement": "AI-Assisted Resume Improvement",
+    "resume-improvement-hint": "Our smart technology analyzes your resume and provides actionable suggestions for enhancement.",
+    "tailored-cover": "Tailored Cover Letter Suggestions",
+    "tailored-cover-hint": "Generate cover letters that match the specific needs of your job proposals.",
+    "ready": "Ready to stand out from the crowd?",
+    "ready-hint": "Create your profile now and take the first step towards your dream job.",
+    "testimonials": {
+      "title": "Testimonials",
+      "description": "See what our satisfied users are saying about how Dodo Draft transformed their job application process.",
+      "testimonial-1": {
+        "photo": "/assets/img/customer-1.jpeg",
+        "name": "Vane R.",
+        "role": "Marketing Professional",
+        "text": "Dodo Draft has been a game-changer for my job search. The AI-assisted resume improvement feature helped me highlight my skills in ways I hadn't thought of. I've received more callbacks since I started using it."
+      },
+      "testimonial-2": {
+        "photo": "/assets/img/customer-2.jpeg",
+        "name": "Alex O.",
+        "role": "Freelance Graphic Designer",
+        "text": "As a freelancer, Dodo Draft's cover letter suggestions have been invaluable. They're tailored to each job proposal, making my applications stand out. I've secured more gigs thanks to Dodo Draft!"
+      },
+      "testimonial-3": {
+        "photo": "/assets/img/customer-3.jpeg",
+        "name": "Edwin",
+        "role": "Software Engineer",
+        "text": "I was struggling with my job applications until I found Dodo Draft. It's user-friendly and effective. My resume has never looked better, and I've finally landed my dream job!"
+      }
+    }
+  },
+  "not-found": {
+    "title": "Page Not Found!"
+  },
+  "profile": {
+    "setup": {
+      "upload-profile": "Upload Your LinkedIn Profile",
+      "extract-information": "We'll extract the vital information to understand your unique skills, experiences, and qualifications. Using this data, our system will generate specific, targeted proposals that align with your profile and desired job descriptions.",
+      "upload-profile-now": "Make your job hunt smarter and more efficient with us. <em>Start by uploading your LinkedIn profile now!</em>",
+      "next": "next",
+      "back": "back",
+      "upload": "Upload",
+      "verify": "Verify",
+      "verify-profile": "Verify profile",
+      "verify-profile-hint": "Input as many details as possible about your skills, experience, education, and more. Why is this important? The more information you provide, the better our AI can craft a proposal that fits perfectly with the job description you're aiming for.",
+      "congratulations": "Congratulations!",
+      "congratulations-hint": "Now you can start creating awesome proposals!",
+      "start": "Let's start",
+      "extract-profile": "Extracting profile",
+      "extract-profile-progress": "The process is still in progress. Please consider refreshing the page between 30 seconds to 1 minute.",
+      "extract-profile-wait": "The process of extracting your profile may require between 30 seconds to 1 minute."
+    },
+    "upload": {
+      "accept-files": "Please note that we currently only accept files that have been exported from <strong>LinkedIn</strong>. However, we are diligently working on broadening the range of acceptable file formats to accommodate more options.",
+      "learn-how": "To learn how to export your profile from LinkedIn, please",
+      "click-here": "click here"
+    },
+    "variants": {
+      "optimizing": "Optimizing...",
+      "optimize": "Optimize with AI",
+      "suggested": "Suggested variants",
+      "cancel": "Cancel All",
+      "approve": "Approve"
+    },
+    "profile-form": {
+      "headline-hint": "Write a headline for your profile. This is a short sentence that describes your main skills or job. It helps others understand what you do quickly",
+      "main-skills": "Display your main skills, pick up at least 5 skills you are best at.",
+      "summary": "Summary",
+      "highlight-skills": "Highlight your skills, years of experience, and achievements. Sharing your professional journey and key milestones can make your profile more engaging and attractive to potential clients.",
+      "experience": "Experience",
+      "add-experiences": "Add your job experiences to highlight your practical skills and past successes. This will help potential clients understand your capabilities and track record.",
+      "add-job-details": "Help us make your proposal shine! Add a detailed job description. It gives us valuable insights to tailor your proposal.",
+      "education": "Education",
+      "add-education": "Include your education details to showcase your qualifications and specialized skills. This will enhance your credibility and make you more appealing to potential clients",
+      "languages": "Languages",
+      "add-languages": "By adding the languages you're fluent in, you can better inform clients about your language capabilities.",
+      "certifications": "Certifications",
+      "certifications-hint": "Certifications validate your skills, proving your expertise in a specific area and helping you stand out from the crowd.",
+      "cancel": "Cancel",
+      "save": "Save",
+      "language-section": {
+        "title": "Language",
+        "level": "Level",
+        "select": "Please select",
+        "elementary": "Elementary",
+        "limited": "Limited working",
+        "professional": "Professional working",
+        "full": "Full professional",
+        "native": "Native or bilingual"
+
+      },
+      "experience-section": {
+        "title": "Experience",
+        "company": "Company",
+        "position": "Position",
+        "description": "Description (Optional)"
+      },
+      "education-section": {
+        "title": "Education",
+        "degree": "Degree",
+        "institution": "Institution"
+      },
+      "drop-zone-section": {
+        "drag-drop": "Drag and drop your profile here or click to upload",
+        "pdf": "PDF File"
+      },
+      "certification-section": {
+        "title": "Certification"
+      }
+    }
+  },
+  "proposal": {
+    "history": {
+      "title": "History",
+      "hint": "Your personal archive of crafted professional proposals",
+      "no-history": "There is no history. click",
+      "here": "here",
+      "create": "to create a new proposal."
+    },
+    "create": {
+      "title": "Create Proposal",
+      "start": "Start here!",
+      "hint": "Making a strong proposal can help you get jobs or projects. We help you make a cover letter that shows what makes you special. We match your skills with what the job needs, so your proposal makes sense and convinces potential employers",
+      "waiting": "This process may take from 30 seconds to 3 minutes. You'll be automatically redirected to the cover letter page once it's done. Alternatively, you can find it on your history page",
+      "generating": "Generating Proposal"
+    },
+    "form": {
+      "job-title": "Job title",
+      "remaining": "Words remaining",
+      "job-details": "Job details",
+      "relevant": "Relevant content",
+      "optional": "Optional",
+      "ask-questions": "Feel free to ask any questions regarding the project or provide any additional content that you believe is crucial for the proposal.",
+      "own-words": "Write in your own words, \"even in your native language\". We'll make your content better to help it stand out.",
+      "personal-touch": "Add your personal touch to make it truly yours.",
+      "talk-about": "Talk about",
+      "experiences": "Experiences",
+      "certifications": "Certifications",
+      "educations": "Educations",
+      "languages": "Languages",
+      "cancel": "Cancel",
+      "generate": "Generate"
+    },
+    "list": {
+      "title": "Proposals",
+      "hint": "Having a robust, personalized proposal often makes the difference in the competitive job market.",
+      "create": "Create a proposal to get started."
+    }
+  },
+  "common": {
+    "clipboard": "Copy to clipboard"
+  }
 }

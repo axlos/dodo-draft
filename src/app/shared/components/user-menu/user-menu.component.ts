@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { NbMenuItem } from "@nebular/theme";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-user-menu',
@@ -12,16 +13,24 @@ export class UserMenuComponent {
   @Input()
   public loading: boolean = false;
 
-  public userMenu: NbMenuItem[] = [
-    // {
-    //   title: 'Buy Credits',
-    //   ariaRole: 'credits',
-    //   icon: 'credit-card-outline'
-    // },
-    {
-      title: 'Logout',
-      ariaRole: 'logout',
-      icon: 'log-out-outline'
-    },
-  ];
+  public userMenu: NbMenuItem[] = [];
+
+  constructor(
+    private translate: TranslateService
+  ) {
+    translate.onDefaultLangChange.subscribe(() => {
+      this.userMenu = [
+        // {
+        //   title: 'Buy Credits',
+        //   ariaRole: 'credits',
+        //   icon: 'credit-card-outline'
+        // },
+        {
+          title: this.translate.instant('auth.logout'),
+          ariaRole: 'logout',
+          icon: 'log-out-outline'
+        },
+      ]
+    });
+  }
 }

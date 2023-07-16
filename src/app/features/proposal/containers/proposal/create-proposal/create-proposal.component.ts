@@ -10,6 +10,7 @@ import { profileFeature } from "../../../../../core/store/features/profile.featu
 import * as JobActions from "../../../store/job/job.actions";
 import { filter } from "rxjs/operators";
 import { UIActions } from "../../../../../core/store/actions/core.actions";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   templateUrl: './create-proposal.component.html',
@@ -26,7 +27,8 @@ export class CreateProposalComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private store: Store,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     this.saving$ = this.store.select(jobFeature.selectSaving);
     this.loading$ = this.store.select(jobFeature.selectLoading);
@@ -60,8 +62,8 @@ export class CreateProposalComponent implements OnInit, OnDestroy {
       this.store.dispatch(
         UIActions.displaymessage({
           params: {
-            message: 'This process may take from 30 seconds to 3 minutes. You\'ll be automatically redirected to the cover letter page once it\'s done. Alternatively, you can find it on your history page',
-            title: 'Generating Proposal',
+            message: this.translate.instant('proposal.create.waiting'),
+            title: this.translate.instant('proposal.create.generating'),
             config: {
               status: 'primary',
               destroyByClick: true,
