@@ -1,71 +1,72 @@
 <!-- Features supported -->
 <div class="mb-5">
-  <nb-layout-column>
-    <h2 class="display-3 fw-bold mb-4">
-      {{'home.features' | translate}}
-    </h2>
+  <h2 class="display-3 fw-bold">
+    {{'home.features' | translate}}
+  </h2>
+  <p class="lead text-left lh-sm mb-5 pb-5">
+    The three-step process helps you create a winning cover letter in minutes.
+  </p>
 
-    <!-- Feature one -->
-    <div class="row gap-4 mb-5" appLazyLoad>
-      <div class="col-md d-flex flex-column justify-content-center">
-        <h4 class="mt-3 mb-4">
-          {{'home.upload-profile' | translate}}
-        </h4>
-        <p class="lead text-left lh-sm">
-          {{'home.upload-profile-hint' | translate}}
-        </p>
-      </div>
-      <div class="col-md">
-        <img
-          ngSrc="../../../assets/img/load-linkedin-profile.png"
-          class="img-fluid rounded"
-          width="1000"
-          height="800"
-          [alt]="'home.upload-profile' | translate"
-        />
-      </div>
+  <!-- Feature one -->
+  <div class="row gap-4 mb-5 pb-5" appLazyLoad>
+    <div class="col-md">
+      <img
+        ngSrc="../../../assets/img/load-linkedin-profile.png"
+        class="img-fluid rounded"
+        width="1000"
+        height="800"
+        [alt]="'home.upload-profile' | translate"
+      />
     </div>
+    <div class="col-md d-flex flex-column justify-content-center">
+      <h4 class="mt-3 mb-4">
+        {{'home.upload-profile' | translate}}
+      </h4>
+      <p class="lead text-left lh-sm">
+        {{'home.upload-profile-hint' | translate}}
+      </p>
+    </div>
+  </div>
 
-    <!-- Feature two -->
-    <div class="row gap-4 mb-5" appLazyLoad>
-      <div class="col-md">
-        <img
-          ngSrc="../../../assets/img/optimize-profile.png"
-          class="img-fluid rounded"
-          width="1000"
-          height="800"
-          [alt]="'home.resume-improvement' | translate"
-        />
-      </div>
-      <div class="col-md d-flex flex-column justify-content-center">
-        <h4 class="mt-3 mb-4">
-          {{'home.resume-improvement' | translate}}
-        </h4>
-        <p class="lead text-left lh-sm">
-          {{'home.resume-improvement-hint' | translate}}
-        </p>
-      </div>
+  <!-- Feature two -->
+  <div class="row gap-4 mb-5 pb-5" appLazyLoad>
+    <div class="col-md d-flex flex-column justify-content-center">
+      <h4 class="mt-3 mb-4">
+        {{'home.resume-improvement' | translate}}
+      </h4>
+      <p class="lead text-left lh-sm">
+        {{'home.resume-improvement-hint' | translate}}
+      </p>
     </div>
+    <div class="col-md">
+      <img
+        ngSrc="../../../assets/img/optimize-profile.png"
+        class="img-fluid rounded"
+        width="1000"
+        height="800"
+        [alt]="'home.resume-improvement' | translate"
+      />
+    </div>
+  </div>
 
-    <!-- Feature three -->
-    <div class="row gap-4 mb-5" appLazyLoad>
-      <div class="col-md d-flex flex-column justify-content-center">
-        <h4 class="mt-3 mb-4">
-          {{'home.tailored-cover' | translate}}
-        </h4>
-        <p class="lead text-left lh-sm">
-          {{'home.tailored-cover-hint' | translate}}
-        </p>
-      </div>
-      <div class="col-md">
-        <img
-          ngSrc="../../../assets/img/cover-letter-proposal.png"
-          class="img-fluid rounded"
-          width="1000"
-          height="800"
-          [alt]="'home.tailored-cover' | translate"
-        />
-      </div>
+  <!-- Feature three -->
+  <div class="row gap-4 mb-5 pb-5" appLazyLoad>
+    <div class="col-md">
+      <img
+        ngSrc="../../../assets/img/generate_cover_letter.png"
+        class="img-fluid rounded"
+        width="1000"
+        height="800"
+        [alt]="'home.tailored-cover' | translate"
+      />
     </div>
-  </nb-layout-column>
+    <div class="col-md d-flex flex-column justify-content-center">
+      <h4 class="mt-3 mb-4">
+        {{'home.tailored-cover' | translate}}
+      </h4>
+      <p class="lead text-left lh-sm">
+        {{'home.tailored-cover-hint' | translate}}
+      </p>
+    </div>
+  </div>
 </div>

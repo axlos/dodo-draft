@@ -51,6 +51,27 @@ nb-actions {
   width: 100%;
 }
 
+.action-language {
+  padding-right: 0;
+  padding-left: 0;
+
+  button {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  span {
+    text-transform: capitalize;
+  }
+}
+
+.action-user {
+  padding-right: 0;
+}
+
+.action-login {
+  padding-right: 0.5rem;
+}
+
 @include media-breakpoint-up(xl) {
   .main-layout {
     width: 75%;

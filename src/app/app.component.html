@@ -1,6 +1,25 @@
+<!-- Action Language -->
+<ng-template #actionLanguage>
+  <button nbButton ghost type="button" nbContextMenuTag="language-menu" [nbContextMenu]="languages">
+    <nb-icon icon="globe-outline">
+    </nb-icon>
+    <span>
+    {{languageTitle}}
+  </span>
+  </button>
+</ng-template>
+
+<!-- Action Login -->
+<ng-template #actionLogin let-size>
+  <button nbButton status="success" type="button" (click)="login()" [size]="size">
+    {{'auth.log-in' | translate}}
+  </button>
+</ng-template>
+
 <nb-layout>
   <nb-layout-header fixed>
 
+    <!-- Actions for small devices -->
     <nb-actions size="medium" *ngIf="breakpoints === 'sm'">
       <nb-action class="btn-menu" (click)="toggle()">
         <nb-icon class="action-ico" icon="menu-outline">
@@ -8,38 +27,39 @@
       </nb-action>
       <nb-action class="push-to-right text-primary-500 pe-0"
                  *ngIf="!(isAuthenticated$ | async)">
-        <button nbButton status="basic" type="button" (click)="login()" size="small">
-          {{'auth.log-in' | translate}}
-        </button>
+        <ng-container *ngTemplateOutlet="actionLogin; context: { $implicit: 'tiny' }"></ng-container>
       </nb-action>
       <nb-action class="push-to-right btn-menu"
                  *ngIf="isAuthenticated$ | async">
         <app-user-menu [user]="userName | async"></app-user-menu>
       </nb-action>
+      <nb-action class="action-language">
+        <ng-container *ngTemplateOutlet="actionLanguage"></ng-container>
+      </nb-action>
     </nb-actions>
 
+    <!-- Actions for big screens -->
     <nb-actions size="medium" *ngIf="breakpoints === 'md'">
       <nb-action (click)="onClickLogo()">
         <div class="logo">
           <img ngSrc="../assets/img/dodo_draft_logo.png" alt="Logo DodoDraft" height="50" width="108">
         </div>
       </nb-action>
-      <nb-action (click)="onAction(item)"
-                 *ngFor="let item of headerMenu$ | async">
+      <nb-action (click)="onAction(item)" *ngFor="let item of headerMenu$ | async">
         <span>
           {{item.title}}
         </span>
         <nb-icon class="action-icon" [icon]="item.icon.toString()" *ngIf="item.icon">
         </nb-icon>
       </nb-action>
-      <nb-action class="push-to-right" *ngIf="!(isAuthenticated$ | async)">
-        <button nbButton status="basic" type="button" (click)="login()">
-          {{'auth.log-in' | translate}}
-        </button>
+      <nb-action class="push-to-right action-login" *ngIf="!(isAuthenticated$ | async)">
+        <ng-container *ngTemplateOutlet="actionLogin; context: { $implicit: 'small' }"></ng-container>
       </nb-action>
-      <nb-action class="push-to-right"
-                 *ngIf="isAuthenticated$ | async">
+      <nb-action class="push-to-right action-user" *ngIf="isAuthenticated$ | async">
         <app-user-menu [user]="userName | async"></app-user-menu>
+      </nb-action>
+      <nb-action class="action-language">
+        <ng-container *ngTemplateOutlet="actionLanguage"></ng-container>
       </nb-action>
     </nb-actions>
 

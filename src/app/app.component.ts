@@ -2,7 +2,7 @@ import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { NB_WINDOW, NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { combineLatest, Observable } from "rxjs";
 import { HeaderMenu } from "./core/enums/header-menu.enum";
 import { Profile } from "./core/models/profile.model";
@@ -26,6 +26,16 @@ export class AppComponent implements OnInit {
   public user$: Observable<AuthUser>;
   public profile$: Observable<Profile>;
   public breakpoints: string;
+  public language: string = 'en';
+  public languages: NbMenuItem[] = [
+    {
+      title: 'English',
+      ariaRole: 'en'
+    }, {
+      title: 'Español',
+      ariaRole: 'es'
+    }
+  ];
 
   constructor(
     private router: Router,
@@ -36,9 +46,10 @@ export class AppComponent implements OnInit {
     private translate: TranslateService
   ) {
     translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('en');
+    // Set the default language
+    this.switchLanguage(localStorage.getItem('language') ?? 'en');
 
-    this.translate.onDefaultLangChange.subscribe((event) => {
+    this.translate.onDefaultLangChange.subscribe((event): void => {
       this.headerMenu$ = this.store.select(coreFeature.selectHeaderMenu).pipe(
         map((headerMenu) => headerMenu.map((item) => (
             {
@@ -57,21 +68,21 @@ export class AppComponent implements OnInit {
     this.breakpoints = window.innerWidth <= 576 ? 'sm' : 'md';
 
     this.nbMenuService.onItemClick()
-      .pipe(
-        filter((menu) =>
-          menu.tag === 'my-context-menu'),
-        map(({ item: { title, ariaRole } }) =>
-          ariaRole
-        ),
-      )
-      .subscribe(ariaRole => {
-          if (ariaRole === 'logout') {
-            this.store.dispatch(
-              AuthActions.LogoutActions.do()
-            );
-          }
+      .subscribe(item => {
+        switch (item.tag) {
+          case 'language-menu':
+            // Save language in local storage
+            this.switchLanguage(item.item.ariaRole);
+            break;
+          case 'user-menu':
+            if (item.item.ariaRole === 'logout') {
+              this.store.dispatch(
+                AuthActions.LogoutActions.do()
+              );
+            }
+            break;
         }
-      );
+      });
   }
 
   public toggle() {
@@ -131,6 +142,17 @@ export class AppComponent implements OnInit {
   public onWindowResize(event: any) {
     const screenWidth = event.target.innerWidth;
     this.breakpoints = screenWidth <= 576 ? 'sm' : 'md';
+  }
+
+  private switchLanguage(language: string): void {
+    this.language = language;
+    localStorage.setItem('language', language);
+    this.translate.setDefaultLang(language);
+  }
+
+  public get languageTitle(): string {
+    return this.languages.find((language) =>
+      language.ariaRole === this.language)?.title || '';
   }
 
 }

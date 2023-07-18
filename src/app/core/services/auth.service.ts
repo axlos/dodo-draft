@@ -24,9 +24,9 @@ export class AuthService {
         isAuthenticated && user !== null
       )
     ).subscribe(([isAuthenticated, user]) =>
-        this.store.dispatch(
-          LoginActions.success({ user, isAuthenticated })
-        )
+      this.store.dispatch(
+        LoginActions.success({ user, isAuthenticated })
+      )
     );
 
   }
@@ -42,7 +42,8 @@ export class AuthService {
   public login(screenHint: string = 'login'): void {
     this.auth0.loginWithRedirect({
       authorizationParams: {
-        screen_hint: screenHint
+        screen_hint: screenHint,
+        ui_locales: localStorage.getItem('language') ?? 'en'
       }
     });
   }
