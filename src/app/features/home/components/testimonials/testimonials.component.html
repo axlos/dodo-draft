@@ -12,16 +12,14 @@
         class="testimonial col-sm-12"
         *ngFor="let testimonial of testimonials"
       >
-        <nb-card-header>
-          <img class="mt-2 mb-2"
-            [src]="testimonial.photo"
-            alt="Photo of {{ testimonial.name }}"
+        <nb-card-body>
+          <img class="mt-2 mb-4"
+               [src]="testimonial.photo"
+               alt="Photo of {{ testimonial.name }}"
           />
           <span class="testimonial__name">{{ testimonial.name }}</span>
           <span class="testimonial__role">{{ testimonial.role }}</span>
-        </nb-card-header>
-        <nb-card-body>
-          <p>{{ testimonial.text }}</p>
+          <p class="mt-3 lh-base">{{ testimonial.text }}</p>
         </nb-card-body>
       </nb-card>
     </div>
