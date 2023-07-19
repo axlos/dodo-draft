@@ -1,89 +1,91 @@
 {
   "main-menu": {
-    "how-works": "How it works",
-    "faq": "FAQ",
-    "contact": "Contact",
-    "create": "Create New",
-    "history": "History",
-    "profile": "Profile"
+    "how-works": "Cómo funciona",
+    "faq": "Preguntas frecuentes",
+    "contact": "Contacto",
+    "create": "Crear nuevo",
+    "history": "Historial",
+    "profile": "Perfil"
   },
   "auth": {
-    "log-in": "Log in",
-    "logout": "Logout",
-    "loading": "Loading..."
+    "log-in": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "loading": "Cargando..."
   },
   "contact": {
-    "title": "Contact",
-    "reach-out": "Reach out to us, Expect a response within a day.",
-    "send": "Send",
-    "thanks": "Email sent, thanks for contacting us!",
-    "email-sent": "Email sent"
+    "title": "Contacto",
+    "reach-out": "Ponte en contacto con nosotros, espera una respuesta en un día.",
+    "content-hint": "¡Dinos en qué podemos ayudarte!",
+    "send": "Enviar",
+    "thanks": "Correo electrónico enviado, ¡gracias por contactarnos!",
+    "email-sent": "Correo electrónico enviado"
   },
   "faq": {
-    "title": "FAQ",
-    "quick-guide": "Quick Guide: Find Answers to Your Frequently Asked Questions Here",
-    "what-is": "What is DodoDraft and how does it work?",
-    "what-is-description": "DodoDraft is an artificial intelligence-based text generator that creates unique job proposals tailored to your LinkedIn profile. It's commonly used to apply for freelance projects or job offers. You can choose to include or exclude your professional experiences, certifications, or languages in the context of your cover letter.",
-    "differ": "How does DodoDraft differ from other cover letter generators?",
-    "differ-description": "Have you ever spent hours crafting winning proposals for your clients or companies? DodoDraft's main goal is to save your time by creating unique job or project proposals that perfectly match your LinkedIn profile. Instead of generic proposals, we offer context-driven ones that align with the project and profile. Plus, you can exclude any irrelevant information such as unrelated job experiences or certifications.",
-    "profile-publicly": "Is my profile publicly visible?",
-    "profile-publicly-description": "Your profile is securely stored in our databases and is not shared with any external companies or clients for any reason.",
-    "uploaded-stored": "Is my uploaded LinkedIn profile stored in any file system?",
-    "uploaded-stored-description": "Your PDF profile is completely removed from our system once the information is extracted."
+    "title": "Preguntas frecuentes",
+    "quick-guide": "Encuentra respuestas a tus preguntas frecuentes aquí",
+    "what-is": "¿Qué es DodoDraft y cómo funciona?",
+    "what-is-description": "DodoDraft es un generador de textos basado en inteligencia artificial que crea propuestas de trabajo únicas adaptadas a tu perfil de LinkedIn. Se utiliza comúnmente para solicitar proyectos freelance o ofertas de trabajo. Puedes elegir incluir o excluir tus experiencias profesionales, certificaciones o idiomas en el contexto de tu carta de presentación.",
+    "differ": "¿Cómo se diferencia DodoDraft de otros generadores de cartas de presentación?",
+    "differ-description": "¿Alguna vez has pasado horas creando propuestas ganadoras para tus clientes o empresas? El principal objetivo de DodoDraft es ahorrarte tiempo creando propuestas de trabajo o de proyectos únicas que se ajusten perfectamente a tu perfil de LinkedIn. En lugar de propuestas genéricas, ofrecemos unas basadas en el contexto que se alinean con el proyecto y el perfil. Además, puedes excluir cualquier información irrelevante, como experiencias de trabajo o certificaciones no relacionadas.",
+    "profile-publicly": "¿Mi perfil es visible públicamente?",
+    "profile-publicly-description": "Tu perfil se almacena de manera segura en nuestras bases de datos y no se comparte con ninguna empresa externa o clientes por ningún motivo.",
+    "uploaded-stored": "¿Se almacena mi perfil de LinkedIn cargado en algún sistema de archivos?",
+    "uploaded-stored-description": "Tu perfil en PDF se elimina completamente de nuestro sistema una vez que se extrae la información."
   },
   "home": {
     "title": "Transforme su Trayectoria Profesional",
-    "use-power-ai": "Use the power of AI \uD83E\uDE84 to create impactful",
-    "resumes": "resumes",
-    "and": "and",
-    "cover-letters": "cover letters",
-    "dream-job": "to get your dream job.",
-    "create-now": "Create Now!",
-    "features": "Features",
-    "upload-profile": "Upload your LinkedIn profile",
-    "upload-profile-hint": "Share your LinkedIn profile to let our AI system analyze your skills and experiences, forming the basis for your custom cover letter.",
-    "resume-improvement": "AI-Assisted Resume Improvement",
-    "resume-improvement-hint": "Our smart technology analyzes your resume and provides actionable suggestions for enhancement.",
-    "tailored-cover": "Tailored Cover Letter Suggestions",
-    "tailored-cover-hint": "Generate cover letters that match the specific needs of your job proposals.",
-    "ready": "Ready to stand out from the crowd?",
-    "ready-hint": "Create your profile now and take the first step towards your dream job.",
+    "use-power-ai": "Usa el poder de la IA \uD83E\uDE84 para crear impactantes",
+    "resumes": "currículos",
+    "and": "y",
+    "cover-letters": "cartas de presentación",
+    "dream-job": "para conseguir el trabajo de tus sueños.",
+    "create-now": "¡Crea ahora!",
+    "features": "Características",
+    "features-description": "Cree una carta de presentación ganadora en minutos",
+    "upload-profile": "Sube tu perfil de LinkedIn",
+    "upload-profile-hint": "Comparte tu perfil de LinkedIn para permitir que nuestro sistema de IA analice tus habilidades y experiencias, formando la base de tu carta de presentación personalizada.",
+    "resume-improvement": "Mejora de Currículum Asistida por IA",
+    "resume-improvement-hint": "Nuestra tecnología inteligente analiza tu currículum y proporciona sugerencias de mejora accionables.",
+    "tailored-cover": "Sugerencias de Cartas de Presentación Personalizadas",
+    "tailored-cover-hint": "Genera cartas de presentación que se ajusten a las necesidades específicas de tus propuestas de trabajo.",
+    "ready": "¿Listo para destacarte de la multitud?",
+    "ready-hint": "Crea tu perfil ahora y da el primer paso hacia el trabajo de tus sueños.",
     "testimonials": {
-      "title": "Testimonials",
-      "description": "See what our satisfied users are saying about how Dodo Draft transformed their job application process.",
+      "title": "Testimonios",
+      "description": "Mira lo que nuestros usuarios satisfechos están diciendo sobre cómo Dodo Draft transformó su proceso de solicitud de empleo.",
       "testimonial-1": {
         "photo": "/assets/img/customer-1.jpeg",
         "name": "Vane R.",
-        "role": "Marketing Professional",
-        "text": "Dodo Draft has been a game-changer for my job search. The AI-assisted resume improvement feature helped me highlight my skills in ways I hadn't thought of. I've received more callbacks since I started using it."
+        "role": "Profesional de Marketing",
+        "text": "Dodo Draft ha sido un cambio de juego en mi búsqueda de empleo. La función de mejora de currículum asistida por IA me ayudó a destacar mis habilidades de maneras que no había pensado. He recibido más llamadas desde que empecé a usarlo."
       },
       "testimonial-2": {
         "photo": "/assets/img/customer-2.jpeg",
         "name": "Alex O.",
-        "role": "Freelance Graphic Designer",
-        "text": "As a freelancer, Dodo Draft's cover letter suggestions have been invaluable. They're tailored to each job proposal, making my applications stand out. I've secured more gigs thanks to Dodo Draft!"
+        "role": "Diseñador Gráfico Freelance",
+        "text": "Como freelancer, las sugerencias de cartas de presentación de Dodo Draft han sido invaluables. Están adaptadas a cada propuesta de trabajo, haciendo que mis solicitudes destaquen. ¡He conseguido más trabajos gracias a Dodo Draft!"
       },
       "testimonial-3": {
         "photo": "/assets/img/customer-3.jpeg",
         "name": "Edwin",
-        "role": "Software Engineer",
-        "text": "I was struggling with my job applications until I found Dodo Draft. It's user-friendly and effective. My resume has never looked better, and I've finally landed my dream job!"
+        "role": "Ingeniero de Software",
+        "text": "Estaba luchando con mis solicitudes de empleo hasta que encontré Dodo Draft. Es fácil de usar y efectivo. Mi currículum nunca ha lucido mejor, ¡y finalmente he conseguido el trabajo de mis sueños!"
       }
     },
     "cover-letter": {
-      "title": "Cover letters examples",
-      "description": "Below are some examples of the professional cover letters our tool can create for you",
+      "title": "Ejemplos de cartas de presentación",
+      "description": "A continuación se presentan algunos ejemplos de las cartas de presentación profesionales que nuestra herramienta puede crear para ti",
       "example-1": {
         "title": "Angular & Material Design Front-end Assistance",
-        "content": "<p>I am excited to apply for the Angular &amp; Material Design front-end assistance project. With over 10+ years of experience as a senior software developer, I am confident in my ability to assist you with UI markup and deliver a high-quality web application.</p><p>Throughout my career, I have worked with various technologies, including NestJS, Rails, Angular, Redux, MongoDB, and PostgreSQL. I have a strong understanding of front-end development, and I am proficient in Angular, making me a perfect fit for this project.</p><p>I pride myself on my attention to detail and my commitment to delivering exceptional results. I have experience working on projects from scratch, as well as ongoing applications, and I am confident in my ability to refine the quick mockup based on Angular to match the original design.</p><p>Aside from my technical skills, I am a highly motivated individual who is always eager to expand my expertise by embracing new skills. I am a committed, responsible, friendly, and hardworking person who will go above and beyond to ensure the success of your project.</p><p>I am available to start immediately and would love the opportunity to discuss the project further. Please feel free to reach out to me at your convenience.</p><p>Thank you for considering my application.</p>"
+        "content": "<p>Estoy emocionado de aplicar para el proyecto de asistencia de front-end con Angular & Material Design. Con más de 10 años de experiencia como desarrollador de software senior, estoy seguro de mi habilidad para asistirte con el marcado de UI y entregar una aplicación web de alta calidad.</p><p>A lo largo de mi carrera, he trabajado con varias tecnologías, incluyendo NestJS, Rails, Angular, Redux, MongoDB, y PostgreSQL. Tengo un fuerte entendimiento del desarrollo front-end, y soy competente en Angular, lo que me hace perfecto para este proyecto.</p><p>Me enorgullezco de mi atención al detalle y mi compromiso para entregar resultados excepcionales. Tengo experiencia trabajando en proyectos desde cero, así como en aplicaciones en curso, y estoy seguro de mi habilidad para refinar el boceto rápido basado en Angular para que coincida con el diseño original.</p><p>Aparte de mis habilidades técnicas, soy una persona altamente motivada que siempre está ansiosa por expandir mi experiencia adoptando nuevas habilidades. Soy comprometido, responsable, amigable y trabajador, y haré todo lo posible para asegurar el éxito de tu proyecto.</p><p>Estoy disponible para empezar de inmediato y me encantaría tener la oportunidad de discutir el proyecto más a fondo. Por favor, no dudes en ponerte en contacto conmigo a tu conveniencia.</p><p>Gracias por considerar mi solicitud.</p>"
       },
       "example-2": {
-        "title": "Personal Executive Assistant",
-        "content": "<p>I am writing to apply for the position of Personal Executive Assistant at Support Shepherd. With my strong background in research, schedule management, phone communication, document drafting, and general administrative tasks, I believe I am the ideal candidate for this role.</p><p>As an experienced Administradora de empresas with 4 years of experience in assisting with human resources management, project management, and quality, I possess the necessary skills and qualities to excel in this position. My ability to work well in a team, my constant willingness to learn, and my strong communication and interpersonal skills make me a valuable asset to any organization.</p><p>In addition to my relevant skills and experiences, I am highly motivated to expand my expertise by embracing new skills. Although I do not have specific experience in real estate, I am confident in my ability to quickly learn and adapt to new industries and tasks.</p><p>Furthermore, my bilingual customer service experience and previous roles as a personal assistant and executive assistant have provided me with a solid foundation in managing schedules, handling phone calls, drafting accurate documents, and performing administrative tasks.</p><p>I am proficient in using GSuite and Microsoft Office tools for calendar management, emails, and document collaboration. Additionally, I have basic design skills using Canva and Photoshop for creating visual materials. I am also familiar with AI tools like ChatGPT for content creation.</p><p>Although my English level is basic, I am committed to improving my language skills and I am confident that my strong work ethic and dedication will enable me to overcome any language barriers.</p><p>Thank you for considering my application. I am excited about the opportunity to contribute to Support Shepherd and support your client in the technological and real estate industry. I am available for an interview at your convenience.</p>"
+        "title": "Asistente Ejecutivo Personal",
+        "content": "<p>Estoy escribiendo para solicitar el puesto de Asistente Ejecutivo Personal. Con mi sólida formación en investigación, gestión de agendas, comunicación telefónica, redacción de documentos y tareas administrativas generales, creo que soy el candidato ideal para este puesto.</p><p>Como Administradora de empresas con 4 años de experiencia en asistencia en gestión de recursos humanos, gestión de proyectos y calidad, poseo las habilidades y cualidades necesarias para sobresalir en esta posición. Mi capacidad para trabajar bien en equipo, mi constante disposición para aprender y mis fuertes habilidades de comunicación e interpersonales me hacen un activo valioso para cualquier organización.</p><p>Además de mis habilidades y experiencias relevantes, estoy muy motivada para expandir mi experiencia adoptando nuevas habilidades. Aunque no tengo experiencia específica en bienes raíces, estoy segura de mi capacidad para aprender y adaptarme rápidamente a nuevas industrias y tareas.</p><p>Además, mi experiencia bilingüe en servicio al cliente y mis roles previos como asistente personal y asistente ejecutiva me han proporcionado una sólida base en la gestión de agendas, manejo de llamadas telefónicas, redacción precisa de documentos y realización de tareas administrativas.</p><p>Domino el uso de las herramientas de Google Suite y Microsoft Office para la gestión de calendarios, correos electrónicos y colaboración en documentos. Además, tengo habilidades básicas de diseño usando Canva y Photoshop para la creación de materiales visuales.</p><p>Gracias por considerar mi solicitud. Estoy emocionada por la oportunidad de contribuir a su empresa y apoyar a su cliente en la industria tecnológica y de bienes raíces. Estoy disponible para una entrevista a su conveniencia.</p>"
       },
       "example-3": {
-        "title": "Payroll Coordinator",
-        "content": "<p>I am writing to express my interest in the position of Payroll Coordinator. With my extensive experience in HR, particularly in compensation and benefits, payroll management, and HR systems, I believe I am a strong fit for this role.</p><p>Over the past 10 years, I have successfully led and implemented comprehensive HR strategies and projects in various industries, including pharmaceuticals, consumer goods, and energy. I have a proven track record of optimizing costs and increasing productivity through effective HR management.</p><p>My expertise includes managing national and regional payrolls for over 1500 employees, designing and adapting payroll policies, conducting salary studies, and implementing compensation and benefits models. I am skilled in creating dashboards and KPIs for data analysis using Excel, Power BI, and Python.</p><p>Throughout my career, I have held positions such as Andean HR Operations Lead, HR Payroll Manager, and Senior Payroll Specialist. These experiences have equipped me with a deep understanding of labor relations, union management, and HR analytics.</p><p>I hold a Master's degree in HR and have completed certifications in the latest Social Security regulations, Power BI for data analysis, and compensation and salary systems. Additionally, I have a strong educational background, including a Bachelor's degree in Business Administration.</p><p>I am highly motivated to expand my expertise and embrace new skills. I am confident that my analytical skills, decision-making abilities, and strong communication skills make me an ideal candidate for this position.</p><p>I am excited about the opportunity to contribute to your organization's success and would welcome the chance to discuss how my skills and experiences align with your needs. Thank you for considering my application.</p>"
+        "title": "Coordinador de Nómina",
+        "content": "<p>Estoy escribiendo para expresar mi interés en el puesto de Coordinador de Nóminas. Con mi amplia experiencia en RRHH, particularmente en compensación y beneficios, gestión de nóminas y sistemas de RRHH, creo que soy un fuerte candidato para este rol.</p><p>A lo largo de los últimos 10 años, he liderado e implementado con éxito estrategias y proyectos de RRHH completos en varias industrias, incluyendo farmacéuticas, bienes de consumo y energía. Tengo un historial comprobado de optimización de costos y aumento de la productividad a través de una gestión efectiva de RRHH.</p><p>Mi experiencia incluye la gestión de nóminas nacionales y regionales para más de 1500 empleados, diseñar y adaptar políticas de nómina, llevar a cabo estudios de salarios e implementar modelos de compensación y beneficios. Tengo habilidad para crear cuadros de mando e indicadores clave de rendimiento para el análisis de datos utilizando Excel, Power BI y Python.</p><p>A lo largo de mi carrera, he ocupado posiciones como Líder de Operaciones de RRHH Andino, Gerente de Nóminas de RRHH y Especialista Senior de Nóminas. Estas experiencias me han proporcionado una profunda comprensión de las relaciones laborales, la gestión de sindicatos y el análisis de RRHH.</p><p>Estoy altamente motivado para expandir mi experiencia y adoptar nuevas habilidades. Estoy seguro de que mis habilidades analíticas, habilidades de toma de decisiones y fuertes habilidades de comunicación me hacen un candidato ideal para este puesto.</p><p>Estoy emocionado por la oportunidad de contribuir al éxito de su organización y agradecería la oportunidad de discutir cómo mis habilidades y experiencias se alinean con sus necesidades. Gracias por considerar mi solicitud.</p>"
       }
     }
   },
@@ -92,121 +94,120 @@
   },
   "profile": {
     "setup": {
-      "upload-profile": "Upload Your LinkedIn Profile",
-      "extract-information": "We'll extract the vital information to understand your unique skills, experiences, and qualifications. Using this data, our system will generate specific, targeted proposals that align with your profile and desired job descriptions.",
-      "upload-profile-now": "Make your job hunt smarter and more efficient with us. <em>Start by uploading your LinkedIn profile now!</em>",
-      "next": "next",
-      "back": "back",
-      "upload": "Upload",
-      "verify": "Verify",
-      "verify-profile": "Verify profile",
-      "verify-profile-hint": "Input as many details as possible about your skills, experience, education, and more. Why is this important? The more information you provide, the better our AI can craft a proposal that fits perfectly with the job description you're aiming for.",
-      "congratulations": "Congratulations!",
-      "congratulations-hint": "Now you can start creating awesome proposals!",
-      "start": "Let's start",
-      "extract-profile": "Extracting profile",
-      "extract-profile-progress": "The process is still in progress. Please consider refreshing the page between 30 seconds to 1 minute.",
-      "extract-profile-wait": "The process of extracting your profile may require between 30 seconds to 1 minute."
+      "upload-profile": "Sube Tu Perfil de LinkedIn",
+      "extract-information": "Extraeremos la información vital para entender tus habilidades, experiencias y calificaciones únicas. Utilizando estos datos, nuestro sistema generará propuestas específicas y dirigidas que se alinean con tu perfil y las descripciones de trabajo deseadas.",
+      "upload-profile-now": "Haz tu búsqueda de trabajo más inteligente y eficiente con nosotros. <em>¡Comienza subiendo tu perfil de LinkedIn ahora!</em>",
+      "next": "siguiente",
+      "back": "atrás",
+      "upload": "Subir",
+      "verify": "Verificar",
+      "verify-profile": "Verificar perfil",
+      "verify-profile-hint": "Ingresa tantos detalles como sea posible sobre tus habilidades, experiencia, educación y más. ¿Por qué es esto importante? Cuanta más información proporciones, mejor podrá nuestra IA elaborar una propuesta que se ajuste perfectamente a la descripción del trabajo que estás buscando.",
+      "congratulations": "¡Felicidades!",
+      "congratulations-hint": "¡Ahora puedes comenzar a crear propuestas increíbles!",
+      "start": "Comencemos",
+      "extract-profile": "Extrayendo perfil",
+      "extract-profile-progress": "El proceso aún está en progreso. Por favor, considera actualizar la página entre 30 segundos y 1 minuto.",
+      "extract-profile-wait": "El proceso de extracción de tu perfil puede requerir entre 30 segundos y 1 minuto."
     },
     "upload": {
-      "accept-files": "Please note that we currently only accept files that have been exported from <strong>LinkedIn</strong>. However, we are diligently working on broadening the range of acceptable file formats to accommodate more options.",
-      "learn-how": "To learn how to export your profile from LinkedIn, please",
-      "click-here": "click here"
+      "accept-files": "Por favor, ten en cuenta que actualmente solo aceptamos archivos que hayan sido exportados desde <strong>LinkedIn</strong>. Sin embargo, estamos trabajando diligentemente para ampliar el rango de formatos de archivo aceptables para acomodar más opciones.",
+      "learn-how": "Para aprender cómo exportar tu perfil desde LinkedIn, por favor",
+      "click-here": "haz clic aquí"
     },
     "variants": {
-      "optimizing": "Optimizing...",
-      "optimize": "Optimize with AI",
-      "suggested": "Suggested variants",
-      "cancel": "Cancel All",
-      "approve": "Approve"
+      "optimizing": "Optimizando...",
+      "optimize": "Optimizar con IA",
+      "suggested": "Variantes sugeridas",
+      "cancel": "Cancelar todo",
+      "approve": "Aprobar"
     },
     "profile-form": {
-      "headline-hint": "Write a headline for your profile. This is a short sentence that describes your main skills or job. It helps others understand what you do quickly",
-      "main-skills": "Display your main skills, pick up at least 5 skills you are best at.",
-      "summary": "Summary",
-      "highlight-skills": "Highlight your skills, years of experience, and achievements. Sharing your professional journey and key milestones can make your profile more engaging and attractive to potential clients.",
-      "experience": "Experience",
-      "add-experiences": "Add your job experiences to highlight your practical skills and past successes. This will help potential clients understand your capabilities and track record.",
-      "add-job-details": "Help us make your proposal shine! Add a detailed job description. It gives us valuable insights to tailor your proposal.",
-      "education": "Education",
-      "add-education": "Include your education details to showcase your qualifications and specialized skills. This will enhance your credibility and make you more appealing to potential clients",
-      "languages": "Languages",
-      "add-languages": "By adding the languages you're fluent in, you can better inform clients about your language capabilities.",
-      "certifications": "Certifications",
-      "certifications-hint": "Certifications validate your skills, proving your expertise in a specific area and helping you stand out from the crowd.",
-      "cancel": "Cancel",
-      "save": "Save",
+      "headline-hint": "Escribe un titular para tu perfil. Esta es una frase corta que describe tus habilidades principales o tu trabajo. Ayuda a otros a entender rápidamente lo que haces",
+      "main-skills": "Muestra tus habilidades principales, selecciona al menos 5 habilidades en las que seas mejor.",
+      "summary": "Resumen",
+      "highlight-skills": "Destaca tus habilidades, años de experiencia y logros. Compartir tu trayectoria profesional y los hitos clave pueden hacer que tu perfil sea más atractivo y atractivo para los posibles clientes.",
+      "experience": "Experiencia",
+      "add-experiences": "Agrega tus experiencias laborales para resaltar tus habilidades prácticas y éxitos pasados. Esto ayudará a los posibles clientes a entender tus capacidades y trayectoria.",
+      "add-job-details": "¡Ayúdanos a hacer brillar tu propuesta! Añade una descripción detallada del trabajo. Nos proporciona valiosos insights para personalizar tu propuesta.",
+      "education": "Educación",
+      "add-education": "Incluye los detalles de tu educación para mostrar tus calificaciones y habilidades especializadas. Esto aumentará tu credibilidad y te hará más atractivo para los posibles clientes",
+      "languages": "Idiomas",
+      "add-languages": "Al agregar los idiomas en los que eres fluido, puedes informar mejor a los clientes sobre tus capacidades lingüísticas.",
+      "certifications": "Certificaciones",
+      "certifications-hint": "Las certificaciones validan tus habilidades, demostrando tu experiencia en un área específica y ayudándote a destacarte de la multitud.",
+      "cancel": "Cancelar",
+      "save": "Guardar",
       "language-section": {
-        "title": "Language",
-        "level": "Level",
-        "select": "Please select",
-        "elementary": "Elementary",
-        "limited": "Limited working",
-        "professional": "Professional working",
-        "full": "Full professional",
-        "native": "Native or bilingual"
-
+        "title": "Idioma",
+        "level": "Nivel",
+        "select": "Por favor selecciona",
+        "elementary": "Básico",
+        "limited": "Limitado laboral",
+        "professional": "Profesional laboral",
+        "full": "Profesional completo",
+        "native": "Nativo o bilingüe"
       },
       "experience-section": {
-        "title": "Experience",
-        "company": "Company",
-        "position": "Position",
-        "description": "Description (Optional)"
+        "title": "Experiencia",
+        "company": "Compañía",
+        "position": "Posición",
+        "description": "Descripción (Opcional)"
       },
       "education-section": {
-        "title": "Education",
-        "degree": "Degree",
-        "institution": "Institution"
+        "title": "Educación",
+        "degree": "Grado",
+        "institution": "Institución"
       },
       "drop-zone-section": {
-        "drag-drop": "Drag and drop your profile here or click to upload",
-        "pdf": "PDF File"
+        "drag-drop": "Arrastra y suelta tu perfil aquí o haz clic para subirlo",
+        "pdf": "Archivo PDF"
       },
       "certification-section": {
-        "title": "Certification"
+        "title": "Certificación"
       }
     }
   },
   "proposal": {
     "history": {
-      "title": "History",
-      "hint": "Your personal archive of crafted professional proposals",
-      "no-history": "There is no history. click",
-      "here": "here",
-      "create": "to create a new proposal."
+      "title": "Historial",
+      "hint": "Tu archivo personal de propuestas profesionales elaboradas",
+      "no-history": "No hay historial. Haz clic",
+      "here": "aquí",
+      "create": "para crear una nueva propuesta."
     },
     "create": {
-      "title": "Create Proposal",
-      "start": "Start here!",
-      "hint": "Making a strong proposal can help you get jobs or projects. We help you make a cover letter that shows what makes you special. We match your skills with what the job needs, so your proposal makes sense and convinces potential employers",
-      "waiting": "This process may take from 30 seconds to 3 minutes. You'll be automatically redirected to the cover letter page once it's done. Alternatively, you can find it on your history page",
-      "generating": "Generating Proposal"
+      "title": "Crear Propuesta",
+      "start": "¡Comienza aquí!",
+      "hint": "Elaborar una propuesta sólida puede ayudarte a conseguir trabajos o proyectos. Te ayudamos a hacer una carta de presentación que muestre lo que te hace especial. Coincidimos tus habilidades con lo que necesita el trabajo, por lo que tu propuesta tiene sentido y convence a los posibles empleadores",
+      "waiting": "Este proceso puede llevar desde 30 segundos hasta 3 minutos. Serás redirigido automáticamente a la página de la carta de presentación una vez que esté hecho. Alternativamente, puedes encontrarla en tu página de historial",
+      "generating": "Generando Propuesta"
     },
     "form": {
-      "job-title": "Job title",
-      "remaining": "Words remaining",
-      "job-details": "Job details",
-      "relevant": "Relevant content",
-      "optional": "Optional",
-      "ask-questions": "Feel free to ask any questions regarding the project or provide any additional content that you believe is crucial for the proposal.",
-      "own-words": "Write in your own words, \"even in your native language\". We'll make your content better to help it stand out.",
-      "personal-touch": "Add your personal touch to make it truly yours.",
+      "job-title": "Título del trabajo",
+      "remaining": "Palabras restantes",
+      "job-details": "Detalles del trabajo",
+      "relevant": "Contenido relevante",
+      "optional": "Opcional",
+      "ask-questions": "No dudes en hacer cualquier pregunta relacionada con el proyecto o proporcionar cualquier contenido adicional que creas que es crucial para la propuesta.",
+      "own-words": "Escribe con tus propias palabras, \"incluso en tu lengua materna\". Mejoraremos tu contenido para ayudarlo a destacar.",
+      "personal-touch": "Añade tu toque personal para hacerlo verdaderamente tuyo.",
       "cover-letter-language": "La carta de presentación se redactará en <span class='text-warning-300'>{{language}}</span>",
-      "talk-about": "Talk about",
-      "experiences": "Experiences",
-      "certifications": "Certifications",
-      "educations": "Educations",
-      "languages": "Languages",
-      "cancel": "Cancel",
-      "generate": "Generate"
+      "talk-about": "Hablar sobre",
+      "experiences": "Experiencias",
+      "certifications": "Certificaciones",
+      "educations": "Educación",
+      "languages": "Idiomas",
+      "cancel": "Cancelar",
+      "generate": "Generar"
     },
     "list": {
-      "title": "Proposals",
-      "hint": "Having a robust, personalized proposal often makes the difference in the competitive job market.",
-      "create": "Create a proposal to get started."
+      "title": "Propuestas",
+      "hint": "Tener una propuesta robusta y personalizada a menudo marca la diferencia en el competitivo mercado laboral.",
+      "create": "Crea una propuesta para comenzar."
     }
   },
   "common": {
-    "clipboard": "Copy to clipboard"
+    "clipboard": "Copiar al portapapeles"
   }
 }

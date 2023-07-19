@@ -15,13 +15,14 @@
   "contact": {
     "title": "Contact",
     "reach-out": "Reach out to us, Expect a response within a day.",
+    "content-hint": "Let's know what we can help you!",
     "send": "Send",
     "thanks": "Email sent, thanks for contacting us!",
     "email-sent": "Email sent"
   },
   "faq": {
     "title": "FAQ",
-    "quick-guide": "Quick Guide: Find Answers to Your Frequently Asked Questions Here",
+    "quick-guide": "Find Answers to Your Frequently Asked Questions Here",
     "what-is": "What is DodoDraft and how does it work?",
     "what-is-description": "DodoDraft is an artificial intelligence-based text generator that creates unique job proposals tailored to your LinkedIn profile. It's commonly used to apply for freelance projects or job offers. You can choose to include or exclude your professional experiences, certifications, or languages in the context of your cover letter.",
     "differ": "How does DodoDraft differ from other cover letter generators?",
@@ -40,6 +41,7 @@
     "dream-job": "to get your dream job.",
     "create-now": "Create Now!",
     "features": "Features",
+    "features-description": "Create a winning cover letter in minutes.",
     "upload-profile": "Upload your LinkedIn profile",
     "upload-profile-hint": "Share your LinkedIn profile to let our AI system analyze your skills and experiences, forming the basis for your custom cover letter.",
     "resume-improvement": "AI-Assisted Resume Improvement",
