@@ -175,6 +175,7 @@
       "ask-questions": "Feel free to ask any questions regarding the project or provide any additional content that you believe is crucial for the proposal.",
       "own-words": "Write in your own words, \"even in your native language\". We'll make your content better to help it stand out.",
       "personal-touch": "Add your personal touch to make it truly yours.",
+      "cover-letter-language": "La carta de presentación se redactará en <span class='text-warning-300'>{{language}}</span>",
       "talk-about": "Talk about",
       "experiences": "Experiences",
       "certifications": "Certifications",

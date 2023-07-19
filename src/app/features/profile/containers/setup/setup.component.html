@@ -48,6 +48,12 @@
               <app-profile-form [profile]="profile$ | async"
                                 [loading]="(loading$ | async) ?? false"
                                 [saving]="(saving$ | async) ?? false"
+                                [suggesting]="(suggesting$ | async) ?? false"
+                                [savingVariant]="savingVariant$ | async"
+                                [summaryVariants]="variants$ | async"
+                                (suggestVariants)="suggestVariant($event)"
+                                (approveVariant)="approveVariant($event)"
+                                (cancelVariants)="cancelVariants()"
                                 (save)="saveProfile($event)">
               </app-profile-form>
             </div>

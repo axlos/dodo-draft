@@ -25,8 +25,9 @@ export class ProposalFormComponent implements OnChanges {
 
   public readonly titleWordLimit: number = 20;
   public readonly detailsWordLimit: number = 300;
-
   public proposalForm: FormGroup;
+  public languageName: string;
+
   private id: string | null = null;
   private _job: Job | null = null;
   private _profile: Profile | null = null;
@@ -78,6 +79,7 @@ export class ProposalFormComponent implements OnChanges {
   set profile(profile: Profile) {
     if (profile) {
       this._profile = profile;
+      this.languageName = this.getLanguageName(profile.language ?? 'en');
       if (profile.experiences && profile.experiences.length === 0) {
         this.proposalForm.get('experiences').disable();
       }
@@ -118,6 +120,15 @@ export class ProposalFormComponent implements OnChanges {
       id: this.id,
       job: this.proposalForm.value
     });
+  }
+
+  private getLanguageName(code: string): string {
+    switch (code) {
+      case "es":
+        return "Español";
+      default:
+        return "English";
+    }
   }
 
 }

@@ -13,7 +13,8 @@
                  fieldSize="large"
                  formControlName="title">
           <div class="form-text text-end">
-            {{'proposal.form.remaining' | translate}}: <span [innerHTML]="proposalForm.get('title').value | wordCount:titleWordLimit"></span>
+            {{'proposal.form.remaining' | translate}}: <span
+            [innerHTML]="proposalForm.get('title').value | wordCount:titleWordLimit"></span>
           </div>
         </div>
         <div class="col-12">
@@ -25,14 +26,22 @@
                     fieldSize="large"
                     rows="10"
                     formControlName="details"></textarea>
-          <div class="form-text text-end">
-            {{'proposal.form.remaining' | translate}}: <span [innerHTML]="proposalForm.get('details').value | wordCount:detailsWordLimit"></span>
+          <div class="d-flex">
+            <div class="form-text me-auto" [innerHTML]="'proposal.form.cover-letter-language' | translate: {
+              language: languageName
+            }" *ngIf="languageName">
+            </div>
+            <div class="form-text text-end">
+              {{'proposal.form.remaining' | translate}}: <span
+              [innerHTML]="proposalForm.get('details').value | wordCount:detailsWordLimit"></span>
+            </div>
           </div>
         </div>
         <div class="col-12" *ngIf="false">
           <div class="d-flex flex-row align-items-sm-end">
             <label for="additionalContent" class="label">
-              {{'proposal.form.relevant' | translate}} <small class="text-optional">({{'proposal.form.optional' | translate}})</small>
+              {{'proposal.form.relevant' | translate}} <small
+              class="text-optional">({{'proposal.form.optional' | translate}})</small>
             </label>
             <button nbButton ghost
                     status="primary"

@@ -16,6 +16,8 @@ import * as AuthActions from "../../../../core/store/actions/auth.actions";
 import { AuthUser } from "../../../../core/interfaces/auth-user.interface";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
+import { SuggestVariant } from "../../../../core/models/suggest-variant.model";
+import * as ProfileFeature from "../../../../core/store/features/profile.feature";
 
 @Component({
   templateUrl: './setup.component.html',
@@ -29,6 +31,9 @@ export class SetupComponent implements AfterViewInit {
   public file: File | null = null;
   public loading$: Observable<boolean>;
   public saving$: Observable<boolean>;
+  public suggesting$: Observable<boolean>;
+  public savingVariant$: Observable<boolean>;
+  public variants$: Observable<SuggestVariant[]>;
   public profile$: Observable<Profile | null>;
   public user$: Observable<AuthUser>;
   public newUpload: boolean = false;
@@ -44,6 +49,9 @@ export class SetupComponent implements AfterViewInit {
     this.profile$ = this.store.select(profileFeature.selectProfile);
     this.saving$ = this.store.select(profileFeature.selectSaving);
     this.user$ = this.store.select(authFeature.selectUser);
+    this.suggesting$ = this.store.select(ProfileFeature.selectSuggesting);
+    this.variants$ = this.store.select(ProfileFeature.selectVariants);
+    this.savingVariant$ = this.store.select(ProfileFeature.selectSavingVariant);
 
     // Loading, when it's uploading, loading the profile or the Setup profile is still uploading the file
     this.loading$ = combineLatest([
@@ -209,5 +217,27 @@ export class SetupComponent implements AfterViewInit {
 
   public startCreating(): void {
     this.router.navigate(['/proposal/create']);
+  }
+
+  public suggestVariant(content: string): void {
+    this.store.dispatch(
+      ProfileActions.SuggestVariantsActions.do({
+        content
+      })
+    );
+  }
+
+  public cancelVariants(): void {
+    this.store.dispatch(
+      ProfileActions.SuggestVariantsActions.cancel()
+    );
+  }
+
+  public approveVariant(content: string): void {
+    this.store.dispatch(
+      ProfileActions.SuggestVariantsActions.approve({
+        content
+      })
+    );
   }
 }

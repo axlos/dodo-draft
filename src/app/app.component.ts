@@ -2,7 +2,7 @@ import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { NB_WINDOW, NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { combineLatest, Observable } from "rxjs";
 import { HeaderMenu } from "./core/enums/header-menu.enum";
 import { Profile } from "./core/models/profile.model";
@@ -13,6 +13,7 @@ import { profileFeature } from "./core/store/features/profile.feature";
 import * as JobActions from "./features/proposal/store/job/job.actions";
 import * as AuthActions from "./core/store/actions/auth.actions";
 import { TranslateService } from "@ngx-translate/core";
+import * as ProfileActions from "./core/store/actions/profile.actions";
 
 @Component({
   selector: 'app-root',
@@ -62,6 +63,18 @@ export class AppComponent implements OnInit {
     this.isAuthenticated$ = this.store.select(authFeature.selectIsAuthenticated);
     this.user$ = this.store.select(authFeature.selectUser);
     this.profile$ = this.store.select(profileFeature.selectProfile);
+
+    this.profile$
+      .pipe(
+        filter((profile) =>
+          profile !== null
+        )
+      )
+      .subscribe((profile) => {
+        console.log('profile:', profile.language);
+        // Switch the language when the profile is loaded
+        this.switchLanguage(profile.language ?? 'en');
+      });
   }
 
   ngOnInit() {
@@ -73,6 +86,22 @@ export class AppComponent implements OnInit {
           case 'language-menu':
             // Save language in local storage
             this.switchLanguage(item.item.ariaRole);
+            // Save language in user profile if user is authenticated
+            this.isAuthenticated$
+              .pipe(
+                filter((isAuthenticated) =>
+                  isAuthenticated === true
+                )
+              )
+              .subscribe((isAuthenticated) =>
+                this.store.dispatch(
+                  ProfileActions.SaveActions.do({
+                    profile: {
+                      language: item.item.ariaRole
+                    }
+                  })
+                )
+              );
             break;
           case 'user-menu':
             if (item.item.ariaRole === 'logout') {
