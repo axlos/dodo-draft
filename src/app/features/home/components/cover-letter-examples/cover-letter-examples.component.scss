@@ -1,0 +1,9 @@
+@use "src/styles/themes" as *;
+
+.accordion-examples {
+  nb-accordion-item {
+    nb-accordion-item-body {
+      background-color: nb-theme(color-basic-700);
+    }
+  }
+}

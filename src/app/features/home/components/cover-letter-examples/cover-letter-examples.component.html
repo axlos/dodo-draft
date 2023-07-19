@@ -1,0 +1,21 @@
+<!-- Testimonials -->
+<div class="pt-4 mt-5 mb-5">
+  <h2 class="display-5 fw-bold">
+    {{'home.cover-letter.title' | translate}}
+  </h2>
+  <p class="lead mb-4 lh-sm">
+    {{'home.cover-letter.description' | translate}}
+  </p>
+  <nb-accordion class="accordion-examples pt-4">
+    <nb-accordion-item *ngFor="let coverLetter of examples;">
+      <nb-accordion-item-header>
+        <div class="lead">
+          {{ coverLetter.title }}
+        </div>
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <p class="lh-base" [innerHTML]="coverLetter.content"></p>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+</div>
