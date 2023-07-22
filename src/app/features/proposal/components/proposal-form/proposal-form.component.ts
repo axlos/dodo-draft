@@ -23,8 +23,8 @@ export class ProposalFormComponent implements OnChanges {
   @Output()
   public cancel = new EventEmitter<void>();
 
-  public readonly titleWordLimit: number = 20;
-  public readonly detailsWordLimit: number = 300;
+  public readonly titleWordLimit: number = 50;
+  public readonly detailsWordLimit: number = 500;
   public proposalForm: FormGroup;
   public languageName: string;
 
