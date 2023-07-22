@@ -73,8 +73,8 @@ nb-actions {
 }
 
 .language-icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
 }
 
 @include media-breakpoint-up(xl) {
