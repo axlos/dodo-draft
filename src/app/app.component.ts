@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, Inject, OnInit } from '@angular/core';
 import { NB_WINDOW, NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
@@ -20,7 +20,7 @@ import * as ProfileActions from "./core/store/actions/profile.actions";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   public headerMenu$: Observable<NbMenuItem[]>;
   public isAuthenticated$: Observable<boolean>;
@@ -71,9 +71,20 @@ export class AppComponent implements OnInit {
         )
       )
       .subscribe((profile) => {
-        console.log('profile:', profile.language);
         // Switch the language when the profile is loaded
         this.switchLanguage(profile.language ?? 'en');
+      });
+  }
+
+  ngAfterViewInit(): void {
+    this.store.select(authFeature.selectUser)
+      .subscribe((user) => {
+        const feedbackEl = document.getElementById('feedback-widget');
+        if (user === null) {
+          feedbackEl.style.display = 'none';
+        } else {
+          feedbackEl.style.display = 'block';
+        }
       });
   }
 
