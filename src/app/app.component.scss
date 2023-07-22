@@ -72,6 +72,11 @@ nb-actions {
   padding-right: 0.5rem;
 }
 
+.language-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 @include media-breakpoint-up(xl) {
   .main-layout {
     width: 75%;
