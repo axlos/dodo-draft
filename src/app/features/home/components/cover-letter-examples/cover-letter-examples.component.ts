@@ -19,7 +19,7 @@ export class CoverLetterExamplesComponent implements OnDestroy {
     this.subscription.add(
       this.translate.stream('home.cover-letter')
         .subscribe((testimonial) => {
-          this.examples = [1, 2, 3].map((index) => {
+          this.examples = [1, 2, 3, 4].map((index) => {
             const testI18n = testimonial[`example-${index}`];
             return {
               title: testI18n.title,
